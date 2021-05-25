@@ -92,4 +92,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Developed with :heart: at [TIKAJ](https://www.tikaj.com) 
+Developed with :heart: at UPT TIK Team
