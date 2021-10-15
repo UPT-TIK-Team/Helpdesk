@@ -41,6 +41,23 @@ class Pub extends MY_Controller
 
     }
 
+        function regis_user()
+    {
+        $userdata = [
+            'name' => trim($this->input->post('name')),
+            'email' => trim($this->input->post('email')),
+            'mobile' => trim($this->input->post('mobile')),
+            'username' => explode("@", $this->input->post('email'))[0],
+            'password' => trim($this->input->post('password')),
+            'type' => (int)$this->input->post('type'),
+            'status' => USER_STATUS_ACTIVE,
+            'created' => time(),
+            'updated' => time()
+        ];
+        $user_id = $this->Users->register($userdata);
+        // $this->redirect('/auth');
+        $this->sendJSON(array($this->Users));
+    }
 
 // End of Class
 }

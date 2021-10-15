@@ -6,15 +6,16 @@
 
 ### Credentials for logging in
 
-|User type | Username | Password |
-| ----------- | ----------- | ----------- |
-| Admin | admin.demo | demo |
-| Agent | agent.demo | demo |
-| User | user.demo | demo |
+| User type | Username   | Password |
+| --------- | ---------- | -------- |
+| Admin     | admin.demo | demo     |
+| Agent     | agent.demo | demo     |
+| User      | user.demo  | demo     |
 
 ![screen-2-100](assets/readme/screen.jpg)
 
 ## Features
+
 - [x] Separate User Access Roles (Admin, Agent, User)
 - [x] Automatically create Tickets by sending email
 - [x] Reply to ticket thread by replying on associated email thread
@@ -24,14 +25,17 @@
 - [x] Informative dashboard reporting
 
 ## Prerequisites for this project
+
 1. php v7.x.x
 2. phpMyAdmin
 3. Working knowledge of CodeIgniter framework
 
 ## Getting started
-TIKAJ HELPDESK is completely build on our in house framework "Scone", Scone is based on CodeIgniter framework.
+
+tikaj HELPDESK is completely build on our in house framework "Scone", Scone is based on CodeIgniter framework.
 
 To start with the project follow these steps:
+
 1. Clone this repository
 
 2. Import `tiket_demo.sql` present in root directory
@@ -50,21 +54,17 @@ To start with the project follow these steps:
 
 9. Now you can login using these credentials
 
-   
-|User type | Username | Password |
-| ----------- | ----------- | ----------- |
-| Admin | admin.demo | demo |
-| Agent | agent.demo | demo |
-| User | user.demo | demo |
-7. All done! You can enjoy now!
+| User type | Username   | Password |
+| --------- | ---------- | -------- |
+| Admin     | admin.demo | demo     |
+| Agent     | agent.demo | demo     |
+| User      | user.demo  | demo     |
 
-   
+7. All done! You can enjoy now!
 
 ## Checkout all of our projects
 
 Here at [Phoenix](https://lab.tik.co/explore/projects)
-
-
 
 ## Authors
 
@@ -72,12 +72,10 @@ Here at [Phoenix](https://lab.tik.co/explore/projects)
 - [Deeksha Gupta](https://github.com/eksha)
 - [Mansoor Ahmad](https://github.com/M33P0)
 
-
-
 ## License
 
 ```
-Copyright 2019-2020 TIKAJ Technologies Private Limited.
+Copyright 2019-2020 tikaj Technologies Private Limited.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -92,4 +90,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Developed with :heart: at UPT TIK Team
+Developed with :heart: at tikaj Team

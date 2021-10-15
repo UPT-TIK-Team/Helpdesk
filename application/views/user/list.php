@@ -33,7 +33,7 @@
                         title: "ID",
                         data: "id",
                         render: function (data) {
-                            return '<a href="' + BASE_URL + 'tickets/view_ticket/' + data + '" style="color: gray; text-decoration:none;">' + data + '</a>'
+                            return data
                         }
                     },
                     {
@@ -75,7 +75,8 @@
                         title: "Status",
                         data: "status",
                         render: function (data, type, row) {
-                            return '<span class="user-status" data-value="'+data+'"></span>'
+                            // return '<span class="user-status" data-value="'+data+'"></span>'
+                        return '<a href="' + BASE_URL + 'user/profile_update/' + data + '" style="color: gray; text-decoration:none;">' + '<span class="user-status" data-value="'+data+'"></span>' + '</a>'
                         }
                     },
                     {
@@ -84,20 +85,7 @@
                         render: function (data) {
                             return data?'<span class="rel-time" data-value="'+data+'000">':'-';
                         }
-                    }
-                    // ,
-
-                    // {
-                    //     title: "#",
-                    //     data: "id",
-                    //     render: function (data, type, row) {
-                    //         console.log(row);
-                    //         return ('<a href="' + BASE_URL + 'tickets/view_ticket/' + row['ticket_no'] + '" class="badge bg-blue" title="View Ticket"> <i class="fa fa-eye"></i></a>') +(
-                    //         (parseInt(row['status'])==100)?('<a class="close-ticket badge bg-green" data-ticket-no="'+row['ticket_no']+'" data-id="'+data+'" data-status="0" title="Re-open Ticket"> <i class="fa fa-check"></i></a>'):
-                    //         ('<a class="close-ticket badge bg-red" data-ticket-no="'+row['ticket_no']+'" data-id="'+data+'" data-status="100" title="Close Ticket"> <i class="fa fa-close"></i></a>'));
-                    //     }
-                    // },
-
+                    },
                 ]
             }
         };

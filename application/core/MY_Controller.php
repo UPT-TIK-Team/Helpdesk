@@ -6,8 +6,8 @@ class MY_Controller extends CI_Controller
 	//List of view to run pre and post
 	var $PRE_RENDER = array();
 	var $POST_RENDER = array();
-//	Set the path of view.
-//	var $VIEW_ROOT = null;
+	//	Set the path of view.
+	//	var $VIEW_ROOT = null;
 
 	//Store data about current SCOPE
 	var $SCOPE_DATA = array();
@@ -21,24 +21,6 @@ class MY_Controller extends CI_Controller
 		$this->SCOPE_DATA = array();
 		$this->load->model('core/Session_model', 'Session');
 	}
-
-
-	/**
-	 * Add path where to lookup for views.
-	 * @param $paths
-	 * @return array
-	 */
-	function addLookupPaths($paths)
-	{
-		if (!is_array($paths))
-			$this->LOOKUP_PATHS[] = $paths;
-		else {
-			foreach ($paths as $path)
-				$this->LOOKUP_PATHS[] = $path;
-		}
-		return $this->LOOKUP_PATHS;
-	}
-
 
 	/**
 	 * Set a user's session.
@@ -120,7 +102,7 @@ class MY_Controller extends CI_Controller
 		$lookupPaths = $this->LOOKUP_PATHS;
 		$i = count($lookupPaths);
 		while ($i) {
-			$i--;//reduce i
+			$i--; //reduce i
 			$currentPath = $lookupPaths[$i] . '/' . $name . '.php';
 			if (file_exists($root . $currentPath))
 				return $currentPath;
@@ -139,19 +121,9 @@ class MY_Controller extends CI_Controller
 	protected function render($title, $page, $data = array())
 	{
 		$data['title'] = $title;
-		$data = array_merge($this->SCOPE_DATA, $data);
-
-		foreach ($this->PRE_RENDER as $pre)
-			$this->load->view($pre, $data);
-
-		// viewPath we can find.
-		$viewPath = $this->lookForView($page);
-
-		//if view root is set prefix it.
-		$this->load->view(($viewPath == null ? $page : $viewPath), $data);
-
-		foreach ($this->POST_RENDER as $post)
-			$this->load->view($post, $data);
+		$this->load->view('global/header.php', $data);
+		$this->load->view($page);
+		$this->load->view('global/footer.php');
 	}
 
 	/**
@@ -204,8 +176,6 @@ class MY_Controller extends CI_Controller
 		}
 		return true;
 	}
-
-
 }
 
 
@@ -233,13 +203,14 @@ class MY_Tabler extends MY_Controller
 	protected function handler($model, $name, $context, $ui_filter, $filters, $more_response)
 	{
 
-		if(is_array($model))
-			return $this->sendClientData($model,$ui_filter,null,null,$more_response);
+		if (is_array($model))
+			return $this->sendClientData($model, $ui_filter, null, null, $more_response);
 		$options = $_REQUEST;
 		$options['filters'] = $filters;
 		$dt = $model->getDataTable($options);
 		if (isset($_GET['draw']) || isset($_POST['draw'])) { //if datatable request.
-			$context = array_merge(array('action' => $name,
+			$context = array_merge(array(
+				'action' => $name,
 				'type' => $this->Session->getUserType(),
 				'uid' => $this->getLoggedUsername(),
 				'username' => $this->getLoggedUsername(),
@@ -248,7 +219,7 @@ class MY_Tabler extends MY_Controller
 			return parent::sendJSON($dt->getDataTableData($context, $options), false);
 		} else {
 
-			return $this->returnFilterView($dt, $ui_filter,$context,$options, $more_response);
+			return $this->returnFilterView($dt, $ui_filter, $context, $options, $more_response);
 		}
 	}
 
@@ -271,11 +242,10 @@ class MY_Tabler extends MY_Controller
 		);
 	}
 
-	public function get_session($key){
-        if(empty($key))
-            return false;
-        return $this->session->userdata($key);
-    }
-
-
+	public function get_session($key)
+	{
+		if (empty($key))
+			return false;
+		return $this->session->userdata($key);
+	}
 }

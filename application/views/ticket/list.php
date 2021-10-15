@@ -33,16 +33,16 @@
                                             <tr>
                                                 <td>' . $a++ . '</td>
                                                 <td>
-                                                    <a href="' . BASE_URL . 'tickets/view_ticket/' . $ticket['ticket_no'] . '" style="color: gray; text-decoration:none;">' . $ticket['ticket_no'] . '</a>
+                                                    
                                                 </td>
                                                 <td>' . substr($ticket['purpose'], 0, 25) . '</td>
                                                 <td>' . substr($ticket['subject'], 0, 25) . '</td>
                                                 <td>' . STATUS_MAP[$ticket['status']] . '</td>
                                                 <td>' . toDate($ticket['created']) . '</td>
                                                 <td>
-                                                    <a href="' . BASE_URL . 'tickets/view_ticket/' . $ticket['ticket_no'] . '" class="badge badge-info p-1" data-toggle="tooltip" title="View Ticket" data-placement="left"><i class="fa fa-eye"></i></a>
-                                                    <a href="' . BASE_URL . 'tickets/close_ticket/' . $ticket['ticket_no'] . '" class="badge badge-warning p-1" data-toggle="tooltip"  data-placement="left" title="Close Ticket"><i class="fa fa-close"></i></a>
-                                                    <a href="' . BASE_URL . 'api/assign_ticket/' . $ticket['ticket_no'] . '" class="badge badge-primary p-1 assign_to_modal" data-toggle="tooltip"  data-placement="left" title="Assign to Someone"><i class="fa fa-check"></i></a>
+                                                    <a href="/tickets/view_ticket/' . $ticket['ticket_no'] . '" class="badge badge-info p-1" data-toggle="tooltip" title="View Ticket" data-placement="left"><i class="fa fa-eye"></i></a>
+                                                    <a href="/tickets/close_ticket/' . $ticket['ticket_no'] . '" class="badge badge-warning p-1" data-toggle="tooltip"  data-placement="left" title="Close Ticket"><i class="fa fa-close"></i></a>
+                                                    <a href="/api/assign_ticket/' . $ticket['ticket_no'] . '" class="badge badge-primary p-1 assign_to_modal" data-toggle="tooltip"  data-placement="left" title="Assign to Someone"><i class="fa fa-check"></i></a>
                                                 </td>
                                             </tr>
                                             ';

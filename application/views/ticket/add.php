@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header bg-transparent header-elements-inline">
             <div class="caption">
-                <h5 class="card-title"><i class="icon icon-ticket"></i> Create Ticket</h5>
+                <h5 class="card-title"><i class="icon icon-ticket"></i> Buat Tiket Baru</h5>
             </div>
         </div>
         <div class="container-fluid" id="msg">
@@ -13,16 +13,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class=" control-label">Category</label>
+                                    <label class=" control-label">Kategori Masalah</label>
                                     <select type="text" required class="form-control form-control-select2 select2-hidden-accessible"
                                             name="ticketcategory" id="ticketcategory"  aria-hidden="true">
-                                        <option value="">Select Category</option>
+                                        <option value="">Pilih Kategori</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class=" control-label">Subject</label>
+                                    <label class=" control-label">Subjek Masalah</label>
                                     <input type="text" required="" class="form-control blank" name="ticketsubject"
                                            id="ticketsubject"
                                            placeholder="Enter Subject" required value="">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class=" control-label">Your Message</label>
+                                    <label class=" control-label">Deskripsi Masalah</label>
                                     <textarea name="ticketmessage" id="ticketmessage" minlength="5" maxlength="50"
                                               class="form-control empty required" required></textarea>
                                 </div>

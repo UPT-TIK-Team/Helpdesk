@@ -41,7 +41,7 @@
                                 $attached = $decoded['attachments'];
                                 if ($decoded && $attached)
                                     foreach ($decoded['attachments'] as $attachment) {
-                                        $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="' . base_url() . $attachment['path'] . '"></p>';
+                                        $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="/'. $attachment['path'] . '"></p>';
                                     }
                                 if ($message['type'] == 1)
                                     echo '<li>
@@ -263,7 +263,7 @@
 
         //call a function to handle file upload on select file
         $('input[type=file]').on('change', function (e) {
-            var res = fileUpload(e, BASE_URL + 'API/Ticket/upload_attachment', function (res) {
+            var res = fileUpload(e, '/API/Ticket/upload_attachment', function (res) {
                 console.log(res);
                 if (res) {
                     attached_files.push(res);
@@ -303,17 +303,18 @@
             attached_files = [];
             $.ajax({
                 type: 'POST',
-                url: BASE_URL + 'API/Ticket/addThreadMessage',
+                url: '/API/Ticket/addThreadMessage',
                 dataType: 'text',
                 data: {'ticket_no': ticket_no, 'message': message, 'data': data, 'type': 1},
 
                 beforeSend: function () {
-                    $('#au_result').html('<img src="' + BASE_URL + 'assets/img/loader.gif" class="pull-right" style="width: 30px;">');
+                    $('#au_result').html('<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">');
                 },
 
                 success: function (response) {
                     if (JSON.parse(response)['data']['result']) {
                         showNotification('success', 'Comment added successfully')
+                        console.log("berhasil")
                         window.location.reload();
                     } else
                         showNotification('error', 'Some error occured')
@@ -327,7 +328,10 @@
             let fewSeconds = 2;
             $(this).siblings('.select-ticket-dropdown').toggleClass('hide');
             let id_select = $(this).siblings('.select-ticket-dropdown').children('select').attr('id');
-            $("#" + id_select).select2('open');
+            if ($('select').data('select2')) {
+               $("#" + id_select).select2('open');
+            }
+            
             let btn = $(this);
             btn.prop('disabled', true);
             setTimeout(function () {
@@ -376,12 +380,12 @@
 
             $.ajax({
                 type: 'POST',
-                url: BASE_URL + 'API/Ticket/updateTicket',
+                url: '/API/Ticket/updateTicket',
                 dataType: 'text',
                 data: data,
 
                 beforeSend: function () {
-                    $('#au_result').html('<img src="' + BASE_URL + 'assets/img/loader.gif" class="pull-right" style="width: 30px;">');
+                    $('#au_result').html('<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">');
                 },
 
                 success: function (response) {

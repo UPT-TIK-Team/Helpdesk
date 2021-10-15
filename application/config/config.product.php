@@ -1,18 +1,18 @@
 <?PHP
 //Developer Information
 //All product and developer related information.
-define('DEV_COMPANY_NAME', 'TIKAJ');
+define('DEV_COMPANY_NAME', 'UNSIKA');
 define('DEV_COMPANY_EMAIL', 'hello@tikaj.com');
 define('DEV_COMPANY_PHONE', '8881686666');
 define('DEV_COMPANY_SUPPORT_EMAIL', 'support@tikaj.com');
-define('DEV_COMPANY_URL', 'http://www.tikaj.com');
-define('DEV_COMPANY_LOGO', 'assets/img/logo.png');
+define('DEV_COMPANY_URL', 'https://upttik.unsika.ac.id/');
+define('DEV_COMPANY_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png');
 
 /**
  * Product related information
  */
-define('PRODUCT_NAME', 'TIKAJ HELPDESK');
-define('PRODUCT_LOGO', 'assets/img/product-logo.png');
+define('PRODUCT_NAME', 'UPT TIK HELPDESK');
+define('PRODUCT_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png');
 
 
 

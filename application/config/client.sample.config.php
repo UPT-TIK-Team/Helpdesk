@@ -8,9 +8,9 @@ define('BASE_URL', 'http://localhost:8080/');
 define('PAGE_LOADER', BASE_URL.'assets/img/loading.webp');
 
 //Client Specific site wide information
-define('CLIENT_FNAME','TIKAJ');
+define('CLIENT_FNAME','tikaj');
 define('CLIENT_MNAME','Technologies Private Limited');
-define('CLIENT_FULL_NAME', 'TIKAJ Technologies Private Limited');
+define('CLIENT_FULL_NAME', 'tikaj Technologies Private Limited');
 define('CLIENT_ADDRESS','Gurgaon, Haryana');
 define('CLIENT_CONATCT_NO','');
 define('CLIENT_PINCODE','');
@@ -31,7 +31,7 @@ define('CLIENT_WITHDRAWAL_7_DAY_OLD',4);
 define('CURRENCY_SIGN', '₹');
 define('MEMBER_ID_PREFIX', 'HHSW');
 define('MEMBER_ID_LENGTH', 6);
-define('CLIENT_TICKET_PREFIX', 'TIK-TIKAJ-');
+define('CLIENT_TICKET_PREFIX', 'TIK-tikaj-');
 define('CLIENT_TICKET_ID_LENGTH', 6);
 
 //Client Mail Settings

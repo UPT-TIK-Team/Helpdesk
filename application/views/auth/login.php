@@ -29,6 +29,7 @@
                                 <button type="submit" id="login" href="" class="btn btn-primary">Login</button>
                                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                             </form>
+                            <a href="<?= BASE_URL ?>register" class='text-primary'>Sign Up</a>
                             <div>
                                 <?= get_msg(); ?>
                             </div>
@@ -41,6 +42,6 @@
         </div>
     </div>
     <div class="copyrights text-center text-dark">
-        <p>Powered by <a href="<?= DEV_COMPANY_URL ?>" class="external"><img src="/assets/img/logo-red.png" width="65" alt="TIKAJ"></a></p>
+        <p>Powered by <a href="<?= DEV_COMPANY_URL ?>" class="external"><img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" width="65" alt="tikaj"></a></p>
     </div>
 </div>

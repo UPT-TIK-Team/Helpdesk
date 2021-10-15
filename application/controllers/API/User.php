@@ -6,6 +6,8 @@ class User extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Methods: GET, OPTIONS");
         parent::requireLogin();
         $this->load->model('user/User_model', 'Users');
         $this->load->model('core/Session_model', 'Session');
@@ -68,8 +70,37 @@ class User extends MY_Controller
         $user_id = $this->Users->register($userdata);
         $this->sendJSON(array('result'=>$user_id));
     }
- 
 
+    	public function changeStatusUser($id){
+		$user = $this->Users->getUserBy(array('id' => $id));
+		if ($user['status']==0) {
+			$user['status'] = 1;
+		}else {
+			$user['status'] = 0;
+		}
+		$role = $this->Session->getLoggedDetails()['type'];
+		$filter = ['type <=' => $role];
+		$data['user_list'] = $this->Users->getBy(null, $filter);
+		$this->render('All Users', 'user/list', $data);
+	}
+ 
+    // function regis_user()
+    // {
+    //     $userdata = [
+    //         'name' => trim($this->input->post('name')),
+    //         'email' => trim($this->input->post('email')),
+    //         'mobile' => trim($this->input->post('mobile')),
+    //         'username' => explode("@", $this->input->post('email'))[0],
+    //         'password' => trim($this->input->post('password')),
+    //         'type' => (int)$this->input->post('type'),
+    //         'status' => USER_STATUS_ACTIVE,
+    //         'created' => time(),
+    //         'updated' => time()
+    //     ];
+    //     $user_id = $this->Users->register($userdata);
+    //     // $this->redirect('/auth');
+    //     $this->sendJSON(array($this->Users));
+    // }
 
 // End of Class
 }

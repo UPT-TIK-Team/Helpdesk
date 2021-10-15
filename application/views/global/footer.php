@@ -6,11 +6,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <p><?= DEV_COMPANY_NAME ?> &copy; 2019-2020</p>
+                <p><?= DEV_COMPANY_NAME ?> &copy; 2021</p>
             </div>
             <div class="col-sm-6 text-right">
-                <p>Powered by &nbsp;<a href="<?= DEV_COMPANY_URL ?>" class="external powered-logo"><img
-                                src="/assets/img/logo-white.png" width="65" alt="TIKAJ"></a></p>
+                <p>Powered by &nbsp;<a href="https://upttik.unsika.ac.id" class="external powered-logo"><img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" width="75" alt="tikaj"></a></p>
                 <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
             </div>
         </div>
@@ -41,9 +40,10 @@
 <script src="<?= BASE_URL ?>assets/js/library.js"></script>
 <script src="<?= BASE_URL ?>assets/js/tik-script.js"></script>
 <script src="<?= BASE_URL ?>assets/js/main/bootstrap.bundle.min.js"></script>
+<script src="//code-eu1.jivosite.com/widget/jxLWhHG4Qu" async></script>
 <script>
-    $(document).ready(function () {
-        $(function () {
+    $(document).ready(function() {
+        $(function() {
             $('[data-toggle="tooltip"]').tooltip()
             // Animate loader off screen
             $(".loader").fadeOut(1000);
@@ -66,8 +66,8 @@
         return newhtml.join(" ");
     }
 
-   /*to get user icon*/
-    $('.current-user-avatar').each(function(elem){
+    /*to get user icon*/
+    $('.current-user-avatar').each(function(elem) {
         console.log($(this).attr('data-username'));
         var username = $(this).attr('data-username');
         var name = username.split('.').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
@@ -76,4 +76,5 @@
     });
 </script>
 </body>
+
 </html>
