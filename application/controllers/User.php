@@ -143,5 +143,18 @@ class User extends MY_Controller
 		$this->render('Add Users', 'user/add_user');
 	}
 
+	public function changeStatusUser($id){
+		$user = $this->Users->getUserBy(array('id' => $id));
+		if ($user['status']==0) {
+			$user['status'] = 1;
+		}else {
+			$user['status'] = 0;
+		}
+		$role = $this->Session->getLoggedDetails()['type'];
+		$filter = ['type <=' => $role];
+		$data['user_list'] = $this->Users->getBy(null, $filter);
+		$this->render('All Users', 'user/list', $data);
+	}
+
 // End of Class
 }

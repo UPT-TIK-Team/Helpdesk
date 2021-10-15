@@ -54,7 +54,7 @@
                 </div>
             </a>
 
-            <a href="<?= BASE_URL ?>tickets/my_tickets" class="col-md-3">
+            <a href="<?= BASE_URL ?>tickets/unassigned_tickets" class="col-md-3">
                 <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
                     <div class="icon bg-orange"><i class="fa fa-ticket"></i></div>
                     <div class="text"><strong><?= $stats['open_tickets'] ?></strong><br>

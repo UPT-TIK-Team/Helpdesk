@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/unsikaa2/public_html/helpdesktik2.unsika.ac.id
+    - /bin/cp -r * $DEPLOYPATH

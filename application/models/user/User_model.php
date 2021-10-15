@@ -188,7 +188,7 @@ class User_model extends BaseMySQL_model
 
 	}
 
-	public function updateProfile($uid = null, $info, $files, $allow_specific_edits)
+	public function updateProfile( $info, $files, $allow_specific_edits, $uid = null)
 	{
 		$fields = array( 'gender', 'city', 'state', 'dob', 'address', 'meta');
 		$specific_edits = array('name','father', 'mobile', 'email');

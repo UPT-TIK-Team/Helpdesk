@@ -40,7 +40,7 @@ class Token_model  extends BaseMySQL_model
 		return;
 	}
 
-	public function generate($uid, $type, $token = null, $valid_till, $meta )
+	public function generate($uid, $type, $valid_till, $meta, $token = null )
 	{
 		if ($token == null)
 			$token = strtoupper(substr(sha1(rand()), 0, 8));
