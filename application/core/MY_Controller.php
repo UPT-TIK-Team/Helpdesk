@@ -121,9 +121,11 @@ class MY_Controller extends CI_Controller
 	protected function render($title, $page, $data = array())
 	{
 		$data['title'] = $title;
-		$this->load->view('global/header.php', $data);
+		$folder = 'global';
+		strpos($page, 'login') ? $folder = 'auth' : $folder;
+		$this->load->view($folder . '/header.php', $data);
 		$this->load->view($page);
-		$this->load->view('global/footer.php');
+		$this->load->view($folder . '/footer.php');
 	}
 
 	/**

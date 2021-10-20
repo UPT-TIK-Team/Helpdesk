@@ -3,7 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include_once __DIR__ . "/constants.permissions.php";
 
 //Root Url of ur site
-define('BASE_URL', 'http://localhost/helpdesktik/');
+// cpanel url http://helpdesktik.unsika.ac.id/
+define('BASE_URL', 'http://localhost/Helpdesk/');
 
 define('PAGE_LOADER', BASE_URL . 'assets/img/loading.webp');
 

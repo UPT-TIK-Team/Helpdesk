@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'    => '',
-    'hostname' => 'unsikaa2_helpdesk',
+    'hostname' => 'localhost',
     'username' => 'root',
-    'password' => '@Baxtoer75',
-    'database' => 'unsikaa2_helpdesk',
+    'password' => '',
+    'database' => 'unsika_helpdesk',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
