@@ -204,7 +204,6 @@ class MY_Tabler extends MY_Controller
 	 */
 	protected function handler($model, $name, $context, $ui_filter, $filters, $more_response)
 	{
-
 		if (is_array($model))
 			return $this->sendClientData($model, $ui_filter, null, null, $more_response);
 		$options = $_REQUEST;

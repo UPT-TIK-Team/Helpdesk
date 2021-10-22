@@ -115,7 +115,6 @@ function makeReportPage(element, path, options, cb) {
 	}
 
 	function _makeServerTable(element, path, options, data) {
-
 		var dtOptions = Object.assign(getDatatableConfig({
 			"processing": true,
 			"serverSide": true,
@@ -133,9 +132,7 @@ function makeReportPage(element, path, options, cb) {
 					return json.data.data;
 				}
 			},
-		}),options.datatable );
-		// console.log(JSON.stringify(dtOptions))
-
+		}), options.datatable);
 		return element.DataTable(dtOptions);
 	}
 
@@ -153,6 +150,7 @@ function makeReportPage(element, path, options, cb) {
 			if (data.data) {
 				return cb(null, data.data);
 			} else {
+				console.log(data)
 				console.log("Page information doesn't have data key in response.", path);
 				return cb(true, data);
 			}
@@ -177,16 +175,16 @@ function makeReportPage(element, path, options, cb) {
 				options.serverSide = true;
 			}
 
-			var rnd= Math.random().toString(32).substr(3,5);
+			var rnd = Math.random().toString(32).substr(3, 5);
 			//Set page for filter erc.
 			var html = '<div class="row">' +
-				'<div class="col-md-12"> <div class="tik-filter-'+rnd+' horizontal-alpaca col-md-12"></div></div>' +
+				'<div class="col-md-12"> <div class="tik-filter-' + rnd + ' horizontal-alpaca col-md-12"></div></div>' +
 				'<hr><br/>' +
-				'<div class="col-md-12"> <table class="tik-datatable-'+rnd+' table dataTable nowrap" style="width:100%;"></table></div>' +
+				'<div class="col-md-12"> <table class="tik-datatable-' + rnd + ' table dataTable nowrap" style="width:100%;"></table></div>' +
 				'</div>';
 			element.html(html);
-			var tableElement = $(element).find('.tik-datatable-'+rnd);
-			var tableFilter = $(element).find('.tik-filter-'+rnd);
+			var tableElement = $(element).find('.tik-datatable-' + rnd);
+			var tableFilter = $(element).find('.tik-filter-' + rnd);
 
 			//Get and set filters method.
 			options._filters = {};
@@ -198,7 +196,7 @@ function makeReportPage(element, path, options, cb) {
 			}).bind(options);
 
 			var table = null;
-			
+
 			if (options.serverSide) {
 				table = _makeServerTable(tableElement, path, options, data);
 				options.dt = table;

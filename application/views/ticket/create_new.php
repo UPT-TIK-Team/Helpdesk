@@ -17,10 +17,20 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Kategori Masalah</label>
+                      <label class="col-sm-2 form-control-label">Layanan</label>
                       <div class="col-sm-6 select">
-                        <select name="category" id="category_dd" class="form-control" style="width: 100%">
-                          <option value="null">Pilih Kategori</option>
+                        <select name="category" id="service" class="form-control" style="width: 100%">
+                          <option value="null">Pilih Layanan</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-2 form-control-label">Sub Layanan</label>
+                      <div class="col-sm-6 select">
+                        <select name="subservice" id="subservice" class="form-control" style="width: 100%">
+                          <option value="null">Pilih Sub Layanan</option>
                         </select>
                       </div>
                     </div>
@@ -37,23 +47,12 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">CC</label>
-                      <div class="col-sm-6 select">
-                        <select name="cc[]" id="cc_dd" multiple="multiple">
-                          <option value="null">Select names</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="row">
                       <label class="col-sm-2 form-control-label">Tujuan</label>
                       <div class="col-sm-6">
                         <input id="purpose" type="text" name="purpose" required="" class="form-control" placeholder="Tujuan Pembuatan Tiket">
                       </div>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-2 form-control-label">Message</label>
@@ -181,9 +180,9 @@
       var purpose = $("#purpose").val();
       var subject = $("#subject").val();
       var message = quill.root.innerHTML
-      var cc = ($("#cc_dd").val()).join(';');
+      const id_subservice = parseInt($("#subservice").val());
       var severity = parseInt($("#severity_dd").val());
-      var category = parseInt($("#category_dd").val());
+      var id_service = parseInt($("#service").val());
       var data = {
         "attachments": attached_files
       }
@@ -193,8 +192,8 @@
         'subject': subject,
         'message': message,
         'severity': severity,
-        'cc': cc,
-        'category': category,
+        'id_service': id_service,
+        'id_subservice': id_subservice,
         'data': data
       }
       console.log(fdata);
@@ -205,16 +204,7 @@
           type: 'POST',
           url: BASE_URL + 'API/Ticket/create',
           dataType: 'text',
-          data: {
-            'purpose': purpose,
-            'subject': subject,
-            'message': message,
-            'severity': severity,
-            'cc': cc,
-            'category': category,
-            'data': data
-          },
-
+          data: fdata,
           beforeSend: function() {
             $("#result_create_ticket").html('<img src="' + BASE_URL + 'assets/img/loader.gif" class="pull-right" style="width: 30px;">');
           },

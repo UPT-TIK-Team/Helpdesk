@@ -20,7 +20,7 @@ class Tickets extends MY_Controller
   public function list_all()
   {
     $data['title'] = 'Tickets';
-    $data['type'] = "all_tickets";
+    $data['type'] = "my_tickets";
     $this->render('My Tickets', 'ticket/my_tickets', $data);
   }
 
@@ -69,13 +69,12 @@ class Tickets extends MY_Controller
     $ticket = $this->uri->segment(3);
     $data['title'] = 'View Ticket';
     $usertype = $this->Session->getLoggedDetails()['type'];
-    // $data['privilege'] = ($usertype==USER_MANAGER || $usertype == USER_ADMIN)? true : false;
     $data['privilege'] = ($usertype == USER_MANAGER) ? true : false;
     if (!$ticket) {
       $this->render('View Ticket', 'unauthorised', $data);
     } else {
       $data['ticket_no'] = $ticket;
-      $data['info'] = $this->Tickets->getBy(null, ['ticket_no' => $ticket])[0];
+      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['severities', 'services', 'subservices'], ['severity', 'id_service', 'id_subservice'], 'severities.name as name_severity, services.name as name_service, subservices.name as name_subservice');
       $data['messages'] = $this->Messages->getBy(null, ['ticket' => $ticket]);
       $this->render('View Ticket', 'ticket/view_ticket', $data);
     }

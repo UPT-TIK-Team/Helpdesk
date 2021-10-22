@@ -1,35 +1,35 @@
 <!-- Dashboard Counts Section-->
 <section class="forms">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex align-items-center">
-                        <h3 class="h4"><?= $title ?></h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 table-responsiveW">
-                                <?php
-                                if (is_array($tickets) && count($tickets) > 0) {
-                                    ?>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>S. No.</th>
-                                            <th>Ticket Number</th>
-                                            <th>Purpose</th>
-                                            <th>Subject</th>
-                                            <th>Status</th>
-                                            <th>Created On</th>
-                                            <th>Options</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        $a = 1;
-                                        foreach ($tickets as $ticket) {
-                                            echo '
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <h3 class="h4"><?= $title ?></h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 table-responsiveW">
+                <?php
+                if (is_array($tickets) && count($tickets) > 0) {
+                ?>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>S. No.</th>
+                        <th>Ticket Number</th>
+                        <th>Purpose</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Created On</th>
+                        <th>Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $a = 1;
+                      foreach ($tickets as $ticket) {
+                        echo '
                                             <tr>
                                                 <td>' . $a++ . '</td>
                                                 <td>
@@ -46,25 +46,25 @@
                                                 </td>
                                             </tr>
                                             ';
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <div class="alert alert-info">No record found</div>
-                                    <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                <?php
+                } else {
+                ?>
+                  <div class="alert alert-info">No record found</div>
+                <?php
+                }
+                ?>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <script>
-    $(".table").DataTable();
+  $(".table").DataTable();
 </script>

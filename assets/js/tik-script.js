@@ -54,8 +54,8 @@ $('#regis_user').on('click', function (e) {
       beforeSend: function () {
         $('#au_result').html(
           '<img src="' +
-            BASE_URL +
-            'assets/img/loader.gif" class="pull-right" style="width: 30px;">'
+          BASE_URL +
+          'assets/img/loader.gif" class="pull-right" style="width: 30px;">'
         );
       },
 
@@ -103,8 +103,8 @@ $('#add_user').on('click', function (e) {
       beforeSend: function () {
         $('#au_result').html(
           '<img src="' +
-            BASE_URL +
-            'assets/img/loader.gif" class="pull-right" style="width: 30px;">'
+          BASE_URL +
+          'assets/img/loader.gif" class="pull-right" style="width: 30px;">'
         );
       },
 
@@ -135,8 +135,8 @@ $('.assign_to_modal').on('click', function (e) {
       $('.modal-title').html('Please wait..');
       $('.modal-body').html(
         '<center><br><img src="' +
-          BASE_URL +
-          'assets/img/loader.gif" style="width: 30px;"></center><br>'
+        BASE_URL +
+        'assets/img/loader.gif" style="width: 30px;"></center><br>'
       );
     },
 
@@ -147,3 +147,15 @@ $('.assign_to_modal').on('click', function (e) {
   });
   // $(".modal-body").html(href);
 });
+
+$('#service').on("select2:select", e => {
+  $.get(`${BASE_URL}API/Ticket/getSubServices/${e.target.value}`, data => {
+    $("#subservice").find('option').remove()
+    $('#subservice').select2({
+      width: 'resolve',
+      data: data.data.map(data => {
+        return { id: data.id, text: data.name }
+      })
+    });
+  })
+})

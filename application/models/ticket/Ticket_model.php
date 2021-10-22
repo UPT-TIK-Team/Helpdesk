@@ -35,16 +35,14 @@ class Ticket_model extends BaseMySQL_model
 
   public function create($data)
   {
-
-    $info = getValuesOfKeys($data, array('owner', 'purpose', 'subject', 'message', 'assign_to', 'assign_on', 'severity', 'priority', 'category', 'cc', 'data'));
+    $info = getValuesOfKeys($data, array('owner', 'purpose', 'subject', 'message', 'assign_to', 'assign_on', 'severity', 'priority', 'id_service', 'id_subservice', 'data'));
     $attachments = $info['data'];
     $info['data'] = json_encode($info['data']);
     if (!$info['owner'])
       $info['owner'] = $this->Session->getLoggedDetails()['username'];
     if (!empty($info['subject']) && !empty($info['message'])) {
-
       $info = array_merge($info, array('ticket_no' => null, 'created' => time(), 'status' => TICKET_STATUS_OPEN));
-      $res = parent::add($info);
+      $res = $this->add($info);
       if ($res) {
         $ticket_no = $this->getTicketNoFromID($res);
         parent::setByID($res, array('ticket_no' => $ticket_no));
@@ -52,9 +50,6 @@ class Ticket_model extends BaseMySQL_model
         if (!empty($attachments['attachments'])) {
           $this->addAttachmentRef($attachments['attachments'], $ticket_no);
         }
-        // send update Email
-        $usernames = array($info['owner']);
-        array_merge($usernames, explode(';', $info['cc']));
         return $ticket_no;
       }
     } else $res = -1;
@@ -74,13 +69,13 @@ class Ticket_model extends BaseMySQL_model
     }
   }
 
-  public function updateTicket($data, $meta)
+  public function updateTicket($data)
   {
     if (!empty($data['id'])) {
-      $info = array_merge($data, array('updated' => time()));
+      array_merge($data, array('updated' => time()));
       $res = parent::setByID($data['id'], $data);
 
-      $info = parent::getBy(array('owner', 'cc', 'ticket_no', 'subject'), array('id' => $data['id']));
+      parent::getBy(array('owner', 'ticket_no', 'subject'), array('id' => $data['id']));
     } else $res = -1;
 
     return $res;
@@ -88,8 +83,19 @@ class Ticket_model extends BaseMySQL_model
 
   public function getAllCategories()
   {
-    return TICKET_CATEGORIES;
+    return $this->db->get('services')->result_array();
   }
+
+  public function getAllSubServices()
+  {
+    return $this->db->get('subservices')->result_array();
+  }
+
+  public function getSubServicesById($idservice)
+  {
+    return $this->db->where('id_services', $idservice)->get('subservices')->result_array();
+  }
+
   public function getAllPriorities()
   {
     return TICKET_PRIORITIES;
@@ -122,15 +128,7 @@ class Ticket_model extends BaseMySQL_model
   public function add_thread($data, $sendEmail = FALSE)
   {
     $res = $this->db->insert(TABLE_MESSAGES, $data);
-    $info = parent::getBy(array('owner', 'cc', 'ticket_no', 'subject'), array('ticket_no' => $data['ticket']));
-
-    // send update Email
-    // if(!empty($info) && $res){
-    //     $info= $info[0];
-    //     $usernames = array($info['owner'], $data['owner']);
-    //     $usernames = array_merge(explode(';', $info['cc']), $usernames);
-    //     $this->sendUpdateEmail($usernames,'[#'.$info["ticket_no"].'] '.$info['subject'], 'From @'.$data['owner'].': <br>'.$data['message']);
-    // }
+    $info = parent::getBy(array('owner', 'ticket_no', 'subject'), array('ticket_no' => $data['ticket']));
     return $res;
   }
 
