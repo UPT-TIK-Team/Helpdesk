@@ -33,14 +33,14 @@ $(document).ready(function () {
 			else
 				$(this).html('-');
 		});
-	}, 60000);
+	}, 60);
 });
 
 function renderDropdowns() {
 	if ($('#status_dd').length) {
 		$.get(BASE_URL + '/API/Ticket/getStatus', function (data) {
-
 			$('#status_dd').select2({
+				width: 'resolve',
 				data: data.data.map(function (item) {
 					return { id: item.value, text: item.label }
 				})
@@ -50,10 +50,9 @@ function renderDropdowns() {
 		});
 	}
 	if ($('#assign_to_dd').length) {
-		$.get(BASE_URL + '/API/User/getAll?type=[60,80,100]', function (data) {
-			$('#assign_to_dd').find('option').remove()
-
+		$.get(BASE_URL + '/API/User/getAll?type=[10,60,80]', function (data) {
 			$('#assign_to_dd').select2({
+				width: 'resolve',
 				data: data.data.map(function (item) {
 					return { id: item.username, text: item.name }
 				})
@@ -83,21 +82,6 @@ function renderDropdowns() {
 			});
 		});
 	}
-
-	if ($('#priority_dd').length) {
-		$.get(BASE_URL + '/API/Ticket/getPriorities', function (data) {
-			$('#priority_dd').find('option').remove()
-
-			$('#priority_dd').select2({
-				width: 'resolve',
-				data: data.data.map(function (item, index) {
-					return { id: item.value, text: item.label }
-				})
-			});
-
-
-		});
-	}
 	if ($('#severity_dd').length) {
 		$.get(BASE_URL + '/API/Ticket/getSeverities', function (data) {
 			$('#severity_dd').select2({
@@ -124,6 +108,7 @@ function renderCustomHTML() {
 
 	$('.user-name').each(function (elem) {
 		var username = $(this).attr('data-username');
+		console.log(username)
 		$(this).html(getUserName(username));
 	});
 

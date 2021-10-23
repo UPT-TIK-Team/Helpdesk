@@ -11,17 +11,13 @@
                   <tr>
                     <th>Ticket No</th>
                     <th>Owner</th>
-                    <th>Purpose</th>
                     <th>Subject</th>
-                    <th>Message</th>
                     <th>Assign To</th>
-                    <th>Assign On</th>
                     <th>Status</th>
                     <th>Severity</th>
-                    <th>Priority</th>
-                    <th>Data</th>
                     <th>Service</th>
                     <th>Sub Service</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
               </table>
@@ -35,35 +31,46 @@
 <script type="application/javascript">
   $(function() {
     $('#tickets').dataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ],
       responsive: true,
       autoWidth: false,
       processing: true,
       serverSide: true,
       ajax: {
-        url: `${BASE_URL}API/Ticket/GetAllTickets`,
+        url: `<?= $link ?>`,
         header: 'application/json',
         type: 'POST',
       },
       columns: [{
-          data: 0
-        }, {
-          data: 1
-        }, {
-          data: 2
-        }, {
-          data: 3
-        }, {
-          data: 4
-        }, {
-          data: 5
-        }, {
-          data: 6
-        }, {
-          data: 7
+          data: 'ticket_no'
         },
         {
-          data: 8,
-          render: function(data, type, row) {
+          data: 'owner',
+        },
+        {
+          data: 'subject'
+        },
+        {
+          data: 'assign_to'
+        },
+        {
+          data: 'status',
+          render: data => {
+            if (data == 100) {
+              return `<div class="badge badge-danger">Close</div>`
+            } else if (data == 50) {
+              return `<div class="badge badge-warning">In Progress</div>`
+            } else {
+              return `<div class="badge badge-success">Open</div>`
+            }
+          }
+        },
+        {
+          data: 'severity',
+          render: data => {
             if (data == 'Low') {
               return `<div class="badge badge-success">${data}</div>`
             } else if (data == 'Medium') {
@@ -74,17 +81,14 @@
           }
         },
         {
-          data: 9
+          data: 'service'
         },
         {
-          data: 10
+          data: 'subservice'
         },
         {
-          data: 11
-        },
-        {
-          data: 12
-        },
+          data: 'action'
+        }
       ]
     })
   });

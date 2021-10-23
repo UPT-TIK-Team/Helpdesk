@@ -25,28 +25,12 @@ class Auth_model extends BaseMySQL_model
 		$username = trim($data['username']);
 		$password = $data['password'];
 		$user = $this->User->getOneItem($this->User->getByOR("*", array('username' => $username)));
-		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == STATUS_ACTIVE)
-		{
+		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
 		}
 		return false;
 	}
-
-	// public function sendResetPasswordLink($userId=null)
-	// {
-	//     $user = $this->User->getUsersBy(array('id' => $userId));
-	//     if(count($user) < 1)
-	//         return false;
-	//     $user = $user[0];
-	//     $type = "forgot_password";
-	//     $token = $this->Token->create($user['id'], $this->type_forgot);
-	//     $userdata = $user;
-	//     $userData['token'] = $token;
-
-	//     $this->sendResetLink($userData);
-	// }
-
 
 	//todo
 	public function sendResetLink($id)
@@ -57,7 +41,7 @@ class Auth_model extends BaseMySQL_model
 		$templateId = $this->template->getTemplatesBy(array('type' => 'forgot_password'));
 		$templateId = $templateId[0];
 
-		$user = $this->User->getUsersBy(null,$query = ['id' => $id]);
+		$user = $this->User->getUsersBy(null, $query = ['id' => $id]);
 		$user = $user[0];
 
 		$token = $this->Token->generate($id, $this->type_forgot);
@@ -81,7 +65,7 @@ class Auth_model extends BaseMySQL_model
 
 	public function verifyPasswordResetLink($username, $token)
 	{
-		$user = $this->User->getUsersBy(null,array('username' => $username));
+		$user = $this->User->getUsersBy(null, array('username' => $username));
 		if (count($user) < 1)
 			return false;
 
@@ -112,13 +96,12 @@ class Auth_model extends BaseMySQL_model
 		$res = $this->user->update_user($username, array('password' => md5($random_password)));
 		$user = $this->User->get_user_details($username);
 		if ($res) {
-//            Send Mail or Sms
+			//            Send Mail or Sms
 			$body = 'Hi ' . $username . ', You recently requested a password reset. Your new password is' . $random_password;
-//            $this->mailer->send($user['email'], 'jbi@fixange.com', 'Password Reset Request', $body);
-//            $this->SMS->sendSMS($user['mobile'], "Dear " . $user['name'] . " Your new password is " . $random_password);
+			//            $this->mailer->send($user['email'], 'jbi@fixange.com', 'Password Reset Request', $body);
+			//            $this->SMS->sendSMS($user['mobile'], "Dear " . $user['name'] . " Your new password is " . $random_password);
 		}
 		return $res;
-
 	}
 
 
@@ -126,13 +109,10 @@ class Auth_model extends BaseMySQL_model
 	{
 		$_SESSION['pending_registration'] = $userData;
 		$this->load->model('payment/Paytm_model', 'Paytm');
-		$desc = 'Member Registration for ' . $userData['name'].', Mobile number - ' . $userData['mobile'];
+		$desc = 'Member Registration for ' . $userData['name'] . ', Mobile number - ' . $userData['mobile'];
 		$payment = $this->Paytm->generateTX(USER_SYSTEM_USERID, CLIENT_REGISTRATION_FEE, 0, TX_TYPE_DEPOSIT, $desc);
 		$payment['redirect'] = BASE_URL . "/auth/registration_payment";
 		$_SESSION[PAYMENT_SESSION_KEY] = $payment;
 		return $payment['html'];
 	}
-
-
-
 }

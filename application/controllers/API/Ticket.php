@@ -13,6 +13,30 @@ class Ticket extends MY_Controller
     $this->load->model('user/User_model', 'Users');
   }
 
+  public function generateDatatable()
+  {
+    $select = "ticket_no, owner, purpose, subject, message, assign_to, assign_on, status, data";
+    $join = ['severities', 'services', 'subservices'];
+    $columnjoin = ['severity', 'id_service', 'id_subservice'];
+    $as = 'severities.name as severity, services.name as service, subservices.name as subservice';
+    $action = true;
+
+    if ($this->input->get()) {
+      $input = $this->input->get();
+      $key = array_keys($input)[0];
+      $val = array_values($input)[0];
+      if ($key == 'assign_to' && $val == 'null') {
+        echo $this->Tickets->generateDatatable($select, ['assign_to is null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
+      } else if ($key == 'assign_to' && $val == 'not null') {
+        echo $this->Tickets->generateDatatable($select, ['assign_to is not null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
+      } else {
+        echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
+      }
+    } else {
+      echo $this->Tickets->generateDatatable($select, null, $join, $columnjoin, $as, $action);
+    }
+  }
+
   public function create()
   {
     $create = $this->Tickets->create($_POST);
@@ -43,28 +67,6 @@ class Ticket extends MY_Controller
   public function getSeverities()
   {
     $this->sendJSON($this->Tickets->getAllSeverities());
-  }
-
-
-  public function getAllTickets()
-  {
-    $columns = array(
-      array('db' => 'ticket_no', 'dt' => 0),
-      array('db' => 'owner', 'dt' => 1),
-      array('db' => 'purpose', 'dt' => 2),
-      array('db' => 'subject', 'dt' => 3),
-      array('db' => 'message', 'dt' => 4),
-      array('db' => 'assign_to', 'dt' => 5),
-      array('db' => 'assign_on', 'dt' => 6),
-      array('db' => 'status', 'dt' => 7),
-      array('db' => 'severity', 'dt' => 8),
-      array('db' => 'priority', 'dt' => 9),
-      array('db' => 'data', 'dt' => 10),
-      array('db' => 'service', 'dt' => 11),
-      array('db' => 'subservice', 'dt' => 12),
-    );
-
-    $this->sendJSON($this->Tickets->generateDatatable(null, $columns, ['severities', 'services', 'subservices'], ['severity', 'id_service', 'id_subservice'], 'severities.name as severity, services.name as service, subservices.name as subservice'), true);
   }
 
   public function upload_attachment()

@@ -118,9 +118,8 @@ class MY_Controller extends CI_Controller
 	 * @param string $page Path of page. if VIEW_ROOT is set it is prefixed.
 	 * @param array $data
 	 */
-	protected function render($title, $page, $data = array())
+	protected function render($page, $data = array())
 	{
-		$data['title'] = $title;
 		$folder = 'global';
 		strpos($page, 'login') ? $folder = 'auth' : $folder;
 		$this->load->view($folder . '/header.php', $data);

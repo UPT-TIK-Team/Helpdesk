@@ -21,7 +21,6 @@
             background-color: white;
             opacity: 5;
             text-align: center;
-            vertical-align: middle;
         }
 
         .loader img {

@@ -160,7 +160,7 @@
               <tr>
                 <th>Ticket Service</th>
                 <td>
-                  <select name="service" id="service" data-id="<?= $info['id'] ?>" class="form-control">
+                  <select name="id_service" id="service" data-id="<?= $info['id'] ?>" class="form-control" disabled>
                     <option data-value="<?= $info['id_service'] ?>"><?= $info['name_service'] ?></option>
                   </select>
                 </td>
@@ -168,16 +168,8 @@
               <tr>
                 <th>Ticket Sub Service</th>
                 <td>
-                  <select name="subservice" id="subservice" data-id="<?= $info['id'] ?>" class="form-control">
+                  <select name="id_subservice" id="subservice" data-id="<?= $info['id'] ?>" class="form-control" disabled>
                     <option data-value="<?= $info['id_subservice'] ?>"><?= $info['name_subservice'] ?></option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>Ticket Priority</th>
-                <td>
-                  <select name="priority" id="priority_dd" data-id="<?= $info['id'] ?>" data-type="6" class="form-control ">
-                    <option class="tik-priority" data-value="<?= $info['priority'] ?>"><?= $info['priority'] ?></option>
                   </select>
                 </td>
               </tr>
@@ -185,8 +177,8 @@
                 <th>Assigned to</th>
                 <td>
                   <?php if ($privilege) : ?>
-                    <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" data-type="8" class="form-control">
-                      <option></option>
+                    <select name="assign_to" id="assign_to_dd" class="form-control">
+                      <option value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
                     </select>
                   <?php endif; ?>
               </tr>
@@ -308,7 +300,7 @@
     renderDropdowns();
 
     $('select.form-control').on('change', function() {
-      var intfields = ['severity', 'priority', 'service', 'status', 'subservice'];
+      var intfields = ['severity', 'priority', 'id_service', 'status', 'id_subservice'];
       var field = $(this).attr('name');
       var value = this.value;
       if (intfields.includes(field)) value = parseInt(value);

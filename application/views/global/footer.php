@@ -66,11 +66,9 @@
   }
 
   /*to get user icon*/
-  $('.current-user-avatar').each(function(elem) {
-    console.log($(this).attr('data-username'));
+  $('.current-user-avatar').each(function() {
     var username = $(this).attr('data-username');
     var name = username.split('.').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
-    console.log(name);
     $(this).append(getUserLabel(name, username))
   });
 </script>

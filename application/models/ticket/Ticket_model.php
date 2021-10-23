@@ -93,7 +93,7 @@ class Ticket_model extends BaseMySQL_model
 
   public function getSubServicesById($idservice)
   {
-    return $this->db->where('id_services', $idservice)->get('subservices')->result_array();
+    return $this->db->where('id_service', $idservice)->get('subservices')->result_array();
   }
 
   public function getAllPriorities()
@@ -132,99 +132,6 @@ class Ticket_model extends BaseMySQL_model
     return $res;
   }
 
-  /**
-   * Process mails from IMAP endpoint, process the content and accordingly create reply messages or new tickets
-   */
-  public function processIMAPEmail($data)
-  {
-
-    $subject = $data['subject'];
-
-    $owner = $this->User->getBy(array('username'), array('email' => $data['from'][0]['address']));
-    if (empty($owner))
-      $owner = $data['from'][0]['address']; // user's email address     
-    else
-      $owner = $owner[0]['username'];
-    if (substr($subject, 0, 2) === '[#' || substr($subject, 0, 6) === 'Re: [#' || substr($subject, 0, 6) === 'RE: [#') //is a reply to existing mail thread 
-    {
-      print_r('Replying to thread based on ticket number in to subject line');
-      $message_thread = array('created' => time());
-      preg_match_all("/\[([^\]]*)\]/", $subject, $matches);
-      $message_thread['ticket'] = substr($matches[1][0], 1, strlen($matches[1][0]));
-      $message_thread['message'] = $this->Email->getCurrentEmailContent($data['text']);
-
-      $message_thread['owner'] = $owner;
-      $message_thread['type'] = 1; //message type
-
-      $message_thread['to'] = array();
-      if (!empty($data['cc'])) {
-        foreach ($data['cc'] as $cc) {
-          array_push($message_thread['to'], $cc['address']);
-        }
-      }
-
-      $message_thread['to'] = implode(';', $message_thread['to']);
-      // $message_thread['data']['attachment'] = TODO attachments download and attach with this message
-
-      print_r($message_thread);
-      return $this->add_thread($message_thread);
-    } else {
-      $to_addresses = array();
-      if (!empty($data['to'])) { // create new ticket if mail came to specific helpdesk email
-        foreach ($data['to'] as $to) {
-          array_push($to_addresses, $to['address']);
-        }
-        if (in_array(CLIENT_HELPDESK_EMAIL, $to_addresses)) {
-          print_r('Creating a new ticket via' . CLIENT_HELPDESK_EMAIL);
-          $ticket = array(
-            'created' => time(), 'subject' => $data['subject'], 'message' => $this->Email->getCurrentEmailContent($data['text']),
-            'owner' => $owner
-          );
-
-          $ticket['cc'] = array();
-          if (!empty($data['cc'])) {
-            foreach ($data['cc'] as $cc) {
-              array_push($ticket['cc'], $cc['address']);
-            }
-          }
-          $ticket['cc'] = implode(';', $ticket['cc']);
-          // $ticket['data']['attachment'] = TODO attachments download and attach with this message
-          print_r($ticket);
-          return $this->create($ticket);
-        } else {
-          foreach ($to_addresses as $to) {
-            $username = explode('@', $to)[0];
-            // check if username is ticket id ?
-            $ticket = parent::getBy(array('ticket_no'), array('ticket_no' => $username));
-            if (!empty($ticket)) {
-              // This is redundant, need to arrange this code.
-              print_r('Replying to thread based on ticket number in to field');
-              $message_thread = array('created' => time());
-              $message_thread['ticket'] = $ticket[0]['ticket_no'];
-              $message_thread['message'] = $this->Email->getCurrentEmailContent($data['text']);
-
-              $message_thread['owner'] = $owner;
-              $message_thread['type'] = 1; //message type
-
-              $message_thread['to'] = array();
-              if (!empty($data['cc'])) {
-                foreach ($data['cc'] as $cc) {
-                  array_push($message_thread['to'], $cc['address']);
-                }
-              }
-
-              $message_thread['to'] = implode(';', $message_thread['to']);
-              // $message_thread['data']['attachment'] = TODO attachments download and attach with this message
-
-              print_r($message_thread);
-              return $this->add_thread($message_thread);
-            }
-          }
-        }
-      }
-    }
-  }
-
   //TODO: should this be in User_model? but this is Ticket specific only
   public function getEmailFromUsername($username)
   {
@@ -260,29 +167,5 @@ class Ticket_model extends BaseMySQL_model
       return TRUE;
     else
       return FALSE;
-  }
-
-  public function makeDatatableQuery($table, $context, $db, $arguments = null)
-  {
-
-    return array(
-      'columns' => array(
-        'id' => TABLE_TICKETS . ".id",
-        'ticket_no' => TABLE_TICKETS . ".ticket_no",
-        'owner' => TABLE_TICKETS . '.owner',
-        'severity' => TABLE_TICKETS . '.severity',
-        'priority' => TABLE_TICKETS . '.priority',
-        'category' => TABLE_TICKETS . '.category',
-        'created' => TABLE_TICKETS . '.created',
-        'purpose' => TABLE_TICKETS . '.purpose',
-        'subject' => TABLE_TICKETS . '.subject',
-        'message' => TABLE_TICKETS . '.message',
-        'status' => TABLE_TICKETS . '.status',
-        'assign_to' => TABLE_TICKETS . '.assign_to',
-        'assign_on' => TABLE_TICKETS . '.assign_on',
-        'progress' => TABLE_TICKETS . '.progress',
-        'updated' => TABLE_TICKETS . '.updated'
-      ),
-    );
   }
 }

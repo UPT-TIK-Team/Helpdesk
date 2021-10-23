@@ -1,5 +1,5 @@
 <?PHP
-require_once(__DIR__. "/constants.php");
+require_once(__DIR__ . "/constants.php");
 
 class Session_model extends BaseMySQL_model
 {
@@ -7,39 +7,6 @@ class Session_model extends BaseMySQL_model
 	public function __construct()
 	{
 		parent::__construct("Session");
-	}
-
-	public function test()
-	{
-		$data = array(
-			"id" => '1',
-			"username" => "james",
-			"name" => "James Bond",
-			"email" => "james@gmail"
-		);
-
-		$ses = $this->set($data);
-		if ($_SESSION[SESSION_KEY_PREFIX . '_user_data']['username'] == $data['username']) {
-			echo "session->set() --> Successful!";
-		} else {
-			echo "session-set() --> Error!";
-		}
-
-		$getSession = $this->get($data['id']);
-		if (!$getSession) {
-			echo "get session() --> ERROR!";
-		} else {
-			echo "get session() --> Successfull!";
-		}
-
-		$this->destroy('user_data');
-		if (!isset($_SESSION['user_data']['username'])) {
-			echo "destroy_session() --> Successfull!";
-		} else {
-			echo "Destroy_session() --> Error!";
-		}
-
-		return;
 	}
 
 
@@ -126,7 +93,7 @@ class Session_model extends BaseMySQL_model
 	public function isAdmin()
 	{
 		$details = $this->getSession('details');
-		if($details['type'] == 100)
+		if ($details['type'] == 100)
 			return true;
 		return false;
 	}
@@ -134,7 +101,7 @@ class Session_model extends BaseMySQL_model
 	public function isUser()
 	{
 		$details = $this->getSession('details');
-		if($details['type'] == 10)
+		if ($details['type'] == 10)
 			return true;
 		return false;
 	}
@@ -147,9 +114,10 @@ class Session_model extends BaseMySQL_model
 	 * @return mixed
 	 */
 
-	public static function getDefaultPermissions($userType){
-		if(!isset(DEFAULT_PERMISSIONS_USERS[$userType]))
-			throw new Error("Default permissions of usertype '".$userType."' is not defined in DEFAULT_PERMISSIONS_USERS.");
+	public static function getDefaultPermissions($userType)
+	{
+		if (!isset(DEFAULT_PERMISSIONS_USERS[$userType]))
+			throw new Error("Default permissions of usertype '" . $userType . "' is not defined in DEFAULT_PERMISSIONS_USERS.");
 		return DEFAULT_PERMISSIONS_USERS[$userType];
 	}
 
@@ -160,11 +128,11 @@ class Session_model extends BaseMySQL_model
 	 */
 	public function getLoggedPermissions()
 	{
-//		$permissions = $this->getSession('permissions');
-//		if($permissions===null)
+		//		$permissions = $this->getSession('permissions');
+		//		if($permissions===null)
 		return $this->getDefaultPermissions($this->getUserType());
 
-//		return $permissions;
+		//		return $permissions;
 	}
 
 
@@ -182,9 +150,10 @@ class Session_model extends BaseMySQL_model
 	 * Returns currently logged user type, if user isn't logged in USER_PUBLIC is returned.
 	 * @return mixed
 	 */
-	public function getUserType(){
+	public function getUserType()
+	{
 		$details = $this->getSession('details');
-		return isset($details['type'])?$details['type']:USER_PUBLIC;
+		return isset($details['type']) ? $details['type'] : USER_PUBLIC;
 	}
 
 
@@ -224,5 +193,4 @@ class Session_model extends BaseMySQL_model
 			unset($_SESSION[SESSION_KEY_PREFIX . $key]);
 		return $this->destroy();
 	}
-
 }

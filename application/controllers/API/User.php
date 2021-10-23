@@ -1,5 +1,5 @@
 <?php
-require  __DIR__."/../../models/user/constants.php";
+require  __DIR__ . "/../../models/user/constants.php";
 
 class User extends MY_Controller
 {
@@ -13,10 +13,10 @@ class User extends MY_Controller
         $this->load->model('core/Session_model', 'Session');
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         $types = array();
-        if(isset($_GET['type']))
-        {
+        if (isset($_GET['type'])) {
             $types = json_decode($_GET['type']);
         }
 
@@ -24,9 +24,9 @@ class User extends MY_Controller
     }
 
     public function create()
-    { 
+    {
         $create = $this->Users->create($_POST);
-        $this->sendJSON(array('result'=>$create));
+        $this->sendJSON(array('result' => $create));
     }
 
     // change password
@@ -68,22 +68,23 @@ class User extends MY_Controller
             'updated' => time()
         ];
         $user_id = $this->Users->register($userdata);
-        $this->sendJSON(array('result'=>$user_id));
+        $this->sendJSON(array('result' => $user_id));
     }
 
-    	public function changeStatusUser($id){
-		$user = $this->Users->getUserBy(array('id' => $id));
-		if ($user['status']==0) {
-			$user['status'] = 1;
-		}else {
-			$user['status'] = 0;
-		}
-		$role = $this->Session->getLoggedDetails()['type'];
-		$filter = ['type <=' => $role];
-		$data['user_list'] = $this->Users->getBy(null, $filter);
-		$this->render('All Users', 'user/list', $data);
-	}
- 
+    public function changeStatusUser($id)
+    {
+        $user = $this->Users->getUserBy(array('id' => $id));
+        if ($user['status'] == 0) {
+            $user['status'] = 1;
+        } else {
+            $user['status'] = 0;
+        }
+        $role = $this->Session->getLoggedDetails()['type'];
+        $filter = ['type <=' => $role];
+        $data['user_list'] = $this->Users->getBy(null, $filter);
+        $this->render('All Users', 'user/list', $data);
+    }
+
     // function regis_user()
     // {
     //     $userdata = [
@@ -102,5 +103,5 @@ class User extends MY_Controller
     //     $this->sendJSON(array($this->Users));
     // }
 
-// End of Class
+    // End of Class
 }
