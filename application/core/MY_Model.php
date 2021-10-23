@@ -186,7 +186,7 @@ class BaseMySQL_model extends MY_Model
   /**
    * Handle for generateDatatable
    */
-  public function generateDatatable($select = null, $where = null, $join = array(), $column = array(), $as = null, $addcolumn = null)
+  public function generateDatatable($select = null, $where = null, $join = array(), $column = array(), $as = null, $addcolumn = array())
   {
     if ($select == null) $select = "$this->table.*";
     $this->datatables->select($select);
@@ -197,8 +197,8 @@ class BaseMySQL_model extends MY_Model
         $this->datatables->join($j, "$this->table.$column[$i]=$j.id");
       }
     }
-    if ($addcolumn != null) {
-      $this->datatables->add_column('action', '<a href="view_ticket/$1" class="badge badge-primary">Lihat</a>',  'ticket_no');
+    if (!empty($addcolumn)) {
+      $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">Lihat</a>',  $addcolumn[2]);
     }
 
     if (empty($where)) {

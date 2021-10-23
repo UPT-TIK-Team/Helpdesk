@@ -19,7 +19,7 @@ class Ticket extends MY_Controller
     $join = ['severities', 'services', 'subservices'];
     $columnjoin = ['severity', 'id_service', 'id_subservice'];
     $as = 'severities.name as severity, services.name as service, subservices.name as subservice';
-    $action = true;
+    $action = [true, 'view_ticket', 'ticket_no'];
 
     if ($this->input->get()) {
       $input = $this->input->get();
