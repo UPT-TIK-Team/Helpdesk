@@ -9,7 +9,6 @@ require_once __DIR__ . "/../core/Session_model.php";
 
 class Auth_model extends BaseMySQL_model
 {
-
 	public function __construct()
 	{
 		parent::__construct(TABLE_USER);
@@ -30,31 +29,6 @@ class Auth_model extends BaseMySQL_model
 			return $user;
 		}
 		return false;
-	}
-
-	//todo
-	public function sendResetLink($id)
-	{
-		//Create instance for template model here for just one method
-		$this->template = new Template_model();
-
-		$templateId = $this->template->getTemplatesBy(array('type' => 'forgot_password'));
-		$templateId = $templateId[0];
-
-		$user = $this->User->getUsersBy(null, $query = ['id' => $id]);
-		$user = $user[0];
-
-		$token = $this->Token->generate($id, $this->type_forgot);
-		$url = $this->generatePasswordResetLink($user['username'], $token);
-
-		$data = array(
-			'username' => $user['username'],
-			'token' => $user['token']
-		);
-
-		$htmlData = $this->Template->parseById($templateId['id'], $data);
-		$res = $this->mailer->send(CLIENT_SUPPORT_EMAIL, $user['email'], 'Password Reset Link', $htmlData);
-		return $res;
 	}
 
 	public function generatePasswordResetLink($username, $token)
@@ -96,23 +70,8 @@ class Auth_model extends BaseMySQL_model
 		$res = $this->user->update_user($username, array('password' => md5($random_password)));
 		$user = $this->User->get_user_details($username);
 		if ($res) {
-			//            Send Mail or Sms
 			$body = 'Hi ' . $username . ', You recently requested a password reset. Your new password is' . $random_password;
-			//            $this->mailer->send($user['email'], 'jbi@fixange.com', 'Password Reset Request', $body);
-			//            $this->SMS->sendSMS($user['mobile'], "Dear " . $user['name'] . " Your new password is " . $random_password);
+			return $res;
 		}
-		return $res;
-	}
-
-
-	public function do_payment($userData)
-	{
-		$_SESSION['pending_registration'] = $userData;
-		$this->load->model('payment/Paytm_model', 'Paytm');
-		$desc = 'Member Registration for ' . $userData['name'] . ', Mobile number - ' . $userData['mobile'];
-		$payment = $this->Paytm->generateTX(USER_SYSTEM_USERID, CLIENT_REGISTRATION_FEE, 0, TX_TYPE_DEPOSIT, $desc);
-		$payment['redirect'] = BASE_URL . "/auth/registration_payment";
-		$_SESSION[PAYMENT_SESSION_KEY] = $payment;
-		return $payment['html'];
 	}
 }

@@ -26,16 +26,15 @@
                                     <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
                                     <label for="login-password" class="label-material">Password</label>
                                 </div>
-                                <button type="submit" id="login" href="" class="btn btn-primary">Login</button>
-                                <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                                <button type="submit" id="login" class="btn btn-primary">Login</button>
                             </form>
-                            <a href="<?= BASE_URL ?>register" class='text-primary'>Sign Up</a>
+                            <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Sign Up</a>
                             <div>
                                 <?= get_msg(); ?>
                             </div>
                             <!-- <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a> -->
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
