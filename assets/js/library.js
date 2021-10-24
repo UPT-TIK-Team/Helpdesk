@@ -108,7 +108,6 @@ function renderCustomHTML() {
 
 	$('.user-name').each(function (elem) {
 		var username = $(this).attr('data-username');
-		console.log(username)
 		$(this).html(getUserName(username));
 	});
 
@@ -302,7 +301,7 @@ function getAttachmentLabel(filename, path) {
 
 	// get extension
 	var ext = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
-	return '<a target="_blank" href="' + path + '" class="pr-3"><i class="fa ' + attachment_icon[ext] + '"></i> ' + filename + '</a> <a class="download-attachment" target="_blank" href="' + path + '" download title="Download"> <i class="fa fa-arrow-circle-down text-blue"></i></a>';
+	return '<a href="' + path + '" class="pr-3"><i class="fa ' + attachment_icon[ext] + '"></i> ' + filename + '</a> <a class="download-attachment" href="' + path + '" download title="Download"> <i class="fa fa-arrow-circle-down text-blue"></i></a>';
 }
 
 //Relative time function, picked from maddy coreui

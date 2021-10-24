@@ -8,7 +8,6 @@
     <li><a href="<?= BASE_URL ?>tickets/assigned_tickets">Assigned Tickets</a></li>
     <li><a href="<?= BASE_URL ?>tickets/closed_tickets">Closed Ticket</a></li>
     <li><a href="<?= BASE_URL ?>tickets/my_tickets" title="Created by me">My Tickets</a></li>
-    <li><a href="<?= BASE_URL ?>tickets/cc_to_me">Following</a></li>
   </ul>
 </li>
 

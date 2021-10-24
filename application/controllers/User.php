@@ -93,19 +93,6 @@ class User extends MY_Controller
 		$this->render('user/dashboard_manager', $data);
 	}
 
-	// public function dashboard_admin()
-	// {
-	// 	$agent_id = $this->Session->getLoggedDetails()['username'];
-	// 	$data['stats']['total_tickets'] = count($this->Tickets->get_ticket_where(array('owner' => $agent_id)));
-	// 	$data['stats']['open_tickets'] = count($this->Tickets->get_ticket_where(array('owner' => $agent_id, 'status' => TICKET_STATUS_OPEN)));
-	// 	$data['stats']['assigned_tickets'] = count($this->Tickets->get_ticket_where(array('status' => TICKET_STATUS_ASSIGNED)));
-	// 	$data['stats']['closed_tickets'] = count($this->Tickets->get_ticket_where(array('owner' => $agent_id, 'status' => TICKET_STATUS_CLOSED)));
-	// 	$data['recent']['created'] = $this->Tickets->get_ticket_where_limit(array('owner' => $agent_id), 5);
-	// 	$data['recent']['assigned'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_ASSIGNED), 5);
-	// 	$data['recent']['closed'] = $this->Tickets->get_ticket_where_limit(array('owner' => $agent_id, 'status' => TICKET_STATUS_CLOSED), 5);
-	// 	$this->render('Dashboard', 'user/dashboard', $data);
-	// }
-
 	public function profile()
 	{
 		$data['title'] = 'Profile';

@@ -5,7 +5,6 @@
         <li><a href="<?= BASE_URL ?>tickets/create_new">New Ticket </a></li>
         <li><a href="<?= BASE_URL ?>tickets/assigned_to_me">Assigned to me</a></li>
         <li><a href="<?= BASE_URL ?>tickets/my_tickets"></i>My Tickets </a></li>
-        <li><a href="<?= BASE_URL ?>tickets/cc_to_me">Following</a></li>
     </ul>
 </li>
 <li><a href="<?= BASE_URL ?>user/profile"> <i class="fa fa-user"></i>Profile </a></li>

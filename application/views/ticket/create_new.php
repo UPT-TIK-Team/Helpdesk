@@ -116,7 +116,6 @@
     //call a function to handle file upload on select file
     $('input[type=file]').on('change', function(e) {
       var res = fileUpload(e, BASE_URL + 'API/Ticket/upload_attachment', function(res) {
-        console.log(res);
         if (res) {
           attached_files.push(res);
           var attached_link = getAttachmentLabel(res.file_name, res.path);
@@ -196,7 +195,6 @@
         'id_subservice': id_subservice,
         'data': data
       }
-      console.log(fdata);
       if (!purpose || !subject || !message) {
         showNotification('error', 'Please fill all fields.');
       } else {
@@ -210,7 +208,6 @@
           },
 
           success: function(response) {
-            console.log(response)
             if (JSON.parse(response)['data']['result']) {
               showNotification('success', 'Ticket created successfully.', {}, function() {});
               window.location.href = "<?= BASE_URL ?>/tickets/view_ticket/" + JSON.parse(response)['data']['result'];
@@ -232,7 +229,6 @@
       var index = parseInt($(this).attr('data-index'));
       let attached_files = $("#attached_files");
       attached_files.splice(index, 1);
-      console.log(attached_files);
       $(this).parent().remove();
     });
   }

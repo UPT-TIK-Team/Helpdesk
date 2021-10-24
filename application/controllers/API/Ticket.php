@@ -29,6 +29,8 @@ class Ticket extends MY_Controller
         echo $this->Tickets->generateDatatable($select, ['assign_to is null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
       } else if ($key == 'assign_to' && $val == 'not null') {
         echo $this->Tickets->generateDatatable($select, ['assign_to is not null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
+      } else if ($key == 'assign_to' && !empty($val)) {
+        echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
       } else {
         echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
       }
@@ -74,7 +76,7 @@ class Ticket extends MY_Controller
 
     if (isset($_POST) == true) {
       //generate unique file name
-      date_default_timezone_set('Asia/Calcutta');
+      date_default_timezone_set('Asia/Jakarta');
       $curr_date = date('dmY');
       $curr_time = date('His');
       $fileName = $curr_date . $curr_time . '-' . basename($_FILES["file"]["name"]);
@@ -82,8 +84,7 @@ class Ticket extends MY_Controller
 
       //file upload path
       $targetDir = "uploads/";
-      if (!is_dir($targetDir))
-        mkdir($targetDir, 0777);
+      if (!is_dir($targetDir)) mkdir($targetDir, 0777);
       $targetFilePath = $targetDir . $fileName;
 
       //allow certain file formats
@@ -94,7 +95,7 @@ class Ticket extends MY_Controller
         //upload file to server
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
           //insert file data into the database if needed
-          $response['filename'] = $targetFilePath;
+          $response['filename'] = base_url('uploads/') . $fileName;
           $response['original_file_name'] = $_FILES["file"]["name"];
           $response['status'] = 'ok';
         } else {

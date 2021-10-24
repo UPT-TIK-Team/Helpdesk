@@ -22,7 +22,7 @@
                   $tik_attached = $decoded['attachments'];
                 if ($decoded && $tik_attached)
                   foreach ($decoded['attachments'] as $tik_attachment) {
-                    $tik_attachments = $tik_attachments . '<p><span class="attachment" data-filename="' . $tik_attachment['file_name'] . '" data-filepath="' . base_url() . $tik_attachment['path'] . '"></p>';
+                    $tik_attachments = $tik_attachments . '<p><span class="attachment" data-filename="' . $tik_attachment['file_name'] . '" data-filepath="' . $tik_attachment['path'] . '"></p>';
                   }
                 ?>
                 <h3><?= $info['subject'] ?></h3>
@@ -41,7 +41,7 @@
                   $attached = $decoded['attachments'];
                 if ($decoded && $attached)
                   foreach ($decoded['attachments'] as $attachment) {
-                    $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="/' . $attachment['path'] . '"></p>';
+                    $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="' . $attachment['path'] . '"></p>';
                   }
                 if ($message['type'] == 1)
                   echo '<li>
@@ -92,16 +92,11 @@
                 <div class="col-sm-12">
                   <div class="custom-file">
                     <input id="fileInput" type="file" class="custom-file-input">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+                    <label class="custom-file-label" for="customFile" id="attached_files">Choose file</label>
                   </div>
-                  <!--uploaded files-->
-                  <ul id="attached_files" class="mt-3">
-                  </ul>
                 </div>
               </div>
               <div class="row">
-                <!-- <img src="http://localhost:8090/assets/img/avatar-1.jpg" width="35"
-                                     alt="Profile of Bradley Jones" title="Bradley Jones"/> -->
                 <div class="col-md-12">
                   <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>">Reply <i class="fa fa-reply"></i>
                   </button>
@@ -145,7 +140,7 @@
                 <th>Ticket Status</th>
                 <td>
                   <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" data-type="4" class="form-control">
-                    <option class="tik-status" data-value="<?= $info['status'] ?>"><?= $info['status'] ?></option>
+                    <option class="tik-status" data-value="<?= $info['status'] ?>"> </option>
                   </select>
                 </td>
               </tr>
@@ -178,11 +173,10 @@
                 <td>
                   <?php if ($privilege) : ?>
                     <select name="assign_to" id="assign_to_dd" class="form-control">
-                      <option value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
+                      <option data-value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
                     </select>
                   <?php endif; ?>
               </tr>
-
               <tr>
                 <th>Assigned on</th>
                 <td><span class="rel-time" data-value="<?= $info['assign_on'] ?>"></span></td>
@@ -206,8 +200,7 @@
 
     //call a function to handle file upload on select file
     $('input[type=file]').on('change', function(e) {
-      var res = fileUpload(e, '/API/Ticket/upload_attachment', function(res) {
-        console.log(res);
+      var res = fileUpload(e, '<?= BASE_URL ?>API/Ticket/upload_attachment', function(res) {
         if (res) {
           attached_files.push(res);
           var attached_link = getAttachmentLabel(res.file_name, res.path);

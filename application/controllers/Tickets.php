@@ -48,13 +48,9 @@ class Tickets extends MY_Controller
   public function assigned_to_me()
   {
     $data['title'] = 'Tickets assigned to me';
-    $this->render('My Tickets', 'ticket/list_all', $data);
-  }
-  public function cc_to_me()
-  {
-    $data['title'] = 'Tickets followed by me';
-    $data['type'] = "cc_to_me";
-    $this->render('My Tickets', 'ticket/list_all', $data);
+    $assign_to = $this->Session->getLoggedDetails()['name'];
+    $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
+    $this->render('ticket/ticket_views', $data);
   }
 
   public function my_tickets()
