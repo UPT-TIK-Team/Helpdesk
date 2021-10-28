@@ -166,7 +166,7 @@ class BaseMySQL_model extends MY_Model
   /**
    * Handle Table Join
    */
-  public function getTableJoin($select = null, $where = null, $join = array(), $column = array(), $as = null)
+  public function getTableJoin($select = null, $where = null, $join = array(), $column = array(), $as = null, $array = false)
   {
     if ($select == null) $select = "$this->table.*";
     $data = $this->db->select($select)->select("$as, $this->table.id as id_ticket");
@@ -175,7 +175,7 @@ class BaseMySQL_model extends MY_Model
       $data->join($j, "$this->table.$column[$i]=$j.id");
     }
     $data = $data->get($this->table);
-    if ($where == null) {
+    if ($where == null || ($where != null && $array == true)) {
       $data = $data->result_array();
     } else {
       $data = $data->row_array();
