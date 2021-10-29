@@ -21,11 +21,8 @@
         url: `<?= base_url() ?>Expertsystem/diagnose`,
         dataType: 'text',
         data: data,
-        success: response => {
-          $('.diagnose-row').append(response)
-        }
+        success: response => $('.diagnose-row').append(response)
       })
     })
-
   })
 </script>

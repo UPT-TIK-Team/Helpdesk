@@ -7,4 +7,9 @@ class Gejala_model extends BaseMySQL_model
     parent::__construct('gejala');
     $this->load->model("core/Session_model", "Session");
   }
+
+  public function truncateTableTmp($id)
+  {
+    $this->db->delete('tmp_gejala', ['id_user', $id]);
+  }
 }

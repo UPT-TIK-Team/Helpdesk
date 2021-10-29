@@ -4,7 +4,7 @@ include_once __DIR__ . "/constants.permissions.php";
 
 //Root Url of ur site
 // cpanel url http://helpdesktik.unsika.ac.id/
-define('BASE_URL', 'http://localhost/Helpdesk/');
+define('BASE_URL', 'http://helpdesktik.unsika.ac.id/');
 
 define('PAGE_LOADER', BASE_URL . 'assets/img/loading.webp');
 
