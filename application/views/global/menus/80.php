@@ -24,7 +24,9 @@
   <ul id="masterMenuDropdown" class="collapse list-unstyled ">
     <li><a href="<?= BASE_URL ?>services/list">All Services</a></li>
     <li><a href="<?= BASE_URL ?>subservices/list">All Subservices</a></li>
-
   </ul>
 </li>
+
+<li><a href="<?= BASE_URL ?>expertsystem/diagnose"> <i class="fa fa-globe"></i>Expert System </a></li>
+
 <li><a href="<?= BASE_URL ?>user/profile"> <i class="fa fa-user"></i>Profile </a></li>
