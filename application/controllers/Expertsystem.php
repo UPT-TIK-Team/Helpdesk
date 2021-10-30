@@ -12,6 +12,8 @@ class Expertsystem extends MY_Controller
 
   public function diagnose()
   {
+    $this->db->query('delete from tmp_gejala where id_user=?', [$this->id]);
+    $this->db->query('delete from tmp_analisa where id_user=?', [$this->id]);
     if ($this->input->post('idservice')) {
       $idservice = $this->input->post('idservice');
       $select = 'gejala.id, gejala.code, gejala.name';
@@ -20,7 +22,6 @@ class Expertsystem extends MY_Controller
       $data['gejala'] = $this->Gejala->getTableJoin($select, ['id_service' => $idservice], $join, $columnjoin, null, true);
       $this->load->view('expertsystem/list_diagnose', $data);
     } else {
-      $this->Gejala->truncateTableTmp($this->id);
       $data['title'] = 'Diagnose Problem';
       $this->render('expertsystem/diagnose', $data);
     }
@@ -28,7 +29,6 @@ class Expertsystem extends MY_Controller
 
   public function hasilDiagnosa()
   {
-    $this->db->delete('tmp_analisa', ['id_user', $this->id]);
     $kondisi = $this->input->post('kondisi');
     foreach ($kondisi as $i => $val) {
       $data = [
@@ -38,7 +38,7 @@ class Expertsystem extends MY_Controller
       ];
       $this->db->insert('tmp_gejala', $data);
     }
-    $hasilAnalisa = $this->db->query("SELECT id_problem, count(rule.id_gejala) AS total, SUM(status='yes') AS sesuai FROM rule LEFT JOIN tmp_gejala ON rule.id_gejala = tmp_gejala.id_gejala GROUP BY id_problem")->result_array();
+    $hasilAnalisa = $this->db->query("SELECT id_problem, count(rule.id_gejala) AS total, SUM(status='yes') AS sesuai FROM rule LEFT JOIN tmp_gejala ON rule.id_gejala = tmp_gejala.id_gejala WHERE id_user=? GROUP BY id_problem", [$this->id])->result_array();
     foreach ($hasilAnalisa as $row) {
       $persentase = $row['sesuai'] / $row['total'] * 100;
       $data = [
@@ -48,7 +48,7 @@ class Expertsystem extends MY_Controller
       ];
       $this->db->insert('tmp_analisa', $data);
     }
-    $hasil = $this->db->query('SELECT id_problem FROM tmp_analisa WHERE persentase = (SELECT MAX(persentase) FROM tmp_analisa)')->row_array();
+    $hasil = $this->db->query('SELECT id_problem FROM tmp_analisa WHERE persentase = (SELECT MAX(persentase) FROM tmp_analisa WHERE id_user=?) AND id_user=?', [$this->id, $this->id])->row_array();
     $data = [
       'id_problem' => $hasil['id_problem'],
       'id_user' => $this->id

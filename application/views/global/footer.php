@@ -3,15 +3,8 @@
 </div>
 <!-- Page Footer-->
 <footer class="main-footer">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-6">
-        <p><?= DEV_COMPANY_NAME ?> &copy; 2021</p>
-      </div>
-      <div class="col-sm-6 text-right">
-        <p>Powered by &nbsp;<a href="https://upttik.unsika.ac.id" class="external powered-logo"><img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" width="75" alt="tikaj"></a></p>
-      </div>
-    </div>
+  <div class="container-fluid text-center">
+    <p><?= DEV_COMPANY_NAME ?> &copy; 2021</p>
   </div>
 </footer>
 <!-- Modal -->

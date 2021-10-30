@@ -2,7 +2,7 @@
 
 ## Demo
 
-<div align="center"><a href="https://tiket.app.tik.co/">Visit UNSIKA HELPDESK live demo</a></div>
+<div align="center"><a href="http://helpdesktik.unsika.ac.id/">Visit UNSIKA HELPDESK</a></div>
 
 ### Credentials for logging in
 
@@ -32,7 +32,7 @@
 
 ## Getting started
 
-tikaj HELPDESK is completely build on our in house framework "Scone", Scone is based on CodeIgniter framework.
+UNSIKA HELPDESK is completely build based on CodeIgniter framework.
 
 To start with the project follow these steps:
 

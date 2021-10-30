@@ -115,7 +115,7 @@ $('#add_user').on('click', function (e) {
         } else
           showNotification(
             'error',
-            'User coukd not be created, please try again.'
+            'User could not be created, please try again.'
           );
       },
     });

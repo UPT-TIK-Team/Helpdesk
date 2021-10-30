@@ -147,8 +147,6 @@ class Auth extends MY_Controller
 			set_msg('error', 'Invalid username or password!');
 			return false;
 		} else {
-			/* $this->Session->login($result['id'], DEFAULT_USER_PERMISSIONS, $result);
-			if ($this->Session->isAdmin()) */
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
 			if ($this->Session->getUserType() === USER_ADMIN)
 				redirect(URL_POST_LOGIN_ADMIN);
@@ -220,26 +218,6 @@ class Auth extends MY_Controller
 			redirect(BASE_URL . 'auth/forgot_password');
 		}
 	}
-
-
-	// public function reset_password()
-	// {
-	// 	$username = $this->input->get('username');
-	// 	$token = $this->input - get('token');
-	// 	if (!$username || !$token) {
-	// 		set_msg('error', 'Invalid URL');
-	// 		redirect(URL_LOGIN);
-	// 	}
-
-	// 	$newPassword = $this->Auth->verifyPasswordResetLink($username, $password);
-	// 	if (!$newPassword) {
-	// 		set_msg('error', 'Invalid URL');
-	// 		redirect(URL_LOGIN);
-	// 	}
-
-	// 	set_msg('success', $newPassword);
-	// 	redirect(URL_LOGIN);
-	// }
 
 	public function logout()
 	{

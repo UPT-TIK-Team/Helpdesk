@@ -1,26 +1,4 @@
 $(document).ready(function () {
-
-	var lastTimeout = null;
-	$('.user-existance-validation').on('input', function (e) {
-		if (lastTimeout) clearTimeout(lastTimeout);
-		lastTimeout = setTimeout(function () {
-			var target = $(e.target);
-			var targetResult = $('#' + target.attr('name') + "_error");
-			var val = target.val();
-			if (!val) {
-				targetResult.html("");
-				return;
-			}
-			$.get(BASE_URL + "/API/User/Basic/check?query=" + val, function (data) {
-				if (data.data === null) {
-					targetResult.html("");
-				} else
-					targetResult.html(val + " is already being used.")
-
-			})
-		}, 1000)
-	});
-
 	renderCustomHTML();
 	renderDropdowns();
 
@@ -50,11 +28,11 @@ function renderDropdowns() {
 		});
 	}
 	if ($('#assign_to_dd').length) {
-		$.get(BASE_URL + '/API/User/getAll?type=[10,60,80]', function (data) {
+		$.get(BASE_URL + '/API/User/getAll?type=[60]', function (data) {
 			$('#assign_to_dd').select2({
 				width: 'resolve',
 				data: data.data.map(function (item) {
-					return { id: item.username, text: item.name }
+					return { id: item.username, text: item.username }
 				})
 			});
 
@@ -134,14 +112,6 @@ function renderCustomHTML() {
 		var value = $(this).attr('data-value');
 		if (value)
 			$(this).html(getSeverityIcon($(this).attr('data-value')));
-		else
-			$(this).html('-');
-	});
-
-	$('.tik-priority').each(function (elem) {
-		var value = $(this).attr('data-value');
-		if (value)
-			$(this).html(getPriorityIcon($(this).attr('data-value')));
 		else
 			$(this).html('-');
 	});
@@ -364,9 +334,6 @@ function getRelativeTime(time) {
 
 }
 
-
-
-
 /**
  * Show type based notifications
  * @param {string} type 
@@ -405,11 +372,8 @@ function showNotification(type, message, options, cb) {
 		progressBar: true,
 		escapeHtml: false
 	}, options);
-
-
 	toastr.options = noptions;
 	toastr[type](message);
-
 }
 
 /**

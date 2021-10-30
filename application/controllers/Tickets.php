@@ -48,7 +48,7 @@ class Tickets extends MY_Controller
   public function assigned_to_me()
   {
     $data['title'] = 'Tickets assigned to me';
-    $assign_to = $this->Session->getLoggedDetails()['name'];
+    $assign_to = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
     $this->render('ticket/ticket_views', $data);
   }
@@ -73,7 +73,7 @@ class Tickets extends MY_Controller
       $this->render('View Ticket', 'unauthorised', $data);
     } else {
       $data['ticket_no'] = $ticket;
-      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['severities', 'services', 'subservices'], ['severity', 'id_service', 'id_subservice'], 'severities.name as name_severity, services.name as name_service, subservices.name as name_subservice');
+      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['severities', 'services', 'subservices', 'status'], ['severity', 'id_service', 'id_subservice', 'status'], 'severities.name as name_severity, services.name as name_service, subservices.name as name_subservice, status.name as name_status');
       $data['messages'] = $this->Messages->getBy(null, ['ticket' => $ticket]);
       $this->render('ticket/view_ticket', $data);
     }

@@ -29,17 +29,6 @@ $(document).ready(function () {
 
 
     // ------------------------------------------------------- //
-    // Adding fade effect to dropdowns
-    // ------------------------------------------------------ //
-    // $('.dropdown').on('show.bs.dropdown', function () {
-    //     $(this).find('.dropdown-menu').first().stop(true, true).fadeIn();
-    // });
-    // $('.dropdown').on('hide.bs.dropdown', function () {
-    //     $(this).find('.dropdown-menu').first().stop(true, true).fadeOut();
-    // });
-
-
-    // ------------------------------------------------------- //
     // Sidebar Functionality
     // ------------------------------------------------------ //
     $('#toggle-btn').on('click', function (e) {

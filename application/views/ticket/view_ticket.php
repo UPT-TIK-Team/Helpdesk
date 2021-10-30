@@ -1,6 +1,3 @@
-<script>
-
-</script>
 <div class="container fluid-content ">
   <div class="row ">
     <div class="col-md-8">
@@ -18,12 +15,12 @@
                 <?PHP
                 $tik_attachments = '';
                 $decoded = json_decode($info['data'], true);
-                if ($decoded)
-                  $tik_attached = $decoded['attachments'];
-                if ($decoded && $tik_attached)
+                if ($decoded) $tik_attached = $decoded['attachments'];
+                if ($decoded && $tik_attached) {
                   foreach ($decoded['attachments'] as $tik_attachment) {
                     $tik_attachments = $tik_attachments . '<p><span class="attachment" data-filename="' . $tik_attachment['file_name'] . '" data-filepath="' . $tik_attachment['path'] . '"></p>';
                   }
+                }
                 ?>
                 <h3><?= $info['subject'] ?></h3>
                 <p><?= $info['message'] . $tik_attachments ?></p>
@@ -139,8 +136,8 @@
               <tr>
                 <th>Ticket Status</th>
                 <td>
-                  <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" data-type="4" class="form-control">
-                    <option class="tik-status" data-value="<?= $info['status'] ?>"> </option>
+                  <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control">
+                    <option value="<?= $info['status'] ?>"><?= $info['name_status'] ?></option>
                   </select>
                 </td>
               </tr>
@@ -156,7 +153,7 @@
                 <th>Ticket Service</th>
                 <td>
                   <select name="id_service" id="service" data-id="<?= $info['id'] ?>" class="form-control" disabled>
-                    <option data-value="<?= $info['id_service'] ?>"><?= $info['name_service'] ?></option>
+                    <option value="<?= $info['id_service'] ?>"><?= $info['name_service'] ?></option>
                   </select>
                 </td>
               </tr>
@@ -164,7 +161,7 @@
                 <th>Ticket Sub Service</th>
                 <td>
                   <select name="id_subservice" id="subservice" data-id="<?= $info['id'] ?>" class="form-control" disabled>
-                    <option data-value="<?= $info['id_subservice'] ?>"><?= $info['name_subservice'] ?></option>
+                    <option value="<?= $info['id_subservice'] ?>"><?= $info['name_subservice'] ?></option>
                   </select>
                 </td>
               </tr>
@@ -172,8 +169,8 @@
                 <th>Assigned to</th>
                 <td>
                   <?php if ($privilege) : ?>
-                    <select name="assign_to" id="assign_to_dd" class="form-control">
-                      <option data-value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
+                    <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" class=" form-control">
+                      <option value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
                     </select>
                   <?php endif; ?>
               </tr>
@@ -293,10 +290,8 @@
     renderDropdowns();
 
     $('select.form-control').on('change', function() {
-      var intfields = ['severity', 'priority', 'id_service', 'status', 'id_subservice'];
       var field = $(this).attr('name');
       var value = this.value;
-      if (intfields.includes(field)) value = parseInt(value);
       var ticket_id = $(this).attr('data-id');
       var message = "Changed " + field + " to <span class='tik-" + field + "' data-value=" + value + "></span>";
       var plain_txt_message = "Changed " + field + " to " + value + ".";
@@ -313,9 +308,8 @@
         }
       };
       data['update_data'][field] = value;
-
       if (field === "assign_to") {
-        message = data['meta']['message'] = 'Changed assignee to <span class="user-label" data-username="' + value + '"></span>';
+        message = data['meta']['message'] = 'Changed assigned to <span class="user-label" data-username="' + value + '"></span>';
         plain_txt_message = data['meta']['plain_txt_message'] = 'Changed assignee to ' + value + '.';
         data['update_data']['assign_on'] = Date.now();
         data['update_data']['status'] = 50; //hardcoded assigned status;
@@ -333,11 +327,10 @@
 
         success: function(response) {
           if (JSON.parse(response)['data']['result']) {
-            showNotification('success', message, {}, function() {
-              window.location.reload();
-            })
-          } else
+            showNotification('success', message, {}, () => window.location.reload())
+          } else {
             showNotification('error', 'Some error occured.');
+          }
 
         }
       });
@@ -349,7 +342,6 @@
       var index = parseInt($(this).attr('data-index'));
       let attached_files = $("#attached_files");
       attached_files.splice(index, 1);
-      console.log(attached_files);
       $(this).parent().remove();
     });
   }

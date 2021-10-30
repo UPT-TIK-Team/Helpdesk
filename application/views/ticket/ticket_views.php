@@ -31,10 +31,6 @@
 <script type="application/javascript">
   $(function() {
     $('#tickets').dataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-      ],
       responsive: true,
       autoWidth: false,
       processing: true,
