@@ -35,7 +35,7 @@
 						<label class=" control-label">Mobile</label><code>*</code>
 						<div>
 							<input type="text" name="country_code" id="country_code" class="form-control loan-object col-sm-3" style="float: left;" value="+62" disabled />
-							<input type="text" id="mobile" name="mobile" class="form-control empty user-existance-validation required col-sm-9" placeholder="8881686666" minlength="10" maxlength="10" value="<?= set_value('mobile') ?>">
+							<input type="text" id="mobile" name="mobile" class="form-control empty user-existance-validation required col-sm-9" placeholder="8881686666" minlength="10" maxlength="15" value="<?= set_value('mobile') ?>">
 							<?= form_error('mobile', '<span class="text-danger pl-3">', '</span>'); ?>
 						</div>
 					</div>
