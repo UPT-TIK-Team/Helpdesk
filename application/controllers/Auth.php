@@ -8,7 +8,6 @@ class Auth extends MY_Controller
 		parent::__construct();
 		$this->setHeaderFooter('auth/header.php', 'auth/footer.php');
 		$this->load->model('user/Auth_model', 'Auth');
-		$this->load->model('notification/Sms_model', 'SMS');
 		$this->load->model('core/Token_model', 'PIN');
 	}
 
@@ -38,7 +37,7 @@ class Auth extends MY_Controller
 
 	public function index()
 	{
-		$this->login();
+		$this->load->view('auth/home');
 	}
 
 
