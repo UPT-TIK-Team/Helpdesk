@@ -5,7 +5,10 @@
       <div class="col-lg-12">
         <div class="card  custom-border-radius">
           <div class="card-body">
-            <div class="table-responsive">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">
+              Add New User
+            </button>
+            <div class="table-responsive mt-3">
               <table class="table table-striped display nowrap" id="users">
                 <thead>
                   <tr>
@@ -22,6 +25,44 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserLabel">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('user/add_user') ?>" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            </div>
+            <div class="form-group">
+              <label for="type">User Type</label>
+              <select id="type" name="type" class="form-control">
+                <option value=""> - Select -</option>
+                <option value="10">User</option>
+                <option value="60">Agent</option>
+                <option value="80">Manager</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -74,77 +115,5 @@
         }
       }]
     })
-
-    // var options = {
-    //   datatable: {
-    //     columns: [{
-    //         title: "ID",
-    //         data: "id",
-    //         render: function(data) {
-    //           return data
-    //         }
-    //       },
-    //       {
-    //         title: "Name",
-    //         data: "name",
-    //         render: function(data) {
-    //           return data;
-    //         }
-    //       },
-    //       {
-    //         title: "Email",
-    //         data: "email",
-    //         render: function(data) {
-    //           return data;
-    //         }
-    //       },
-    //       {
-    //         title: "Mobile",
-    //         data: "mobile",
-    //         render: function(data) {
-    //           return data ? data : '-'
-    //         }
-    //       },
-    //       {
-    //         title: "Username",
-    //         data: "username",
-    //         render: function(data) {
-    //           return '<span class="user-name" data-username="' + data + '"></span>';
-    //         }
-    //       },
-    //       {
-    //         title: "Type",
-    //         data: "type",
-    //         render: function(data, type, row) {
-    //           return '<span class="user-type" data-value="' + data + '"></span>'
-    //         }
-    //       },
-    //       {
-    //         title: "Status",
-    //         data: "status",
-    //         render: function(data, type, row) {
-    //           // return '<span class="user-status" data-value="'+data+'"></span>'
-    //           return '<a href="' + BASE_URL + 'user/profile_update/' + data + '" style="color: gray; text-decoration:none;">' + '<span class="user-status" data-value="' + data + '"></span>' + '</a>'
-    //         }
-    //       },
-    //       {
-    //         title: "Created On",
-    //         data: "created",
-    //         render: function(data) {
-    //           return data ? '<span class="rel-time" data-value="' + data + '000">' : '-';
-    //         }
-    //       },
-    //     ]
-    //   }
-    // };
-    // var my_tik_table = makeReportPage($('#users'), 'list_users', options, function(err, data) {
-    //   data.table.on('draw', function() {
-    //     renderCustomHTML();
-    //     $('[data-toggle="tooltip"]').tooltip();
-    //   })
-    // });
-
-
-
   });
 </script>

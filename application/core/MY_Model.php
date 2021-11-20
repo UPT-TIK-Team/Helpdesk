@@ -51,7 +51,7 @@ class BaseMySQL_model extends MY_Model
     if ($select == null) $select = "*";
     $res = $this->db->select($select)->where($where);
     if ($limit) $res->limit($limit);
-    return $res->get($this->table)->result_array();
+    return $res->order_by('id', 'desc')->get($this->table)->result_array();
   }
 
   /**

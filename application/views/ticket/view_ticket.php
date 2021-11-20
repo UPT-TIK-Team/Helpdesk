@@ -136,9 +136,13 @@
               <tr>
                 <th>Ticket Status</th>
                 <td>
-                  <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control">
-                    <option value="<?= $info['status'] ?>"><?= $info['name_status'] ?></option>
-                  </select>
+                  <?php if ($info['status'] == 100) : ?>
+                    <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" disabled>
+                    <?php else : ?>
+                      <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control">
+                      <?php endif; ?>
+                      <option value="<?= $info['status'] ?>"><?= $info['name_status'] ?></option>
+                      </select>
                 </td>
               </tr>
               <tr>

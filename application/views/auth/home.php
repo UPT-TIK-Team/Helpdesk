@@ -7,7 +7,7 @@
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Dev Space by Lapa Ninja</title>
+  <title>Helpdesk UNSIKA</title>
   <meta name="keywords" content="yeo">
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,400,700" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/spectre.css">
@@ -54,8 +54,8 @@
               <span class="slogan-bold">Selamat Datang</span>
               <!-- <span class="slogan-bold" style="font-size: 45px;">Ada Yang bisa Kami Bantu ? </span> -->
             </h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a class="btn btn-primary btn-lg btn-start" target="_blank" href="<?= base_url('auth/login') ?>">Buat Tiket</a>
+            <p>Helpdesk Layanan TIK untuk UNSIKA.</p>
+            <a class="btn btn-primary btn-lg btn-start" href="<?= base_url('auth/login') ?>">Buat Tiket</a>
 
           </div>
         </div>
@@ -65,37 +65,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="yeo-client">
-            <div class="container yeo-client-list">
-                <div class="columns">
-                    <div class="column col-12">
-                        <h3 class="feature-title">
-                        Trusted By The Best Clients
-                    </h3>
-                        <div class="client-logo">
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/algolia.svg" height="40px" alt="">
-                        </a>
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/lapa-logo.svg" height="40px" alt="">
-                        </a>
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/hugo.svg" height="40px" alt="">
-                        </a>
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/codecademy.svg" height="40px" alt="">
-                        </a>
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/aws.svg" height="40px" alt="">
-                        </a>
-                            <a href="#" target="_blank">
-                            <img src="<?= base_url() ?>assets/images/landing-page/stripe.svg" height="40px" alt="">
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
   <div class="yeo-do" id="we-do">
     <div class="container yeo-body">
       <div class="columns">
@@ -159,102 +128,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="yeo-price" id="price">
-            <div class="container yeo-body  col-sm-12">
-                <div class="columns">
-                    <div class="column col-4 col-sm-12">
-                        <div class="panel">
-                            <div class="panel-header">
-                                <div class="panel-title"><span>PRO</span></div>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    <span class="price">$2500 </span>
-                                    <span>/ month</span>
-                                </p>
-                                <ul>
-                                    <li><strong>10</strong> billable hours included per month.</li>
-                                    <li>Billable hourly rate of <strong>$300</strong> after the included 10 hours are utilized.</li>
-                                    <li>24/7/365 on-call and 99.9% SLA</li>
-                                    <li>Communication via ticketing system and e-mail.</li>
-                                </ul>
-                            </div>
-                            <div class="panel-footer">
-                                <button class="btn btn-primary btn-price">Contact Us</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column col-4 col-sm-12">
-                        <div class="panel">
-                            <div class="panel-header">
-                                <div class="panel-title"><span>PREMIUM</span></div>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    <span class="price">$5000 </span>
-                                    <span>/ month</span>
-                                </p>
-                                <ul>
-                                    <li><strong>10</strong> billable hours included per month.</li>
-                                    <li>Billable hourly rate of <strong>$300</strong> after the included 10 hours are utilized.</li>
-                                    <li>24/7/365 on-call and 99.9% SLA</li>
-                                    <li>Communication via ticketing system and e-mail.</li>
-                                </ul>
-                            </div>
-                            <div class="panel-footer">
-                                <button class="btn btn-primary btn-price">Contact Us</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column col-4 col-sm-12">
-                        <div class="panel">
-                            <div class="panel-header">
-                                <div class="panel-title"><span>ENTERPRISE</span></div>
-                            </div>
-                            <div class="panel-body">
-                                <p>
-                                    <span class="price">$15000 </span>
-                                    <span>/ month</span>
-                                </p>
-                                <ul>
-                                    <li><strong>10</strong> billable hours included per month.</li>
-                                    <li>Billable hourly rate of <strong>$300</strong> after the included 10 hours are utilized.</li>
-                                    <li>24/7/365 on-call and 99.9% SLA</li>
-                                    <li>Communication via ticketing system and e-mail.</li>
-                                </ul>
-                            </div>
-                            <div class="panel-footer">
-                                <button class="btn btn-primary btn-price">Contact Us</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-  <!-- <div class="yeo-team" id="team">
-            <div class="container yeo-body">
-                <div class="columns">
-                    <div class="column col-12">
-                        <h2 class="feature-title">Tentang Kami</h2>
-                    </div>
-                    <div class="column col-4 col-sm-12">
-                        <a href=""><img class="s-circle" src="<?= base_url() ?>assets/images/landing-page/team-1.jpg" alt=""></a>
-                        <a href="https://www.lapa.ninja/"><span class="name">John Doe</span></a>
-                        <span class="title">DevOps</span>
-                    </div>
-                    <div class="column col-4 col-sm-12">
-                        <a href=""><img class="s-circle" src="<?= base_url() ?>assets/images/landing-page/team-2.jpg" alt=""></a>
-                        <a href="https://www.lapa.ninja/"><span class="name">Tinh Nguyen</span></a>
-                        <span class="title">Designer</span>
-                    </div>
-                    <div class="column col-4 col-sm-12">
-                        <a href=""><img class="s-circle" src="<?= base_url() ?>assets/images/landing-page/team-3.jpg" alt=""></a>
-                        <a href="https://www.lapa.ninja/"><span class="name">Maria Oto</span></a>
-                        <span class="title">Developer</span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
   <div class="yeo-open-source">
     <div class="container yeo-body">
       <div class="columns">
@@ -277,27 +150,13 @@
     <div class="container">
       <div class="columns">
         <div class="column col-4 col-sm-6">
-          <!-- <div class="yeo-footer-content">
-                            <h4>Contact Us</h4>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a href="https://www.lapa.ninja/">tinh@lapa.ninja</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.lapa.ninja/">Twitter</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.lapa.ninja/">Github</a>
-                                </li>
-                            </ul>
-                        </div> -->
         </div>
         <div class="column col-4 col-sm-6">
           <div class="yeo-footer-content">
             <h4 style="text-align: center;">Copyright</h4>
             <ul class="nav">
               <li class="nav-item">
-                <a href="uo">
+                <a href="https://upttik.unsika.ac.id">
                   <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" alt="" srcset="">
                 </a>
               </li>

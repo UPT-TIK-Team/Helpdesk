@@ -1,5 +1,5 @@
-<div class=" row">
-  <div class=" col-md-7">
+<?php if (count($gejala) != 0) : ?>
+  <div id="table-list-diagnosa">
     <table class=" table table-striped display nowrap">
       <thead>
         <tr>
@@ -26,11 +26,15 @@
     </table>
     <button class="btn btn-primary m-auto" id="btn-diagnose">Cek</button>
   </div>
-</div>
+<?php else : ?>
+  <h1 id="table-list-notfound">Data Not Found</h1>
+<?php endif; ?>
 
 <script>
   $(document).ready(
     $('#btn-diagnose').on('click', e => {
+      $('#table-hasil-diagnosa').remove()
+      $('#table-list-notfound').remove()
       let data = {
         'kondisi': []
       }
@@ -41,8 +45,9 @@
         url: `<?= base_url('Expertsystem/hasilDiagnosa') ?>`,
         dataType: 'text',
         data: data,
-        success: response => $('.diagnose-row').append(response)
+        success: response => $('#hasil-diagnosa').append(response)
       })
+      kondisi.forEach(e => e.value = null)
     })
   )
 </script>

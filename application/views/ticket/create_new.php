@@ -11,7 +11,7 @@
                     <div class="row">
                       <label class="col-sm-2 form-control-label" for="subject">Subjek Masalah</label>
                       <div class="col-sm-6">
-                        <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Subject of the ticket">
+                        <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Subject of Problem">
                       </div>
                     </div>
                   </div>

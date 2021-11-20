@@ -16,7 +16,6 @@ class User extends MY_Controller
 	{
 		$data['title'] = 'Dashboard';
 		$role = (int)($this->Session->getUserType());
-
 		if ($role == USER_MEMBER)
 			$this->dashboard_member();
 		else if ($role == USER_AGENT)
@@ -131,8 +130,18 @@ class User extends MY_Controller
 
 	public function add_user()
 	{
-		$data['title'] = 'Add User';
-		$this->render('user/add_user', $data);
+		$username = $this->input->post('username', true);
+		$password = $this->input->post('password', true);
+		$type = $this->input->post('type', true);
+		$data = [
+			'username' => $username,
+			'password' => md5($password),
+			'type' => $type,
+			'status' => 1,
+			'created' => time()
+		];
+		$this->db->insert('users', $data);
+		redirect('user/list');
 	}
 
 	public function changeStatusUser($id)

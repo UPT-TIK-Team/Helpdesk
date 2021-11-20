@@ -14,8 +14,6 @@
 <li><a href="#usersDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-users"></i>Users </a>
   <ul id="usersDropdown" class="collapse list-unstyled ">
     <li><a href="<?= BASE_URL ?>user/list">All Users</a></li>
-    <li><a href="<?= BASE_URL ?>user/add_user">Add User</a></li>
-
   </ul>
 </li>
 
