@@ -55,7 +55,7 @@ class Expertsystem extends MY_Controller
     ];
     $this->db->insert('hasil_analisa', $data);
     $maxIdAnalisa = $this->db->select_max('id')->get('hasil_analisa')->row_array()['id'];
-    $data['problem'] = $this->db->select('code, name')->join('problem', 'analisa.id_problem=problem.id')->where('analisa.id', $maxIdAnalisa)->where('id_user', $this->id)->get('hasil_analisa as analisa')->row_array();
+    $data['problem'] = $this->db->select('code, name, solusi')->join('problem', 'analisa.id_problem=problem.id')->where('analisa.id', $maxIdAnalisa)->where('id_user', $this->id)->get('hasil_analisa as analisa')->row_array();
     $this->load->view('expertsystem/hasildiagnosa', $data);
     $this->db->query('delete from tmp_gejala where id_user=?', [$this->id]);
     $this->db->query('delete from tmp_analisa where id_user=?', [$this->id]);

@@ -12,6 +12,7 @@
       <tr>
         <td><?= $problem['code'] ?></td>
         <td><?= $problem['name'] ?></td>
+        <td><?= $problem['solusi'] ?></td>
         <td></td>
       </tr>
     </tbody>

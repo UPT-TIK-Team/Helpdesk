@@ -45,7 +45,13 @@
         url: `<?= base_url('Expertsystem/hasilDiagnosa') ?>`,
         dataType: 'text',
         data: data,
-        success: response => $('#hasil-diagnosa').append(response)
+        success: response => {
+          $('#hasil-diagnosa').append(response)
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })
+        }
       })
       kondisi.forEach(e => e.value = null)
     })
