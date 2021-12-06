@@ -110,8 +110,40 @@ class Auth extends MY_Controller
 				'status' => 1,
 				'created' => time()
 			);
-			$this->Auth->add($data);
+			$token = base64_encode(random_bytes(32));
+			$userToken = [
+				'email' => $data['email'],
+				'token' => $token,
+				'date_created' => time()
+			];
+			$this->db->insert('users_token', $userToken);
+			$this->_sendEmail($token);
 			redirect('auth/login');
+		}
+	}
+
+	private function _sendEmail($token)
+	{
+		$config = [
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp:googlemail.com',
+			'smtp_user' => '',
+			'smtp_pass' => '',
+			'smtp_port' => 465,
+			'mailtype' => 'html',
+			'charset' => 'utf-8',
+			'newline' => "\r\n"
+		];
+
+		$this->email->initialize($config);
+		$this->email->from('', '');
+		$this->email->to($this->input->post('email'));
+		$this->email->subject('Account verification');
+		$this->email->message(urlencode($token));
+		if ($this->email->send()) {
+			return true;
+		} else {
+			echo $this->email->print_debugger();
 		}
 	}
 

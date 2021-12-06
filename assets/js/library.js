@@ -341,7 +341,7 @@ function getRelativeTime(time) {
  * @param {object} options 
  * @param {function} cb 
  */
-function showNotification(type, message, options, cb) {
+export default function showNotification(type, message, options, cb) {
 
 	var noptions = Object.assign({
 		tapToDismiss: true,
