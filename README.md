@@ -1,5 +1,3 @@
-![Thumbnail-100](assets/readme/thumbnail.jpg)
-
 ## Demo
 
 <div align="center"><a href="http://helpdesktik.unsika.ac.id/">Visit UNSIKA HELPDESK</a></div>
@@ -11,8 +9,6 @@
 | Admin     | admin.demo | demo     |
 | Agent     | agent.demo | demo     |
 | User      | user.demo  | demo     |
-
-![screen-2-100](assets/readme/screen.jpg)
 
 ## Features
 
@@ -62,21 +58,14 @@ To start with the project follow these steps:
 
 7. All done! You can enjoy now!
 
-## Checkout all of our projects
-
-Here at [Phoenix](https://lab.tik.co/explore/projects)
-
 ## Authors
 
-- [Madhurendra Sachan](https://github.com/m301)
-- [Deeksha Gupta](https://github.com/eksha)
-- [Mansoor Ahmad](https://github.com/M33P0)
+- Faisal Mashuri
+- Muhammad Fahmi Prasetio
 
 ## License
 
 ```
-Copyright 2019-2020 tikaj Technologies Private Limited.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -89,5 +78,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-Developed with :heart: at tikaj Team
