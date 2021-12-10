@@ -22,7 +22,7 @@
     </div>
   </div>
 </section>
-<script type="module">
+<script>
   const link = `<?= $link ?>`
-  console.log(link);
 </script>
+<script type="module" src="<?= base_url('assets/js/pages/services/list_all.js') ?>"></script>

@@ -8,7 +8,7 @@ class Services extends MY_Controller
     parent::requireLogin();
   }
 
-  public function list()
+  public function list_all()
   {
     $data['title'] = 'List All Services';
     $data['link'] = base_url('API/Services/generateDatatable');

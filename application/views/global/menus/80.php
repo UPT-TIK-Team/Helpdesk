@@ -20,7 +20,7 @@
 
 <li><a href="#masterMenuDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-archive"></i>Master</a>
   <ul id="masterMenuDropdown" class="collapse list-unstyled ">
-    <li><a href="<?= BASE_URL ?>services/list">All Services</a></li>
+    <li><a href="<?= base_url('services/list_all') ?>">All Services</a></li>
     <li><a href="<?= BASE_URL ?>subservices/list">All Subservices</a></li>
   </ul>
 </li>

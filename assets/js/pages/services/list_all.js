@@ -2,8 +2,6 @@ import { renderCustomHTML } from "../../library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#services").dataTable({
-    dom: "Bfrtip",
-    buttons: ["copy", "csv", "excel", "pdf", "print"],
     responsive: true,
     autoWidth: false,
     processing: true,
