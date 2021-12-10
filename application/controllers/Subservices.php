@@ -8,10 +8,10 @@ class Subservices extends MY_Controller
     parent::requireLogin();
   }
 
-  public function list()
+  public function list_all()
   {
     $data['title'] = 'List All Sub Services';
     $data['link'] = base_url('API/Subservices/generateDatatable');
-    $this->render('subservice/subservice_views', $data);
+    $this->render('subservice/list_all', $data);
   }
 }
