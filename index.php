@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -35,6 +36,8 @@
  * @since    Version 1.0.0
  * @filesource
  */
+
+use Dotenv\Dotenv;
 
 /*
  *---------------------------------------------------------------
@@ -196,10 +199,10 @@ if (($_temp = realpath($system_path)) !== FALSE) {
 } else {
 	// Ensure there's a trailing slash
 	$system_path = strtr(
-			rtrim($system_path, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
-		) . DIRECTORY_SEPARATOR;
+		rtrim($system_path, '/\\'),
+		'/\\',
+		DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
+	) . DIRECTORY_SEPARATOR;
 }
 
 // Is the system path correct?
@@ -239,10 +242,10 @@ if (is_dir($application_folder)) {
 	}
 } elseif (is_dir(BASEPATH . $application_folder . DIRECTORY_SEPARATOR)) {
 	$application_folder = BASEPATH . strtr(
-			trim($application_folder, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
-		);
+		trim($application_folder, '/\\'),
+		'/\\',
+		DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
+	);
 } else {
 	header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 	echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: ' . SELF;
@@ -266,10 +269,10 @@ if (!isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)) 
 	}
 } elseif (is_dir(APPPATH . $view_folder . DIRECTORY_SEPARATOR)) {
 	$view_folder = APPPATH . strtr(
-			trim($view_folder, '/\\'),
-			'/\\',
-			DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
-		);
+		trim($view_folder, '/\\'),
+		'/\\',
+		DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR
+	);
 } else {
 	header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 	echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: ' . SELF;
@@ -277,6 +280,15 @@ if (!isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)) 
 }
 
 define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
+
+// ...at the bottom of index.php
+require FCPATH . 'vendor/autoload.php';
+
+// Use FCPATH If your .env is in the same directory as index.php
+// Use APPATH If your .env is in your application/ directory
+$dotenv = Dotenv::createUnsafeImmutable(FCPATH);
+$dotenv->load();
+
 
 /*
  * --------------------------------------------------------------------
@@ -287,5 +299,3 @@ define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
  */
 require_once BASEPATH . 'core/CodeIgniter.php';
 include_once './vendor/autoload.php';
-
-

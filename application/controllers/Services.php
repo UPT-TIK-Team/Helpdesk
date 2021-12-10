@@ -12,6 +12,6 @@ class Services extends MY_Controller
   {
     $data['title'] = 'List All Services';
     $data['link'] = base_url('API/Services/generateDatatable');
-    $this->render('service/service_views', $data);
+    $this->render('service/list_all', $data);
   }
 }

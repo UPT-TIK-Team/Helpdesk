@@ -44,15 +44,6 @@
     </exclude>
   </groups>
 
-  <testdoxGroups>
-    <include>
-      <group>name</group>
-    </include>
-    <exclude>
-      <group>name</group>
-    </exclude>
-  </testdoxGroups>
-
   <filter>
     <whitelist addUncoveredFilesFromWhitelist="true"
                processUncoveredFilesFromWhitelist="false">
@@ -98,7 +89,6 @@
     <log type="junit" target="/tmp/logfile.xml" logIncompleteSkipped="false"/>
     <log type="testdox-html" target="/tmp/testdox.html"/>
     <log type="testdox-text" target="/tmp/testdox.txt"/>
-    <log type="testdox-xml" target="/tmp/testdox.xml"/>
   </logging>
 
   <php>

@@ -1,4 +1,25 @@
-import showNotification from "./library";
+import {
+  getUserLabel,
+  renderCustomHTML,
+  renderDropdowns,
+} from "../js/library.js";
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+  // Animate loader off screen
+  $(".loader").fadeOut(1000);
+});
+
+/*to get user icon*/
+$(".current-user-avatar").each(function () {
+  var username = $(this).attr("data-username");
+  var name = username
+    .split(".")
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(" ");
+  $(this).append(getUserLabel(name, username));
+});
+
 // change password
 $("#change_password").on("click", function () {
   var password = $("#current_password").val();

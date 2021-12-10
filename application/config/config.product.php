@@ -21,9 +21,9 @@ define('PRODUCT_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/08/t
  */
 # Products global settings
 define('SETTING_UPLOAD_DIR', '/uploads/');
-define('SETTING_UPLOAD_PATH', FCPATH."/uploads/");
+define('SETTING_UPLOAD_PATH', FCPATH . "/uploads/");
 define('SETTING_PROFILE_DIR', '/uploads/profiles/');
-define('SETTING_PROFILE_PATH', FCPATH.SETTING_PROFILE_DIR);
+define('SETTING_PROFILE_PATH', FCPATH . SETTING_PROFILE_DIR);
 
 
 
@@ -48,7 +48,7 @@ define('URL_LOGIN', URL_PREFIX . '/auth/login');
 define('URL_POST_LOGIN_USER', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_AGENT', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_MANAGER', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_ADMIN', URL_PREFIX. '/user/dashboard');
+define('URL_POST_LOGIN_ADMIN', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_LIMITED', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_DEACTIVATED', URL_PREFIX . '/deactivated/dashboard');
 

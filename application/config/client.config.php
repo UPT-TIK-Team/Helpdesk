@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include_once __DIR__ . "/constants.permissions.php";
 
 //Root Url of ur site
-define('BASE_URL', 'https://helpdesktik.unsika.ac.id/');
+define('BASE_URL', getenv('BASE_URL'));
 
 define('PAGE_LOADER', BASE_URL . 'assets/img/loading.webp');
 

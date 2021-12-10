@@ -26,45 +26,13 @@
 </div>
 
 
-<script src="<?= BASE_URL ?>assets/vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="<?= BASE_URL ?>assets/vendor/jquery-validation/jquery.validate.min.js"></script><!-- Main File-->
-<script src="<?= BASE_URL ?>assets/js/front.js"></script>
-<script src="<?= BASE_URL ?>assets/js/library.js"></script>
-<script src="<?= BASE_URL ?>assets/js/tik-script.js"></script>
-<script src="<?= BASE_URL ?>assets/js/main/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url() ?>assets/vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="<?= base_url() ?>assets/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script type="module" src="<?= base_url() ?>assets/js/front.js"></script>
+<script type="module" src="<?= base_url() ?>assets/js/library.js"></script>
+<script type="module" src="<?= base_url() ?>assets/js/tik-script.js"></script>
+<script src="<?= base_url() ?>assets/js/main/bootstrap.bundle.min.js"></script>
 <script src="//code-eu1.jivosite.com/widget/jxLWhHG4Qu" async></script>
-<script>
-  $(document).ready(function() {
-    $(function() {
-      $('[data-toggle="tooltip"]').tooltip()
-      // Animate loader off screen
-      $(".loader").fadeOut(1000);
-    })
-  });
-
-  function addBrAfterXWords(e, data) {
-    let words = e;
-    let text = data.split(" ");
-    let newhtml = [];
-    console.log("TEST text:" + text);
-
-    for (var i = 0; i < text.length; i++) {
-
-      if (i > 0 && (i % words) == 0)
-        newhtml.push("<br />");
-
-      newhtml.push(text[i]);
-    }
-    return newhtml.join(" ");
-  }
-
-  /*to get user icon*/
-  $('.current-user-avatar').each(function() {
-    var username = $(this).attr('data-username');
-    var name = username.split('.').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
-    $(this).append(getUserLabel(name, username))
-  });
-</script>
 </body>
 
 </html>

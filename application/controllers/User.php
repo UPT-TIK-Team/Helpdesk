@@ -16,14 +16,19 @@ class User extends MY_Controller
 	{
 		$data['title'] = 'Dashboard';
 		$role = (int)($this->Session->getUserType());
-		if ($role == USER_MEMBER)
-			$this->dashboard_member();
-		else if ($role == USER_AGENT)
-			$this->dashboard_agent();
-		else if ($role == USER_MANAGER)
-			$this->dashboard_manager();
-		else if ($role == USER_ADMIN)
-			$this->dashboard_manager();
+		switch ($role) {
+			case USER_MEMBER:
+				$this->dashboard_member();
+				break;
+			case USER_AGENT:
+				$this->dashboard_agent();
+				break;
+			case USER_MANAGER:
+				$this->dashboard_manager();
+				break;
+			default:
+				$this->dashboard_manager();
+		}
 	}
 
 	public function dashboard_member()
@@ -119,7 +124,7 @@ class User extends MY_Controller
 		$role = $this->Session->getLoggedDetails()['type'];
 		$filter = ['type <=' => $role];
 		$data['user_list'] = $this->Users->getBy(null, $filter);
-		$this->render('user/list', $data);
+		$this->render('user/list_user', $data);
 	}
 
 	public function generateDatatable()
