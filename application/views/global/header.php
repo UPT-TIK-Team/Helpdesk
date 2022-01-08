@@ -35,7 +35,7 @@
   <script src="<?= base_url('assets/vendor/toastr/toastr.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/chart.js/Chart.min.js') ?>"></script>
   <script>
-    const base_url('') = "<?= base_url() ?>";
+    const BASE_URL = "<?= base_url() ?>";
     $(document).ready(function() {
       $('.side-navbar ul li a').each(function() {
         var url = window.location.href;
