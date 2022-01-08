@@ -106,4 +106,4 @@
   </div>
 </section>
 
-<script type="module" src="<?= base_url('assets/js/pages/users/CreateNew.js') ?>"></script>
+<script type="module" src="<?= base_url('assets/js/pages/tickets/CreateNew.js') ?>"></script>

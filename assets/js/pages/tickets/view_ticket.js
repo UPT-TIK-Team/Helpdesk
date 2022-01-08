@@ -2,7 +2,7 @@ import {
   showNotification,
   fileUpload,
   getAttachmentLabel,
-} from "../library.js";
+} from "../../library.js";
 $(document).ready(function () {
   var attached_files = [];
 

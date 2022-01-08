@@ -1,4 +1,4 @@
-import { renderCustomHTML } from "../library.js";
+import { renderCustomHTML } from "../../library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#users").dataTable({

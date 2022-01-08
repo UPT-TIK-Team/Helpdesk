@@ -67,4 +67,4 @@
     </div>
   </div>
 </section>
-<script type="module" src="<?= base_url('assets/js/pages/list.js') ?>"></script>
+<script type="module" src="<?= base_url('assets/js/pages/users/ListUsers.js') ?>"></script>
