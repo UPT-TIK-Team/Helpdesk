@@ -12,7 +12,6 @@ class Ticket_model extends BaseMySQL_model
     parent::__construct(TABLE_TICKETS);
     $this->load->model("core/Session_model", "Session");
     $this->load->model("user/User_model", "User");
-    $this->load->model("notification/Email_model", "Email");
   }
 
   public function getByThread($tId)
@@ -130,42 +129,5 @@ class Ticket_model extends BaseMySQL_model
     $res = $this->db->insert(TABLE_MESSAGES, $data);
     $info = parent::getBy(array('owner', 'ticket_no', 'subject'), array('ticket_no' => $data['ticket']));
     return $res;
-  }
-
-  //TODO: should this be in User_model? but this is Ticket specific only
-  public function getEmailFromUsername($username)
-  {
-    if (!$this->checkIfEmail($username))
-      return $username . '@' . CLIENT_DOMAIN;
-    else return $username;
-  }
-
-  public function getUsernameFromEmail($email)
-  {
-    if (!$this->checkIfEmail($email)) {
-      $split = explode('@', $email);
-      $domain = $split[1];
-      if ($domain == CLIENT_DOMAIN) return $split[0];
-    }
-    return $email;
-  }
-
-  public function sendUpdateEmail($users, $subject, $message)
-  {
-    $to_emails = array();
-    foreach ($users as $user) {
-      array_push($to_emails, $this->getEmailFromUsername($user));
-    }
-    return $this->Email->send($to_emails, CLIENT_FROM_EMAIL, $subject, $message . CLIENT_MAIL_FOOTER, CLIENT_REPLYTO_EMAIL);
-  }
-
-
-  // checks if string is email.
-  function checkIfEmail($str)
-  {
-    if (filter_var($str, FILTER_VALIDATE_EMAIL))
-      return TRUE;
-    else
-      return FALSE;
   }
 }

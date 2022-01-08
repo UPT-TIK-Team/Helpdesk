@@ -91,27 +91,6 @@ class User_model extends BaseMySQL_model
 		return parent::getByID($uid, $fields);
 	}
 
-	public function getBankDetails($uid)
-	{
-		return $this->db->select(TABLE_BANK_DETAILS . '.account_number, ' . TABLE_BANK_DETAILS . '.account_holder, ' . TABLE_BANK_DETAILS . '.ifsc_code, ' . TABLE_BANK_DETAILS . '.bank_name, ' . TABLE_BANK_DETAILS . '.uid, ' . TABLE_BANK_DETAILS . '.bank_address, tb.name as bank_full_name')
-			->join(TABLE_BANKS . ' as tb', 'tb.id = ' . TABLE_BANK_DETAILS . '.bank_name', 'right')->where(array('uid' => $uid))->get(TABLE_BANK_DETAILS)->result_array();
-	}
-
-	public function updateBankDetails($uid, $info)
-	{
-		$update_info = getValuesOfKeys($info, array('account_number', 'ifsc_code', 'account_holder', 'bank_name', 'bank_address'));
-
-		$bank_details = $this->db->where(array('uid' => $uid))->get(TABLE_BANK_DETAILS)->result_array();
-		print_r($update_info);
-		print_r($bank_details);
-		if (count($bank_details))
-			return $this->db->where(array('uid' => $uid))->update(TABLE_BANK_DETAILS, $update_info);
-		else {
-			$update_info['uid'] = $uid;
-			return $this->db->insert(TABLE_BANK_DETAILS, $update_info);
-		}
-	}
-
 	public function uploadProfilePicture($uId, $file, $orig_name)
 	{
 		if ($orig_name) {

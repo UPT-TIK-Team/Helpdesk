@@ -2,8 +2,6 @@
 
 require_once __DIR__ . "/User_model.php";
 require_once __DIR__ . "/constants.php";
-require_once __DIR__ . "/../core/Token_model.php";
-require_once __DIR__ . "/../core/Template_model.php";
 require_once __DIR__ . "/../core/Session_model.php";
 
 
@@ -13,7 +11,6 @@ class Auth_model extends BaseMySQL_model
 	{
 		parent::__construct(TABLE_USER);
 		$this->User = new User_model();
-		$this->Token = new Token_model();
 		$this->Session = new Session_model();
 
 		$this->type_forgot = "forgot_password";
@@ -24,7 +21,7 @@ class Auth_model extends BaseMySQL_model
 		$username = trim($data['username']);
 		$password = $data['password'];
 		$user = $this->User->getOneItem($this->User->getByOR("*", array('username' => $username)));
-		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == STATUS_ACTIVE) {
+		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == USER_STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
 		}

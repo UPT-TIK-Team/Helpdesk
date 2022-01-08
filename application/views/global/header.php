@@ -29,7 +29,6 @@
   <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/datatables/datatables.min.js') ?>"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="<?= base_url('assets/vendor/alpacajs/alpaca.min.js') ?>"></script>
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="<?= base_url('assets/js/main/select2.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/toastr/toastr.min.js') ?>"></script>
@@ -68,7 +67,6 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/toastr/toastr.min.css') ?>">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-  <link href="<?= base_url('assets/js/plugins/alpaca/alpaca.min.css') ?>" rel="stylesheet" type="text/css">
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link href="<?= base_url('assets/css/select2.min.css') ?>" rel="stylesheet" />
 

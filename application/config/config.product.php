@@ -2,9 +2,9 @@
 //Developer Information
 //All product and developer related information.
 define('DEV_COMPANY_NAME', 'UNSIKA');
-define('DEV_COMPANY_EMAIL', 'hello@tikaj.com');
-define('DEV_COMPANY_PHONE', '8881686666');
-define('DEV_COMPANY_SUPPORT_EMAIL', 'support@tikaj.com');
+define('DEV_COMPANY_EMAIL', '');
+define('DEV_COMPANY_PHONE', '');
+define('DEV_COMPANY_SUPPORT_EMAIL', '');
 define('DEV_COMPANY_URL', 'https://upttik.unsika.ac.id/');
 define('DEV_COMPANY_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png');
 
@@ -13,8 +13,6 @@ define('DEV_COMPANY_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/
  */
 define('PRODUCT_NAME', 'UPT TIK HELPDESK');
 define('PRODUCT_LOGO', 'https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png');
-
-
 
 /**
  * Global Settings
@@ -50,18 +48,5 @@ define('URL_POST_LOGIN_AGENT', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_MANAGER', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_ADMIN', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_LIMITED', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_DEACTIVATED', URL_PREFIX . '/deactivated/dashboard');
 
 define('URL_REGISTER', URL_PREFIX . '/auth/register');
-define('URL_PAYMENT_DONE', URL_PREFIX . '/payment/done');
-
-
-define("STATUS_ACTIVE", 1);
-define("STATUS_INACTIVE", 0);
-define('STATUS_DEACTIVATED', -1);
-
-
-define('CLIENT_ADMIN_PAYTM_NUMBER', 9999999999);
-define('CLIENT_ADMIN_UPI', 'username@upi');
-
-define('DISABLE_POWERED_BY', true);

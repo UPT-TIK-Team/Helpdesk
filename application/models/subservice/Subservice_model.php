@@ -6,6 +6,5 @@ class Subservice_model extends BaseMySQL_model
   {
     parent::__construct('subservices');
     $this->load->model("core/Session_model", "Session");
-    $this->load->model("notification/Email_model", "Email");
   }
 }

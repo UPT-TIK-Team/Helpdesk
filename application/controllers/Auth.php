@@ -8,7 +8,6 @@ class Auth extends MY_Controller
 		parent::__construct();
 		$this->setHeaderFooter('auth/header.php', 'auth/footer.php');
 		$this->load->model('user/Auth_model', 'Auth');
-		$this->load->model('core/Token_model', 'PIN');
 	}
 
 	private function redirectIfLogged()
@@ -25,9 +24,6 @@ class Auth extends MY_Controller
 				redirect(URL_POST_LOGIN_MANAGER);
 			else if ($this->Session->getUserType() == USER_LIMITED)
 				redirect(URL_POST_LOGIN_LIMITED);
-			else if ($this->Session->getUserType() == USER_DEACTIVATED)
-				redirect(URL_POST_LOGIN_DEACTIVATED);
-
 			return true;
 		}
 		return false;
@@ -189,8 +185,6 @@ class Auth extends MY_Controller
 				redirect(URL_POST_LOGIN_MANAGER);
 			else if ($this->Session->getUserType() == USER_LIMITED)
 				redirect(URL_POST_LOGIN_LIMITED);
-			else if ($this->Session->getUserType() == USER_DEACTIVATED)
-				redirect(URL_POST_LOGIN_DEACTIVATED);
 			return true;
 		}
 	}
@@ -208,46 +202,6 @@ class Auth extends MY_Controller
 			return;
 		}
 		$this->render('Forgot Password', 'auth/forgot_password');
-	}
-
-
-	/**
-	 * Process logic of forgot password
-	 */
-	public function process_forgot()
-	{
-
-		$username = trim($this->input->post('username'));
-		if (empty($username)) {
-			set_msg('error', 'Username required');
-			redirect(BASE_URL . 'auth/forgot_password');
-		}
-
-		$user = $this->User->getByID(getUserID($username));
-		if (empty($user)) {
-			set_msg('error', 'Username not found in our record');
-			redirect(BASE_URL . 'auth/forgot_password');
-		}
-
-
-		$emailOrMobile = trim($this->input->post('email'));
-		if ($user['email'] == $emailOrMobile && $user['mobile'] !== $emailOrMobile) {
-			set_msg('error', 'Email or Mobile number doesn\'t match.');
-			redirect(BASE_URL . 'auth/forgot_password');
-		}
-
-		$password = mt_rand(100000, 999999);
-		$hashedPassword = $this->User->hashPassword($password);
-
-		$res = $this->User->update($user['id'], array('password' => $hashedPassword));
-		if ($res) {
-			$this->SMS->send($user['mobile'], 'Dear ' . $user['name'] . ', You new password for ' . $username . ' is ' . $password);
-			set_msg('success', 'Password reset instructions have been sent to your number');
-			redirect(BASE_URL . 'auth/forgot_password');
-		} else {
-			set_msg('error', 'There was some error processing your request!');
-			redirect(BASE_URL . 'auth/forgot_password');
-		}
 	}
 
 	public function logout()

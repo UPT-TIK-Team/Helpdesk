@@ -6,6 +6,5 @@ class Service_model extends BaseMySQL_model
   {
     parent::__construct('services');
     $this->load->model("core/Session_model", "Session");
-    $this->load->model("notification/Email_model", "Email");
   }
 }
