@@ -1,8 +1,4 @@
-import {
-  getUserLabel,
-  renderCustomHTML,
-  renderDropdowns,
-} from "../js/library.js";
+import { getUserLabel, renderCustomHTML, renderDropdowns } from "./library.js";
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
