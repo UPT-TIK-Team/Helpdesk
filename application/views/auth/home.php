@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="">
   <meta property="og:type" content="product">
   <meta property="og:image" content="">
-  <link rel="shortcut icon" href="<?= base_url() ?>assets/img/landing-page/favicon.ico">
+  <link rel="shortcut icon" href="<?= base_url('assets/img/favicon.ico') ?>">
 </head>
 
 <body>
