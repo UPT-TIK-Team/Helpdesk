@@ -21,28 +21,28 @@ class Tickets extends MY_Controller
   {
     $data['title'] = 'List All Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable');
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function unassigned_tickets()
   {
     $data['title'] = 'Unassigned Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=null');
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function closed_tickets()
   {
     $data['title'] = 'Closed Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?status=100');
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function assigned_tickets()
   {
     $data['title'] = 'Assigned Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=not null');
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function assigned_to_me()
@@ -50,7 +50,7 @@ class Tickets extends MY_Controller
     $data['title'] = 'Tickets assigned to me';
     $assign_to = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function my_tickets()
@@ -59,7 +59,7 @@ class Tickets extends MY_Controller
     $data['type'] = "My Tickets";
     $owner = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/Ticket/generateDatatable?owner=') . $owner;
-    $this->render('ticket/ticket_views', $data);
+    $this->render('ticket/TicketsTableView', $data);
   }
 
   public function view_ticket()
