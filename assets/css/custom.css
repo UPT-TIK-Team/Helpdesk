@@ -635,7 +635,8 @@ input.input-material ~ label.active {
  ========================*/
 @media only screen and (max-width: 766px) {
   .comments-container {
-    width: 480px;
+    width: 370px;
+    padding: 10px 0px;
   }
 
   .comments-list .comment-box {

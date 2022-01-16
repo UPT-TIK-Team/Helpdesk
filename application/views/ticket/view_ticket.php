@@ -108,7 +108,7 @@
     </div>
 
 
-    <div class="col-md-4 no-padding-left ticket-details-right">
+    <div class="col-md-4 ticket-details-right">
       <div class="card custom-border-radius sticky-this">
         <div class="card-header d-flex align-items-center custom-border-radius">
           <h3 class="h4"><i class="fa fa-ticket"></i>Details</h3>
