@@ -646,6 +646,9 @@ input.input-material ~ label.active {
   .reply-list .comment-box {
     width: 320px;
   }
+  .dotted-add-button {
+    margin-top: 3%;
+  }
 }
 
 /*MQ*/
