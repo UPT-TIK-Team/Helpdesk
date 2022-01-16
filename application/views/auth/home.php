@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="">
   <meta property="og:type" content="product">
   <meta property="og:image" content="">
-  <link rel="shortcut icon" href="<?= base_url() ?>assets/images/landing-page/favicon.ico">
+  <link rel="shortcut icon" href="<?= base_url() ?>assets/img/landing-page/favicon.ico">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
           <header class="navbar">
             <section class="navbar-section">
               <a class="navbar-brand logo" href="./">
-                <img class="logo-img" src="<?= base_url() ?>assets/images/landing-page/Tik Logo.svg" alt=""><span>Helpdesk UNSIKA</span>
+                <img class="logo-img" src="<?= base_url() ?>assets/img/landing-page/Tik Logo.svg" alt=""><span>Helpdesk UNSIKA</span>
               </a>
             </section>
             <section class="navbar-section hide-sm">
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="column col-5 hide-sm">
-          <img class="slogan-img" src="<?= base_url() ?>assets/images/landing-page/yeo-feature-1.svg" alt="">
+          <img class="slogan-img" src="<?= base_url() ?>assets/img/landing-page/yeo-feature-1.svg" alt="">
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="column col-4 col-sm-12">
           <div class="yeo-do-content">
-            <img src="<?= base_url() ?>assets/images/landing-page/server.png" alt="">
+            <img src="<?= base_url() ?>assets/img/landing-page/server.png" alt="">
             <h3>Data Center</h3>
             <p>Menyediakan fasilitas untuk menampung kebutuhan akan penyimpanan data seperti (hosting, Instalasi server) pada lingkungan UNSIKA</p>
             <a href="">Learn more</a>
@@ -81,7 +81,7 @@
         </div>
         <div class="column col-4 col-sm-12">
           <div class="yeo-do-content">
-            <img src="<?= base_url() ?>assets/images/landing-page/what-we-do-2.svg" alt="">
+            <img src="<?= base_url() ?>assets/img/landing-page/what-we-do-2.svg" alt="">
             <h3>Event Support</h3>
             <p>Membantu event yang ada di UNSIKA pada kegiatan pimpinan atau kegiatan khusus</p>
             <a href="">Learn more</a>
@@ -89,7 +89,7 @@
         </div>
         <div class="column col-4 col-sm-12">
           <div class="yeo-do-content">
-            <img src="<?= base_url() ?>assets/images/landing-page/network.png" alt="">
+            <img src="<?= base_url() ?>assets/img/landing-page/network.png" alt="">
             <h3>Jaringan</h3>
             <p>Kami siap melayani permintaan jaringan di UNSIKA seperti troubleshooting jaringan, penambahan bandwidth untuk keperluan tertentu</p>
             <a href="">Learn more</a>
@@ -97,7 +97,7 @@
         </div>
         <div class="column col-4 col-sm-12">
           <div class="yeo-do-content">
-            <img src="<?= base_url() ?>assets/images/landing-page/what-we-do-3.svg" alt="">
+            <img src="<?= base_url() ?>assets/img/landing-page/what-we-do-3.svg" alt="">
             <h3>Layanan Aplikasi</h3>
             <p>Melayani permintaan akan kebutuhan aplikasi seperti pembuatan website ataupun aplikasi seluler, maintenance aplikasi di linkungan UNSIKA (eCampus, Sikeu, epresence, Email UNSIKA, eVika, Learning Management System, LabSyska, Sister, SIAKADTIK ) </p>
             <a href="">Learn more</a>
@@ -105,7 +105,7 @@
         </div>
         <div class="column col-4 col-sm-12">
           <div class="yeo-do-content">
-            <img src="<?= base_url() ?>assets/images/landing-page/career.png" alt="">
+            <img src="<?= base_url() ?>assets/img/landing-page/career.png" alt="">
             <h3>Layanan Digitalisasi Bisnis</h3>
             <p>Melayani permintaan akan kebutuhan digitalisasi pada lingkungan UNSIKA </p>
             <a href="">Learn more</a>
@@ -135,7 +135,7 @@
           <h2 class="feature-title">We love Unsika</h2>
         </div>
         <div class="column col-10 centered col-sm-12">
-          <img class="open-source-img" src="<?= base_url() ?>assets/images/landing-page/open-source.svg" alt="">
+          <img class="open-source-img" src="<?= base_url() ?>assets/img/landing-page/open-source.svg" alt="">
           <h2 class="open-source-feature">
             We're making
             <br />
