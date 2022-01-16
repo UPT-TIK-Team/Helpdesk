@@ -38,7 +38,7 @@
 </section>
 
 <!--ticket stats-->
-<section class="dashboard-header no-padding-bottom col-left-no-padding">
+<section class="dashboard-header no-padding-bottom">
   <div class="container">
     <div class="row">
       <!-- Statistics -->
@@ -84,7 +84,7 @@
 
 <!-- Severity graph & Ticket status -->
 <section class="feeds">
-  <div class="container col-left-no-padding">
+  <div class="container">
     <div class="row">
       <div class="col-md-7 d-flex">
         <div class="bar-chart-example card custom-border-radius w-100">

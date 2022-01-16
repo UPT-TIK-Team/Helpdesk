@@ -146,10 +146,6 @@ nav.side-navbar ul li.nav-active > a {
   background: #1c1c1c;
 }
 
-.col-left-no-padding [class*="col-"]:not(:first-child) {
-  padding-left: 0px;
-}
-
 .custom-border-radius {
   border-radius: 5px !important;
 }
