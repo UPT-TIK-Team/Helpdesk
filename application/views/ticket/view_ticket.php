@@ -195,4 +195,4 @@
 
 
 </div>
-<script type="module" src="<?= base_url('assets/js/pages/view_ticket.js') ?>"></script>
+<script type="module" src="<?= base_url('assets/js/pages/tickets/view_ticket.js') ?>"></script>
