@@ -5,5 +5,5 @@
     <li><a href="<?= BASE_URL ?>tickets/my_tickets"> <i class="fa fa-list"></i>My Tickets </a></li>
   </ul>
 </li>
-<li><a href="<?= BASE_URL ?>expertsystem/diagnose"> <i class="fa fa-globe"></i>Expert System </a></li>
+<li><a href="<?= BASE_URL ?>expertsystem/diagnose"> <i class="fa fa-globe"></i>Expert System <span class="badge badge-warning">Beta</span></a></li>
 <li><a href="<?= BASE_URL ?>user/profile"> <i class="fa fa-user"></i>Profile </a></li>
