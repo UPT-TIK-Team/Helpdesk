@@ -58,8 +58,7 @@ section {
 }
 
 nav.side-navbar {
-  min-width: 180px;
-  max-width: 180px;
+  width: 1000px;
 }
 
 .content-inner {
