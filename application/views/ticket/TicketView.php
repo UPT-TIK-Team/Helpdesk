@@ -147,10 +147,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Ticket Severity</th>
+                  <th>Ticket Priority</th>
                   <td>
-                    <select name="severity" id="severity_dd" data-id="<?= $info['id'] ?>" class="form-control">
-                      <option value="<?= $info['severity'] ?>"><?= $info['name_severity'] ?></option>
+                    <select name="priority" id="priority" data-id="<?= $info['id'] ?>" class="form-control" disabled>
+                      <option value="<?= $info['id_priority'] ?>"><?= $info['name_priority'] ?></option>
                     </select>
                   </td>
                 </tr>

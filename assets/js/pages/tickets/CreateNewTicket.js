@@ -97,26 +97,26 @@ $(document).ready(function () {
   // create new ticket
   $("#create_ticket").on("click", function (a) {
     a.preventDefault();
-    var purpose = $("#purpose").val();
-    var subject = $("#subject").val();
-    var message = quill.root.innerHTML;
+    const purpose = $("#purpose").val();
+    const subject = $("#subject").val();
+    const message = quill.root.innerHTML;
     const id_subservice = parseInt($("#subservice").val());
-    var severity = parseInt($("#severity_dd").val());
-    var id_service = parseInt($("#service").val());
-    var data = {
+    const id_service = parseInt($("#service").val());
+    const id_priority = parseInt($("#priority").val());
+    const data = {
       attachments: attached_files,
     };
     attached_files = [];
     var fdata = {
-      purpose: purpose,
-      subject: subject,
-      message: message,
-      severity: severity,
-      id_service: id_service,
-      id_subservice: id_subservice,
-      data: data,
+      purpose,
+      subject,
+      message,
+      id_service,
+      id_subservice,
+      id_priority,
+      data,
     };
-    if (!purpose || !subject || !message) {
+    if (!purpose || !subject || !message || !id_priority) {
       showNotification("error", "Please fill all fields.");
     } else {
       $.ajax({
@@ -124,12 +124,11 @@ $(document).ready(function () {
         url: `${BASE_URL}API/Ticket/create`,
         dataType: "text",
         data: fdata,
-        beforeSend: function () {
-          $("#result_create_ticket").html(
-            `<img src="${BASE_URL}/assets/img/loader.gif" class="pull-right" style="width: 30px;">`
-          );
-        },
-
+        // beforeSend: function () {
+        //   $("#result_create_ticket").html(
+        //     `<img src="${BASE_URL}/assets/img/loader.gif" class="pull-right" style="width: 30px;">`
+        //   );
+        // },
         success: function (response) {
           if (JSON.parse(response)["data"]["result"]) {
             showNotification(
