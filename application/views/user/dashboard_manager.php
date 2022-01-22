@@ -82,17 +82,17 @@
 </section>
 
 
-<!-- Severity graph & Ticket status -->
+<!-- Priority graph & Ticket status -->
 <section class="feeds">
   <div class="container">
     <div class="row">
       <div class="col-md-7 d-flex">
         <div class="bar-chart-example card custom-border-radius w-100">
           <div class="card-header d-flex align-items-center  custom-border-radius">
-            <h2 class="h3">Ticket Status By Severity</h2>
+            <h2 class="h3">Ticket Status By Priority</h2>
           </div>
           <div class="card-body">
-            <canvas id="severity-bar-graph" height="100"></canvas>
+            <canvas id="priority-bar-graph" height="100"></canvas>
           </div>
         </div>
       </div>
@@ -306,14 +306,19 @@
   gradient2.addColorStop(1, 'rgba(255,144,84,0.85)');
 
   var gradient3 = ctx1.createLinearGradient(146.000, 0.000, 154.000, 300.000);
-  gradient3.addColorStop(0, 'rgba(104, 179, 112, 0.85)');
-  gradient3.addColorStop(1, 'rgba(165,236,69,0.85)');
+  gradient3.addColorStop(0, 'rgba(255,255,0,1)');
+  gradient3.addColorStop(1, 'rgba(255,255,0,1)');
+
+  var gradient4 = ctx1.createLinearGradient(146.000, 0.000, 154.000, 300.000);
+  gradient4.addColorStop(0, 'rgba(104, 179, 112, 0.85)');
+  gradient4.addColorStop(1, 'rgba(165,236,69,0.85)');
+
 
 
   // ------------------------------------------------------- //
   // Severity Bar graph
   // ------------------------------------------------------ //
-  var BARCHARTEXMPLE = $('#severity-bar-graph');
+  var BARCHARTEXMPLE = $('#priority-bar-graph');
   var barChartExample = new Chart(BARCHARTEXMPLE, {
     type: 'bar',
     options: {
@@ -335,7 +340,7 @@
     data: {
       labels: ["Open", "Assigned", "Closed"],
       datasets: [{
-          label: "Severity High",
+          label: "Priority Critical",
           backgroundColor: [
             gradient1,
             gradient1,
@@ -352,47 +357,66 @@
             gradient1
           ],
           borderWidth: 1,
-          data: <?php echo json_encode($stats['count_by_severity']['high']) ?>,
+          data: <?php echo json_encode($stats['count_by_priority']['critical']) ?>,
+        }, {
+          label: "Priority High",
+          backgroundColor: [
+            gradient2,
+            gradient2,
+            gradient2
+          ],
+          hoverBackgroundColor: [
+            gradient2,
+            gradient2,
+            gradient2
+          ],
+          borderColor: [
+            gradient2,
+            gradient2,
+            gradient2
+          ],
+          borderWidth: 1,
+          data: <?php echo json_encode($stats['count_by_priority']['high']) ?>,
         },
         {
-          label: "Severity Medium",
+          label: "Priority Medium",
           backgroundColor: [
-            gradient2,
-            gradient2,
-            gradient2
+            gradient3,
+            gradient3,
+            gradient3
           ],
           hoverBackgroundColor: [
-            gradient2,
-            gradient2,
-            gradient2
+            gradient3,
+            gradient3,
+            gradient3
           ],
           borderColor: [
-            gradient2,
-            gradient2,
-            gradient2
+            gradient3,
+            gradient3,
+            gradient3
           ],
           borderWidth: 1,
-          data: <?php echo json_encode($stats['count_by_severity']['medium']) ?>,
+          data: <?php echo json_encode($stats['count_by_priority']['medium']) ?>,
         },
         {
-          label: "Severity Low",
+          label: "Priority Low",
           backgroundColor: [
-            gradient3,
-            gradient3,
-            gradient3
+            gradient4,
+            gradient4,
+            gradient4
           ],
           hoverBackgroundColor: [
-            gradient3,
-            gradient3,
-            gradient3
+            gradient4,
+            gradient4,
+            gradient4
           ],
           borderColor: [
-            gradient3,
-            gradient3,
-            gradient3
+            gradient4,
+            gradient4,
+            gradient4
           ],
           borderWidth: 1,
-          data: <?php echo json_encode($stats['count_by_severity']['low']) ?>,
+          data: <?php echo json_encode($stats['count_by_priority']['low']) ?>,
         }
       ]
     }

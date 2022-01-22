@@ -69,22 +69,28 @@ class User extends MY_Controller
 		$data['stats']['total_agents'] = count($this->Users->getBy(null, array('type' => USER_AGENT)));
 		$data['stats']['total_manager'] = count($this->Users->getBy(null, array('type' => USER_MANAGER)));
 
-		$data['stats']['count_by_severity']['high'] = array(
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_HIGH, 'status' => TICKET_STATUS_OPEN))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_HIGH, 'status' => TICKET_STATUS_ASSIGNED))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_HIGH, 'status' => TICKET_STATUS_CLOSED)))
+		$data['stats']['count_by_priority']['critical'] = array(
+			count($this->Tickets->getBy(null, array('id_priority' => 4, 'status' => TICKET_STATUS_OPEN))),
+			count($this->Tickets->getBy(null, array('id_priority' => 4, 'status' => TICKET_STATUS_ASSIGNED))),
+			count($this->Tickets->getBy(null, array('id_priority' => 4, 'status' => TICKET_STATUS_CLOSED)))
 		);
 
-		$data['stats']['count_by_severity']['medium'] = array(
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_MEDIUM, 'status' => TICKET_STATUS_OPEN))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_MEDIUM, 'status' => TICKET_STATUS_ASSIGNED))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_MEDIUM, 'status' => TICKET_STATUS_CLOSED)))
+		$data['stats']['count_by_priority']['high'] = array(
+			count($this->Tickets->getBy(null, array('id_priority' => 3, 'status' => TICKET_STATUS_OPEN))),
+			count($this->Tickets->getBy(null, array('id_priority' => 3, 'status' => TICKET_STATUS_ASSIGNED))),
+			count($this->Tickets->getBy(null, array('id_priority' => 3, 'status' => TICKET_STATUS_CLOSED)))
 		);
 
-		$data['stats']['count_by_severity']['low'] = array(
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_LOW, 'status' => TICKET_STATUS_OPEN))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_LOW, 'status' => TICKET_STATUS_ASSIGNED))),
-			count($this->Tickets->getBy(null, array('severity' => TICKET_SEVERITY_LOW, 'status' => TICKET_STATUS_CLOSED)))
+		$data['stats']['count_by_priority']['medium'] = array(
+			count($this->Tickets->getBy(null, array('id_priority' => 2, 'status' => TICKET_STATUS_OPEN))),
+			count($this->Tickets->getBy(null, array('id_priority' => 2, 'status' => TICKET_STATUS_ASSIGNED))),
+			count($this->Tickets->getBy(null, array('id_priority' => 2, 'status' => TICKET_STATUS_CLOSED)))
+		);
+
+		$data['stats']['count_by_priority']['low'] = array(
+			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_OPEN))),
+			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_ASSIGNED))),
+			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_CLOSED)))
 		);
 
 
