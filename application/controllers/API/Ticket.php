@@ -50,9 +50,9 @@ class Ticket extends MY_Controller
     $this->sendJSON($this->Tickets->getAllStatus());
   }
 
-  public function getCategories()
+  public function getServices()
   {
-    $this->sendJSON($this->Tickets->getAllCategories());
+    $this->sendJSON($this->Tickets->getServices());
   }
 
   public function getSubServices($id = null)
@@ -69,6 +69,11 @@ class Ticket extends MY_Controller
   public function getSeverities()
   {
     $this->sendJSON($this->Tickets->getAllSeverities());
+  }
+
+  public function getPriority($id = null)
+  {
+    $this->sendJSON($this->Tickets->getPriority($id));
   }
 
   public function upload_attachment()

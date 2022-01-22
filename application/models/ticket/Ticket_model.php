@@ -80,7 +80,7 @@ class Ticket_model extends BaseMySQL_model
     return $res;
   }
 
-  public function getAllCategories()
+  public function getServices()
   {
     return $this->db->get('services')->result_array();
   }
@@ -102,6 +102,11 @@ class Ticket_model extends BaseMySQL_model
   public function getAllSeverities()
   {
     return TICKET_SEVERITIES;
+  }
+  public function getPriority($idSubservice = null)
+  {
+    if ($idSubservice !== null) return $this->db->select('priority.id, priority.name')->where('subservices.id', $idSubservice)->join('priority', 'priority.id=subservices.priority_id')->get('subservices')->result_array();
+    return $this->db->get('priority')->result_array();
   }
   public function getAllStatus()
   {

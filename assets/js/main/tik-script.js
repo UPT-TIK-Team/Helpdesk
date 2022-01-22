@@ -167,9 +167,30 @@ $(".assign_to_modal").on("click", function (e) {
 });
 
 $("#service").on("select2:select", (e) => {
-  $.get(`${BASE_URL}API/Ticket/getSubServices/${e.target.value}`, (data) => {
-    $("#subservice").find("option").remove();
-    $("#subservice").select2({
+  $("#service option[value='null']").remove();
+  $("#priority").find("option").remove();
+  const defaultDropdown = new Option("Priority", null);
+  $("#priority").append(defaultDropdown).trigger("change");
+  $.get(
+    `${BASE_URL}API/Ticket/getSubServices/${e.target.value}`,
+    ({ data }) => {
+      $("#subservice").find("option").remove();
+      const defaultDropdown = new Option("Choose Sub Service", null);
+      $("#subservice").append(defaultDropdown).trigger("change");
+      $("#subservice").removeAttr("disabled");
+      data.map((item) => {
+        const itemDropdown = new Option(item.name, item.id);
+        $("#subservice").append(itemDropdown).trigger("change");
+      });
+    }
+  );
+});
+
+$("#subservice").on("select2:select", (e) => {
+  $("#subservice option[value='null']").remove();
+  $.get(`${BASE_URL}API/Ticket/getPriority/${e.target.value}`, (data) => {
+    $("#priority").find("option").remove();
+    $("#priority").select2({
       width: "resolve",
       data: data.data.map((data) => {
         return { id: data.id, text: data.name };

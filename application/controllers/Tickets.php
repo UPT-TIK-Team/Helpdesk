@@ -14,7 +14,7 @@ class Tickets extends MY_Controller
   public function create_new()
   {
     $data['title'] = 'Create Ticket';
-    $this->render('ticket/create_new', $data);
+    $this->render('ticket/CreateNewTicketView', $data);
   }
 
   public function list_all()

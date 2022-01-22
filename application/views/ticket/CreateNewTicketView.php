@@ -9,38 +9,38 @@
                 <form>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label" for="subject">Subjek Masalah</label>
+                      <label class="col-sm-2 form-control-label" for="subject">Problem Subject</label>
                       <div class="col-sm-6">
-                        <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Subject of Problem">
+                        <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Problem Subject">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Layanan</label>
+                      <label class="col-sm-2 form-control-label">Service</label>
                       <div class="col-sm-6 select">
-                        <select name="category" id="service" class="form-control" style="width: 100%">
-                          <option value="null">Pilih Layanan</option>
+                        <select name="service" id="service" class="form-control" style="width: 100%">
+                          <option value="null">Choose Service</option>
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Sub Layanan</label>
+                      <label class="col-sm-2 form-control-label">Sub Service</label>
                       <div class="col-sm-6 select">
-                        <select name="subservice" id="subservice" class="form-control" style="width: 100%">
-                          <option value="null">Pilih Sub Layanan</option>
+                        <select name="subservice" id="subservice" class="form-control" style="width: 100%" disabled>
+                          <option value="null">Choose Sub Service</option>
                         </select>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Urgensi</label>
+                      <label class="col-sm-2 form-control-label">Priority</label>
                       <div class="col-sm-6 select">
-                        <select name="severity" id="severity_dd" class="form-control">
-                          <option value="null">Pilih Urgensi</option>
+                        <select name="priority" id="priority" class="form-control" style="width: 100%" disabled>
+                          <option value="null">Priority</option>
                         </select>
                       </div>
                     </div>
@@ -106,4 +106,4 @@
   </div>
 </section>
 
-<script type="module" src="<?= base_url('assets/js/pages/tickets/CreateNew.js') ?>"></script>
+<script type="module" src="<?= base_url('assets/js/pages/tickets/CreateNewTicket.js') ?>"></script>

@@ -41,7 +41,7 @@ export function renderDropdowns() {
     });
   }
   if ($("#service").length) {
-    $.get(BASE_URL + "API/Ticket/getCategories", function (data) {
+    $.get(BASE_URL + "API/Ticket/getServices", function (data) {
       $("#service").select2({
         width: "resolve",
         data: data.data.map((data) => {
@@ -52,23 +52,14 @@ export function renderDropdowns() {
   }
 
   if ($("#subservice").length) {
-    $.get(BASE_URL + "API/Ticket/getSubServices", function (data) {
-      $("#subservice").select2({
-        width: "resolve",
-        data: data.data.map((data) => {
-          return { id: data.id, text: data.name };
-        }),
-      });
+    $("#subservice").select2({
+      width: "resolve",
     });
   }
-  if ($("#severity_dd").length) {
-    $.get(BASE_URL + "API/Ticket/getSeverities", function (data) {
-      $("#severity_dd").select2({
-        width: "resolve",
-        data: data.data.map(function (item, index) {
-          return { id: item.value, text: item.label };
-        }),
-      });
+
+  if ($("#priority").length) {
+    $("#priority").select2({
+      width: "resolve",
     });
   }
 }
