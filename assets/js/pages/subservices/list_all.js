@@ -20,6 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         data: "priority",
+        render: (data) => {
+          if (data == "Low") {
+            return `<div class="badge badge-success">${data}</div>`;
+          } else if (data == "Medium") {
+            return `<div class="badge badge-warning">${data}</div>`;
+          } else if (data == "High") {
+            return `<div class="badge badge-danger">${data}</div>`;
+          } else if (data == "Critical") {
+            return `<div class="badge badge-dark">${data}</div>`;
+          }
+        },
       },
       {
         data: "service",

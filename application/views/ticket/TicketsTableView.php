@@ -14,7 +14,7 @@
                     <th>Subject</th>
                     <th>Assign To</th>
                     <th>Status</th>
-                    <th>Severity</th>
+                    <th>Priority</th>
                     <th>Service</th>
                     <th>Sub Service</th>
                     <th>Action</th>
@@ -65,7 +65,7 @@
           }
         },
         {
-          data: 'severity',
+          data: 'priority',
           render: data => {
             if (data == 'Low') {
               return `<div class="badge badge-success">${data}</div>`
@@ -73,6 +73,8 @@
               return `<div class="badge badge-warning">${data}</div>`
             } else if (data == 'High') {
               return `<div class="badge badge-danger">${data}</div>`
+            } else if (data == 'Critical') {
+              return `<div class="badge badge-dark">${data}</div>`
             }
           }
         },
