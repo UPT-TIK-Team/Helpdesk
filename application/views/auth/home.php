@@ -7,7 +7,7 @@
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Helpdesk UNSIKA</title>
+  <title>HELPDESK UNSIKA</title>
   <meta name="keywords" content="yeo">
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,400,700" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/spectre.css">
@@ -147,28 +147,11 @@
     </div>
   </div>
   <div class="yeo-footer">
-    <div class="container">
-      <div class="columns">
-        <div class="column col-4 col-sm-6">
-        </div>
-        <div class="column col-4 col-sm-6">
-          <div class="yeo-footer-content">
-            <h4 style="text-align: center;">Copyright</h4>
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="https://upttik.unsika.ac.id">
-                  <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" alt="" srcset="">
-                </a>
-              </li>
-
-            </ul>
-          </div>
-        </div>
-        <div class="column col-4 col-sm-6">
-
-        </div>
-
-      </div>
+    <div class="column col-sm-9" style="display: flex; align-items: center; flex-direction: column;">
+      <h4 style="text-align: center;">Copyright</h4>
+      <a href="https://upttik.unsika.ac.id">
+        <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" style="width:100%; margin-left: 100px;" alt="upttik-logo">
+      </a>
     </div>
   </div>
 </body>
