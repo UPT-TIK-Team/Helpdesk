@@ -47,9 +47,9 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Tujuan</label>
+                      <label class="col-sm-2 form-control-label">Purpose</label>
                       <div class="col-sm-6">
-                        <input id="purpose" type="text" name="purpose" required="" class="form-control" placeholder="Tujuan Pembuatan Tiket">
+                        <input id="purpose" type="text" name="purpose" required="" class="form-control" placeholder="Purpose of Ticket">
                       </div>
                     </div>
                   </div>
