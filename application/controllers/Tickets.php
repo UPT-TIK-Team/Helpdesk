@@ -75,7 +75,7 @@ class Tickets extends MY_Controller
       $data['ticket_no'] = $ticket;
       $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['severities', 'services', 'subservices', 'status'], ['severity', 'id_service', 'id_subservice', 'status'], 'severities.name as name_severity, services.name as name_service, subservices.name as name_subservice, status.name as name_status');
       $data['messages'] = $this->Messages->getBy(null, ['ticket' => $ticket]);
-      $this->render('ticket/view_ticket', $data);
+      $this->render('ticket/TicketView', $data);
     }
   }
 }
