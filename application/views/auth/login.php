@@ -5,11 +5,8 @@
         <!-- Logo & Information Panel-->
         <div class="col-lg-6">
           <div class="info d-flex align-items-center">
-            <div class="content m-auto">
-              <div class="logo">
-                <h1><?= PRODUCT_NAME ?></h1>
-              </div>
-              <p></p>
+            <div class="m-auto">
+              <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" style="width:100%; margin:20%;" alt="upttik-logo">
             </div>
           </div>
         </div>

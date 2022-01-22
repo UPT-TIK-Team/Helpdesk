@@ -1963,7 +1963,6 @@ input.input-material.is-invalid ~ label {
 }
 
 .login-page .form-holder .info {
-  background: rgba(121, 106, 238, 0.9);
   color: #fff;
 }
 

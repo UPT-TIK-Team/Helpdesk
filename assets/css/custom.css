@@ -603,8 +603,8 @@ table.dataTable tbody td .card-close {
 }
 
 /*login page*/
-.login-page .form-holder .info {
-  background: #1c1c1c;
+.login-page .form-holder {
+  background: #800;
 }
 
 input.input-material ~ label.active {
