@@ -34,7 +34,7 @@ class Ticket_model extends BaseMySQL_model
 
   public function create($data)
   {
-    $info = getValuesOfKeys($data, array('owner', 'purpose', 'subject', 'message', 'assign_to', 'assign_on', 'severity', 'id_service', 'id_subservice', 'id_priority', 'data'));
+    $info = getValuesOfKeys($data, array('owner', 'purpose', 'subject', 'message', 'assign_to', 'assign_on', 'id_service', 'id_subservice', 'id_priority', 'data'));
     $attachments = $info['data'];
     $info['data'] = json_encode($info['data']);
     if (!$info['owner'])
@@ -105,7 +105,7 @@ class Ticket_model extends BaseMySQL_model
   }
   public function getPriority($idSubservice = null)
   {
-    if ($idSubservice !== null) return $this->db->select('priority.id, priority.name')->where('subservices.id', $idSubservice)->join('priority', 'priority.id=subservices.priority_id')->get('subservices')->result_array();
+    if ($idSubservice !== null) return $this->db->select('priority.id, priority.name')->where('subservices.id', $idSubservice)->join('priority', 'subservices.id_priority = priority.id')->get('subservices')->result_array();
     return $this->db->get('priority')->result_array();
   }
   public function getAllStatus()
