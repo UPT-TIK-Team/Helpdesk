@@ -24,7 +24,7 @@
                   <label for="login-password" class="label-material">Password</label>
                 </div>
                 <button type="submit" id="login" class="btn btn-primary">Login</button>
-                <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Kembali</a>
+                <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
               </form>
               <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
               <div>
