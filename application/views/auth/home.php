@@ -34,13 +34,12 @@
                 <img class="logo-img" src="<?= base_url() ?>assets/img/landing-page/Tik Logo.svg" alt=""><span>Helpdesk UNSIKA</span>
               </a>
             </section>
-            <section class="navbar-section hide-sm">
+            <!-- <section class="navbar-section hide-sm">
               <a class="btn btn-link" href="#we-do">Beranda</a>
-              <!-- <a class="btn btn-link" href="#we-work">How we work</a> -->
-              <!-- <a class="btn btn-link" href="#price">Pricing</a> -->
-              <!-- <a class="btn btn-link" href="#team">Tim Kami</a> -->
-              <a class="btn btn-primary btn-hire-me" href="<?= base_url('auth/login') ?>">Masuk</a>
-            </section>
+              <a class="btn btn-link" href="#we-work">How we work</a>
+              <a class="btn btn-link" href="#price">Pricing</a>
+              <a class="btn btn-link" href="#team">Tim Kami</a>
+            </section> -->
           </header>
         </div>
       </div>
