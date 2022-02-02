@@ -26,7 +26,7 @@
                 <button type="submit" id="login" class="btn btn-primary">Login</button>
                 <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Kembali</a>
               </form>
-              <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Sign Up</a>
+              <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
               <div>
                 <?= get_msg(); ?>
               </div>
