@@ -21,7 +21,7 @@ class Ticket extends MY_Controller
     $as = 'priority.name as priority, services.name as service, subservices.name as subservice';
     $action = [true, 'view_ticket', 'ticket_no'];
 
-    if ($this->input->get()) {
+    if (htmlspecialchars($this->input->get())) {
       $input = $this->input->get();
       $key = array_keys($input)[0];
       $val = array_values($input)[0];
@@ -132,19 +132,19 @@ class Ticket extends MY_Controller
   public function addThreadMessage()
   {
     $thread_data = [
-      'ticket' => $this->input->post('ticket_no'),
-      'message' => $this->input->post('message'),
-      'data' => json_encode($this->input->post('data')),
+      'ticket' => htmlspecialchars($this->input->post('ticket_no')),
+      'message' => htmlspecialchars($this->input->post('message')),
+      'data' => json_encode(htmlspecialchars($this->input->post('data'))),
       'owner' => $this->Session->getLoggedDetails()['username'],
       'created' => time(),
-      'type' => $this->input->post('type')
+      'type' => htmlspecialchars($this->input->post('type'))
     ];
     if (trim($thread_data['message']) == '') {
       $this->sendJSON(array('result' => -1));
     } else {
       $res = $this->Tickets->add_thread($thread_data);
       if ($thread_data['data'] == null) {
-        $this->Tickets->addAttachmentRef($this->input->post('data')['attachments'],  $this->input->post('ticket_no'));
+        $this->Tickets->addAttachmentRef(htmlspecialchars($this->input->post('data'))['attachments'],  $this->input->post('ticket_no'));
       }
       $this->sendJSON(array('result' => $res));
     }

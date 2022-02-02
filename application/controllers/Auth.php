@@ -65,7 +65,7 @@ class Auth extends MY_Controller
 				'label' => 'Email',
 				'rules' => 'required|trim|valid_email|is_unique[users.email]',
 				'errors' => [
-					'is_unique' => 'This email has already registered'
+					'is_unique' => 'This emai l has already registered'
 				]
 			],
 			[
@@ -95,11 +95,11 @@ class Auth extends MY_Controller
 			$this->render('auth/register', $data);
 		} else {
 			$data = array(
-				'name' => $this->input->post('name', true),
-				'username' => $this->input->post('username', true),
-				'email' => $this->input->post('email', true),
-				'mobile' => $this->input->post('mobile', true),
-				'password' => md5($this->input->post('password1', true)),
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'username' => htmlspecialchars($this->input->post('username', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'mobile' => htmlspecialchars($this->input->post('mobile', true)),
+				'password' => password_hash(htmlspecialchars($this->input->post('password1', true)), PASSWORD_DEFAULT),
 				'type' => 10,
 				'status' => 0,
 				'created' => time()
