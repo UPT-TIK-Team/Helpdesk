@@ -53,11 +53,6 @@ class Auth extends MY_Controller
 	{
 		$config = [
 			[
-				'field' => 'name',
-				'label' => 'Name',
-				'rules' => 'required|trim'
-			],
-			[
 				'field' => 'username',
 				'label' => 'Username',
 				'rules' => 'required|trim|is_unique[users.username]',
@@ -112,6 +107,7 @@ class Auth extends MY_Controller
 				'token' => $token,
 				'date_created' => time()
 			];
+			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
 			$this->_sendEmail($token);
 			redirect('auth/login');
@@ -170,8 +166,8 @@ class Auth extends MY_Controller
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
-		if (!$result) {
-			set_msg('error', 'Invalid username or password!');
+		if ($result === "This email has not been activated" || $result === "Wrong password" || $result === "User not found") {
+			set_msg('error', $result);
 			return false;
 		} else {
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);

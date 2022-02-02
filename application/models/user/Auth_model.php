@@ -24,8 +24,13 @@ class Auth_model extends BaseMySQL_model
 		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == USER_STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
+		} else if (!$user) {
+			return "User not found";
+		} else if ($user['password'] !== $this->User->hashPassword($password)) {
+			return "Wrong password";
+		} else {
+			return "This email has not been activated";
 		}
-		return false;
 	}
 
 	public function generatePasswordResetLink($username, $token)

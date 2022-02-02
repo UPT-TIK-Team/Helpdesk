@@ -7,15 +7,7 @@
 				<span class="d-block text-muted" style="color:black">Please enter the information below</span>
 			</div>
 
-			<?php get_msg(); ?>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class=" control-label">Full Name<code>*</code></label>
-						<input type="text" id="name" name="name" class="form-control empty required" placeholder="" minlength="3" maxlength="30" required value="<?= set_value('name') ?>">
-						<?= form_error('name', '<span class="text-danger pl-3">', '</span>'); ?>
-					</div>
-				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class=" control-label">Username<code>*</code></label>

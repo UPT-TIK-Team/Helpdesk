@@ -7,13 +7,13 @@
  * @param null $valueToSearch
  * @return array
  */
-function getConstantsByPrefix($prefix,$valueToSearch=null)
+function getConstantsByPrefix($prefix, $valueToSearch = null)
 {
 	$dump = [];
 	foreach (get_defined_constants() as $key => $value)
 		if (substr($key, 0, strlen($prefix)) == $prefix) {
 			$dump[$key] = $value;
-			if($valueToSearch != null && $value==$valueToSearch)
+			if ($valueToSearch != null && $value == $valueToSearch)
 				return $key;
 		}
 	return $dump;
@@ -34,7 +34,8 @@ function escapeXSS($string)
  * @param $value
  * @return bool
  */
-function ticho($value){
+function ticho($value)
+{
 	echo escapeXSS($value);
 	return true;
 }
@@ -115,10 +116,13 @@ function unauthorized($message = null, $permissionLevels = null)
 		$permissionLevels = array($permissionLevels);
 
 
-	redirect(URL_NO_PERMISSION . "?_=" . time() . "&from=" . urlencode($_SERVER['REQUEST_URI']) .
-		($message !== null ? '&m=' . $message : '') .
-		(is_array($permissionLevels) ? '&p=' . implode(';', $permissionLevels) : '')
-		, 'auto', 302);
+	redirect(
+		URL_NO_PERMISSION . "?_=" . time() . "&from=" . urlencode($_SERVER['REQUEST_URI']) .
+			($message !== null ? '&m=' . $message : '') .
+			(is_array($permissionLevels) ? '&p=' . implode(';', $permissionLevels) : ''),
+		'auto',
+		302
+	);
 }
 
 
@@ -129,20 +133,20 @@ function set_msg($key, $value, $data = null)
 	$CI = &get_instance();
 	$msg = 'Please set message';
 	if ($key == 'error') {
-		$msg = '<div class="container-fluid"><div class="alert alert-danger display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/images/pnotify/error.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';
+		$msg = '<div class="container-fluid"><div class="alert alert-danger display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/error.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';
 	}
 
 	if ($key == 'success') {
-		$msg = '<div class="container-fluid"><div class="alert alert-success display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/images/pnotify/img/success.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
+		$msg = '<div class="container-fluid"><div class="alert alert-success display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/success.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
 	}
 
 
 	if ($key == 'warning') {
-		$msg = $msg = '<div class="container-fluid"><div class="alert alert-warning display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/images/pnotify/img/warning.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';;
+		$msg = $msg = '<div class="container-fluid"><div class="alert alert-warning display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/warning.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';;
 	}
 
 	if ($key == 'info') {
-		$msg = $msg = '<div class="container-fluid"><div class="alert alert-info display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/images/pnotify/img/info.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
+		$msg = $msg = '<div class="container-fluid"><div class="alert alert-info display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/info.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
 	}
 	$CI->session->set_flashdata($key, $msg);
 	$CI->session->set_flashdata("message_data", $data);
