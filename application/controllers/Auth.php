@@ -103,7 +103,7 @@ class Auth extends MY_Controller
 				'mobile' => $this->input->post('mobile', true),
 				'password' => md5($this->input->post('password1', true)),
 				'type' => 10,
-				'status' => 1,
+				'status' => 0,
 				'created' => time()
 			);
 			$token = base64_encode(random_bytes(32));
