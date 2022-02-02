@@ -63,7 +63,10 @@ class Auth extends MY_Controller
 			[
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|trim|valid_email',
+				'rules' => 'required|trim|valid_email|is_unique[users.email]',
+				'errors' => [
+					'is_unique' => 'This email has already registered'
+				]
 			],
 			[
 				'field' => 'mobile',
