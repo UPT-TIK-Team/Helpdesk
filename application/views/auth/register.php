@@ -18,7 +18,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Email address</label><code>*</code>
-						<input type="email" id="email" name="email" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@calcun.com">
+						<input type="email" id="email" name="email" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@unsika.ac.id">
 						<?= form_error('email', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>
