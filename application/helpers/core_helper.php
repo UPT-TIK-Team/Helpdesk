@@ -148,30 +148,5 @@ function set_msg($key, $value, $data = null)
 	if ($key == 'info') {
 		$msg = $msg = '<div class="container-fluid"><div class="alert alert-info display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/info.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
 	}
-	$CI->session->set_flashdata($key, $msg);
-	$CI->session->set_flashdata("message_data", $data);
-}
-
-function get_msg()
-{
-
-	$CI = &get_instance();
-
-	if (($CI->session->flashdata('error'))) {
-		echo $CI->session->flashdata('error');
-	}
-
-	if (($CI->session->flashdata('success'))) {
-		echo $CI->session->flashdata('success');
-	}
-
-	if (($CI->session->flashdata('warning'))) {
-		echo $CI->session->flashdata('warning');
-	}
-
-	if (($CI->session->flashdata('info'))) {
-		echo $CI->session->flashdata('info');
-	}
-
-	return $CI->session->flashdata('message_data');
+	$CI->session->set_flashdata("message", $msg);
 }

@@ -21,15 +21,15 @@ class Auth_model extends BaseMySQL_model
 		$username = trim($data['username']);
 		$password = $data['password'];
 		$user = $this->User->getOneItem($this->User->getByOR("*", array('username' => $username)));
-		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == USER_STATUS_ACTIVE) {
+		if ($user && password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
 		} else if (!$user) {
 			return "User not found";
-		} else if ($user['password'] !== $this->User->hashPassword($password)) {
+		} else if (!password_verify($password, $user['password'])) {
 			return "Wrong password";
 		} else {
-			return "This email has not been activated";
+			return "Please activate your email";
 		}
 	}
 

@@ -50,8 +50,7 @@
 				<button type="submit" class="btn btn-primary btn-block">Proceed <i class="icon-circle-right2 ml-2"></i></button>
 			</div>
 			<div class="form-group text-center">
-				<a href="<?= URL_LOGIN ?>" class="ml-auto">Already have an
-					account?</a>
+				<a href="<?= URL_LOGIN ?>" class="ml-auto">Already have an account?</a>
 			</div>
 		</div>
 	</div>

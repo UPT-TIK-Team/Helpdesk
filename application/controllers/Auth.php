@@ -13,7 +13,6 @@ class Auth extends MY_Controller
 	private function redirectIfLogged()
 	{
 		if ($this->Session->isLoggedin()) {
-			var_dump($this->Session->getUserType());
 			if ($this->Session->getUserType() === USER_ADMIN)
 				redirect(URL_POST_LOGIN_ADMIN);
 			else if ($this->Session->getUserType() == USER_MEMBER)
@@ -65,7 +64,7 @@ class Auth extends MY_Controller
 				'label' => 'Email',
 				'rules' => 'required|trim|valid_email|is_unique[users.email]',
 				'errors' => [
-					'is_unique' => 'This emai l has already registered'
+					'is_unique' => 'This email has already registered'
 				]
 			],
 			[
@@ -95,11 +94,10 @@ class Auth extends MY_Controller
 			$this->render('auth/register', $data);
 		} else {
 			$data = array(
-				'name' => htmlspecialchars($this->input->post('name', true)),
 				'username' => htmlspecialchars($this->input->post('username', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'mobile' => htmlspecialchars($this->input->post('mobile', true)),
-				'password' => password_hash(htmlspecialchars($this->input->post('password1', true)), PASSWORD_DEFAULT),
+				'password' => password_hash(($this->input->post('password1')), PASSWORD_DEFAULT),
 				'type' => 10,
 				'status' => 0,
 				'created' => time()
@@ -112,7 +110,8 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
-			$this->_sendEmail($token);
+			set_msg('success', "Congratulation! your account has been created. Please activate your email!");
+			// $this->_sendEmail($token);
 			redirect('auth/login');
 		}
 	}
@@ -147,7 +146,6 @@ class Auth extends MY_Controller
 	 */
 	public function login()
 	{
-		$this->requirePermissions(PERMISSION_AUTH_LOGIN);
 		$this->redirectIfLogged();
 		if ($this->isPOST()) {
 			if ($this->process_login())
@@ -169,7 +167,7 @@ class Auth extends MY_Controller
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
-		if ($result === "This email has not been activated" || $result === "Wrong password" || $result === "User not found") {
+		if ($result === "Please activate your email" || $result === "Wrong password" || $result === "User not found") {
 			set_msg('error', $result);
 			return false;
 		} else {

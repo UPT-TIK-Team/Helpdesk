@@ -14,6 +14,7 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
+              <?= $this->session->flashdata('message') ?>
               <form method="post" class="form-validate" action="">
                 <div class="form-group">
                   <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
@@ -27,12 +28,8 @@
                 <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
               </form>
               <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
-              <div>
-                <?= get_msg(); ?>
-              </div>
               <!-- <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a> -->
             </div>
-
           </div>
         </div>
       </div>
