@@ -69,8 +69,8 @@ class Auth extends MY_Controller
 				]
 			],
 			[
-				'field' => 'mobile',
-				'label' => 'Mobile',
+				'field' => 'phoneNumber',
+				'label' => 'PhoneNumber',
 				'rules' => 'required|trim'
 			],
 			[
@@ -97,7 +97,7 @@ class Auth extends MY_Controller
 			$data = array(
 				'username' => htmlspecialchars($this->input->post('username', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
-				'mobile' => htmlspecialchars($this->input->post('mobile', true)),
+				'mobile' => htmlspecialchars($this->input->post('phoneNumber', true)),
 				'password' => password_hash(($this->input->post('password1')), PASSWORD_DEFAULT),
 				'type' => 10,
 				'status' => 0,

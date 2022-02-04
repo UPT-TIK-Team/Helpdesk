@@ -1,12 +1,11 @@
 <!-- Login form -->
-<form class="col-md justify-content-center" action="<?= base_url('auth/register') ?>" method="post">
-	<div class="card login-card">
-		<div class="card-body">
+<form class="col-md-8 justify-content-center" style="margin: 5% auto;" action="<?= base_url('auth/register') ?>" method="post">
+	<div class="card">
+		<div class="card-body" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 			<div class="text-center mb-3">
 				<h5 class="mb-0" style="color:black">Create account</h5>
 				<span class="d-block text-muted" style="color:black">Please enter the information below</span>
 			</div>
-
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -24,12 +23,9 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class=" control-label">Mobile</label><code>*</code>
-						<div>
-							<input type="text" name="country_code" id="country_code" class="form-control loan-object col-sm-3" style="float: left;" value="+62" disabled />
-							<input type="text" id="mobile" name="mobile" class="form-control empty user-existance-validation required col-sm-9" placeholder="8881686666" minlength="10" maxlength="15" value="<?= set_value('mobile') ?>">
-							<?= form_error('mobile', '<span class="text-danger pl-3">', '</span>'); ?>
-						</div>
+						<label class=" control-label">Phone Number</label><code>*</code>
+						<input type="text" id="phoneNumber" name="phoneNumber" class="form-control empty user-existance-validation" required placeholder="0812999999" minlength="10" maxlength="15" value="<?= set_value('phoneNumber') ?>">
+						<?= form_error('phoneNumber', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -47,7 +43,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-block">Proceed <i class="icon-circle-right2 ml-2"></i></button>
+				<button type="submit" class="btn btn-primary" style="display: block; margin: auto; ">Proceed</button>
 			</div>
 			<div class="form-group text-center">
 				<a href="<?= URL_LOGIN ?>" class="ml-auto">Already have an account?</a>
@@ -56,4 +52,3 @@
 	</div>
 
 </form>
-<!-- /login form -->

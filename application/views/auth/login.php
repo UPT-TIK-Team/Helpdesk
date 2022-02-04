@@ -27,8 +27,7 @@
                 <button type="submit" id="login" class="btn btn-primary">Login</button>
                 <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
               </form>
-              <a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
-              <!-- <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a> -->
+              <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
             </div>
           </div>
         </div>
