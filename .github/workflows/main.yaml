@@ -19,6 +19,9 @@ jobs:
           echo DB_PASSWORD=${{secrets.DB_PASSWORD}} >> .env
           echo DB_NAME=${{secrets.DB_NAME}} >> .env
           echo DB_DRIVER=${{secrets.DB_DRIVER}} >> .env
+          echo EMAIL_ADDRESS=${{secrets.EMAIL_ADDRESS}} >> .env
+          echo EMAIL_PASSWORD=${{secrets.EMAIL_PASSWORD}} >> .env
+          echo EMAIL_SUBJECT=${{secrets.EMAIL_SUBJECT}} >> .env
           cat .env
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
