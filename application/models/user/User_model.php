@@ -82,7 +82,7 @@ class User_model extends BaseMySQL_model
 
 	public function getUsersBy($field = null, $value = null)
 	{
-		throw  new Error("GetUsersBy is not implemented.");
+		return $this->db->get_where($field, $value)->row_array();
 	}
 
 

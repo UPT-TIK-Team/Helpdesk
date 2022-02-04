@@ -8,6 +8,7 @@ class Auth extends MY_Controller
 		parent::__construct();
 		$this->setHeaderFooter('auth/header.php', 'auth/footer.php');
 		$this->load->model('user/Auth_model', 'Auth');
+		$this->load->model('user/User_model', 'User');
 	}
 
 	private function redirectIfLogged()
@@ -110,35 +111,60 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
-			set_msg('success', "Congratulation! your account has been created. Please activate your email!");
-			// $this->_sendEmail($token);
+			$this->sendEmail($token);
+			set_msg('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
 	}
 
-	private function _sendEmail($token)
+	private function sendEmail($token)
 	{
 		$config = [
 			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp:googlemail.com',
-			'smtp_user' => '',
-			'smtp_pass' => '',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_user' => getenv("EMAIL_ADDRESS"),
+			'smtp_pass' => getenv("EMAIL_PASSWORD"),
 			'smtp_port' => 465,
 			'mailtype' => 'html',
 			'charset' => 'utf-8',
 			'newline' => "\r\n"
 		];
-
 		$this->email->initialize($config);
-		$this->email->from('', '');
+		$this->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
 		$this->email->to($this->input->post('email'));
 		$this->email->subject('Account verification');
-		$this->email->message(urlencode($token));
+		$this->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
 		if ($this->email->send()) {
 			return true;
 		} else {
 			echo $this->email->print_debugger();
+			die;
 		}
+	}
+
+	public function verify()
+	{
+		$email = $this->input->get('email', true);
+		$token = $this->input->get('token', true);
+		$user = $this->User->getUsersBy('users', ['email' => $email]);
+		if (!$user) {
+			set_msg('error', "Account activation failed! wrong email address");
+			redirect('auth/login');
+		}
+		$user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
+		if (!$user_token) {
+			set_msg('error', "Account activation failed! wrong token");
+			redirect('auth/login');
+		}
+		if (time() - $user_token['date_created'] > 60 * 60 * 24) {
+			$this->db->delete('users', ['email' => $email]);
+			set_msg('error', "Account activation failed! token expired");
+			redirect('auth/login');
+		}
+		$this->db->update('users', ['status' => 1], ['email' => $email]);
+		$this->db->delete('users_token', ['email' => $email]);
+		set_msg('success', "Account activation success, please login to continue");
+		redirect('auth/login');
 	}
 
 	/**
@@ -167,7 +193,7 @@ class Auth extends MY_Controller
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
-		if ($result === "Please activate your email" || $result === "Wrong password" || $result === "User not found") {
+		if ($result === "Check your email to activate your account!" || $result === "Wrong password" || $result === "User not found") {
 			set_msg('error', $result);
 			return false;
 		} else {

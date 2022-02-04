@@ -56,8 +56,15 @@ use Dotenv\Dotenv;
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-//define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-define('ENVIRONMENT', 'development');
+
+switch ($_SERVER["HTTP_HOST"]) {
+	case "localhost":
+		define('ENVIRONMENT', 'development');
+		break;
+	default:
+		define('ENVIRONMENT', 'production');
+		break;
+}
 
 /*
  *---------------------------------------------------------------
@@ -281,7 +288,6 @@ if (!isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)) 
 
 define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
 
-// ...at the bottom of index.php
 require FCPATH . 'vendor/autoload.php';
 
 // Use FCPATH If your .env is in the same directory as index.php
