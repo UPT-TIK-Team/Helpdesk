@@ -29,7 +29,7 @@ class Auth_model extends BaseMySQL_model
 		} else if (!password_verify($password, $user['password'])) {
 			return "Wrong password";
 		} else {
-			return "Please activate your email";
+			return "Check your email to activate your account!";
 		}
 	}
 
