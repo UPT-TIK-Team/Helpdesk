@@ -17,8 +17,8 @@
               <?= $this->session->flashdata('message') ?>
               <form method="post" class="form-validate" action="">
                 <div class="form-group">
-                  <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
-                  <label for="login-username" class="label-material">User Name</label>
+                  <input id="login-email" type="text" name="email" required data-msg="Please enter your email" class="input-material">
+                  <label for="login-email" class="label-material">Email</label>
                 </div>
                 <div class="form-group">
                   <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">

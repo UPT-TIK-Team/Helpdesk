@@ -9,7 +9,6 @@ class Auth extends MY_Controller
 		$this->setHeaderFooter('auth/header.php', 'auth/footer.php');
 		$this->load->model('user/Auth_model', 'Auth');
 		$this->load->model('user/User_model', 'User');
-		$this->redirectIfLogged();
 	}
 
 	private function redirectIfLogged()
@@ -196,10 +195,10 @@ class Auth extends MY_Controller
 	 */
 	private function process_login()
 	{
-		$username = $this->input->post('username');
+		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$authData = array(
-			'username'  => $username,
+			'email'  => $email,
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
@@ -224,7 +223,7 @@ class Auth extends MY_Controller
 
 	public function logout()
 	{
-		$this->Session->logout();
+		session_destroy();
 		redirect(URL_LOGIN);
 	}
 

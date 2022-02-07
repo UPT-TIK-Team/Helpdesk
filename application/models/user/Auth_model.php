@@ -18,9 +18,9 @@ class Auth_model extends BaseMySQL_model
 
 	public function login($data)
 	{
-		$username = trim($data['username']);
+		$email = trim($data['email']);
 		$password = $data['password'];
-		$user = $this->User->getOneItem($this->User->getByOR("*", array('username' => $username)));
+		$user = $this->User->getOneItem($this->User->getByOR("*", array('email' => $email)));
 		if ($user && password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
