@@ -24,13 +24,11 @@
     </div>
   </div>
 </div>
-<script src="<?= base_url('assets/js/main/jquery.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/plugins/datatables/datatables.min.js') ?>"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="<?= base_url('assets/js/main/select2.min.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/toastr/toastr.min.js') ?>"></script>
-<script src="<?= base_url('assets/vendor/chart.js/Chart.min.js') ?>"></script>
 <script>
   const BASE_URL = "<?= base_url() ?>";
   $(document).ready(function() {

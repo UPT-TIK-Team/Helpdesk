@@ -37,6 +37,8 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link href="<?= base_url('assets/css/select2.min.css') ?>" rel="stylesheet" />
+  <script src="<?= base_url('assets/js/main/jquery.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/chart.js/Chart.min.js') ?>"></script>
 
 </head>
 
