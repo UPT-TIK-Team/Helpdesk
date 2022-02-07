@@ -55,7 +55,7 @@
             </h1>
             <p>Helpdesk Layanan TIK untuk UNSIKA.</p>
             <a class="btn btn-primary btn-lg btn-start" href="<?= base_url('auth/login') ?>">Buat Tiket</a>
-
+            <a class="btn btn-primary btn-lg btn-start" href="<?= base_url('auth/login') ?>">Panduan Penggunaan</a>
           </div>
         </div>
         <div class="column col-5 hide-sm">
