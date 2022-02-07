@@ -14,20 +14,20 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
-              <?= $this->session->flashdata('message') ?>
-              <form method="post" class="form-validate" action="">
+              <h4>Change Password For</h4>
+              <p><?= $this->session->userdata('reset_email'); ?></p>
+              <form method="post" class="form-validate">
                 <div class="form-group">
-                  <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
-                  <label for="login-username" class="label-material">User Name</label>
+                  <input id="password1" type="password" name="password1" required data-msg="Please enter your password" class="input-material">
+                  <label for="password" class="label-material">Password</label>
+                  <?= form_error('password1', '<span class="text-danger pl-3">', '</span>'); ?>
                 </div>
                 <div class="form-group">
-                  <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                  <label for="login-password" class="label-material">Password</label>
+                  <input id="password2" type="password" name="password2" required data-msg="Please enter your password" class="input-material">
+                  <label for="password2" class="label-material">Retype Password</label>
                 </div>
-                <button type="submit" id="login" class="btn btn-primary">Login</button>
-                <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Change Password</button>
               </form>
-              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
             </div>
           </div>
         </div>

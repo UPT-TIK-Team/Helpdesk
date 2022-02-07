@@ -15,19 +15,17 @@
           <div class="form d-flex align-items-center">
             <div class="content">
               <?= $this->session->flashdata('message') ?>
-              <form method="post" class="form-validate" action="">
+              <form method="post" class="form-validate">
                 <div class="form-group">
-                  <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
-                  <label for="login-username" class="label-material">User Name</label>
+                  <input id="email" type="text" name="email" required data-msg="Please enter your email" class="input-material">
+                  <label for="email" class="label-material">Email</label>
+                  <?= form_error('email', '<span class="text-danger pl-3">', '</span>'); ?>
                 </div>
-                <div class="form-group">
-                  <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                  <label for="login-password" class="label-material">Password</label>
-                </div>
-                <button type="submit" id="login" class="btn btn-primary">Login</button>
-                <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Forgot Password</button>
               </form>
-              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
+              <div class="form-group">
+                <a href="<?= base_url('auth/login') ?>" class="ml-auto mt-3">Already have an account?</a>
+              </div>
             </div>
           </div>
         </div>

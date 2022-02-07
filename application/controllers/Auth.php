@@ -9,6 +9,7 @@ class Auth extends MY_Controller
 		$this->setHeaderFooter('auth/header.php', 'auth/footer.php');
 		$this->load->model('user/Auth_model', 'Auth');
 		$this->load->model('user/User_model', 'User');
+		$this->redirectIfLogged();
 	}
 
 	private function redirectIfLogged()
@@ -111,13 +112,13 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
-			$this->sendEmail($token);
+			$this->sendEmail($token, 'verify');
 			set_msg('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
 	}
 
-	private function sendEmail($token)
+	private function sendEmail($token, $type)
 	{
 		$config = [
 			'protocol' => 'smtp',
@@ -132,8 +133,17 @@ class Auth extends MY_Controller
 		$this->email->initialize($config);
 		$this->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
 		$this->email->to($this->input->post('email'));
-		$this->email->subject('Account verification');
-		$this->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+		switch ($type) {
+			case 'verify':
+				$this->email->subject('Account verification');
+				$this->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+				break;
+			case 'forgotpassword':
+				$this->email->subject('Reset password');
+				$this->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+				break;
+		}
+
 		if ($this->email->send()) {
 			return true;
 		} else {
@@ -212,24 +222,84 @@ class Auth extends MY_Controller
 		}
 	}
 
-
-	/**
-	 * Forgot password page.
-	 */
-	public function forgot_password()
-	{
-		$this->redirectIfLogged();
-
-		if ($this->isPOST()) {
-			redirect(BASE_URL . "auth/process_forgot");
-			return;
-		}
-		$this->render('Forgot Password', 'auth/forgot_password');
-	}
-
 	public function logout()
 	{
 		$this->Session->logout();
 		redirect(URL_LOGIN);
+	}
+
+	public function forgotPassword()
+	{
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() == false) {
+			$this->render('auth/forgot_password');
+		} else {
+			$email = $this->input->post('email', true);
+			$user = $this->db->get_where('users', ['email' => $email, 'status' => 1])->row_array();
+			if (!$user) {
+				set_msg('error', "Email is not registered or activated");
+				redirect('auth/forgotpassword');
+			}
+			$token = base64_encode(random_bytes(32));
+			$userToken = [
+				'email' => $email,
+				'token' => $token,
+				'date_created' => time()
+			];
+			$this->db->insert('users_token', $userToken);
+			$this->sendEmail($token, 'forgotpassword');
+			set_msg('success', "Please check your email to reset password");
+			redirect('auth/forgotpassword');
+		}
+	}
+
+	public function resetpassword()
+	{
+		$email = $this->input->get('email', true);
+		$token = $this->input->get('token', true);
+		$user = $this->db->get_where('users', ['email' => $email])->row_array();
+		if (!$user) {
+			set_msg('error', "Reset password failed");
+			redirect('auth/login');
+		}
+		$user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
+		if (!$user_token) {
+			set_msg('error', "Account activation failed! wrong token");
+			redirect('auth/login');
+		}
+		$this->session->set_userdata('reset_email', $email);
+		redirect('auth/changePassword');
+	}
+
+	public function changePassword()
+	{
+		if (!$this->session->userdata('reset_email')) redirect('auth/login');
+		$config = [
+			[
+				'field' => 'password1',
+				'label' => 'Password1',
+				'rules' => 'required|trim|min_length[3]|matches[password2]',
+				'errors' => [
+					'min_length' => 'Password too short',
+					'matches' => 'Password does\'nt match'
+				]
+			],
+			[
+				'field' => 'password2',
+				'label' => 'Password',
+				'rules' => 'required|trim|matches[password1]'
+			],
+		];
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run() == false) {
+			$this->render('auth/change_password');
+		} else {
+			$password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+			$email = $this->session->userdata('reset_email');
+			$this->db->update('users', ['password' => $password], ['email' => $email]);
+			$this->session->unset_userdata('reset_email');
+			set_msg('success', "Password has been changed, Please login");
+			redirect('auth/login');
+		}
 	}
 }
