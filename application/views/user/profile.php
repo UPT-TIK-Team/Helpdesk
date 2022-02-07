@@ -9,12 +9,6 @@
                     </div>
                     <div class="card-body">
                         <div class="col-md-12 p-2">
-                            <div class="row ">
-                                <div class="col-md-3  font-weight-bold">Name</div>
-                                <div class="col-md-9"><?= $user_details['name'] ?></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 p-2">
                             <div class="row">
                                 <div class="col-md-3  font-weight-bold">Email</div>
                                 <div class="col-md-9"><?= $user_details['email'] ?></div>
