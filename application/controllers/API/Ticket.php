@@ -21,7 +21,7 @@ class Ticket extends MY_Controller
     $as = 'priority.name as priority, services.name as service, subservices.name as subservice';
     $action = [true, 'view_ticket', 'ticket_no'];
 
-    if (htmlspecialchars($this->input->get())) {
+    if (($this->input->get())) {
       $input = $this->input->get();
       $key = array_keys($input)[0];
       $val = array_values($input)[0];
