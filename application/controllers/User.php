@@ -135,7 +135,7 @@ class User extends MY_Controller
 
 	public function generateDatatable()
 	{
-		$select = "name, email, mobile, username, type, status, created";
+		$select = "email, mobile, username, type, status, created";
 		echo $this->Users->generateDatatable($select, null, null, null, null);
 	}
 

@@ -13,9 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     columns: [
       {
-        data: "name",
-      },
-      {
         data: "email",
       },
       {

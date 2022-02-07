@@ -12,7 +12,6 @@
               <table class="table table-striped display nowrap" id="users">
                 <thead>
                   <tr>
-                    <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Username</th>
