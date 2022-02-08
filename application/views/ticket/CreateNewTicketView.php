@@ -65,7 +65,7 @@
                   <br>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
+                      <label class="col-sm-2 form-control-label mt-2" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
                       <div class="col-sm-6">
                         <?php if (!$this->session->userdata('access_token')) : ?>
                           <?= $login_button ?>
