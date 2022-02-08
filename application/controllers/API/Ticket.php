@@ -1,5 +1,8 @@
 <?php
 
+use Google\Service\Drive;
+use Google\Service\Drive\DriveFile;
+
 class Ticket extends MY_Controller
 {
   function __construct()
@@ -76,10 +79,13 @@ class Ticket extends MY_Controller
     $this->sendJSON($this->Tickets->getPriority($id));
   }
 
+  /**
+   * For upload data to google drive
+   */
   public function upload_attachment()
   {
-
-    if (isset($_POST) == true) {
+    if (isset($_POST) && $this->session->userdata('access_token')) {
+      $this->client->setAccessToken($this->session->userdata('access_token'));
       //generate unique file name
       date_default_timezone_set('Asia/Jakarta');
       $curr_date = date('dmY');
@@ -96,21 +102,29 @@ class Ticket extends MY_Controller
       $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
       $allowTypes = array('xlsx', 'png', 'jpeg', 'jpg', "zip", "rar", "docx", "doc", "xls", "csv");
 
-      if (in_array($fileType, $allowTypes)) {
-        //upload file to server
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
-          //insert file data into the database if needed
-          $response['filename'] = base_url('uploads/') . $fileName;
-          $response['original_file_name'] = $_FILES["file"]["name"];
-          $response['status'] = 'ok';
-        } else {
-          $response['status'] = 'err';
-        }
+      if (in_array($fileType, $allowTypes) && $this->client->getAccessToken()) {
+        // Create file object for upload to drive
+        $file = new DriveFile();
+        // Set name on folder google drive 
+        $file->setName($fileName);
+        // Create drive object for connect google drive
+        $service = new Drive($this->client);
+        // Upload file process
+        $result = $service->files->create(
+          $file,
+          array(
+            'data' => file_get_contents($_FILES['file']['tmp_name']),
+            'mimeType' => 'application/octet-stream',
+            'uploadType' => 'multipart'
+          )
+        );
+        // Send response to frontend
+        $response['filename'] = 'https://docs.google.com/document/d/' . $result['id'] . '/edit?rtpof=true';
+        $response['original_file_name'] = $_FILES["file"]["name"];
+        $response['status'] = 'ok';
       } else {
         $response['status'] = 'type_err';
       }
-
-      //render response data in JSON format
       echo json_encode($response);
     }
   }

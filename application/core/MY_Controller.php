@@ -15,11 +15,16 @@ class MY_Controller extends CI_Controller
 	//Store data about current SCOPE
 	var $LOOKUP_PATHS = array('/');
 
+	// Store google data
+	var $client;
+
 	function __construct()
 	{
 		parent::__construct();
 		$this->SCOPE_DATA = array();
 		$this->load->model('core/Session_model', 'Session');
+		$this->load->library('Google');
+		$this->client = new Google();
 	}
 
 	/**

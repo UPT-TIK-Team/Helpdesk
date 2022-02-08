@@ -325,7 +325,7 @@ export function getAttachmentLabel(filename, path) {
   return (
     '<a href="' +
     path +
-    '" class="pr-3"><i class="fa ' +
+    '" class="pr-3" target="_blank"><i class="fa' +
     attachment_icon[ext] +
     '"></i> ' +
     filename +

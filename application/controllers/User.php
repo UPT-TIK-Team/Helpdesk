@@ -33,6 +33,7 @@ class User extends MY_Controller
 
 	public function dashboard_member()
 	{
+
 		$data['title'] = 'Dashboard';
 		$agent_id = $this->Session->getLoggedDetails()['username'];
 		$data['stats']['total_tickets'] = count($this->Tickets->get_ticket_where(array('owner' => $agent_id)));

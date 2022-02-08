@@ -1,5 +1,6 @@
 <?php
 
+
 class Tickets extends MY_Controller
 {
   function __construct()
@@ -13,6 +14,14 @@ class Tickets extends MY_Controller
 
   public function create_new()
   {
+    if (!$this->session->userdata('access_token')) {
+      $login_button = '<a href="' . $this->client->createAuthUrl() . '">Login with google</a>';
+      $data['login_button'] = $login_button;
+    }
+    if (isset($_GET["code"])) {
+      $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $this->session->set_userdata('access_token', $token);
+    }
     $data['title'] = 'Create Ticket';
     $this->render('ticket/CreateNewTicketView', $data);
   }

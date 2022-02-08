@@ -67,11 +67,15 @@
                     <div class="row">
                       <label class="col-sm-2 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
                       <div class="col-sm-6">
-                        <div class="custom-file">
-                          <input id="fileInput" type="file" class="custom-file-input">
-                          <label class="custom-file-label" for="customFile">Choose
-                            file</label>
-                        </div>
+                        <?php if (!$this->session->userdata('access_token')) : ?>
+                          <?= $login_button ?>
+                        <?php else : ?>
+                          <div class="custom-file">
+                            <input id="fileInput" type="file" class="custom-file-input">
+                            <label class="custom-file-label" for="customFile">Choose
+                              file</label>
+                          </div>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>

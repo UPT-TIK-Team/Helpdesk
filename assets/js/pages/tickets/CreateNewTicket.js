@@ -97,12 +97,12 @@ $(document).ready(function () {
   // create new ticket
   $("#create_ticket").on("click", function (a) {
     a.preventDefault();
-    const purpose = $("#purpose").val();
     const subject = $("#subject").val();
-    const message = quill.root.innerHTML;
-    const id_subservice = parseInt($("#subservice").val());
     const id_service = parseInt($("#service").val());
+    const id_subservice = parseInt($("#subservice").val());
     const id_priority = parseInt($("#priority").val());
+    const purpose = $("#purpose").val();
+    const message = quill.root.innerHTML;
     const data = {
       attachments: attached_files,
     };
@@ -116,7 +116,7 @@ $(document).ready(function () {
       id_priority,
       data,
     };
-    if (!purpose || !subject || !message || !id_priority) {
+    if (!purpose || !subject || !id_priority) {
       showNotification("error", "Please fill all fields.");
     } else {
       $.ajax({
