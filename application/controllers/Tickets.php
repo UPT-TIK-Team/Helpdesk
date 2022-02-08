@@ -14,12 +14,14 @@ class Tickets extends MY_Controller
 
   public function create_new()
   {
+    $id = $this->session->userdata()['sessions_details']['id'];
     if (!$this->session->userdata('access_token')) {
       $login_button = '<a href="' . $this->client->createAuthUrl() . '">Login with google</a>';
       $data['login_button'] = $login_button;
     }
     if (isset($_GET["code"])) {
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
       $this->session->set_userdata('access_token', $token['access_token']);
     }
     $data['title'] = 'Create Ticket';

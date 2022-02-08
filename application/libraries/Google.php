@@ -12,5 +12,6 @@ class Google extends Google_Client
     $this->setRedirectUri('http://localhost/Helpdesk/tickets/create_new');
     $this->addScope('https://www.googleapis.com/auth/drive');
     $this->setAccessType('offline');
+    $this->setApprovalPrompt('force');
   }
 }

@@ -93,7 +93,12 @@ class User extends MY_Controller
 			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_ASSIGNED))),
 			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_CLOSED)))
 		);
-
+		$id = $this->session->userdata()['sessions_details']['id'];
+		$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
+		if ($userdata['refresh_token']) {
+			$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
+			$this->session->set_userdata('access_token', $newAccessToken['access_token']);
+		}
 
 		$data['recent']['created'] = $this->Tickets->getBy(null, array(), 5);
 		$data['recent']['open'] = $this->Tickets->getBy(null, array('status' => TICKET_STATUS_OPEN), 5);
