@@ -2,6 +2,7 @@
 
 use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
+use Google\Service\Drive\Permission;
 
 class Ticket extends MY_Controller
 {
@@ -118,6 +119,15 @@ class Ticket extends MY_Controller
             'uploadType' => 'multipart'
           )
         );
+        // add permission to anyone who has link
+        $permission = new Permission();
+        $permission->setType('anyone');
+        $permission->setRole('reader');
+        try {
+          $service->permissions->create($result['id'], $permission);
+        } catch (Exception $e) {
+          print_r($e);
+        }
         // Send response to frontend
         $response['filename'] = 'https://docs.google.com/document/d/' . $result['id'] . '/edit?rtpof=true';
         $response['original_file_name'] = $_FILES["file"]["name"];

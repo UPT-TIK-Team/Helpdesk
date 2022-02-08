@@ -20,7 +20,7 @@ class Tickets extends MY_Controller
     }
     if (isset($_GET["code"])) {
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
-      $this->session->set_userdata('access_token', $token);
+      $this->session->set_userdata('access_token', $token['access_token']);
     }
     $data['title'] = 'Create Ticket';
     $this->render('ticket/CreateNewTicketView', $data);
