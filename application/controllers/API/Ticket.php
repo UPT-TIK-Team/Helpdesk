@@ -157,8 +157,8 @@ class Ticket extends MY_Controller
   {
     $thread_data = [
       'ticket' => htmlspecialchars($this->input->post('ticket_no')),
-      'message' => htmlspecialchars($this->input->post('message')),
-      'data' => json_encode(htmlspecialchars($this->input->post('data'))),
+      'message' => $this->input->post('message'),
+      'data' => json_encode($this->input->post('data')),
       'owner' => $this->Session->getLoggedDetails()['username'],
       'created' => time(),
       'type' => htmlspecialchars($this->input->post('type'))
@@ -168,7 +168,7 @@ class Ticket extends MY_Controller
     } else {
       $res = $this->Tickets->add_thread($thread_data);
       if ($thread_data['data'] == null) {
-        $this->Tickets->addAttachmentRef(htmlspecialchars($this->input->post('data'))['attachments'],  $this->input->post('ticket_no'));
+        $this->Tickets->addAttachmentRef($this->input->post('data')['attachments'],  $this->input->post('ticket_no'));
       }
       $this->sendJSON(array('result' => $res));
     }
