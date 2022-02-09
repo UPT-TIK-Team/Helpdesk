@@ -37,16 +37,15 @@ define('CLIENT_LOGO_INVERSE', SETTING_UPLOAD_DIR . '/logo-inverse.png');
 /**
  * URL's
  */
-define('URL_PREFIX', BASE_URL . "index.php");
-define('URL_LANDING', URL_PREFIX . '/auth/login');
-define('URL_UNAUTHORIZED', URL_PREFIX . '/auth/login');
-define('URL_NO_PERMISSION', URL_PREFIX . '/auth/unauthorized');
-define('URL_ERROR', URL_PREFIX . '/auth/error');
-define('URL_LOGIN', URL_PREFIX . '/auth/login');
-define('URL_POST_LOGIN_USER', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_AGENT', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_MANAGER', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_ADMIN', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_LIMITED', URL_PREFIX . '/user/dashboard');
+define('URL_LANDING', BASE_URL . 'auth/login');
+define('URL_UNAUTHORIZED', BASE_URL . 'auth/login');
+define('URL_NO_PERMISSION', BASE_URL . 'auth/unauthorized');
+define('URL_ERROR', BASE_URL . 'auth/error');
+define('URL_LOGIN', BASE_URL . 'auth/login');
+define('URL_POST_LOGIN_USER', BASE_URL . 'user/dashboard');
+define('URL_POST_LOGIN_AGENT', BASE_URL . 'user/dashboard');
+define('URL_POST_LOGIN_MANAGER', BASE_URL . 'user/dashboard');
+define('URL_POST_LOGIN_ADMIN', BASE_URL . 'user/dashboard');
+define('URL_POST_LOGIN_LIMITED', BASE_URL . 'user/dashboard');
 
-define('URL_REGISTER', URL_PREFIX . '/auth/register');
+define('URL_REGISTER', BASE_URL . '/auth/register');
