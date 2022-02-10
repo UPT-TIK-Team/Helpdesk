@@ -120,6 +120,8 @@ class Ticket extends MY_Controller
             'uploadType' => 'multipart'
           )
         );
+        // Handle if data is'nt docx, so get web view link
+        $file = $service->files->get($result->getId(), array('fields' => 'webViewLink'));
         // add permission to anyone who has link
         $permission = new Permission();
         $permission->setType('anyone');
@@ -130,7 +132,7 @@ class Ticket extends MY_Controller
           print_r($e);
         }
         // Send response to frontend
-        $response['filename'] = 'https://docs.google.com/document/d/' . $result['id'] . '/edit?rtpof=true';
+        $response['filename'] = $file->getWebViewLink();
         $response['original_file_name'] = $_FILES["file"]["name"];
         $response['status'] = 'ok';
       } else {
