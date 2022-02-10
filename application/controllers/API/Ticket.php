@@ -108,6 +108,7 @@ class Ticket extends MY_Controller
         $file = new DriveFile();
         // Set name on folder google drive 
         $file->setName($fileName);
+        $file->setParents(['18b8kpOy6BcQUd63vVAaNg6Ichz2DlZEz']);
         // Create drive object for connect google drive
         $service = new Drive($this->client);
         // Upload file process
