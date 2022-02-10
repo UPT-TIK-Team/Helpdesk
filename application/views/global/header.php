@@ -25,20 +25,20 @@
       width: 120px;
     }
   </style>
-  <link rel="stylesheet" href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/vendor/font-awesome/css/font-awesome.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/js/plugins/bootstrap/css/bootstrap.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/js/plugins/font-awesome/css/font-awesome.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/fontastic.css') ?>">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
   <link rel="stylesheet" href="<?= base_url('assets/css/style.default.css') ?>" id="theme-stylesheet">
   <link rel="stylesheet" href="<?= base_url('assets/css/custom.css') ?>">
   <link rel="shortcut icon" href="<?= base_url('assets/img/favicon.ico') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/vendor/toastr/toastr.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/js/plugins/toastr/toastr.min.css') ?>">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link href="<?= base_url('assets/css/select2.min.css') ?>" rel="stylesheet" />
   <script src="<?= base_url('assets/js/main/jquery.min.js') ?>"></script>
-  <script src="<?= base_url('assets/vendor/chart.js/Chart.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/chart.js/Chart.min.js') ?>"></script>
 
 </head>
 
