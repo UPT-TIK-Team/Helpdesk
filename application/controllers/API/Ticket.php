@@ -101,7 +101,7 @@ class Ticket extends MY_Controller
 
       //allow certain file formats
       $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-      $allowTypes = array('xlsx', 'png', 'jpeg', 'jpg', "zip", "rar", "docx", "doc", "xls", "csv");
+      $allowTypes = array('xlsx', 'png', 'jpeg', 'jpg', "zip", "rar", "docx", "doc", "xls", "csv", "pdf");
 
       if (in_array($fileType, $allowTypes) && $this->client->getAccessToken()) {
         // Create file object for upload to drive
