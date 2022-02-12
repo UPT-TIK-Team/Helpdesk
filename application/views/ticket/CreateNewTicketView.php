@@ -9,16 +9,16 @@
                 <form>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label" for="subject">Problem Subject</label>
-                      <div class="col-sm-6">
+                      <label class="col-sm-4 form-control-label" for="subject">Problem Subject</label>
+                      <div class="col-sm-8">
                         <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Problem Subject">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Service</label>
-                      <div class="col-sm-6 select">
+                      <label class="col-sm-4 form-control-label">Service</label>
+                      <div class="col-sm-8 select">
                         <select name="service" id="service" class="form-control" style="width: 100%">
                           <option value="null">Choose Service</option>
                         </select>
@@ -27,8 +27,8 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Sub Service</label>
-                      <div class="col-sm-6 select">
+                      <label class="col-sm-4 form-control-label">Sub Service</label>
+                      <div class="col-sm-8 select">
                         <select name="subservice" id="subservice" class="form-control" style="width: 100%" disabled>
                           <option value="null">Choose Sub Service</option>
                         </select>
@@ -37,8 +37,8 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Priority</label>
-                      <div class="col-sm-6 select">
+                      <label class="col-sm-4 form-control-label">Priority</label>
+                      <div class="col-sm-8 select">
                         <select name="priority" id="priority" class="form-control" style="width: 100%" disabled>
                           <option value="null">Priority</option>
                         </select>
@@ -47,26 +47,24 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Purpose</label>
-                      <div class="col-sm-6">
+                      <label class="col-sm-4 form-control-label">Purpose</label>
+                      <div class="col-sm-8">
                         <input id="purpose" type="text" name="purpose" required="" class="form-control" placeholder="Purpose of Ticket">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label">Message</label>
-                      <div class="col-sm-6">
+                      <label class="col-sm-4 form-control-label">Message</label>
+                      <div class="col-sm-8">
                         <div id="message"></div>
                       </div>
                     </div>
                   </div>
-                  <br>
-                  <br>
-                  <div class="form-group">
+                  <div class="form-group attachments">
                     <div class="row">
-                      <label class="col-sm-2 form-control-label mt-2" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
-                      <div class="col-sm-6">
+                      <label class="col-sm-4 form-control-label attachments-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
+                      <div class="col-sm-8">
                         <?php if (!$this->session->userdata('access_token')) : ?>
                           <?= $login_button ?>
                         <?php else : ?>

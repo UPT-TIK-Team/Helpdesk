@@ -632,12 +632,29 @@ input.input-material ~ label.active {
 /** =====================
  * Responsive
  ========================*/
+@media (max-width: 992px) {
+  .attachments .attachments-label {
+    margin-top: 25%;
+  }
+  .attachments a {
+    margin-top: 40%;
+  }
+  .dotted-add-button {
+    margin-top: 2%;
+  }
+}
+
 @media only screen and (max-width: 766px) {
+  .attachments .attachments-label {
+    margin-top: 30%;
+  }
+  .attachments a {
+    margin-top: 5%;
+  }
   .comments-container {
     width: 370px;
     padding: 10px 0px;
   }
-
   .comments-list .comment-box {
     width: 390px;
   }

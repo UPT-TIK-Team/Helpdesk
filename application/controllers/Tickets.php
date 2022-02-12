@@ -16,7 +16,7 @@ class Tickets extends MY_Controller
   {
     $id = $this->session->userdata()['sessions_details']['id'];
     if (!$this->session->userdata('access_token')) {
-      $login_button = '<a href="' . $this->client->createAuthUrl() . '" class="mt-2">Login with google first</a>';
+      $login_button = '<a href="' . $this->client->createAuthUrl() . '" >Login with google first</a>';
       $data['login_button'] = $login_button;
     }
     if (isset($_GET["code"])) {
