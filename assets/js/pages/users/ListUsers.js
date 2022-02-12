@@ -51,4 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ],
   });
+  const btnAddUser = document.getElementById("btn-add-user");
+  const email = document.getElementById("email");
+  const type = document.getElementById("type");
+  email.addEventListener("keyup", () => {
+    if (email.value != "" && type.value !== "") {
+      btnAddUser.removeAttribute("disabled");
+    } else {
+      btnAddUser.disabled = true;
+    }
+  });
+  type.addEventListener("change", () => {
+    if (type.value != "") {
+      btnAddUser.removeAttribute("disabled");
+    } else {
+      btnAddUser.disabled = true;
+    }
+  });
 });

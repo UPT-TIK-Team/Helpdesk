@@ -125,8 +125,6 @@ function unauthorized($message = null, $permissionLevels = null)
 	);
 }
 
-
-
 //set flashdata message
 function set_msg($key, $value, $data = null)
 {
@@ -149,4 +147,19 @@ function set_msg($key, $value, $data = null)
 		$msg = $msg = '<div class="container-fluid"><div class="alert alert-info display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/info.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
 	}
 	$CI->session->set_flashdata("message", $msg);
+}
+
+/**
+ * Generate random password
+ */
+function generate_random_password()
+{
+	$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+	$pass = array(); //remember to declare $pass as an array
+	$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	for ($i = 0; $i < 8; $i++) {
+		$n = rand(0, $alphaLength);
+		$pass[] = $alphabet[$n];
+	}
+	return implode($pass); //turn the array into a string
 }

@@ -8,6 +8,11 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">
               Add New User
             </button>
+            <?php if ($this->session->userdata('email') && $this->session->userdata('password')) : ?>
+              <div class="alert alert-success" role="alert">
+                Add new users success, using this credential for login. Email: <?= $this->session->userdata('email') ?>, Password: <?= $this->session->userdata('password') ?>
+              </div>
+            <?php endif; ?>
             <div class="table-responsive mt-3">
               <table class="table table-striped display nowrap" id="users">
                 <thead>
@@ -40,18 +45,13 @@
         <form action="<?= base_url('user/add_user') ?>" method="POST">
           <div class="modal-body">
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Enter Username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter Email">
             </div>
             <div class="form-group">
               <label for="type">User Type</label>
               <select id="type" name="type" class="form-control">
                 <option value=""> - Select -</option>
-                <option value="10">User</option>
                 <option value="60">Agent</option>
                 <option value="80">Manager</option>
               </select>
@@ -59,7 +59,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary" id="btn-add-user" disabled>Add</button>
           </div>
         </form>
       </div>

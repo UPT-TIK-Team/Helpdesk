@@ -153,17 +153,18 @@ class User extends MY_Controller
 
 	public function add_user()
 	{
-		$username = $this->input->post('username', true);
-		$password = $this->input->post('password', true);
-		$type = $this->input->post('type', true);
+		$email = htmlspecialchars($this->input->post('email', true));
+		$password = generate_random_password();
+		$type = htmlspecialchars($this->input->post('type', true));
 		$data = [
-			'username' => $username,
-			'password' => md5($password),
+			'email' => $email,
+			'password' => password_hash($password, PASSWORD_DEFAULT),
 			'type' => $type,
 			'status' => 1,
 			'created' => time()
 		];
 		$this->db->insert('users', $data);
+		$this->session->set_userdata(['email' => $data['email'], 'password' => $password]);
 		redirect('user/list');
 	}
 
