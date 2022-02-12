@@ -182,9 +182,6 @@ span.name {
   opacity: 0.5;
 }
 
-.client-logo {
-}
-
 .yeo-client a {
   display: inline-block;
   margin-right: 3.5rem;
@@ -375,6 +372,11 @@ span.name {
   font-weight: 200;
 }
 
+/* Manual usage docx */
+.manual-usage-docs {
+  margin-left: 0.5rem;
+}
+
 @media (max-width: 600px) {
   .slogan {
     padding-top: 0rem;
@@ -488,5 +490,10 @@ span.name {
     height: auto;
     width: 90%;
     font-size: 0.8rem;
+  }
+
+  .manual-usage-docs {
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
