@@ -142,10 +142,10 @@
                 <tr>
                   <th>Ticket Status</th>
                   <td>
-                    <?php if ($info['status'] == 100) : ?>
-                      <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" disabled>
+                    <?php if ($privilege) : ?>
+                      <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control">
                       <?php else : ?>
-                        <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control">
+                        <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" disabled>
                         <?php endif; ?>
                         <option value="<?= $info['status'] ?>"><?= $info['name_status'] ?></option>
                         </select>
