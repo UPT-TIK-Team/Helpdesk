@@ -23,7 +23,7 @@
                     }
                   }
                   ?>
-                  <h3><?= $info['subject'] ?></h3>
+                  <h3><?= $info['purpose'] ?></h3>
                   <p><?= $info['message'] . $tik_attachments ?></p>
                 </div>
               </div>
@@ -134,10 +134,6 @@
                   <th>Created By</th>
                   <td><span class="user-label" data-username="<?= isset($info['owner']) ? $info['owner'] : '' ?>"></span>
                   </td>
-                </tr>
-                <tr>
-                  <th>Purpose</th>
-                  <td><?= $info['purpose'] ?></td>
                 </tr>
                 <tr>
                   <th>Ticket Status</th>

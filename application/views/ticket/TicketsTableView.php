@@ -11,7 +11,6 @@
                   <tr>
                     <th>Ticket No</th>
                     <th>Owner</th>
-                    <th>Subject</th>
                     <th>Assign To</th>
                     <th>Status</th>
                     <th>Priority</th>
@@ -45,9 +44,6 @@
         },
         {
           data: 'owner',
-        },
-        {
-          data: 'subject'
         },
         {
           data: 'assign_to'

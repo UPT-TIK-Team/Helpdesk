@@ -19,7 +19,7 @@ class Ticket extends MY_Controller
 
   public function generateDatatable()
   {
-    $select = "ticket_no, owner, purpose, subject, message, assign_to, assign_on, status, data";
+    $select = "ticket_no, owner, purpose,message, assign_to, assign_on, status, data";
     $join = ['priority', 'services', 'subservices'];
     $columnjoin = ['id_priority', 'id_service', 'id_subservice'];
     $as = 'priority.name as priority, services.name as service, subservices.name as subservice';

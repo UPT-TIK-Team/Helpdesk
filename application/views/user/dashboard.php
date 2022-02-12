@@ -79,7 +79,6 @@
                                         <h5>' . $recent_assigned['ticket_no'] . '</h5>
                                     </a><br>
                                     <p>Purpose: ' . $recent_assigned['purpose'] . '</p>
-                                    <p>Subject: ' . $recent_assigned['subject'] . '</p>
                                     </div>
                                     </div>
                                     <div class="date text-right"><span class="rel-time" data-value="' . $recent_assigned['created'] . '000"></span><br><span class="tik-status" data-value="' . $recent_assigned['status'] . '"></span></div>
@@ -113,7 +112,6 @@
                               <h5>' . $recent_closed['ticket_no'] . '</h5>
                           </a><br>
                           <p>Purpose: ' . $recent_closed['purpose'] . '</p>
-                          <p>Subject: ' . $recent_closed['subject'] . '</p>
                           </div>
                           </div>
                           <div class="date text-right"><span class="rel-time" data-value="' . $recent_closed['created'] . '000"></span><br><span class="tik-status" data-value="' . $recent_closed['status'] . '"></span></div>

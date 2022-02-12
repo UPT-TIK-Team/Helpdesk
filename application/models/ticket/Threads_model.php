@@ -8,41 +8,6 @@ class Threads_model extends BaseMySQL_model
     parent::__construct(TABLE_TICKETS);
   }
 
-  public function get_ticket_list($where)
-  {
-    $this->db->select(
-      TABLE_TICKETS . '.id as id, '
-        . TABLE_TICKETS . '.ticket_no as ticket_no, '
-        . TABLE_TICKETS . '.owner as owner, '
-        . TABLE_TICKETS . '.severity as severity, '
-        . TABLE_TICKETS . '.created as created, '
-        . TABLE_TICKETS . '.purpose as purpose, '
-        . TABLE_TICKETS . '.subject as subject, '
-        . TABLE_TICKETS . '.message as message, '
-        . TABLE_TICKETS . '.file as file, '
-        . TABLE_TICKETS . '.status as status, '
-        . TABLE_TICKETS . '.assign_to as assign_to, '
-        . 'user1.name as assign_to_name,'
-        . 'user2.name as owner_name,'
-        . TABLE_TICKETS . '.assign_on as assign_on, '
-        . TABLE_TICKETS . '.progress as progress, '
-        . TABLE_TICKETS . '.updated as updated, '
-        . TABLE_TICKETS . '.closed as closed, '
-    );
-
-    foreach ($where as $key => $value)
-      $this->db->where(TABLE_TICKETS . "." . $key, $value);
-
-    return $this->db->join(TABLE_USERS . ' as user1', 'user1.id = ' . TABLE_TICKETS . '.assign_to', 'left')
-      ->join(TABLE_USERS . ' as user2', 'user2.id = ' . TABLE_TICKETS . '.owner', 'left')
-      ->get(TABLE_TICKETS)->result_array();
-  }
-
-  public function get_ticket_details($ticket_id)
-  {
-    return $this->get_ticket_list(array("ticket_no" => $ticket_id));
-  }
-
   public function get_ticket_threads($ticket_id)
   {
     return $this->db->select(

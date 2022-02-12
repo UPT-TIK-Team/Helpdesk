@@ -34,25 +34,21 @@ class Ticket_model extends BaseMySQL_model
 
   public function create($data)
   {
-    $info = getValuesOfKeys($data, array('owner', 'purpose', 'subject', 'message', 'assign_to', 'assign_on', 'id_service', 'id_subservice', 'id_priority', 'data'));
+    $info = getValuesOfKeys($data, array('owner', 'purpose', 'message', 'assign_to', 'assign_on', 'id_service', 'id_subservice', 'id_priority', 'data'));
     $attachments = $info['data'];
     $info['data'] = json_encode($info['data']);
-    if (!$info['owner'])
-      $info['owner'] = $this->Session->getLoggedDetails()['username'];
-    if (!empty($info['subject']) && !empty($info['message'])) {
-      $info = array_merge($info, array('ticket_no' => null, 'created' => time(), 'status' => TICKET_STATUS_OPEN));
-      $res = $this->add($info);
-      if ($res) {
-        $ticket_no = $this->getTicketNoFromID($res);
-        parent::setByID($res, array('ticket_no' => $ticket_no));
-        // add attachment reference
-        if (!empty($attachments['attachments'])) {
-          $this->addAttachmentRef($attachments['attachments'], $ticket_no);
-        }
-        return $ticket_no;
+    if (!$info['owner']) $info['owner'] = $this->Session->getLoggedDetails()['username'];
+    $info = array_merge($info, array('ticket_no' => null, 'created' => time(), 'status' => TICKET_STATUS_OPEN));
+    $res = $this->add($info);
+    if ($res) {
+      $ticket_no = $this->getTicketNoFromID($res);
+      parent::setByID($res, array('ticket_no' => $ticket_no));
+      // add attachment reference
+      if (!empty($attachments['attachments'])) {
+        $this->addAttachmentRef($attachments['attachments'], $ticket_no);
       }
-    } else $res = -1;
-
+      return $ticket_no;
+    }
     return $res;
   }
 
@@ -74,7 +70,7 @@ class Ticket_model extends BaseMySQL_model
       array_merge($data, array('updated' => time()));
       $res = parent::setByID($data['id'], $data);
 
-      parent::getBy(array('owner', 'ticket_no', 'subject'), array('id' => $data['id']));
+      parent::getBy(array('owner', 'ticket_no'), array('id' => $data['id']));
     } else $res = -1;
 
     return $res;
@@ -132,7 +128,7 @@ class Ticket_model extends BaseMySQL_model
   public function add_thread($data, $sendEmail = FALSE)
   {
     $res = $this->db->insert(TABLE_MESSAGES, $data);
-    $info = parent::getBy(array('owner', 'ticket_no', 'subject'), array('ticket_no' => $data['ticket']));
+    $info = parent::getBy(array('owner', 'ticket_no'), array('ticket_no' => $data['ticket']));
     return $res;
   }
 }

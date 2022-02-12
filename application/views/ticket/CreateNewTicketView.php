@@ -14,14 +14,6 @@
                   <form>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label" for="subject">Problem Subject</label>
-                        <div class="col-sm-9">
-                          <input id="subject" type="text" name="subject" required="" class="form-control" placeholder="Problem Subject">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
                         <label class="col-sm-3 form-control-label">Service</label>
                         <div class="col-sm-9 select">
                           <select name="service" id="service" class="form-control" style="width: 100%">
@@ -54,7 +46,7 @@
                       <div class="row">
                         <label class="col-sm-3 form-control-label">Purpose</label>
                         <div class="col-sm-9">
-                          <input id="purpose" type="text" name="purpose" required="" class="form-control" placeholder="Purpose of Ticket">
+                          <input id="purpose" type="text" name="purpose" required class="form-control" placeholder="Purpose of Ticket">
                         </div>
                       </div>
                     </div>

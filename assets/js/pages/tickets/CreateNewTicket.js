@@ -97,7 +97,6 @@ $(document).ready(function () {
   // create new ticket
   $("#create_ticket").on("click", function (a) {
     a.preventDefault();
-    const subject = $("#subject").val();
     const id_service = parseInt($("#service").val());
     const id_subservice = parseInt($("#subservice").val());
     const id_priority = parseInt($("#priority").val());
@@ -109,15 +108,16 @@ $(document).ready(function () {
     attached_files = [];
     var fdata = {
       purpose,
-      subject,
       message,
       id_service,
       id_subservice,
       id_priority,
       data,
     };
-    if (!purpose || !subject || !id_priority) {
-      showNotification("error", "Please fill all fields.");
+    if (!id_priority) {
+      return showNotification("error", "Please fill sub service fields");
+    } else if (!purpose) {
+      return showNotification("error", "Please fill purpose fields");
     } else {
       $.ajax({
         type: "POST",
