@@ -198,7 +198,7 @@ class BaseMySQL_model extends MY_Model
       }
     }
     if (!empty($addcolumn)) {
-      $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">Lihat</a>',  $addcolumn[2]);
+      $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">View</a>',  $addcolumn[2]);
     }
 
     if (empty($where)) {

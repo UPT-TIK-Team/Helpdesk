@@ -6,7 +6,7 @@
         <div class="card  custom-border-radius">
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped display nowrap" id="tickets">
+              <table class="table table-striped display nowrap" id="tickets" style="cursor: pointer;">
                 <thead>
                   <tr>
                     <th>Ticket No</th>
@@ -41,7 +41,7 @@
         type: 'POST',
       },
       columns: [{
-          data: 'ticket_no'
+          data: 'ticket_no',
         },
         {
           data: 'owner',
