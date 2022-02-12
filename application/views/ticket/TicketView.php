@@ -80,29 +80,34 @@
                           </li>';
                 } ?>
               </ul>
-              <div class="col-md-12 add-comment custom-border-radius">
-                <h3>Leave a comment</h3>
-                <!-- <form> -->
-                <div id="comment" style="min-height: 100px;"></div>
-                <br>
-                <div class="row">
-                  <label class="col-sm-12 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
-                  <div class="col-sm-12">
-                    <div class="custom-file">
-                      <input id="fileInput" type="file" class="custom-file-input">
-                      <label class="custom-file-label" for="customFile" id="attached_files">Choose file</label>
+              <?php if (!$this->session->userdata('access_token')) : ?>
+                <div class="alert alert-danger" role="alert">
+                  Please login with <?= $loginButton ?>, to use this feature
+                </div>
+              <?php else : ?>
+                <div class="col-md-12 add-comment custom-border-radius">
+                  <h3>Leave a comment</h3>
+                  <!-- <form> -->
+                  <div id="comment" style="min-height: 100px;"></div>
+                  <br>
+                  <div class="row">
+                    <label class="col-sm-12 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
+                    <div class="col-sm-12">
+                      <div class="custom-file">
+                        <input id="fileInput" type="file" class="custom-file-input">
+                        <label class="custom-file-label" for="customFile" id="attached_files">Choose file</label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>">Reply <i class="fa fa-reply"></i>
-                    </button>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>">Reply <i class="fa fa-reply"></i>
+                      </button>
+                    </div>
                   </div>
+                  <!-- </form> -->
                 </div>
-
-                <!-- </form> -->
-              </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>

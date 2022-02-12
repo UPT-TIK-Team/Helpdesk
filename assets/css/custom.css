@@ -629,6 +629,13 @@ input.input-material ~ label.active {
   background: #f7f7f7;
 }
 
+.attachments .attachments-label {
+  margin-top: 5rem;
+}
+.attachments .custom-file {
+  margin-top: 5rem;
+}
+
 /** =====================
  * Responsive
  ========================*/
@@ -636,7 +643,7 @@ input.input-material ~ label.active {
   .attachments .attachments-label {
     margin-top: 25%;
   }
-  .attachments a {
+  .attachments .custom-file {
     margin-top: 40%;
   }
   .dotted-add-button {
@@ -648,7 +655,7 @@ input.input-material ~ label.active {
   .attachments .attachments-label {
     margin-top: 30%;
   }
-  .attachments a {
+  .attachments .custom-file {
     margin-top: 5%;
   }
   .comments-container {
