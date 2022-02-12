@@ -22,7 +22,9 @@ jobs:
           echo EMAIL_ADDRESS='"${{secrets.EMAIL_ADDRESS}}"' >> .env
           echo EMAIL_PASSWORD='"${{secrets.EMAIL_PASSWORD}}"' >> .env
           echo EMAIL_SUBJECT='"${{secrets.EMAIL_SUBJECT}}"' >> .env
-          cat .env
+          echo GOOGLE_CLIENT_ID='"${{secrets.GOOGLE_CLIENT_ID}}"' >> .env
+          echo GOOGLE_CLIENT_SECRET='"${{secrets.GOOGLE_CLIENT_SECRET}}"' >> .env
+          echo DRIVE_PARENT_FOLDER='"${{secrets.DRIVE_PARENT_FOLDER}}"' >> .env
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
