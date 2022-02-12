@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <meta name="generator" content="Hugo 0.48" />
   <meta charset="utf-8">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -31,7 +30,7 @@
           <header class="navbar">
             <section class="navbar-section">
               <a class="navbar-brand logo" href="./">
-                <img class="logo-img" src="<?= base_url() ?>assets/img/landing-page/Tik Logo.svg" alt=""><span>Helpdesk UNSIKA</span>
+                <img class="logo-img" src="https://sihipka.unsika.ac.id/assets/user/logo/default_favicon.png"><span>Helpdesk UNSIKA</span>
               </a>
             </section>
             <!-- <section class="navbar-section hide-sm">

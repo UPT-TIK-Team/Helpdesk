@@ -53,7 +53,7 @@ span.name {
 }
 
 .navbar .navbar-brand.logo span {
-  color: #800000;
+  color: #c4ac2f;
   font-weight: 600;
 }
 
@@ -68,9 +68,7 @@ span.name {
   background-size: auto;
   padding-bottom: 3rem;
   /* Rectangle 10: */
-  background-image: -webkit-linear-gradient(44deg, #0c0091 0%, #00a87e 100%);
-  background-image: -o-linear-gradient(44deg, #0c0091 0%, #00a87e 100%);
-  background-image: linear-gradient(134deg, #c4ac2f 0%, #800000 80%);
+  background-image: linear-gradient(-50deg, #c4ac2f 0%, #800000 90%);
 }
 
 .yeo-slogan .slogan-bold {
@@ -362,6 +360,7 @@ span.name {
 .yeo-footer {
   background: #800;
   color: #fff;
+  padding: 1rem;
 }
 
 .yeo-footer h4 {
