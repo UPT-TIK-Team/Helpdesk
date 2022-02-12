@@ -16,6 +16,19 @@ class User extends MY_Controller
 	{
 		$data['title'] = 'Dashboard';
 		$role = (int)($this->Session->getUserType());
+		$id = $this->session->userdata()['sessions_details']['id'];
+		if (isset($_GET["code"])) {
+			$this->client->setRedirectUri(BASE_URL . 'user/dashboard');
+			$token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+			$this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
+			$this->session->set_userdata('access_token', $token['access_token']);
+		} else {
+			$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
+			if ($userdata['refresh_token']) {
+				$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
+				$this->session->set_userdata('access_token', $newAccessToken['access_token']);
+			}
+		}
 		switch ($role) {
 			case USER_MEMBER:
 				$this->dashboard_member();
@@ -93,13 +106,6 @@ class User extends MY_Controller
 			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_ASSIGNED))),
 			count($this->Tickets->getBy(null, array('id_priority' => 1, 'status' => TICKET_STATUS_CLOSED)))
 		);
-		$id = $this->session->userdata()['sessions_details']['id'];
-		$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
-		if ($userdata['refresh_token']) {
-			$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
-			$this->session->set_userdata('access_token', $newAccessToken['access_token']);
-		}
-
 		$data['recent']['created'] = $this->Tickets->getBy(null, array(), 5);
 		$data['recent']['open'] = $this->Tickets->getBy(null, array('status' => TICKET_STATUS_OPEN), 5);
 		$data['recent']['assigned'] = $this->Tickets->getBy(null, array('status' => TICKET_STATUS_ASSIGNED), 5);
