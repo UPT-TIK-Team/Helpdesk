@@ -45,7 +45,7 @@
     </div>
     <div class="container slogan">
       <div class="columns">
-        <div class="column col-7 col-sm-12">
+        <div class="column col-7">
           <div class="slogan-content">
             <h1>
               <span class="slogan-bold">Halo</span>

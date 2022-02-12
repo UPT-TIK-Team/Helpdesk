@@ -377,7 +377,15 @@ span.name {
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
+/* Responsiveness */
+@media (max-width: 768px) {
+  .manual-usage-docs {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
   .slogan {
     padding-top: 0rem;
   }
