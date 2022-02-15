@@ -46,7 +46,6 @@ class User extends MY_Controller
 
 	public function dashboard_member()
 	{
-
 		$data['title'] = 'Dashboard';
 		$agent_id = $this->Session->getLoggedDetails()['username'];
 		$data['stats']['total_tickets'] = count($this->Tickets->get_ticket_where(array('owner' => $agent_id)));
@@ -68,6 +67,10 @@ class User extends MY_Controller
 		$data['stats']['closed_tickets'] = count($this->Tickets->getBy(null, array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED)));
 		$data['recent']['assigned'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_ASSIGNED), 5);
 		$data['recent']['closed'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED), 5);
+		if ($this->Session->getLoggedDetails()['status'] === 0) {
+			$this->session->set_flashdata('change_password', 'Please change your password');
+			redirect(BASE_URL . 'user/change_password');
+		}
 		$this->render('user/dashboard', $data);
 	}
 
@@ -160,7 +163,7 @@ class User extends MY_Controller
 			'email' => $email,
 			'password' => password_hash($password, PASSWORD_DEFAULT),
 			'type' => $type,
-			'status' => 1,
+			'status' => USER_STATUS_INACTIVE,
 			'created' => time()
 		];
 		$this->db->insert('users', $data);

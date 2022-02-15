@@ -35,38 +35,6 @@ class User_model extends BaseMySQL_model
 		// print_r($return);
 	}
 
-	/**
-	 * Register a user by details.
-	 * @param $data
-	 * @return mixed
-	 */
-	public function register($data)
-	{
-		$data['password'] = $this->hashPassword($data['password']);
-		$result = parent::add($data);
-		return $result;
-	}
-
-
-	/**
-	 * Check if user is authorized by the uid.
-	 * @param $uid
-	 * @param $password
-	 * @return bool
-	 */
-	public function isAuthorized($uid, $password)
-	{
-		$data = array("id" => $uid, "password" => $this->hashPassword($password));
-		$result = parent::getOneItem(parent::getBy("*", $data));
-		return $result !== null;
-	}
-
-
-	public function hashPassword($password)
-	{
-		return md5($password);
-	}
-
 	public function update($uId, $update)
 	{
 		$result = parent::setByID($uId, $update);
@@ -77,8 +45,6 @@ class User_model extends BaseMySQL_model
 	{
 		return $this->db->select($fields)->or_where(array('username' => $text, 'mobile' => $text, 'email' => $text))->limit(1)->get(TABLE_USER)->result_array();
 	}
-
-
 
 	public function getUsersBy($field = null, $value = null)
 	{
@@ -134,15 +100,6 @@ class User_model extends BaseMySQL_model
 			$uid = $this->Session->getLoggedUsername();
 		$result = parent::setByID($uid, $member);
 		return $result;
-	}
-
-	public function changePassword($uid, $old_password, $new_password)
-	{
-		$user = parent::getByID($uid);
-		if ($user['password'] == $this->hashPassword($old_password)) {
-			return $this->update($uid, array('password' => $this->hashPassword($new_password)));
-		} else
-			return -1;
 	}
 
 	public function getUserByUsernameAndUid($username, $uid)

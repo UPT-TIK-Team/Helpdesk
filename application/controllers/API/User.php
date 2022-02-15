@@ -29,30 +29,20 @@ class User extends MY_Controller
     $this->sendJSON(array('result' => $create));
   }
 
-  // change password
+  /**
+   * Handle when user change password
+   */
   public function change_password()
   {
     $user_id = $this->Session->getLoggedDetails()['id'];
-    $current_password = $this->input->post('password');
     $new_password = $this->input->post('new_password');
-
-    // check user password
-    $filter = [
-      'id' => $user_id,
-      'password' => $this->Users->hashPassword($current_password)
-    ];
-
-    $checking = $this->Users->getBy(null, $filter);
-    if (is_array($checking) && count($checking) > 0) {
-      $update = ['password' => $this->Users->hashPassword($new_password)];
-      $update = $this->Users->update($user_id, $update);
-      if ($update)
-        $this->sendJSON(array('result' => $update));
-    } else {
-      $this->sendJSON(array('result' => -1));
+    $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT)];
+    $update = $this->Users->update($user_id, $update);
+    if ($update) {
+      $_SESSION['sessions_details']['status'] = USER_STATUS_ACTIVE;
+      redirect(base_url('user/dashboard'));
     }
   }
-
 
   public function add_user()
   {
