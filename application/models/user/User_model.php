@@ -116,4 +116,9 @@ class User_model extends BaseMySQL_model
 		}
 		return $query->get(TABLE_USER)->result_array();
 	}
+
+	public function getBy($select = null, $where = null, $limit = null, $array = false)
+	{
+		return parent::getBy($select, $where, $limit, $array);
+	}
 }

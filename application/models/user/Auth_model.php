@@ -20,13 +20,15 @@ class Auth_model extends BaseMySQL_model
 	{
 		$email = trim($data['email']);
 		$password = $data['password'];
-		$user = $this->User->getOneItem($this->User->getByOR("*", array('email' => $email)));
-		if (password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
-			return $user;
-		} else if (password_verify($password, $user['password']) && $user['type'] === '60') {
-			return $user;
-		} else if (!$user) {
+		$user = $this->User->getBy(null, ['email' => $email]);
+
+		// Check for user details and send spesific error message
+		if (!$user) {
 			return "User not found";
+		} else if (password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
+			return $user;
+		} else if (password_verify($password, $user['password']) && $user['type'] === USER_AGENT) {
+			return $user;
 		} else if (!password_verify($password, $user['password'])) {
 			return "Wrong password";
 		} else {

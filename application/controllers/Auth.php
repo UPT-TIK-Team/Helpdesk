@@ -151,6 +151,9 @@ class Auth extends MY_Controller
 		}
 	}
 
+	/**
+	 * Function to handle verify user
+	 */
 	public function verify()
 	{
 		$email = $this->input->get('email', true);
