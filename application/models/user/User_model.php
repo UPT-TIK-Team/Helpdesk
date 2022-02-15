@@ -23,7 +23,7 @@ class User_model extends BaseMySQL_model
 	 */
 	public function getUserBy($fields)
 	{
-		return self::getOneItem(self::getBy(null, $fields));
+		return self::getOneItem(self::getBy(null, $fields, null, true));
 	}
 
 	public function getUserCreatedDate($uid)
