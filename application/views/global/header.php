@@ -66,7 +66,7 @@
                 <a class="nav-link sidebar-header d-flex align-items-center" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="current-user-avatar" data-username="<?= $this->Session->getLoggedDetails()['username'] ?>"></div>
                   <div class="title pl-2">
-                    <?= $this->Session->getLoggedDetails()['username'] === ' ' ? $this->Session->getLoggedDetails()['username'] : $this->Session->getLoggedDetails()['email']; ?>
+                    <?= $this->Session->getLoggedDetails()['username'] !== '' ? $this->Session->getLoggedDetails()['username'] : $this->Session->getLoggedDetails()['email']; ?>
                   </div>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
