@@ -41,42 +41,4 @@ class Auth_model extends BaseMySQL_model
 		$url = BASE_URL . "auth/reset_password?username=$username&token=$token";
 		return $url;
 	}
-
-	public function verifyPasswordResetLink($username, $token)
-	{
-		$user = $this->User->getUsersBy(null, array('username' => $username));
-		if (count($user) < 1)
-			return false;
-
-		$user = $user[0];
-		$result = $this->Session->verifyToken($user['username'], $token);
-		if (!$result)
-			return false;
-		$newPassword = $this->generateRandomPassword(6);
-		return $newPassword;
-	}
-
-	public function generateRandomPassword($n)
-	{
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$^#';
-		$randomString = '';
-
-		for ($i = 0; $i < $n; $i++) {
-			$index = rand(0, strlen($characters) - 1);
-			$randomString .= $characters[$index];
-		}
-		return $randomString;
-	}
-
-
-	public function setRandomPassword($username)
-	{
-		$random_password = $this->generateRandomPassword(8);
-		$res = $this->user->update_user($username, array('password' => md5($random_password)));
-		$user = $this->User->get_user_details($username);
-		if ($res) {
-			$body = 'Hi ' . $username . ', You recently requested a password reset. Your new password is' . $random_password;
-			return $res;
-		}
-	}
 }
