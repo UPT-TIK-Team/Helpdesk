@@ -1,8 +1,8 @@
 <?PHP
 
-define("TABLE_TICKETS", TABLE_PREFIX."tickets");
-define("TABLE_MESSAGES", TABLE_PREFIX."messages");
-define("TABLE_USERS", TABLE_PREFIX."users");
+define("TABLE_TICKETS", "tickets");
+define("TABLE_MESSAGES", "messages");
+define("TABLE_USERS", "users");
 define("TICKET_PREFIX", "TIK");
 define('TICKET_STATUS_OPEN', 0);
 define('TICKET_STATUS_ASSIGNED', 50);
@@ -21,8 +21,8 @@ define('STATUS_MAP', array(
 ));
 
 define('TICKET_STATUS', array(
-    array('value'=>0, 'label'=> 'Open'),
-    array('value'=>100, 'label' => 'Close')
+    array('value' => 0, 'label' => 'Open'),
+    array('value' => 100, 'label' => 'Close')
 ));
 
 define('TICKET_CATEGORIES', array(
@@ -30,13 +30,13 @@ define('TICKET_CATEGORIES', array(
 ));
 
 define('TICKET_PRIORITIES', array(
-    array('value' => 0, 'label'=> 'Low'),
-    array('value' => 5, 'label'=> 'Medium'),
-    array('value' => 10, 'label'=> 'High')
+    array('value' => 0, 'label' => 'Low'),
+    array('value' => 5, 'label' => 'Medium'),
+    array('value' => 10, 'label' => 'High')
 ));
 
 define('TICKET_SEVERITIES', array(
-    array('value' => 0, 'label'=> 'Low'),
-    array('value' => 5, 'label'=> 'Medium'),
-    array('value' => 10, 'label'=> 'High')
+    array('value' => 0, 'label' => 'Low'),
+    array('value' => 5, 'label' => 'Medium'),
+    array('value' => 10, 'label' => 'High')
 ));

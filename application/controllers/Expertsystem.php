@@ -15,11 +15,16 @@ class Expertsystem extends MY_Controller
     $this->db->query('delete from tmp_gejala where id_user=?', [$this->id]);
     $this->db->query('delete from tmp_analisa where id_user=?', [$this->id]);
     if ($this->input->post('idservice')) {
+      // Fill parameter value
       $idservice = $this->input->post('idservice');
       $select = 'gejala.id, gejala.code, gejala.name';
       $join = ['services'];
       $columnjoin = ['id_service'];
-      $data['gejala'] = $this->Gejala->getTableJoin($select, ['id_service' => $idservice], $join, $columnjoin, null, true);
+      $as = null;
+      $array = true;
+
+      // Execute diagnose query
+      $data['gejala'] = $this->Gejala->getTableJoin($select, ['id_service' => $idservice], $join, $columnjoin, $as, $array);
       $this->load->view('expertsystem/list_diagnose', $data);
     } else {
       $data['title'] = 'Diagnose Problem';

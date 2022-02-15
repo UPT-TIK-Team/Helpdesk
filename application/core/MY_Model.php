@@ -178,7 +178,7 @@ class BaseMySQL_model extends MY_Model
     foreach ($join as $i => $j) {
       $this->db->join($j, "$this->table.$column[$i]=$j.id");
     }
-    $data = $this->db->get(TABLE_TICKETS);
+    $data = $this->db->get($this->table);
     if ($where == null || ($where && $array == true)) {
       return $data->result_array();
     } else {
