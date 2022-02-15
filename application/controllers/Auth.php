@@ -207,16 +207,16 @@ class Auth extends MY_Controller
 			return false;
 		} else {
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
-			if ($this->Session->getUserType() === USER_ADMIN)
-				redirect(URL_POST_LOGIN_ADMIN);
-			else if ($this->Session->getUserType() == USER_MEMBER)
-				redirect(URL_POST_LOGIN_USER);
-			else if ($this->Session->getUserType() == USER_AGENT)
-				redirect(URL_POST_LOGIN_AGENT);
-			else if ($this->Session->getUserType() == USER_MANAGER)
-				redirect(URL_POST_LOGIN_MANAGER);
-			else if ($this->Session->getUserType() == USER_LIMITED)
-				redirect(URL_POST_LOGIN_LIMITED);
+			switch ($this->Session->getUserType()) {
+				case USER_ADMIN:
+					redirect(URL_POST_LOGIN_ADMIN);
+				case USER_MEMBER:
+					redirect(URL_POST_LOGIN_USER);
+				case USER_AGENT:
+					redirect(URL_POST_LOGIN_AGENT);
+				case USER_MANAGER:
+					redirect(URL_POST_LOGIN_MANAGER);
+			}
 			return true;
 		}
 	}
