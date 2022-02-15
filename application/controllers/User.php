@@ -17,17 +17,10 @@ class User extends MY_Controller
 		$data['title'] = 'Dashboard';
 		$role = (int)($this->Session->getUserType());
 		$id = $this->session->userdata()['sessions_details']['id'];
-		if (isset($_GET["code"])) {
-			$this->client->setRedirectUri(BASE_URL . 'user/dashboard');
-			$token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
-			$this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
-			$this->session->set_userdata('access_token', $token['access_token']);
-		} else {
-			$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
-			if ($userdata['refresh_token']) {
-				$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
-				$this->session->set_userdata('access_token', $newAccessToken['access_token']);
-			}
+		$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
+		if ($userdata['refresh_token']) {
+			$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
+			$this->session->set_userdata('access_token', $newAccessToken['access_token']);
 		}
 		switch ($role) {
 			case USER_MEMBER:

@@ -32,17 +32,18 @@
           <div class="col-md-12">
             <div class="comments-container">
               <ul id="comments-list" class="comments-list">
-                <?PHP foreach ($messages as $message) {
-                  $attachments = '';
-                  $decoded = json_decode($message['data'], true);
-                  if ($decoded)
-                    $attached = $decoded['attachments'];
-                  if ($decoded && $attached)
-                    foreach ($decoded['attachments'] as $attachment) {
-                      $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="' . $attachment['path'] . '"></p>';
-                    }
-                  if ($message['type'] == 1)
-                    echo '<li>
+                <?php if ($messages !== null) : ?>
+                  <?php foreach ($messages as $message) {
+                    $attachments = '';
+                    $decoded = json_decode($message['data'], true);
+                    if ($decoded)
+                      $attached = $decoded['attachments'];
+                    if ($decoded && $attached)
+                      foreach ($decoded['attachments'] as $attachment) {
+                        $attachments = $attachments . '<p><span class="attachment" data-filename="' . $attachment['file_name'] . '" data-filepath="' . $attachment['path'] . '"></p>';
+                      }
+                    if ($message['type'] == 1)
+                      echo '<li>
                                   <div class="comment-main-level">
                                       <div class="d-flex align-items-start">
                                           <!-- Avatar -->
@@ -56,15 +57,15 @@
                                               </div>
                                               <div class="comment-content">
                                                   ' . $message['message'] . $attachments
-                      . '
+                        . '
                                               </div>
                                           </div>
                                       </div>
                                   </div>
   
                               </li>';
-                  else
-                    echo ' <li>
+                    else
+                      echo ' <li>
                               <!-- Activity-tag -->
                              <div class="activity-tag">
                                   <div class="d-flex align-items-center">
@@ -78,7 +79,9 @@
                                   </div>
                               </div>
                           </li>';
-                } ?>
+                  } ?>
+                <?php endif; ?>
+
               </ul>
               <?php if (!$this->session->userdata('access_token')) : ?>
                 <div class="alert alert-danger" role="alert">

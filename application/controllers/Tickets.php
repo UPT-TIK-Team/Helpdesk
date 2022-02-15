@@ -34,7 +34,15 @@ class Tickets extends MY_Controller
   {
     $data['title'] = 'List All Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable');
-    $this->render('ticket/ticket_table_view', $data);
+    $id = $this->session->userdata()['sessions_details']['id'];
+    if (isset($_GET["code"])) {
+      $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
+      $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
+      $this->session->set_userdata('access_token', $token['access_token']);
+    } else {
+      $this->render('ticket/ticket_table_view', $data);
+    }
   }
 
   public function unassigned_tickets()
@@ -75,24 +83,71 @@ class Tickets extends MY_Controller
     $this->render('ticket/ticket_table_view', $data);
   }
 
+  /**
+   * Function for handle user access view_ticket url
+   */
   public function view_ticket()
   {
-    $ticket = $this->uri->segment(3);
-    $data['title'] = 'View Ticket';
+    // Get ticket number from uri in segment 3
+    $ticket_no = $this->uri->segment(3);
+
+    // Get type from logged user
     $usertype = $this->Session->getLoggedDetails()['type'];
+
+    $data['title'] = 'View Ticket';
     $data['privilege'] = ($usertype == USER_MANAGER) ? true : false;
-    if (!$ticket) {
-      $this->render('View Ticket', 'unauthorised', $data);
+    $data['ticket_no'] = $ticket_no;
+    $ticket_detail = $this->Tickets->get(['ticket_no' => $ticket_no]);
+
+    // Parameters for database manipulation
+    $select = null;
+    $where = null;
+    $join = array();
+    $column = array();
+    $as = null;
+
+    // Handle if assign_to equal to 0
+    if ($ticket_detail['assign_to'] === '0') {
+      // Fill parameter value
+      $select = ['tickets.id', 'ticket_no', 'owner', 'purpose', 'message', 'assign_to', 'assign_on', 'tickets.created', 'status', 'data', 'tickets.id_service', 'tickets.id_subservice', 'tickets.id_priority'];
+      $where = ['ticket_no' => $ticket_no];
+      $join = ['services', 'subservices', 'priority', 'status'];
+      $column = ['id_service', 'id_subservice', 'id_priority', 'status'];
+      $as = 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority, status.name as name_status';
+
+      // Execute join table query
+      $data['info'] = $this->Tickets->getTableJoin($select, $where, $join, $column, $as);
+
+      // Set users_email to null
+      $data['info']['users_email'] = '';
     } else {
-      $data['ticket_no'] = $ticket;
-      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['services', 'subservices', 'priority', 'status', 'users'], ['id_service', 'id_subservice', 'id_priority', 'status', 'assign_to'], 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status, users.email as users_email');
-      $data['messages'] = $this->Messages->getBy(null, ['ticket' => $ticket]);
-      if (!$this->session->userdata('access_token')) {
-        $this->client->setRedirectUri(BASE_URL . 'user/dashboard');
-        $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
-        $data['loginButton'] = $loginButton;
-      }
-      $this->render('ticket/ticket_view', $data);
+      // Fill parameter value
+      $select = null;
+      $where = ['ticket_no' => $ticket_no];
+      $join = ['services', 'subservices', 'priority', 'status', 'users'];
+      $column = ['id_service', 'id_subservice', 'id_priority', 'status', 'assign_to'];
+      $as = 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status, users.email as users_email';
+
+      // Execute join table query
+      $data['info'] = $this->Tickets->getTableJoin($select, $where, $join, $column, $as);
     }
+
+    /**
+     * Get message by ticket no 
+     */
+    $select = null;
+    $where = ['ticket' => $ticket_no];
+    $data['messages'] = $this->Messages->getBy($select, $where);
+
+    /**
+     * Create login button if access_token not found in session
+     * For google OAuth purpose
+     */
+    if (!$this->session->userdata('access_token')) {
+      $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
+      $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
+      $data['loginButton'] = $loginButton;
+    }
+    $this->render('ticket/ticket_view', $data);
   }
 }

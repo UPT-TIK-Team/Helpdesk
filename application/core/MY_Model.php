@@ -46,12 +46,15 @@ class BaseMySQL_model extends MY_Model
    * @param $where
    * @return mixed
    */
-  public function getBy($select = null, $where = null, $limit = null)
+  public function getBy($select = null, $where = null, $limit = null, $array = false)
   {
     if ($select == null) $select = "*";
-    $res = $this->db->select($select)->where($where);
-    if ($limit) $res->limit($limit);
-    return $res->order_by('id', 'desc')->get($this->table)->result_array();
+    $this->db->select($select);
+    if ($where) $this->db->where($where);
+    if ($limit) $this->db->limit($limit);
+    $res = $this->db->order_by('id', 'desc')->get($this->table);
+    if ($array === false) return $res->row_array();
+    return $res->result_array();
   }
 
   /**
@@ -170,13 +173,13 @@ class BaseMySQL_model extends MY_Model
   {
     if ($select == null) $select = "$this->table.*";
     $this->db->select($select);
-    if ($as !== null) $this->db->select($as);
-    if ($where != null) $this->db->where($where);
+    if ($as) $this->db->select($as);
+    if ($where) $this->db->where($where);
     foreach ($join as $i => $j) {
       $this->db->join($j, "$this->table.$column[$i]=$j.id");
     }
     $data = $this->db->get(TABLE_TICKETS);
-    if ($where == null || ($where != null && $array == true)) {
+    if ($where == null || ($where && $array == true)) {
       return $data->result_array();
     } else {
       return $data->row_array();
@@ -190,7 +193,7 @@ class BaseMySQL_model extends MY_Model
   {
     if ($select == null) $select = "$this->table.*";
     $this->datatables->select($select);
-    if ($as != null) $this->datatables->select($as);
+    if ($as) $this->datatables->select($as);
     $this->datatables->from($this->table);
     if (!empty($join)) {
       foreach ($join as $i => $j) {

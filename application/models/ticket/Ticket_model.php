@@ -131,4 +131,12 @@ class Ticket_model extends BaseMySQL_model
     $info = parent::getBy(array('owner', 'ticket_no'), array('ticket_no' => $data['ticket']));
     return $res;
   }
+
+  /**
+   * Function to get value from join ticket table with another table
+   */
+  public function getTableJoin($select = null, $where = null, $join = array(), $column = array(), $as = null, $array = false)
+  {
+    return parent::getTableJoin($select, $where, $join, $column, $as, $array);
+  }
 }
