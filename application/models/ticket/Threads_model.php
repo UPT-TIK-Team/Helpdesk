@@ -53,4 +53,13 @@ class Threads_model extends BaseMySQL_model
   {
     return $this->db->insert(TABLE_MESSAGES, $array);
   }
+
+  /**
+   * Function for handle get ticket on database 
+   * @param Bool $array set to true because it will loop through view pages
+   */
+  public function getBy($select = null, $where = null, $limit = null, $array = true)
+  {
+    return parent::getBy($select, $where, $limit, $array);
+  }
 }
