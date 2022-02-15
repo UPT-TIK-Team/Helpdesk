@@ -16,7 +16,7 @@
                       <div class="row">
                         <label class="col-sm-3 form-control-label">Service</label>
                         <div class="col-sm-9 select">
-                          <select name="service" id="service" class="form-control" style="width: 100%">
+                          <select name="service" id="service" class="form-control">
                             <option value="null">Choose Service</option>
                           </select>
                         </div>
@@ -26,7 +26,7 @@
                       <div class="row">
                         <label class="col-sm-3 form-control-label">Sub Service</label>
                         <div class="col-sm-9 select">
-                          <select name="subservice" id="subservice" class="form-control" style="width: 100%" disabled>
+                          <select name="subservice" id="subservice" class="form-control" disabled>
                             <option value="null">Choose Sub Service</option>
                           </select>
                         </div>
@@ -36,7 +36,7 @@
                       <div class="row">
                         <label class="col-sm-3 form-control-label">Priority</label>
                         <div class="col-sm-9 select">
-                          <select name="priority" id="priority" class="form-control" style="width: 100%" disabled>
+                          <select name="priority" id="priority" class="form-control" disabled>
                             <option value="null">Priority</option>
                           </select>
                         </div>

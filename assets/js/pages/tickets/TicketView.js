@@ -113,11 +113,11 @@ $(document).ready(function () {
         type: 1,
       },
 
-      beforeSend: function () {
-        $("#au_result").html(
-          '<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">'
-        );
-      },
+      // beforeSend: function () {
+      //   $("#au_result").html(
+      //     '<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">'
+      //   );
+      // },
 
       success: function (response) {
         if (JSON.parse(response)["data"]["result"]) {
@@ -170,13 +170,11 @@ $(document).ready(function () {
       url: `${BASE_URL}API/Ticket/updateTicket`,
       dataType: "text",
       data: data,
-
-      beforeSend: function () {
-        $("#au_result").html(
-          '<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">'
-        );
-      },
-
+      // beforeSend: function () {
+      //   $("#au_result").html(
+      //     '<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">'
+      //   );
+      // },
       success: function (response) {
         if (JSON.parse(response)["data"]["result"]) {
           showNotification("success", message, {}, () =>
@@ -186,6 +184,14 @@ $(document).ready(function () {
           showNotification("error", "Some error occured.");
         }
       },
+    });
+  });
+
+  $.get(BASE_URL + "API/User/getAll?type=[60]", function (data) {
+    $("#assign_to_dd").select2({
+      data: data.data.map((data) => {
+        return { id: data.id, text: data.email };
+      }),
     });
   });
 });

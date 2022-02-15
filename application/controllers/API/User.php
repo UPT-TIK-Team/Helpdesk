@@ -19,8 +19,7 @@ class User extends MY_Controller
     if (isset($_GET['type'])) {
       $types = json_decode($_GET['type']);
     }
-
-    $this->sendJSON($this->Users->getWhereFieldIn(array('id', 'username'), 'type', $types));
+    $this->sendJSON($this->Users->getWhereFieldIn(array('id', 'email'), 'type', $types));
   }
 
   public function create()

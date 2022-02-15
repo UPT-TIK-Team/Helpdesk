@@ -61,13 +61,13 @@ class User extends MY_Controller
 	public function dashboard_agent()
 	{
 		$data['title'] = 'Dashboard';
-		$agent_id = $this->Session->getLoggedDetails()['username'];
+		$agent_id = $this->Session->getLoggedDetails()['id'];
 		$data['stats']['total_tickets'] = count($this->Tickets->getBy(null, array()));
 		$data['stats']['assigned_tickets'] = count($this->Tickets->get_ticket_where(array('assign_to' => $agent_id)));
 		$data['stats']['closed_tickets'] = count($this->Tickets->getBy(null, array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED)));
 		$data['recent']['assigned'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_ASSIGNED), 5);
 		$data['recent']['closed'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED), 5);
-		if ($this->Session->getLoggedDetails()['status'] === 0) {
+		if ($this->Session->getLoggedDetails()['status'] === USER_STATUS_INACTIVE) {
 			$this->session->set_flashdata('change_password', 'Please change your password');
 			redirect(BASE_URL . 'user/change_password');
 		}

@@ -30,16 +30,7 @@ export function renderDropdowns() {
       });
     });
   }
-  if ($("#assign_to_dd").length) {
-    $.get(BASE_URL + "API/User/getAll?type=[60]", function (data) {
-      $("#assign_to_dd").select2({
-        width: "resolve",
-        data: data.data.map(function (item) {
-          return { id: item.username, text: item.username };
-        }),
-      });
-    });
-  }
+
   if ($("#service").length) {
     $.get(BASE_URL + "API/Ticket/getServices", function (data) {
       $("#service").select2({

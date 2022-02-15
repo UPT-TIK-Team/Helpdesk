@@ -85,14 +85,14 @@ class Tickets extends MY_Controller
       $this->render('View Ticket', 'unauthorised', $data);
     } else {
       $data['ticket_no'] = $ticket;
-      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['services', 'subservices', 'priority', 'status'], ['id_service', 'id_subservice', 'id_priority', 'status'], 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status');
+      $data['info'] = $this->Tickets->getTableJoin(null, ['ticket_no' => $ticket], ['services', 'subservices', 'priority', 'status'], ['id_service', 'id_subservice', 'id_priority', 'status'], 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status', false);
       $data['messages'] = $this->Messages->getBy(null, ['ticket' => $ticket]);
       if (!$this->session->userdata('access_token')) {
         $this->client->setRedirectUri(BASE_URL . 'user/dashboard');
         $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
         $data['loginButton'] = $loginButton;
       }
-      $this->render('ticket/TicketView', $data);
+      $this->render('ticket/ticket_view', $data);
     }
   }
 }

@@ -169,18 +169,18 @@ class BaseMySQL_model extends MY_Model
   public function getTableJoin($select = null, $where = null, $join = array(), $column = array(), $as = null, $array = false)
   {
     if ($select == null) $select = "$this->table.*";
-    $data = $this->db->select($select)->select("$as, $this->table.id as id_ticket");
-    if ($where != null) $data->where($where);
+    $this->db->select($select);
+    if ($as !== null) $this->db->select($as);
+    if ($where != null) $this->db->where($where);
     foreach ($join as $i => $j) {
-      $data->join($j, "$this->table.$column[$i]=$j.id");
+      $this->db->join($j, "$this->table.$column[$i]=$j.id");
     }
-    $data = $data->get($this->table);
+    $data = $this->db->get(TABLE_TICKETS);
     if ($where == null || ($where != null && $array == true)) {
-      $data = $data->result_array();
+      return $data->result_array();
     } else {
-      $data = $data->row_array();
+      return $data->row_array();
     }
-    return $data;
   }
 
   /**
@@ -200,7 +200,6 @@ class BaseMySQL_model extends MY_Model
     if (!empty($addcolumn)) {
       $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">View</a>',  $addcolumn[2]);
     }
-
     if (empty($where)) {
       return $this->datatables->generate();
     } else if (empty($where[1]) && empty($where[2])) {

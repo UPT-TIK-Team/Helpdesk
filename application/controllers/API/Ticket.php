@@ -144,7 +144,7 @@ class Ticket extends MY_Controller
 
   public function updateTicket()
   {
-    $update = $this->Tickets->updateTicket($_POST['update_data'], $_POST['meta']);
+    $update = $this->Tickets->updateTicket($_POST['update_data']);
     $thread_data = [
       'ticket' => $_POST['meta']['ticket_no'],
       'message' => $_POST['meta']['message'],

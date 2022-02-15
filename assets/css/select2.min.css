@@ -1,13 +1,22 @@
+/* Responsiveness */
+@media (max-width: 576px) {
+  .select2-container .selection {
+    width: 100%;
+  }
+
+  .select2-container .select2-selection--single {
+    width: 12rem;
+  }
+}
+
 .select2-container {
   box-sizing: border-box;
-  display: inline-block;
-  margin: 0;
   position: relative;
   vertical-align: middle;
 }
 
 .select2-container .selection {
-  width: 12rem;
+  width: 100%;
 }
 
 .select2-container .select2-selection--single {
@@ -16,6 +25,7 @@
   display: block;
   min-height: 38px;
   height: 28px;
+  width: 100% !important;
   user-select: none;
   -webkit-user-select: none;
 }
