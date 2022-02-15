@@ -27,35 +27,35 @@ class Tickets extends MY_Controller
       $this->session->set_userdata('access_token', $token['access_token']);
     }
     $data['title'] = 'Create Ticket';
-    $this->render('ticket/CreateNewTicketView', $data);
+    $this->render('ticket/create_new_ticket_view', $data);
   }
 
   public function list_all()
   {
     $data['title'] = 'List All Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable');
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function unassigned_tickets()
   {
     $data['title'] = 'Unassigned Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=null');
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function closed_tickets()
   {
     $data['title'] = 'Closed Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?status=100');
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function assigned_tickets()
   {
     $data['title'] = 'Assigned Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=not null');
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function assigned_to_me()
@@ -63,7 +63,7 @@ class Tickets extends MY_Controller
     $data['title'] = 'Tickets assigned to me';
     $assign_to = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function my_tickets()
@@ -72,7 +72,7 @@ class Tickets extends MY_Controller
     $data['type'] = "My Tickets";
     $owner = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/Ticket/generateDatatable?owner=') . $owner;
-    $this->render('ticket/TicketsTableView', $data);
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function view_ticket()
