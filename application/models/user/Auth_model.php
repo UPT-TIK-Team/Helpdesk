@@ -21,10 +21,9 @@ class Auth_model extends BaseMySQL_model
 		$email = trim($data['email']);
 		$password = $data['password'];
 		$user = $this->User->getOneItem($this->User->getByOR("*", array('email' => $email)));
-		if ($user && password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
-			unset($user['password']);
+		if (password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			return $user;
-		} else if ($user['type'] === '60') {
+		} else if (password_verify($password, $user['password']) && $user['type'] === '60') {
 			return $user;
 		} else if (!$user) {
 			return "User not found";

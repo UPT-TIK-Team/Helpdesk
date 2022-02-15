@@ -36,7 +36,7 @@ class User extends MY_Controller
   {
     $user_id = $this->Session->getLoggedDetails()['id'];
     $new_password = $this->input->post('new_password');
-    $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT)];
+    $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT), 'updated' => time()];
     $update = $this->Users->update($user_id, $update);
     if ($update) {
       $_SESSION['sessions_details']['status'] = USER_STATUS_ACTIVE;

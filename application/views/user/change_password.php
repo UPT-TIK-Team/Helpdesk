@@ -27,7 +27,7 @@
               <div class="col-md-12 p-2">
                 <div class="form group ">
                   <a href="<?= BASE_URL ?>user/profile" class="btn btn-secondary mr-3"><i class="fa fa-arrow-left"></i> Back to profile</a>
-                  <button class="btn btn-success">Update Password</button>
+                  <button class="btn btn-success" type="submit">Update Password</button>
                 </div>
               </div>
             </form>
