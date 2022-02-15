@@ -179,7 +179,7 @@
                       <?php else : ?>
                         <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
                         <?php endif; ?>
-                        <option value="<?= $info['assign_to'] ?>"><?= $info['assign_to'] ?></option>
+                        <option value="<?= $info['assign_to'] ?>"><?= $info['users_email'] ?></option>
                         </select>
                 </tr>
                 <tr>
