@@ -27,7 +27,7 @@ class Auth_model extends BaseMySQL_model
 			return "User not found";
 		} else if (password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			return $user;
-		} else if (password_verify($password, $user['password']) && $user['type'] === USER_AGENT) {
+		} else if (password_verify($password, $user['password']) && (int)$user['type'] === USER_AGENT) {
 			return $user;
 		} else if (!password_verify($password, $user['password'])) {
 			return "Wrong password";
