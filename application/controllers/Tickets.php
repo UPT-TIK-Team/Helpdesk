@@ -107,7 +107,7 @@ class Tickets extends MY_Controller
     $as = null;
 
     // Handle if assign_to equal to 0
-    if ((int)$ticket_detail['assign_to'] === '0') {
+    if ((int)$ticket_detail['assign_to'] === 0) {
       // Fill parameter value
       $select = ['tickets.id', 'ticket_no', 'owner', 'purpose', 'message', 'assign_to', 'assign_on', 'tickets.created', 'status', 'data', 'tickets.id_service', 'tickets.id_subservice', 'tickets.id_priority'];
       $where = ['ticket_no' => $ticket_no];
