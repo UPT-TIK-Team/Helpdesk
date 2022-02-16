@@ -63,9 +63,10 @@ class Auth extends MY_Controller
 			[
 				'field' => 'email',
 				'label' => 'Email',
-				'rules' => 'required|trim|valid_email|is_unique[users.email]',
+				'rules' => 'required|trim|valid_email|is_unique[users.email]|callback_validate_email',
 				'errors' => [
-					'is_unique' => 'This email has already registered'
+					'is_unique' => 'This email has already registered',
+					'validate_email' => 'Please use unsika email'
 				]
 			],
 			[
@@ -115,6 +116,15 @@ class Auth extends MY_Controller
 			set_msg('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
+	}
+
+	/**
+	 * Function to validate unsika email
+	 */
+	public function validate_email($email)
+	{
+		// Return not false if email contains '@unsika.ac.id'
+		return strpos($email, '@unsika.ac.id') !== false;
 	}
 
 	private function sendEmail($token, $type)
