@@ -102,16 +102,18 @@ $(document).ready(function () {
     const id_priority = parseInt($("#priority").val());
     const purpose = $("#purpose").val();
     const message = quill.root.innerHTML;
+    const assign_to = 0;
     const data = {
       attachments: attached_files,
     };
     attached_files = [];
     var fdata = {
-      purpose,
-      message,
       id_service,
       id_subservice,
       id_priority,
+      purpose,
+      message,
+      assign_to,
       data,
     };
     if (!id_priority) {
