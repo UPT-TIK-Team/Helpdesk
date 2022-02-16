@@ -80,9 +80,9 @@ class User extends MY_Controller
 		$data['stats']['assigned_tickets'] = count($this->Tickets->getBy(null, array('status' => TICKET_STATUS_ASSIGNED)));
 		$data['stats']['closed_tickets'] = count($this->Tickets->getBy(null, array('status' => TICKET_STATUS_CLOSED)));
 
-		$data['stats']['total_users'] = count($this->Users->getBy(null, array('type' => USER_MEMBER)));
-		$data['stats']['total_agents'] = count($this->Users->getBy(null, array('type' => USER_AGENT)));
-		$data['stats']['total_manager'] = count($this->Users->getBy(null, array('type' => USER_MANAGER)));
+		$data['stats']['total_users'] = count($this->Users->getBy(null, array('type' => USER_MEMBER), null, true));
+		$data['stats']['total_agents'] = count($this->Users->getBy(null, array('type' => USER_AGENT), null, true));
+		$data['stats']['total_manager'] = count($this->Users->getBy(null, array('type' => USER_MANAGER), null, true));
 
 		$data['stats']['count_by_priority']['critical'] = array(
 			count($this->Tickets->getBy(null, array('id_priority' => 4, 'status' => TICKET_STATUS_OPEN))),

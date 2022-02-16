@@ -21,7 +21,7 @@
                   <label for="login-email" class="label-material">Email</label>
                 </div>
                 <div class="form-group">
-                  <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                  <input id="login-password" type="password" name="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" required data-msg="Please enter your password" class="input-material">
                   <label for="login-password" class="label-material">Password</label>
                 </div>
                 <button type="submit" id="login" class="btn btn-primary">Login</button>
