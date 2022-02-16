@@ -38,7 +38,10 @@ class User extends MY_Controller
     $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT), 'updated' => time()];
     $update = $this->Users->update($user_id, $update);
     if ($update) {
+      // Change status in session to active
       $_SESSION['sessions_details']['status'] = USER_STATUS_ACTIVE;
+      // Unset session['change_password]
+      unset($_SESSION['change_password']);
       redirect(base_url('user/dashboard'));
     }
   }
