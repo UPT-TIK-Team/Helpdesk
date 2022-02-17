@@ -8,7 +8,7 @@
               <div class="col-md-12">
                 <?php if (!$this->session->userdata('access_token')) : ?>
                   <div class="alert alert-danger" role="alert">
-                    Please login with <?= $loginButton ?>, to use this feature
+                    Please connect with <?= $loginButton ?>, to use this feature
                   </div>
                 <?php else : ?>
                   <form>

@@ -20,7 +20,7 @@ class Tickets extends MY_Controller
     $id = $this->session->userdata()['sessions_details']['id'];
     if (!$this->session->userdata('access_token')) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/create_new');
-      $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
+      $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Email!</a>';
       $data['loginButton'] = $loginButton;
     }
     if (isset($_GET["code"])) {
@@ -167,7 +167,7 @@ class Tickets extends MY_Controller
           $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
           break;
       }
-      $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
+      $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Email!</a>';
       $data['loginButton'] = $loginButton;
     }
     $this->render('ticket/ticket_view', $data);
