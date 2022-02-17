@@ -188,27 +188,37 @@ class BaseMySQL_model extends MY_Model
 
   /**
    * Handle for generateDatatable
+   * @return Object datatables
    */
-  public function generateDatatable($select = null, $where = null, $join = array(), $column = array(), $as = null, $addcolumn = array())
+  public function generateDatatable($select = null, $where = array(), $join = array(), $column = array(), $as = null, $addcolumn = array())
   {
     if ($select == null) $select = "$this->table.*";
-    $this->datatables->select($select);
-    if ($as) $this->datatables->select($as);
-    $this->datatables->from($this->table);
+    $this->datatables->select($select)->from($this->table);
+
+    // Handle if 'join' parameter is exist, parameters 'join' and 'column' must be connect and same index
     if (!empty($join)) {
       foreach ($join as $i => $j) {
-        $this->datatables->join($j, "$this->table.$column[$i]=$j.id");
+        $this->datatables->join($j, "$this->table.$column[$i]=$j.id", 'left');
       }
     }
+
+    // Handle if 'as' parameter is exist
+    if ($as) $this->datatables->select($as);
+
+    // Handle if 'addcolumn' parameter is exist
     if (!empty($addcolumn)) {
       $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">View</a>',  $addcolumn[2]);
     }
+
+    // Check for 'where' parameters value and send appropriate response
     if (empty($where)) {
       return $this->datatables->generate();
-    } else if (empty($where[1]) && empty($where[2])) {
+    }
+    // Get first array value from 'where' parameters
+    else if (array_values($where)[0] === '!=0') {
+      $this->datatables->where(array_keys($where)[0] . '!=', array_values($where)[0]);
+    } else {
       $this->datatables->where($where);
-    } else if ($where[1] == 'NULL' && $where[2] == 'FALSE') {
-      $this->datatables->where($where[0], NULL, FALSE);
     }
     return $this->datatables->generate();
   }

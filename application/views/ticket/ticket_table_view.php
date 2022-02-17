@@ -46,7 +46,7 @@
           data: 'owner',
         },
         {
-          data: 'assign_to'
+          data: 'username'
         },
         {
           data: 'status',

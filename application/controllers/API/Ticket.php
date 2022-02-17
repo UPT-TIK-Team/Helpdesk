@@ -19,25 +19,23 @@ class Ticket extends MY_Controller
 
   public function generateDatatable()
   {
-    $select = "ticket_no, owner, purpose,message, assign_to, assign_on, status, data";
-    $join = ['priority', 'services', 'subservices'];
-    $columnjoin = ['id_priority', 'id_service', 'id_subservice'];
-    $as = 'priority.name as priority, services.name as service, subservices.name as subservice';
+    $select = "ticket_no, owner, purpose,message, assign_to, assign_on, tickets.status, data";
+    $join = ['priority', 'services', 'subservices', 'users'];
+    $columnjoin = ['id_priority', 'id_service', 'id_subservice', 'assign_to'];
+    $as = 'priority.name as priority, services.name as service, subservices.name as subservice, users.username as username';
     $action = [true, 'view_ticket', 'ticket_no'];
 
     if (($this->input->get())) {
       $input = $this->input->get();
+
+      // Get first key in array from url 
       $key = array_keys($input)[0];
+
+      // Get value in array from url
       $val = array_values($input)[0];
-      if ($key == 'assign_to' && $val == 'null') {
-        echo $this->Tickets->generateDatatable($select, ['assign_to is null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
-      } else if ($key == 'assign_to' && $val == 'not null') {
-        echo $this->Tickets->generateDatatable($select, ['assign_to is not null', 'NULL', 'FALSE'], $join, $columnjoin, $as, $action);
-      } else if ($key == 'assign_to' && !empty($val)) {
-        echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
-      } else {
-        echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
-      }
+
+      // Process generate datatable
+      echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
     } else {
       echo $this->Tickets->generateDatatable($select, null, $join, $columnjoin, $as, $action);
     }
@@ -86,7 +84,9 @@ class Ticket extends MY_Controller
   public function upload_attachment()
   {
     if (isset($_POST) && $this->session->userdata('access_token')) {
+      // If access token found, set access token for client
       $this->client->setAccessToken($this->session->userdata('access_token'));
+
       //generate unique file name
       date_default_timezone_set('Asia/Jakarta');
       $curr_date = date('dmY');

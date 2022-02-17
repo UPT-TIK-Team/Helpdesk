@@ -48,7 +48,7 @@ class Tickets extends MY_Controller
   public function unassigned_tickets()
   {
     $data['title'] = 'Unassigned Tickets';
-    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=null');
+    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=0');
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -62,7 +62,7 @@ class Tickets extends MY_Controller
   public function assigned_tickets()
   {
     $data['title'] = 'Assigned Tickets';
-    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=not null');
+    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=!=0');
     $this->render('ticket/ticket_table_view', $data);
   }
 
