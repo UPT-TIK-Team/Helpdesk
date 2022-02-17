@@ -163,3 +163,50 @@ function generate_random_password()
 	}
 	return implode($pass); //turn the array into a string
 }
+
+/**
+ * Function for send email via SMTP
+ * @param Token 
+ * @param Type
+ * @return Bool 
+ */
+function sendEmail($token, $type)
+{
+	$CI = &get_instance();
+	$CI->load->library('email');
+
+	// Set config for sent email
+	$config = [
+		'protocol' => 'smtp',
+		'smtp_host' => 'ssl://smtp.googlemail.com',
+		'smtp_user' => getenv("EMAIL_ADDRESS"),
+		'smtp_pass' => getenv("EMAIL_PASSWORD"),
+		'smtp_port' => 465,
+		'mailtype' => 'html',
+		'charset' => 'utf-8',
+		'newline' => "\r\n"
+	];
+	$CI->email->initialize($config);
+	$CI->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
+	$CI->email->to($CI->input->post('email'));
+
+	// Switch type of email
+	switch ($type) {
+		case 'verify':
+			$CI->email->subject('Account verification');
+			$CI->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $CI->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+			break;
+		case 'forgotpassword':
+			$CI->email->subject('Reset password');
+			$CI->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $CI->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+			break;
+	}
+
+	if ($CI->email->send()) {
+		// Return true if success send email
+		return true;
+	} else {
+		echo $CI->email->print_debugger();
+		die;
+	}
+}

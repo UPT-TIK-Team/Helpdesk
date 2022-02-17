@@ -112,7 +112,7 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
-			$this->sendEmail($token, 'verify');
+			sendEmail($token, 'verify');
 			set_msg('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
@@ -125,40 +125,6 @@ class Auth extends MY_Controller
 	{
 		// Return not false if email contains '@unsika.ac.id'
 		return strpos($email, '@unsika.ac.id') !== false;
-	}
-
-	private function sendEmail($token, $type)
-	{
-		$config = [
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => getenv("EMAIL_ADDRESS"),
-			'smtp_pass' => getenv("EMAIL_PASSWORD"),
-			'smtp_port' => 465,
-			'mailtype' => 'html',
-			'charset' => 'utf-8',
-			'newline' => "\r\n"
-		];
-		$this->email->initialize($config);
-		$this->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
-		$this->email->to($this->input->post('email'));
-		switch ($type) {
-			case 'verify':
-				$this->email->subject('Account verification');
-				$this->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-				break;
-			case 'forgotpassword':
-				$this->email->subject('Reset password');
-				$this->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
-				break;
-		}
-
-		if ($this->email->send()) {
-			return true;
-		} else {
-			echo $this->email->print_debugger();
-			die;
-		}
 	}
 
 	/**
@@ -259,7 +225,7 @@ class Auth extends MY_Controller
 				'date_created' => time()
 			];
 			$this->db->insert('users_token', $userToken);
-			$this->sendEmail($token, 'forgotpassword');
+			sendEmail($token, 'forgotpassword');
 			set_msg('success', "Please check your email to reset password");
 			redirect('auth/forgotpassword');
 		}
