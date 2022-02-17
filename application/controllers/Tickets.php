@@ -3,6 +3,7 @@
 
 class Tickets extends MY_Controller
 {
+  private $id;
   function __construct()
   {
     parent::__construct();
@@ -11,6 +12,7 @@ class Tickets extends MY_Controller
     $this->load->model('user/User_model', 'Users');
     $this->load->model('ticket/Messages_model', 'Messages');
     if ($this->session->flashdata('change_password')) redirect(BASE_URL . 'user/change_password');
+    $this->id = $this->session->userdata()['sessions_details']['id'];
   }
 
   public function create_new()
@@ -34,15 +36,13 @@ class Tickets extends MY_Controller
   {
     $data['title'] = 'List All Tickets';
     $data['link'] = base_url('API/Ticket/generateDatatable');
-    $id = $this->session->userdata()['sessions_details']['id'];
     if (isset($_GET["code"])) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
-      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $this->id]);
       $this->session->set_userdata('access_token', $token['access_token']);
-    } else {
-      $this->render('ticket/ticket_table_view', $data);
     }
+    $this->render('ticket/ticket_table_view', $data);
   }
 
   public function unassigned_tickets()
@@ -71,6 +71,12 @@ class Tickets extends MY_Controller
     $data['title'] = 'Tickets assigned to me';
     $assign_to = $this->Session->getLoggedDetails()['id'];
     $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
+    if (isset($_GET["code"])) {
+      $this->client->setRedirectUri(BASE_URL . 'tickets/assigned_to_me');
+      $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $this->id]);
+      $this->session->set_userdata('access_token', $token['access_token']);
+    }
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -80,6 +86,12 @@ class Tickets extends MY_Controller
     $data['type'] = "My Tickets";
     $owner = $this->Session->getLoggedDetails()['username'];
     $data['link'] = base_url('API/Ticket/generateDatatable?owner=') . $owner;
+    if (isset($_GET["code"])) {
+      $this->client->setRedirectUri(BASE_URL . 'tickets/my_tickets');
+      $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $this->id]);
+      $this->session->set_userdata('access_token', $token['access_token']);
+    }
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -144,7 +156,17 @@ class Tickets extends MY_Controller
      * For google OAuth purpose
      */
     if (!$this->session->userdata('access_token')) {
-      $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
+      switch ($usertype) {
+        case USER_MEMBER:
+          $this->client->setRedirectUri(BASE_URL . 'tickets/my_tickets');
+          break;
+        case USER_AGENT:
+          $this->client->setRedirectUri(BASE_URL . 'tickets/assigned_to_me');
+          break;
+        case USER_MANAGER:
+          $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
+          break;
+      }
       $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Account!</a>';
       $data['loginButton'] = $loginButton;
     }
