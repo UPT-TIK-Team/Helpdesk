@@ -52,6 +52,7 @@
     $('.event-notification').fadeOut('fast');
   }, 5000); // <-- time in milliseconds
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?= base_url('assets/js/plugins/jquery.cookie/jquery.cookie.js') ?>"></script>
 <script src="<?= base_url('assets/js/plugins/jquery-validation/jquery.validate.min.js') ?>"></script>
 <script type="module" src="<?= base_url('assets/js/main/front.js') ?>"></script>

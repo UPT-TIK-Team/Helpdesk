@@ -28,15 +28,3 @@ define('TICKET_STATUS', array(
 define('TICKET_CATEGORIES', array(
     'Bug', 'Feature requests', 'Software Troubleshooting', 'How to', 'Password Reset', 'Network', 'Hardware', 'Access and Authorization'
 ));
-
-define('TICKET_PRIORITIES', array(
-    array('value' => 0, 'label' => 'Low'),
-    array('value' => 5, 'label' => 'Medium'),
-    array('value' => 10, 'label' => 'High')
-));
-
-define('TICKET_SEVERITIES', array(
-    array('value' => 0, 'label' => 'Low'),
-    array('value' => 5, 'label' => 'Medium'),
-    array('value' => 10, 'label' => 'High')
-));

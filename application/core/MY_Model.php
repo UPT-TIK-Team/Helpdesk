@@ -210,15 +210,20 @@ class BaseMySQL_model extends MY_Model
       $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">View</a>',  $addcolumn[2]);
     }
 
+    // If 'where' parameters is empty just return datatables object
+    if (empty($where)) return $this->datatables->generate();
+
+    // Get key from first 'where' parameters
+    $key = array_keys($where)[0];
+
+    // Get value from first 'where' parameters
+    $val = array_values($where)[0];
+
     // Check for 'where' parameters value and send appropriate response
-    if (empty($where)) {
-      return $this->datatables->generate();
-    }
-    // Get first array value from 'where' parameters
-    else if (array_values($where)[0] === '!=0') {
-      $this->datatables->where(array_keys($where)[0] . '!=', array_values($where)[0]);
+    if ($val === '!=0') {
+      $this->datatables->where($key . '!=', $val);
     } else {
-      $this->datatables->where($where);
+      $this->datatables->where($this->table . '.' . $key, $val);
     }
     return $this->datatables->generate();
   }

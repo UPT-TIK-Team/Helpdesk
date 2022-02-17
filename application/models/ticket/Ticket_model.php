@@ -91,14 +91,6 @@ class Ticket_model extends BaseMySQL_model
     return $this->db->where('id_service', $idservice)->get('subservices')->result_array();
   }
 
-  public function getAllPriorities()
-  {
-    return TICKET_PRIORITIES;
-  }
-  public function getAllSeverities()
-  {
-    return TICKET_SEVERITIES;
-  }
   public function getPriority($idSubservice = null)
   {
     if ($idSubservice !== null) return $this->db->select('priority.id, priority.name')->where('subservices.id', $idSubservice)->join('priority', 'subservices.id_priority = priority.id')->get('subservices')->result_array();
