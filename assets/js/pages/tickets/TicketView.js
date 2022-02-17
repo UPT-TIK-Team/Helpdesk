@@ -147,10 +147,10 @@ $(document).ready(function () {
         id: ticket_id,
       },
       meta: {
-        ticket_no: "<?= $info['ticket_no'] ?>",
-        message: message,
-        type: type,
-        plain_txt_message: plain_txt_message,
+        ticket_no,
+        message,
+        type,
+        plain_txt_message,
       },
     };
     data["update_data"][field] = value;

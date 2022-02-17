@@ -201,4 +201,7 @@
     </div>
   </div>
 </section>
+<script>
+  const ticket_no = "<?= $info['ticket_no'] ?>"
+</script>
 <script type="module" src="<?= base_url('assets/js/pages/tickets/TicketView.js') ?>"></script>
