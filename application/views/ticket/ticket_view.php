@@ -1,5 +1,13 @@
 <section class="feeds">
   <div class="container fluid-content ">
+    <?php if ($this->session->flashdata('failed')) : ?>
+      <!-- Handle if login failed -->
+      <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
+      <?php unset($_SESSION['failed']) ?>
+    <?php elseif ($this->session->flashdata('success')) : ?>
+      <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+      <?php unset($_SESSION['success']) ?>
+    <?php endif; ?>
     <div class="row ">
       <div class="col-md-8">
         <div class="row">

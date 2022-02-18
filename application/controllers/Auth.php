@@ -209,8 +209,7 @@ class Auth extends MY_Controller
 	public function logout()
 	{
 		session_destroy();
-		$this->session->set_flashdata('success', 'Logout success');
-		$this->render('auth/login');
+		redirect('auth/login');
 	}
 
 	public function forgotPassword()

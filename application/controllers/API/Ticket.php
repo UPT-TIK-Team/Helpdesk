@@ -44,6 +44,7 @@ class Ticket extends MY_Controller
   public function create()
   {
     $create = $this->Tickets->create($_POST);
+    $this->session->set_flashdata('success', 'Create ticket success, Please check your email for new update');
     $this->sendJSON(array('result' => $create));
   }
 
