@@ -125,30 +125,6 @@ function unauthorized($message = null, $permissionLevels = null)
 	);
 }
 
-//set flashdata message
-function set_msg($key, $value, $data = null)
-{
-	$CI = &get_instance();
-	$msg = 'Please set message';
-	if ($key == 'error') {
-		$msg = '<div class="container-fluid"><div class="alert alert-danger display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/error.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';
-	}
-
-	if ($key == 'success') {
-		$msg = '<div class="container-fluid"><div class="alert alert-success display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/success.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
-	}
-
-
-	if ($key == 'warning') {
-		$msg = $msg = '<div class="container-fluid"><div class="alert alert-warning display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/warning.png' . '" style="width: 25px;"> </b> ' . $value . ' </span></div></div>';;
-	}
-
-	if ($key == 'info') {
-		$msg = $msg = '<div class="container-fluid"><div class="alert alert-info display-hide col-md-12 notification" style="display: block;"><button class="close" data-close="alert"></button><span><b><img src="' . BASE_URL . 'assets/img/alert/info.png' . '" style="width: 25px;"></b> ' . $value . ' </span></div></div>';
-	}
-	$CI->session->set_flashdata("message", $msg);
-}
-
 /**
  * Generate random password
  */

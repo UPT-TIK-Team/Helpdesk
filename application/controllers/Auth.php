@@ -293,7 +293,7 @@ class Auth extends MY_Controller
 			$email = $this->session->userdata('reset_email');
 			$this->db->update('users', ['password' => $password], ['email' => $email]);
 			$this->session->unset_userdata('reset_email');
-			set_msg('success', "Password has been changed, Please login");
+			$this->session->set_flashdata('success', "Password has been changed, Please login");
 			redirect('auth/login');
 		}
 	}
