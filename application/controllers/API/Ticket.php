@@ -161,20 +161,25 @@ class Ticket extends MY_Controller
   {
     $thread_data = [
       'ticket' => htmlspecialchars($this->input->post('ticket_no')),
-      'message' => $this->input->post('message'),
+      'message' => $this->input->post('message', true),
       'data' => json_encode($this->input->post('data')),
       'owner' => $this->Session->getLoggedDetails()['username'],
       'created' => time(),
       'type' => htmlspecialchars($this->input->post('type'))
     ];
-    if (trim($thread_data['message']) == '') {
-      $this->sendJSON(array('result' => -1));
-    } else {
-      $res = $this->Tickets->add_thread($thread_data);
-      if ($thread_data['data'] == null) {
-        $this->Tickets->addAttachmentRef($this->input->post('data')['attachments'],  $this->input->post('ticket_no'));
-      }
-      $this->sendJSON(array('result' => $res));
+
+    $res = $this->Tickets->add_thread($thread_data);
+    if ($thread_data['data'] == null) {
+      $this->Tickets->addAttachmentRef($this->input->post('data')['attachments'],  $this->input->post('ticket_no'));
     }
+
+    // Check if message is null, so length for null values is 11
+    if (strlen($thread_data['message']) === 11) {
+      $data = [
+        'ticket_no' => $thread_data['ticket'],
+      ];
+      sendEmail('new_ticket_message', $data);
+    }
+    $this->sendJSON(array('result' => $res));
   }
 }

@@ -109,7 +109,13 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
-			sendEmail($token, 'verify');
+
+			// Set data for send email
+			$emailData = [
+				'email' => $data['email'],
+				'token' => $token
+			];
+			sendEmail('verify', $emailData);
 			$this->session->set_flashdata('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
@@ -238,8 +244,12 @@ class Auth extends MY_Controller
 			];
 			$this->db->insert('users_token', $userToken);
 
-			// Send token via email
-			sendEmail($token, 'forgotpassword');
+			// Set data for send email
+			$emailData = [
+				'email' => $email,
+				'token' => $token
+			];
+			sendEmail('forgotpassword', $emailData);
 			$this->session->set_flashdata('success', 'Please check your email to reset password');
 			redirect('auth/forgotpassword');
 		}

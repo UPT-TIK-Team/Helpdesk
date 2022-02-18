@@ -146,7 +146,7 @@ function generate_random_password()
  * @param Type
  * @return Bool 
  */
-function sendEmail($token, $type)
+function sendEmail($type = '', $data = array())
 {
 	$CI = &get_instance();
 	$CI->load->library('email');
@@ -164,17 +164,21 @@ function sendEmail($token, $type)
 	];
 	$CI->email->initialize($config);
 	$CI->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
-	$CI->email->to($CI->input->post('email'));
+	$CI->email->to($data['email']);
 
 	// Switch type of email
 	switch ($type) {
 		case 'verify':
 			$CI->email->subject('Account verification');
-			$CI->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $CI->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+			$CI->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Activate</a>');
 			break;
 		case 'forgotpassword':
 			$CI->email->subject('Reset password');
-			$CI->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $CI->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+			$CI->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Reset Password</a>');
+			break;
+		case 'new_ticket_message':
+			$CI->email->subject('Information update for your ticket on Helpdesktik website');
+			$CI->email->message('Click this link to view your ticket updates"' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['message']) . '">Reset Password</a>');
 			break;
 	}
 
