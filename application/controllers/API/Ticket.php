@@ -174,8 +174,10 @@ class Ticket extends MY_Controller
     }
 
     // Check if message is null, so length for null values is 11
-    if (strlen($thread_data['message']) === 11) {
+    if (strlen($thread_data['message']) !== 11) {
+      $email = $this->db->select('email, owner')->from('tickets')->where('ticket_no', $thread_data['ticket'])->join('users', 'users.username=owner')->get()->row_array();
       $data = [
+        'email' => $email['email'],
         'ticket_no' => $thread_data['ticket'],
       ];
       sendEmail('new_ticket_message', $data);

@@ -178,7 +178,7 @@ function sendEmail($type = '', $data = array())
 			break;
 		case 'new_ticket_message':
 			$CI->email->subject('Information update for your ticket on Helpdesktik website');
-			$CI->email->message('Click this link to view your ticket updates"' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['message']) . '">Reset Password</a>');
+			$CI->email->message('Click this link to view your ticket updates ' . base_url('tickets/view_ticket/') . $data['ticket_no']);
 			break;
 	}
 

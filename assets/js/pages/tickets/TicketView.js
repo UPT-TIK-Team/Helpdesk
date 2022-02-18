@@ -120,8 +120,6 @@ $(document).ready(function () {
       // },
 
       success: function (response) {
-        console.log(response);
-        throw new Error();
         if (JSON.parse(response)["data"]["result"]) {
           showNotification("success", "Comment added successfully");
           window.location.reload();
