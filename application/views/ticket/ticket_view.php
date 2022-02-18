@@ -141,7 +141,7 @@
                 <tr>
                   <th>Ticket Status</th>
                   <td>
-                    <?php if ($privilege) : ?>
+                    <?php if ($user_type == USER_ADMIN || USER_MANAGER) : ?>
                       <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;">
                       <?php else : ?>
                         <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
@@ -177,7 +177,7 @@
                 <tr>
                   <th>Assigned to</th>
                   <td>
-                    <?php if ($privilege) : ?>
+                    <?php if ($user_type == USER_MANAGER) : ?>
                       <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;">
                       <?php else : ?>
                         <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>

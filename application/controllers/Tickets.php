@@ -116,7 +116,7 @@ class Tickets extends MY_Controller
     $usertype = $this->Session->getLoggedDetails()['type'];
 
     $data['title'] = 'View Ticket';
-    $data['privilege'] = ($usertype == USER_MANAGER) ? true : false;
+    $data['user_type'] = $usertype;
     $data['ticket_no'] = $ticket_no;
     $ticket_detail = $this->Tickets->get(['ticket_no' => $ticket_no]);
 
