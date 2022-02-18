@@ -499,3 +499,40 @@ function validateEmailAddress(str) {
   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   return reg.test(str) == false ? false : true;
 }
+
+/**
+ * Show sweetalert if flashdata is exist
+ */
+const flashDataType = $(".flash-data").data("type");
+const flashData = $(".flash-data").data("flashdata");
+const htmlIsExist = $(".flash-data").data("html");
+
+// Check flashdatatype condition and show appropriate alert
+if (flashDataType == "success") {
+  Swal.fire({
+    title: "Success",
+    text: flashData,
+    icon: "success",
+  });
+} else if (flashDataType == "failed") {
+  Swal.fire({
+    title: "Failed",
+    text: flashData,
+    icon: "error",
+  });
+} else if (flashDataType === "info") {
+  // Check if html is exist, if true set message type to html so tag like href or etc will show
+  if (htmlIsExist) {
+    Swal.fire({
+      title: "Info",
+      html: flashData,
+      icon: "info",
+    });
+  } else {
+    Swal.fire({
+      title: "Info",
+      text: flashData,
+      icon: "info",
+    });
+  }
+}

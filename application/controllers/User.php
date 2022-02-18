@@ -183,4 +183,14 @@ class User extends MY_Controller
 		$data['user_list'] = $this->Users->getBy(null, $filter);
 		$this->render('user/list', $data);
 	}
+
+	/**
+	 * Function for handle user guide menu
+	 */
+	public function userGuide()
+	{
+		$data['title'] = 'User Guide';
+		if (isset($_SESSION['read_guide_info'])) unset($_SESSION['read_guide_info']);
+		$this->render('user/user_guide', $data);
+	}
 }

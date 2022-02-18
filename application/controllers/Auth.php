@@ -185,6 +185,8 @@ class Auth extends MY_Controller
 			set_msg('error', $result);
 			return false;
 		} else {
+			// Set flashdata so user must read guide first
+			$this->session->set_flashdata('read_guide_info', true);
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
 			switch ($this->Session->getUserType()) {
 				case USER_ADMIN:

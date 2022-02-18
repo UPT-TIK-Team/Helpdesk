@@ -1,7 +1,7 @@
-<!-- Comment Section-->
-
 <div class="container" style="padding:0; margin-top: -4em;">
-
+  <?php if ($this->session->flashdata('read_guide_info')) : ?>
+    <div class="flash-data" data-type="info" data-flashdata="Please check user guide in <a href='<?= base_url('user/userGuide') ?>'>here !</a>" data-html="true"></div>
+  <?php endif; ?>
   <!--Dashboard counts-->
   <section class="dashboard-header no-padding-bottom col-left-no-padding" style="margin-top: 4em;">
     <div class="container">
