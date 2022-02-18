@@ -82,15 +82,6 @@ $(document).ready(function () {
 
   var materialInputs = $("input.input-material");
 
-  // activate labels for prefilled values
-  materialInputs
-    .filter(function () {
-      console.log($(this).val());
-      return $(this).val() !== "";
-    })
-    .siblings(".label-material")
-    .addClass("active");
-
   // move label on focus
   materialInputs.on("focus", function () {
     $(this).siblings(".label-material").addClass("active");
