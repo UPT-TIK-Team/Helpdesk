@@ -29,13 +29,10 @@ class Auth extends MY_Controller
 		return false;
 	}
 
-
-
 	public function index()
 	{
 		$this->load->view('auth/home');
 	}
-
 
 	/**
 	 * unauthorized landing page
@@ -212,7 +209,8 @@ class Auth extends MY_Controller
 	public function logout()
 	{
 		session_destroy();
-		redirect(URL_LOGIN);
+		$this->session->set_flashdata('success', 'Logout success');
+		$this->render('auth/login');
 	}
 
 	public function forgotPassword()
