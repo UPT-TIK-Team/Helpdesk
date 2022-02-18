@@ -1,4 +1,5 @@
 <!-- JavaScript files-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?= BASE_URL ?>assets/js/plugins/jquery/jquery.min.js"></script>
 <script src="<?= BASE_URL ?>assets/js/plugins/popper.js/umd/popper.min.js"> </script>
 <script src="<?= BASE_URL ?>assets/js/plugins/bootstrap/js/bootstrap.min.js"></script>

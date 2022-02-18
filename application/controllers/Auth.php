@@ -113,7 +113,7 @@ class Auth extends MY_Controller
 			$this->db->insert('users', $data);
 			$this->db->insert('users_token', $userToken);
 			sendEmail($token, 'verify');
-			set_msg('success', "Congratulation! Check your email to activate your account");
+			$this->session->set_flashdata('success', "Congratulation! Check your email to activate your account");
 			redirect('auth/login');
 		}
 	}
@@ -132,26 +132,29 @@ class Auth extends MY_Controller
 	 */
 	public function verify()
 	{
-		$email = $this->input->get('email', true);
+		$email = htmlspecialchars($this->input->get('email', true));
 		$token = $this->input->get('token', true);
 		$user = $this->User->getUsersBy('users', ['email' => $email]);
 		if (!$user) {
-			set_msg('error', "Account activation failed! wrong email address");
+			$this->session->set_flashdata('failed', "Account activation failed! wrong email address");
 			redirect('auth/login');
 		}
 		$user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
 		if (!$user_token) {
-			set_msg('error', "Account activation failed! wrong token");
+			$this->session->set_flashdata('failed', "Account activation failed! wrong token");
 			redirect('auth/login');
 		}
+
+		// Handle if token expired
+		// Set token expired only one day, redirect login page if more than one day
 		if (time() - $user_token['date_created'] > 60 * 60 * 24) {
 			$this->db->delete('users', ['email' => $email]);
-			set_msg('error', "Account activation failed! token expired");
+			$this->session->set_flashdata('failed', "Account activation failed! token expired");
 			redirect('auth/login');
 		}
 		$this->db->update('users', ['status' => 1], ['email' => $email]);
 		$this->db->delete('users_token', ['email' => $email]);
-		set_msg('success', "Account activation success, please login to continue");
+		$this->session->set_flashdata('success', "Account activation success, please login to continue");
 		redirect('auth/login');
 	}
 
@@ -181,13 +184,17 @@ class Auth extends MY_Controller
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
-		if ($result === "Check your email to activate your account!" || $result === "Wrong password" || $result === "User not found") {
-			set_msg('error', $result);
+
+		// Check result if array it means that it doesn't contains error
+		if (!is_array($result)) {
+			$this->session->set_flashdata('failed', $result);
 			return false;
 		} else {
 			// Set flashdata so user must read guide first
-			$this->session->set_flashdata('read_guide_info', true);
+			$this->session->set_flashdata('info', true);
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
+
+			// Redirect to appropriate url
 			switch ($this->Session->getUserType()) {
 				case USER_ADMIN:
 					redirect(URL_POST_LOGIN_ADMIN);
@@ -214,21 +221,29 @@ class Auth extends MY_Controller
 		if ($this->form_validation->run() == false) {
 			$this->render('auth/forgot_password');
 		} else {
-			$email = $this->input->post('email', true);
+			$email = htmlspecialchars($this->input->post('email', true));
 			$user = $this->db->get_where('users', ['email' => $email, 'status' => 1])->row_array();
+
+			// If user not found just redirect to forgotpassword page and set alert
 			if (!$user) {
-				set_msg('error', "Email is not registered or activated");
+				$this->session->set_flashdata('failed', 'Email is not registered or activated');
 				redirect('auth/forgotpassword');
 			}
+
+			// Create token from random byte
 			$token = base64_encode(random_bytes(32));
+
+			// Prepare data for inserting in database
 			$userToken = [
 				'email' => $email,
 				'token' => $token,
 				'date_created' => time()
 			];
 			$this->db->insert('users_token', $userToken);
+
+			// Send token via email
 			sendEmail($token, 'forgotpassword');
-			set_msg('success', "Please check your email to reset password");
+			$this->session->set_flashdata('success', 'Please check your email to reset password');
 			redirect('auth/forgotpassword');
 		}
 	}
@@ -239,12 +254,12 @@ class Auth extends MY_Controller
 		$token = $this->input->get('token', true);
 		$user = $this->db->get_where('users', ['email' => $email])->row_array();
 		if (!$user) {
-			set_msg('error', "Reset password failed");
+			$this->session->set_flashdata('failed', 'Reset password failed');
 			redirect('auth/login');
 		}
 		$user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
 		if (!$user_token) {
-			set_msg('error', "Account activation failed! wrong token");
+			$this->session->set_flashdata('failed', 'Account activation failed! wrong token');
 			redirect('auth/login');
 		}
 		$this->session->set_userdata('reset_email', $email);

@@ -2,6 +2,16 @@
   <div class="container d-flex align-items-center">
     <div class="form-holder has-shadow">
       <div class="row">
+        <?php if ($this->session->flashdata('failed')) : ?>
+          <!-- Handle if email failed sent -->
+          <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
+          <?php unset($_SESSION['failed']) ?>
+
+        <?php elseif ($this->session->flashdata('success')) : ?>
+          <!-- Handle if email successfully sent -->
+          <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+          <?php unset($_SESSION['success']) ?>
+        <?php endif; ?>
         <!-- Logo & Information Panel-->
         <div class="col-lg-6">
           <div class="info d-flex align-items-center">
@@ -14,7 +24,6 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
-              <?= $this->session->flashdata('message') ?>
               <form method="post" class="form-validate">
                 <div class="form-group">
                   <input id="email" type="text" name="email" required data-msg="Please enter your email" class="input-material">

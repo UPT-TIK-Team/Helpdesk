@@ -10,21 +10,21 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class=" control-label">Username<code>*</code></label>
-						<input type="text" id="username" name="username" class="form-control empty required" placeholder="" minlength="3" maxlength="30" required value="<?= set_value('username') ?>">
+						<input type="text" id="username" name="username" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" class="form-control empty required" placeholder="your name" minlength="3" maxlength="30" required value="<?= set_value('username') ?>">
 						<?= form_error('username', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Email address</label><code>*</code>
-						<input type="email" id="email" name="email" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@unsika.ac.id">
+						<input type="email" id="email" name="email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@unsika.ac.id">
 						<?= form_error('email', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class=" control-label">Phone Number</label><code>*</code>
-						<input type="text" id="phoneNumber" name="phoneNumber" class="form-control empty user-existance-validation" required placeholder="0812999999" minlength="10" maxlength="15" value="<?= set_value('phoneNumber') ?>">
+						<input type="text" id="phoneNumber" name="phoneNumber" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" class="form-control empty user-existance-validation" required placeholder="0812999999" minlength="10" maxlength="15" value="<?= set_value('phoneNumber') ?>">
 						<?= form_error('phoneNumber', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>

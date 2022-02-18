@@ -190,7 +190,6 @@ class User extends MY_Controller
 	public function userGuide()
 	{
 		$data['title'] = 'User Guide';
-		if (isset($_SESSION['read_guide_info'])) unset($_SESSION['read_guide_info']);
 		$this->render('user/user_guide', $data);
 	}
 }
