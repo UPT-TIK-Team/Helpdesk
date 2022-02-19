@@ -66,6 +66,8 @@
                             <input id="fileInput" type="file" class="custom-file-input">
                             <label class="custom-file-label" for="customFile">Choose
                               file</label>
+                            <ul id="attached_files">
+                            </ul>
                           </div>
                         </div>
                       </div>
@@ -77,10 +79,7 @@
                       <input type="hidden" class="form-control" id="file_submit_result_tbox">
                     </div>
                     <div class="row" style="margin-top: 1em;">
-                      <div class="offset-2 col-md-6">
-                        <ul id="attached_files">
-                        </ul>
-                      </div>
+                      <div class="col-md-12" id="result_create_ticket"></div>
                     </div>
                     <div class="form-group">
                       <div class="col-sm-12 ml-3">
@@ -89,12 +88,7 @@
                     </div>
                   </form>
                 <?php endif; ?>
-
               </div>
-            </div>
-
-            <div class="row" style="margin-top: 1em;">
-              <div class="col-md-12" id="result_create_ticket"></div>
             </div>
           </div>
         </div>

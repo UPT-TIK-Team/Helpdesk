@@ -9,8 +9,12 @@ $(document).ready(function () {
 
   //call a function to handle file upload on select file
   $("input[type=file]").on("change", function (e) {
+    $("#result_create_ticket").html(
+      `<img src="${BASE_URL}/assets/img/loading.gif" class="pull-right" style="width: 30px;">`
+    );
     fileUpload(e, `${BASE_URL}API/Ticket/upload_attachment`, function (res) {
       if (res) {
+        $("#result_create_ticket").html("");
         attached_files.push(res);
         var attached_link = getAttachmentLabel(res.file_name, res.path);
         $("#attached_files").append(
@@ -113,17 +117,16 @@ $(document).ready(function () {
         data: data,
         type: 1,
       },
-
-      // beforeSend: function () {
-      //   $("#au_result").html(
-      //     '<img src="../../../assets/img/loader.gif" class="pull-right" style="width: 30px;">'
-      //   );
-      // },
-
+      beforeSend: function () {
+        $("#result_create_ticket").html(
+          `<img src="${BASE_URL}/assets/img/loading.gif" class="pull-right" style="width: 30px;">`
+        );
+      },
       success: function (response) {
         if (JSON.parse(response)["data"]["result"]) {
-          showNotification("success", "Comment added successfully");
-          window.location.reload();
+          showNotification("success", "Comment added successfully", {}, () => {
+            window.location.reload();
+          });
         } else showNotification("error", "Some error occured");
       },
     });

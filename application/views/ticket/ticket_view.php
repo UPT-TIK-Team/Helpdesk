@@ -106,9 +106,14 @@
                     <div class="col-sm-12">
                       <div class="custom-file">
                         <input id="fileInput" type="file" class="custom-file-input">
-                        <label class="custom-file-label" for="customFile" id="attached_files">Choose file</label>
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <ul id="attached_files">
+                        </ul>
                       </div>
                     </div>
+                  </div>
+                  <div class="row" style="margin-top: 1em;">
+                    <div class="col-md-12" id="result_create_ticket"></div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
