@@ -120,7 +120,6 @@ class Ticket_model extends BaseMySQL_model
   public function add_thread($data, $sendEmail = FALSE)
   {
     $res = $this->db->insert(TABLE_MESSAGES, $data);
-    $info = parent::getBy(array('owner', 'ticket_no'), array('ticket_no' => $data['ticket']));
     return $res;
   }
 

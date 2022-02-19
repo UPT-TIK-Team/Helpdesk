@@ -130,20 +130,13 @@ $(document).ready(function () {
   });
 
   $("select.form-control").on("change", function () {
-    var field = $(this).attr("name");
-    var value = this.value;
-    var ticket_id = $(this).attr("data-id");
-    var message =
-      "Changed " +
-      field +
-      " to <span class='tik-" +
-      field +
-      "' data-value=" +
-      value +
-      "></span>";
-    var plain_txt_message = "Changed " + field + " to " + value + ".";
-    var type = parseInt($(this).attr("data-type"));
-    var data = {
+    let field = $(this).attr("name");
+    let value = this.value;
+    let ticket_id = $(this).attr("data-id");
+    let message = `Changed ${field} to <span class="tik-${field}" data-value="${value}"></span>`;
+    let plain_txt_message = "Changed " + field + " to " + value + ".";
+    let type = parseInt($(this).attr("data-type"));
+    let data = {
       update_data: {
         id: ticket_id,
       },
@@ -155,17 +148,19 @@ $(document).ready(function () {
       },
     };
     data["update_data"][field] = value;
+
+    // Handle if field assign to is change, so send only id from agent
     if (field === "assign_to") {
-      message = data["meta"]["message"] =
-        'Changed assigned to <span class="user-label" data-username="' +
-        value +
-        '"></span>';
-      plain_txt_message = data["meta"]["plain_txt_message"] =
-        "Changed assignee to " + value + ".";
+      // Get text from select2 dropdown
+      const text = $("select.form-control").select2("data")[0].text;
+      data["update_data"][field] = value;
+      data.meta.message = `Changed assigned to <span class="user-label" data-value="${text}" data-username="${text}"></span>`;
+      data.meta.plain_txt_message = `Changed assigned to ${text}.`;
       data["update_data"]["assign_on"] = Date.now();
       data["update_data"]["status"] = 50; //hardcoded assigned status;
     }
 
+    // Send data using ajax
     $.ajax({
       type: "POST",
       url: `${BASE_URL}API/Ticket/updateTicket`,
@@ -178,7 +173,7 @@ $(document).ready(function () {
       // },
       success: function (response) {
         if (JSON.parse(response)["data"]["result"]) {
-          showNotification("success", message, {}, () =>
+          showNotification("success", data.meta.message, {}, () =>
             window.location.reload()
           );
         } else {
@@ -191,7 +186,7 @@ $(document).ready(function () {
   $.get(BASE_URL + "API/User/getAll?type=[60]", function (data) {
     $("#assign_to_dd").select2({
       data: data.data.map((data) => {
-        return { id: data.id, text: data.email };
+        return { id: data.id, text: data.username };
       }),
     });
   });

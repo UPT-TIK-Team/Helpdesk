@@ -1,6 +1,4 @@
 <?php
-
-
 class Tickets extends MY_Controller
 {
   private $id;
@@ -139,15 +137,15 @@ class Tickets extends MY_Controller
       // Execute join table query
       $data['info'] = $this->Tickets->getTableJoin($select, $where, $join, $column, $as);
 
-      // Set users_email to null
-      $data['info']['users_email'] = '';
+      // Set username to empty
+      $data['info']['username'] = '';
     } else {
       // Fill parameter value
       $select = null;
       $where = ['ticket_no' => $ticket_no];
       $join = ['services', 'subservices', 'priority', 'status', 'users'];
       $column = ['id_service', 'id_subservice', 'id_priority', 'status', 'assign_to'];
-      $as = 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status, users.email as users_email';
+      $as = 'services.name as name_service, subservices.name as name_subservice, priority.name as name_priority,  status.name as name_status, username';
 
       // Execute join table query
       $data['info'] = $this->Tickets->getTableJoin($select, $where, $join, $column, $as);
