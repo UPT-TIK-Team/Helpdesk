@@ -3,6 +3,7 @@ import {
   fileUpload,
   getAttachmentLabel,
 } from "../../main/library.js";
+
 $(document).ready(function () {
   var attached_files = [];
 
@@ -193,6 +194,12 @@ $(document).ready(function () {
         return { id: data.id, text: data.email };
       }),
     });
+  });
+
+  // Check if quill editor is empty
+  cquill.on("text-change", () => {
+    if (cquill.getLength() > 1) return $("#reply").removeAttr("disabled");
+    return $("#reply").prop("disabled", true);
   });
 });
 

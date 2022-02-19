@@ -112,7 +112,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>">Reply <i class="fa fa-reply"></i>
+                      <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>" disabled>Reply <i class="fa fa-reply"></i>
                       </button>
                     </div>
                   </div>
