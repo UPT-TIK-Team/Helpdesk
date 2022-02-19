@@ -6,8 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?= PRODUCT_NAME ?> | <?= $title ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS-->
-
+  <!-- Load necessary javascript files -->
+  <script src="<?= base_url('assets/js/plugins/jquery/jquery.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/chart.js/Chart.min.js') ?>"></script>
+  <!-- Style for loader class -->
   <style>
     .loader {
       position: fixed;
@@ -36,15 +38,12 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-  <link href="<?= base_url('assets/css/select2.min.css') ?>" rel="stylesheet" />
-  <script src="<?= base_url('assets/js/main/jquery.min.js') ?>"></script>
-  <script src="<?= base_url('assets/js/plugins/chart.js/Chart.min.js') ?>"></script>
+  <link href="<?= base_url('assets/js/plugins/select2/select2.min.css') ?>" rel="stylesheet" />
 
 </head>
 
 <body>
   <div class="loader"></div>
-
   <div class="page">
     <!-- Main Navbar-->
     <header class="header">
@@ -91,7 +90,6 @@
           <!-- TODO: Change below session data fetching !-->
           <?php include_once "menus/" . $this->session->userdata('sessions_details')['type'] . ".php"; ?>
         </ul>
-
       </nav>
       <div class="content-inner">
         <!-- Page Header-->
