@@ -12,9 +12,12 @@ $(document).ready(function () {
     $("#result_create_ticket").html(
       `<img src="${BASE_URL}/assets/img/loading.gif" class="pull-right" style="width: 30px;">`
     );
+    // Disable file input until success upload data
+    $("#fileInput").prop("disabled", true);
     fileUpload(e, `${BASE_URL}API/Ticket/upload_attachment`, function (res) {
       if (res) {
         $("#result_create_ticket").html("");
+        $("#fileInput").prop("disabled", false);
         attached_files.push(res);
         var attached_link = getAttachmentLabel(res.file_name, res.path);
         $("#attached_files").append(
