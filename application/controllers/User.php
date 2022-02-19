@@ -10,6 +10,7 @@ class User extends MY_Controller
 		$this->load->model('core/Session_model', 'Session');
 		$this->load->model('ticket/Threads_model', 'Tickets');
 		$this->load->model('user/User_model', 'Users');
+		if ($this->session->flashdata('new_update')) redirect(base_url($this->session->flashdata('new_update')));
 	}
 
 	public function dashboard()
@@ -19,14 +20,11 @@ class User extends MY_Controller
 		$id = $this->session->userdata()['sessions_details']['id'];
 		$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
 
-		/**
-		 * If refresh token is available set new access token from google client
-		 */
+		// If refresh token is available set new access token from google client
 		if ($userdata['refresh_token']) {
 			$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
 			$this->session->set_userdata('access_token', $newAccessToken['access_token']);
 		}
-
 		switch ($role) {
 			case USER_MEMBER:
 				$this->dashboard_member();

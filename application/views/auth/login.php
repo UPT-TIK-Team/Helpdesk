@@ -2,7 +2,6 @@
   <div class="container d-flex align-items-center">
     <div class="form-holder has-shadow">
       <div class="row">
-
         <?php if ($this->session->flashdata('failed')) : ?>
           <!-- Handle if login failed -->
           <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
@@ -10,6 +9,9 @@
         <?php elseif ($this->session->flashdata('success')) : ?>
           <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
           <?php unset($_SESSION['success']) ?>
+        <?php elseif ($this->session->flashdata('new_update')) :  ?>
+          <!-- Handle if login failed -->
+          <div class="flash-data" data-type="failed" data-flashdata="Please login to continue!"></div>
         <?php endif; ?>
 
         <!-- Logo & Information Panel-->

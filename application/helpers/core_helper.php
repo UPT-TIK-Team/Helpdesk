@@ -178,7 +178,7 @@ function sendEmail($type = '', $data = array())
 			break;
 		case 'new_ticket_message':
 			$CI->email->subject('Information update for your ticket on Helpdesktik website');
-			$CI->email->message('Click this link to view your ticket updates ' . base_url('tickets/view_ticket/') . $data['ticket_no']);
+			$CI->email->message('Click this link to view your ticket updates ' . base_url('tickets/view_ticket/') . $data['ticket_no'] . '?new_update=true');
 			break;
 	}
 

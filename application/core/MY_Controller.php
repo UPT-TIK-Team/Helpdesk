@@ -55,6 +55,7 @@ class MY_Controller extends CI_Controller
 	 */
 	protected function requireLogin()
 	{
+		if (isset($_REQUEST['new_update'])) $this->session->set_flashdata('new_update', array_key_first($_REQUEST));
 		if (!$this->Session->isLoggedin()) {
 			redirect(URL_LOGIN);
 			//Warning: Stop the execution, don't use this method in other places.

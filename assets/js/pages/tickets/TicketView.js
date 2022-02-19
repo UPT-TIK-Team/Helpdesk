@@ -104,6 +104,7 @@ $(document).ready(function () {
 
   $("#reply").on("click", function (e) {
     e.preventDefault();
+    $("#reply").prop("disabled", true);
     var ticket_no = $(this).attr("data-ticket-no");
     var message = cquill.root.innerHTML;
     var data = {

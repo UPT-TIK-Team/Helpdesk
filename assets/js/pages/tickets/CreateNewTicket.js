@@ -104,6 +104,7 @@ $(document).ready(function () {
   // create new ticket
   $("#create_ticket").on("click", function (a) {
     a.preventDefault();
+    $("#create_ticket").prop("disabled", true);
     const id_service = parseInt($("#service").val());
     const id_subservice = parseInt($("#subservice").val());
     const id_priority = parseInt($("#priority").val());

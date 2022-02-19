@@ -9,6 +9,7 @@ class Tickets extends MY_Controller
     $this->load->model('ticket/Ticket_model', 'Tickets');
     $this->load->model('user/User_model', 'Users');
     $this->load->model('ticket/Messages_model', 'Messages');
+    // Check change password session, if exist redirect to change password page
     if ($this->session->flashdata('change_password')) redirect(BASE_URL . 'user/change_password');
     $this->id = $this->session->userdata()['sessions_details']['id'];
   }
