@@ -58,7 +58,7 @@
 <script type="module" src="<?= base_url('assets/js/main/front.js') ?>"></script>
 <script type="module" src="<?= base_url('assets/js/main/library.js') ?>"></script>
 <script type="module" src="<?= base_url() ?>assets/js/main/tik-script.js"></script>
-<script src="<?= base_url('assets/js/main/bootstrap.bundle.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <script src="//code-eu1.jivosite.com/widget/jxLWhHG4Qu" async></script>
 </body>
 

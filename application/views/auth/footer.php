@@ -9,7 +9,7 @@
 <script type="module" src="<?= base_url('assets/js/main/front.js') ?>"></script>
 <script type="module" src="<?= base_url('assets/js/main/tik-script.js') ?>"></script>
 <script type="module" src="<?= base_url('assets/js/main/library.js') ?>"></script>
-<script src="<?= BASE_URL ?>assets/js/main/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_URL ?>assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Main File-->
 </body>
 
