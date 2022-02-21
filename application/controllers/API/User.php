@@ -33,17 +33,27 @@ class User extends MY_Controller
    */
   public function change_password()
   {
-    $user_id = $this->Session->getLoggedDetails()['id'];
+    $user_detail = $this->Session->getLoggedDetails();
     $new_password = $this->input->post('new_password');
-    $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT), 'updated' => time()];
-    $update = $this->Users->update($user_id, $update);
-    if ($update) {
-      // Change status in session to active
+    $update = [];
+    // Handle if user type is agent
+    if ($user_detail['type'] == USER_AGENT) {
+      $update = ['status' => USER_STATUS_ACTIVE, 'password' => password_hash($new_password, PASSWORD_DEFAULT), 'updated' => time()];
+      $update = $this->Users->update($user_detail['id'], $update);
+      // // Change status in session to active
       $_SESSION['sessions_details']['status'] = USER_STATUS_ACTIVE;
       // Unset session['change_password]
       unset($_SESSION['change_password']);
-      redirect(base_url('user/dashboard'));
+      // Set update account session, if username is null so agent must update the account
+      if ($user_detail['username'] === '') {
+        $this->session->set_flashdata('update_account', 'Please update your account');
+        redirect('user/profile_update');
+      }
+      redirect('user/dashboard');
     }
+    $update = ['password' => password_hash($new_password, PASSWORD_DEFAULT), 'updated' => time()];
+    $update = $this->Users->update($user_detail['id'], $update);
+    redirect('user/dashboard');
   }
 
   public function add_user()

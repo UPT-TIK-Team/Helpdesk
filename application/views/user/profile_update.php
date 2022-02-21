@@ -2,6 +2,10 @@
 <section class="">
   <div class="container-fluid">
     <div class="row">
+      <!-- Handle alert if username from agent is null -->
+      <?php if ($this->session->flashdata('update_account')) : ?>
+        <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('update_account') ?>"></div>
+      <?php endif; ?>
       <div class="col-lg-12">
         <div class="card">
           <div class="card-header d-flex align-items-center">

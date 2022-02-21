@@ -9,14 +9,15 @@ class Tickets extends MY_Controller
     $this->load->model('ticket/Ticket_model', 'Tickets');
     $this->load->model('user/User_model', 'Users');
     $this->load->model('ticket/Messages_model', 'Messages');
+    $this->id = $this->session->userdata()['sessions_details']['id'];
     // Check change password session, if exist redirect to change password page
     if ($this->session->flashdata('change_password')) redirect(BASE_URL . 'user/change_password');
-    $this->id = $this->session->userdata()['sessions_details']['id'];
+    // Check in session if update account is exist it mean username from actual user is null,so redirect to profile update pages
+    if ($this->session->flashdata('update_account')) redirect('user/profile_update');
   }
 
   public function create_new()
   {
-    $id = $this->session->userdata()['sessions_details']['id'];
     if (!$this->session->userdata('access_token')) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/create_new');
       $loginButton = '<a href="' . $this->client->createAuthUrl() . '" >Unsika Google Email!</a>';
@@ -24,7 +25,7 @@ class Tickets extends MY_Controller
     }
     if (isset($_GET["code"])) {
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
-      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $id]);
+      $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $this->id]);
       $this->session->set_userdata('access_token', $token['access_token']);
     }
     $data['title'] = 'Create Ticket';

@@ -11,7 +11,7 @@ class User extends MY_Controller
 		$this->load->model('ticket/Threads_model', 'Tickets');
 		$this->load->model('user/User_model', 'Users');
 		// Check new_update session, if session exist redirect to destination url
-		if ($this->session->flashdata('new_update')) redirect(base_url($this->session->flashdata('new_update')));
+		if (isset($_SESSION['new_update'])) redirect(base_url($this->session->flashdata('new_update')));
 	}
 
 	public function dashboard()
@@ -63,10 +63,13 @@ class User extends MY_Controller
 		$data['stats']['closed_tickets'] = count($this->Tickets->getBy(null, array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED)));
 		$data['recent']['assigned'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_ASSIGNED), 5);
 		$data['recent']['closed'] = $this->Tickets->get_ticket_where_limit(array('assign_to' => $agent_id, 'status' => TICKET_STATUS_CLOSED), 5);
+		// Check in session if status inactive, redirect to change password pages
 		if ((int)$this->Session->getLoggedDetails()['status'] === USER_STATUS_INACTIVE) {
 			$this->session->set_flashdata('change_password', 'Please change your password');
 			redirect(BASE_URL . 'user/change_password');
 		}
+		// Check in session if update account is exist it mean username from actual user is null,so redirect to profile update pages
+		if ($this->session->flashdata('update_account')) redirect('user/profile_update');
 		$this->render('user/dashboard', $data);
 	}
 
@@ -115,8 +118,8 @@ class User extends MY_Controller
 	public function profile()
 	{
 		$data['title'] = 'Profile';
-		$username = $this->Session->getLoggedDetails()['username'];
-		$data['user_details'] = $this->Users->getUserBy(array('username' => $username));
+		$id = $this->Session->getLoggedDetails()['id'];
+		$data['user_details'] = $this->Users->getUserBy(array('id' => $id));
 		$this->render('user/profile', $data);
 	}
 
@@ -195,6 +198,7 @@ class User extends MY_Controller
 				'mobile' => htmlspecialchars($this->input->post('mobile', true))
 			];
 			$this->Users->updateProfile($data);
+			if ($this->session->flashdata('update_account')) unset($_SESSION['update_account']);
 			redirect('user/profile');
 		}
 	}

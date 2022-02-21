@@ -55,6 +55,7 @@ class MY_Controller extends CI_Controller
 	 */
 	protected function requireLogin()
 	{
+		// Handle if new update for ticket is provided in url
 		if (isset($_REQUEST['new_update'])) $this->session->set_flashdata('new_update', array_key_first($_REQUEST));
 		if (!$this->Session->isLoggedin()) {
 			redirect(URL_LOGIN);
