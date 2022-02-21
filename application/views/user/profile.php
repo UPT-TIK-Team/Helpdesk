@@ -48,7 +48,7 @@
                         <div class="col-md-12 p-2">
                             <div class="row p-2 ">
                                 <a href="<?= BASE_URL ?>user/change_password" class="btn btn-secondary pull-right mr-3">Change Password</a>
-                                <!-- <a href="<?= BASE_URL ?>user/profile_update" class="btn btn-success pull-right">Update Profile</a> -->
+                                <a href="<?= BASE_URL ?>user/profile_update" class="btn btn-success pull-right">Update Profile</a>
                             </div>
                         </div>
 

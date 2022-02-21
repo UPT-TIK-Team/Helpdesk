@@ -126,8 +126,8 @@ class Auth extends MY_Controller
 	 */
 	public function validate_email($email)
 	{
-		// Return not false if email contains '@unsika.ac.id'
-		return strpos($email, '@unsika.ac.id') !== false;
+		// Return not false if email contains 'unsika.ac.id'
+		return strpos($email, 'unsika.ac.id') !== false;
 	}
 
 	/**
@@ -187,16 +187,14 @@ class Auth extends MY_Controller
 			'password'  => $password,
 		);
 		$result = $this->Auth->login($authData);
-
 		// Check result if array it means that it doesn't contains error
 		if (!is_array($result)) {
 			$this->session->set_flashdata('failed', $result);
 			return false;
 		} else {
-			// Set flashdata so user must read guide first
-			$this->session->set_flashdata('info', true);
+			// If user type equal to '10', set flashdata so users must read guide first
+			if ($result['type'] === '10') $this->session->set_flashdata('info', true);
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
-
 			// Redirect to appropriate url
 			switch ($this->Session->getUserType()) {
 				case USER_ADMIN:

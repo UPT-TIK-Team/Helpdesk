@@ -10,6 +10,7 @@ class User extends MY_Controller
 		$this->load->model('core/Session_model', 'Session');
 		$this->load->model('ticket/Threads_model', 'Tickets');
 		$this->load->model('user/User_model', 'Users');
+		// Check new_update session, if session exist redirect to destination url
 		if ($this->session->flashdata('new_update')) redirect(base_url($this->session->flashdata('new_update')));
 	}
 
@@ -19,7 +20,6 @@ class User extends MY_Controller
 		$role = (int)($this->Session->getUserType());
 		$id = $this->session->userdata()['sessions_details']['id'];
 		$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
-
 		// If refresh token is available set new access token from google client
 		if ($userdata['refresh_token']) {
 			$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
@@ -129,11 +129,86 @@ class User extends MY_Controller
 
 	public function profile_update()
 	{
-		$data['title'] = 'Profile Update';
+		// Get user details by username
 		$username = $this->Session->getLoggedDetails()['username'];
 		$data['user_details'] = $this->Users->getUserBy(array('username' => $username));
-		$this->render('user/profile_update', $data);
+		// Initial is_unique as array of object
+		$is_unique = [
+			'username' => '',
+			'email' => '',
+			'mobile' => ''
+		];
+		// Set is unique array based on username field
+		if ($this->input->post('username') !== $data['user_details']['username']) {
+			$is_unique['username'] = '|is_unique[users.username]';
+		} else {
+			$is_unique['username'] = '';
+		}
+		// Set is unique array based on email field
+		if ($this->input->post('email') !== $data['user_details']['email']) {
+			$is_unique['email'] = '|is_unique[users.email]';
+		} else {
+			$is_unique['email'] = '';
+		}
+		// Set is unique array based on mobile field
+		if ($this->input->post('mobile') !== $data['user_details']['mobile']) {
+			$is_unique['mobile'] = '|is_unique[users.mobile]';
+		} else {
+			$is_unique['mobile'] = '';
+		}
+		$config = [
+			[
+				'field' => 'username',
+				'label' => 'username',
+				'rules' => 'required|trim' . $is_unique['username'],
+				'errors' => [
+					'is_unique' => 'This username has already registered'
+				]
+			],
+			[
+				'field' => 'email',
+				'label' => 'email',
+				'rules' => 'required|trim|valid_email|callback_validate_email' . $is_unique['email'],
+				'errors' => [
+					'is_unique' => 'This email has already registered',
+					'validate_email' => 'Please use unsika email'
+				]
+			],
+			[
+				'field' => 'mobile',
+				'label' => 'mobile',
+				'rules' => 'required|trim' . $is_unique['mobile'],
+				'errors' => [
+					'is_unique' => 'This phone has already registered'
+				]
+			],
+		];
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run() === false) {
+			$data['title'] = 'Profile Update';
+			$this->render('user/profile_update', $data);
+		} else {
+			$data = [
+				'id' => $data['user_details']['id'],
+				'username' => htmlspecialchars($this->input->post('username', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'mobile' => htmlspecialchars($this->input->post('mobile', true))
+			];
+			$this->Users->updateProfile($data);
+			redirect('user/profile');
+		}
 	}
+
+
+	/**
+	 * Function to validate unsika email
+	 */
+	function validate_email($email)
+	{
+		// Return not false if email contains 'unsika.ac.id'
+		return strpos($email, 'unsika.ac.id') !== false;
+	}
+
 
 	public function list()
 	{

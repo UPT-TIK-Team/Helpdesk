@@ -85,21 +85,9 @@ class User_model extends BaseMySQL_model
 		}
 	}
 
-	public function updateProfile($info, $files, $allow_specific_edits, $uid = null)
+	public function updateProfile($data)
 	{
-		$fields = array('gender', 'city', 'state', 'dob', 'address', 'meta');
-		$specific_edits = array('name', 'father', 'mobile', 'email');
-		if ($allow_specific_edits)
-			$fields = array_merge($fields, $specific_edits);
-
-		$member = getValuesOfKeys($info, $fields);
-		$member['meta'] = 'AltMob:' . $info['mobile2'];
-		if ($files)
-			$this->uploadProfilePicture($uid, 'profile', $files['profile']['name']);
-		if (!$uid)
-			$uid = $this->Session->getLoggedUsername();
-		$result = parent::setByID($uid, $member);
-		return $result;
+		return $this->db->update('users', $data, ['id' => $data['id']]);
 	}
 
 	public function getUserByUsernameAndUid($username, $uid)
