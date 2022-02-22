@@ -453,6 +453,7 @@ export function fileUpload(event, path, cb) {
       showNotification("error", "Sorry, your file is too large (>2 MB)");
       // Set timeout 3s to reset create ticket button
       setTimeout(() => {
+        $("#fileInput").prop("disabled", false);
         $("#result_create_ticket").html("");
         $("#create_ticket").prop("disabled", false);
       }, 3000);
