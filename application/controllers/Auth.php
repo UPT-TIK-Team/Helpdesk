@@ -116,7 +116,7 @@ class Auth extends MY_Controller
 				'token' => $token
 			];
 			sendEmail('verify', $emailData);
-			$this->session->set_flashdata('success', "Congratulation! Check your email to activate your account");
+			$this->session->set_flashdata('success', "Congratulation! Check your email to activate your account, if email not found please check SPAM");
 			redirect('auth/login');
 		}
 	}
