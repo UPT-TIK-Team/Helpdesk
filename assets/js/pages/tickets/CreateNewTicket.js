@@ -14,10 +14,16 @@ $(document).ready(function () {
     );
     // Disable file input until success upload data
     $("#fileInput").prop("disabled", true);
+    // Disable create ticket button until success upload data
+    $("#create_ticket").prop("disabled", true);
     fileUpload(e, `${BASE_URL}API/Ticket/upload_attachment`, function (res) {
       if (res) {
+        // Reset loading animation
         $("#result_create_ticket").html("");
+        // Enable file input
         $("#fileInput").prop("disabled", false);
+        // Enable create ticket button until success upload data
+        $("#create_ticket").prop("disabled", false);
         attached_files.push(res);
         var attached_link = getAttachmentLabel(res.file_name, res.path);
         $("#attached_files").append(
@@ -125,8 +131,10 @@ $(document).ready(function () {
       data,
     };
     if (!id_priority) {
+      $("#create_ticket").prop("disabled", false);
       return showNotification("error", "Please fill sub service fields");
     } else if (!purpose) {
+      $("#create_ticket").prop("disabled", false);
       return showNotification("error", "Please fill purpose fields");
     } else {
       $.ajax({
@@ -152,6 +160,8 @@ $(document).ready(function () {
               }
             );
           } else {
+            $("#create_ticket").prop("disabled", false);
+            $("#result_create_ticket").html("");
             $("#attached_files").html("");
             showNotification("error", "Some error occurred, please try again.");
           }

@@ -469,6 +469,7 @@ export function fileUpload(event, path, cb) {
             "success",
             "File " + response.original_file_name + " attached successfully."
           );
+          // Check callback, if exist return that callback
           cb &&
             cb({
               file_name: response.original_file_name,
@@ -479,25 +480,31 @@ export function fileUpload(event, path, cb) {
             "error",
             "File " + response.original_file_name + "  has unallowed file type"
           );
+          // Reset file input value, enable field
           $("#fileInput").val("");
+          $("#fileInput").prop("disabled", false);
+          // Set timeout 3s to reset create ticket button
+          setTimeout(() => {
+            $("#result_create_ticket").html("");
+            $("#create_ticket").prop("disabled", false);
+          }, 3000);
         } else {
           showNotification(
             "error",
             "File " + response.original_file_name + "  could not be uploaded."
           );
+          // Reset file input value, enable field
+          $("#fileInput").val("");
+          $("#fileInput").prop("disabled", false);
+          // Set timeout 3s to reset create ticket button
+          setTimeout(() => {
+            $("#result_create_ticket").html("");
+            $("#create_ticket").prop("disabled", false);
+          }, 3000);
         }
       };
     }
   }
-}
-
-/**
- * Validate if given string is email address
- * @param {string} string
- */
-function validateEmailAddress(str) {
-  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-  return reg.test(str) == false ? false : true;
 }
 
 /**

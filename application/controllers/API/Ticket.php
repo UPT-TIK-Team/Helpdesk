@@ -137,6 +137,7 @@ class Ticket extends MY_Controller
         $response['original_file_name'] = $_FILES["file"]["name"];
         $response['status'] = 'ok';
       } else {
+        $response['original_file_name'] = $_FILES["file"]["name"];
         $response['status'] = 'type_err';
       }
       echo json_encode($response);
