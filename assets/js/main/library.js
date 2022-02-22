@@ -508,6 +508,15 @@ export function fileUpload(event, path, cb) {
 }
 
 /**
+ * Validate if given string is email address
+ * @param {string} string
+ */
+function validateEmailAddress(str) {
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  return reg.test(str) == false ? false : true;
+}
+
+/**
  * Show sweetalert if flashdata is exist
  */
 const flashDataType = $(".flash-data").data("type");
