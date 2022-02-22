@@ -451,6 +451,11 @@ export function fileUpload(event, path, cb) {
       $("#file_submit_result").html("");
       $("#fileInput").val("");
       showNotification("error", "Sorry, your file is too large (>2 MB)");
+      // Set timeout 3s to reset create ticket button
+      setTimeout(() => {
+        $("#result_create_ticket").html("");
+        $("#create_ticket").prop("disabled", false);
+      }, 3000);
     } else {
       //append the uploadable file to FormData object
       data.append("file", file, file.name);
