@@ -168,8 +168,16 @@ class Auth extends MY_Controller
 	{
 		$this->redirectIfLogged();
 		if ($this->isPOST()) {
-			if ($this->process_login())
+			if ($this->process_login()) {
+				$id = $this->session->userdata()['sessions_details']['id'];
+				$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
+				// If refresh token is available set new access token from google client
+				if ($userdata['refresh_token']) {
+					$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
+					$this->session->set_userdata('access_token', $newAccessToken['access_token']);
+				}
 				return;
+			}
 		}
 		$this->render('auth/login');
 	}
