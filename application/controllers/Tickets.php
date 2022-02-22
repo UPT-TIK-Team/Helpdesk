@@ -159,6 +159,7 @@ class Tickets extends MY_Controller
     $select = null;
     $where = ['ticket' => $ticket_no];
     $data['messages'] = $this->Messages->getBy($select, $where);
+    unset($_SESSION['new_update']);
 
     /**
      * Create login button if access_token not found in session

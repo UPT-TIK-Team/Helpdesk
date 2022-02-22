@@ -169,13 +169,6 @@ class Auth extends MY_Controller
 		$this->redirectIfLogged();
 		if ($this->isPOST()) {
 			if ($this->process_login()) {
-				$id = $this->session->userdata()['sessions_details']['id'];
-				$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
-				// If refresh token is available set new access token from google client
-				if ($userdata['refresh_token']) {
-					$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
-					$this->session->set_userdata('access_token', $newAccessToken['access_token']);
-				}
 				return;
 			}
 		}
@@ -203,6 +196,13 @@ class Auth extends MY_Controller
 			// If user type equal to '10', set flashdata so users must read guide first
 			if ($result['type'] === '10') $this->session->set_flashdata('info', true);
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
+			$id = $this->session->userdata()['sessions_details']['id'];
+			$userdata = $this->db->get_where('users', ['id' => $id])->row_array();
+			// If refresh token is available set new access token from google client
+			if ($userdata['refresh_token']) {
+				$newAccessToken = $this->client->refreshToken(base64_decode($userdata['refresh_token']));
+				$this->session->set_userdata('access_token', $newAccessToken['access_token']);
+			}
 			// Redirect to appropriate url
 			switch ($this->Session->getUserType()) {
 				case USER_ADMIN:

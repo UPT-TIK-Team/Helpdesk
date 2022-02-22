@@ -11,10 +11,7 @@ class User extends MY_Controller
 		$this->load->model('ticket/Threads_model', 'Tickets');
 		$this->load->model('user/User_model', 'Users');
 		// Check new_update session, if session exist redirect to destination url
-		if (isset($_SESSION['new_update'])) {
-			redirect(base_url($this->session->flashdata('new_update')));
-			unset($_SESSION['new_update']);
-		}
+		if (isset($_SESSION['new_update'])) redirect(base_url($this->session->flashdata('new_update')));
 	}
 
 	public function dashboard()
