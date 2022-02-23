@@ -170,15 +170,17 @@ function sendEmail($type = '', $data = array())
 	switch ($type) {
 		case 'verify':
 			$CI->email->subject('Account verification');
-			$CI->email->message('Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Activate</a>');
+			$CI->email->message('Thank you for using helpdesktik website. Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Activate</a>');
 			break;
 		case 'forgotpassword':
 			$CI->email->subject('Reset password');
-			$CI->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Reset Password</a>');
+			$CI->email->message('Thank you for using helpdesktik website. Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Reset Password</a>');
 			break;
 		case 'new_ticket_message':
 			$CI->email->subject('Information update for your ticket on Helpdesktik website');
-			$CI->email->message('Click this link to view your ticket updates ' . base_url('tickets/view_ticket/') . $data['ticket_no'] . '?new_update=true');
+			// Encode true parameter for security purpose
+			$true = base64_encode(true);
+			$CI->email->message('Thank you for using helpdesktik website. Click this link to view your ticket update ' . base_url('tickets/view_ticket/') . $data['ticket_no'] . '?new_update=' . $true);
 			break;
 	}
 
