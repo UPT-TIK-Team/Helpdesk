@@ -180,7 +180,7 @@ function sendEmail($type = '', $data = array())
 			$CI->email->subject('Information update for your ticket on Helpdesktik website');
 			// Encode true parameter for security purpose
 			$true = base64_encode(true);
-			$CI->email->message('Thank you for using helpdesktik website. Click this link to view your ticket update ' . base_url('tickets/view_ticket/') . $data['ticket_no'] . '?new_update=' . $true);
+			$CI->email->message('Thank you for using helpdesktik website. Click this link to view your ticket update ' . base_url('tickets/view_ticket/') . $data['ticket_no'] . '?new_update=' . urlencode($true));
 			break;
 	}
 
