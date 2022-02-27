@@ -166,14 +166,10 @@ function sendEmail($type = '', $data = array())
 	$CI->email->from(getenv("EMAIL_ADDRESS"), getenv("EMAIL_SUBJECT"));
 	$CI->email->to($data['email']);
 
-	// Switch type of email
+	// Switch type of email subject
 	switch ($type) {
-		case 'verify':
-			$CI->email->subject('Account verification');
-			$CI->email->message('Thank you for using helpdesktik website. Click this link to verify your account: <a href="' . base_url('auth/verify?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Activate</a>');
-			break;
 		case 'forgotpassword':
-			$CI->email->subject('Reset password');
+			$CI->email->subject('Forgot password');
 			$CI->email->message('Thank you for using helpdesktik website. Click this link to reset your password: <a href="' . base_url('auth/resetpassword?email=') . $data['email'] . '&token=' . urlencode($data['token']) . '">Reset Password</a>');
 			break;
 		case 'new_ticket_message':

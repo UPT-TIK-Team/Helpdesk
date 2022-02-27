@@ -92,31 +92,18 @@ class Auth extends MY_Controller
 			$data['title'] = 'Register';
 			$this->render('auth/register', $data);
 		} else {
+			// Fill initial account field in database
 			$data = array(
 				'username' => htmlspecialchars($this->input->post('username', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'mobile' => htmlspecialchars($this->input->post('phoneNumber', true)),
 				'password' => password_hash(($this->input->post('password1')), PASSWORD_DEFAULT),
 				'type' => 10,
-				'status' => 0,
+				'status' => 1,
 				'created' => time()
 			);
-			$token = base64_encode(random_bytes(32));
-			$userToken = [
-				'email' => $data['email'],
-				'token' => $token,
-				'date_created' => time()
-			];
 			$this->db->insert('users', $data);
-			$this->db->insert('users_token', $userToken);
-
-			// Set data for send email
-			$emailData = [
-				'email' => $data['email'],
-				'token' => $token
-			];
-			sendEmail('verify', $emailData);
-			$this->session->set_flashdata('success', "Congratulation! Check your email to activate your account, if email not found please check SPAM");
+			$this->session->set_flashdata('success', "Please login to continue!");
 			redirect('auth/login');
 		}
 	}
