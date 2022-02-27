@@ -6,7 +6,7 @@ $(document).ready(() => {
       processing: true,
       serverSide: true,
       ajax: {
-        url: `<?= $link ?>`,
+        url: link,
         header: "application/json",
         type: "POST",
       },

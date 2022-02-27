@@ -27,4 +27,7 @@
     </div>
   </div>
 </section>
+<script>
+  const link = `<?= $link ?>`
+</script>
 <script type="module" src="<?= base_url('assets/js/pages/tickets/TicketTable.js') ?>"></script>
