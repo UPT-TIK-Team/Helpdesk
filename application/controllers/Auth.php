@@ -118,37 +118,6 @@ class Auth extends MY_Controller
 	}
 
 	/**
-	 * Function to handle verify user
-	 */
-	public function verify()
-	{
-		$email = htmlspecialchars($this->input->get('email', true));
-		$token = $this->input->get('token', true);
-		$user = $this->User->getUsersBy('users', ['email' => $email]);
-		if (!$user) {
-			$this->session->set_flashdata('failed', "Account activation failed! wrong email address");
-			redirect('auth/login');
-		}
-		$user_token = $this->db->get_where('users_token', ['token' => $token])->row_array();
-		if (!$user_token) {
-			$this->session->set_flashdata('failed', "Account activation failed! wrong token");
-			redirect('auth/login');
-		}
-
-		// Handle if token expired
-		// Set token expired only one day, redirect login page if more than one day
-		if (time() - $user_token['date_created'] > 60 * 60 * 24) {
-			$this->db->delete('users', ['email' => $email]);
-			$this->session->set_flashdata('failed', "Account activation failed! token expired");
-			redirect('auth/login');
-		}
-		$this->db->update('users', ['status' => 1], ['email' => $email]);
-		$this->db->delete('users_token', ['email' => $email]);
-		$this->session->set_flashdata('success', "Account activation success, please login to continue");
-		redirect('auth/login');
-	}
-
-	/**
 	 * Login landing page.
 	 */
 	public function login()
