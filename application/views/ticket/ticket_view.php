@@ -154,7 +154,7 @@
                 <tr>
                   <th>Ticket Status</th>
                   <td>
-                    <?php if ($user_type == USER_ADMIN || USER_MANAGER) : ?>
+                    <?php if ($user_type == USER_ADMIN || $user_type == USER_MANAGER) : ?>
                       <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;">
                       <?php else : ?>
                         <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
