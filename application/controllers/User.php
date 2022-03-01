@@ -125,9 +125,9 @@ class User extends MY_Controller
 
 	public function profile_update()
 	{
-		// Get user details by username
-		$username = $this->Session->getLoggedDetails()['username'];
-		$data['user_details'] = $this->Users->getUserBy(array('username' => $username));
+		// Get user details by id
+		$id = $this->Session->getLoggedDetails()['id'];
+		$data['user_details'] = $this->Users->getUserBy(array('id' => $id));
 		// Initial is_unique as array of object
 		$is_unique = [
 			'username' => '',
