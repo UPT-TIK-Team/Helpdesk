@@ -17,7 +17,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label">Email address</label><code>*</code>
-						<input type="email" id="email" name="email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@unsika.ac.id">
+						<input type="email" id="email" name="email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" class="form-control empty user-existance-validation" required value="<?= set_value('email') ?>" placeholder="example@student.unsika.ac.id">
 						<?= form_error('email', '<span class="text-danger pl-3">', '</span>'); ?>
 					</div>
 				</div>
