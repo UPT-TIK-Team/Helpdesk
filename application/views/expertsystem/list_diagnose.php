@@ -1,4 +1,4 @@
-<?php if (count($gejala) != 0) : ?>
+<?php if (count($symptom) != 0) : ?>
   <div id="table-list-diagnosa">
     <table class=" table table-striped display nowrap">
       <thead>
@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($gejala as $g) : ?>
+        <?php foreach ($symptom as $g) : ?>
           <tr>
             <td><?= $g['code'] ?></td>
             <td><?= $g['name'] ?></td>

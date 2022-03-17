@@ -9,7 +9,7 @@ class Expertsystem extends MY_Controller
     parent::__construct();
     parent::requireLogin();
     $this->load->model('core/Session_model', 'Session');
-    $this->load->model('expertsystem/Gejala_model', 'Gejala');
+    $this->load->model('expertsystem/Symptom_model', 'Symptom');
     $this->load->model('user/User_model', 'Users');
   }
 }
