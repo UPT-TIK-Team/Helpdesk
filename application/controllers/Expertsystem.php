@@ -38,6 +38,14 @@ class Expertsystem extends MY_Controller
     $this->render('expertsystem/all_problems', $data);
   }
 
+  public function all_symptoms()
+  {
+  }
+
+  public function all_rules()
+  {
+  }
+
   public function hasilDiagnosa()
   {
     $kondisi = $this->input->post('kondisi', true);
