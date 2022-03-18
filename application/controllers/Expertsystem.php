@@ -40,6 +40,8 @@ class Expertsystem extends MY_Controller
 
   public function all_symptoms()
   {
+    $data['title'] = 'List All Symptoms';
+    $this->render('expertsystem/all_symptoms', $data);
   }
 
   public function all_rules()

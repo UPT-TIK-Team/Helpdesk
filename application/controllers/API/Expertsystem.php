@@ -14,10 +14,26 @@ class Expertsystem extends MY_Controller
     $this->load->model('user/User_model', 'Users');
   }
 
+  /** 
+   * Function to get data and create datatable serverside
+   */
   public function generatedatatable()
   {
-    $select = "code, name, solution";
-    echo $this->Problem->generateDatatable($select);
+    $endpoint = $this->input->post('endpoint', true);
+    // Switch endpoint and send appropriate data
+    switch ($endpoint) {
+      case 'symptoms':
+        $select = 'code, symptom.name, services.name';
+        $join = ['services'];
+        $columnJoin = ['id_service'];
+        $as = 'symptom.name as symptom, services.name as service';
+        echo $this->Symptom->generateDatatable($select, null, $join, $columnJoin, $as);
+        break;
+      case 'problems':
+        $select = "code, name, solution";
+        echo $this->Problem->generateDatatable($select);
+        break;
+    }
   }
 
   /**
@@ -38,5 +54,22 @@ class Expertsystem extends MY_Controller
     ];
     $this->db->insert('problem', $data);
     redirect('expertsystem/all_problems');
+  }
+
+  public function addsymptom()
+  {
+    $symptomName = htmlspecialchars($this->input->post('symptom-name', true));
+    $idService =  htmlspecialchars($this->input->post('service', true));
+    // Get last id in symptom table
+    $lastID = $this->db->select('id')->order_by('id', "desc")->limit(1)->get('symptom')->row_array()['id'];
+    // Generate code problem
+    $code = 'G' . str_pad((int)$lastID + 1, 2, '0', STR_PAD_LEFT);
+    $data = [
+      'code' => $code,
+      'name' => $symptomName,
+      'id_service' => $idService
+    ];
+    $this->db->insert('symptom', $data);
+    redirect('expertsystem/all_symptoms');
   }
 }

@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
       url: `${BASE_URL}API/expertsystem/generatedatatable`,
       header: "application/json",
       type: "POST",
+      data: {
+        endpoint: "problems",
+      },
     },
     columns: [
       {
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   solution.addEventListener("keyup", () => {
-    if (solution.value !== "") {
+    if (solution.value !== "" && problemName.value !== "") {
       btnAddProblem.removeAttribute("disabled");
     } else {
       btnAddProblem.disabled = true;

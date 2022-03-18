@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   type.addEventListener("change", () => {
-    if (type.value !== "") {
+    if (type.value !== "" && email.value !== "") {
       btnAddUser.removeAttribute("disabled");
     } else {
       btnAddUser.disabled = true;
