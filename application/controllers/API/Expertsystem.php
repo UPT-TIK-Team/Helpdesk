@@ -45,7 +45,7 @@ class Expertsystem extends MY_Controller
   }
 
   /**
-   * Function for handle add new problem
+   * Function to handle add problem endpoint
    */
   public function addproblem()
   {
@@ -66,10 +66,13 @@ class Expertsystem extends MY_Controller
     redirect('expertsystem/all_problems');
   }
 
+  /**
+   * Function to handle add symptom endpoint
+   */
   public function addsymptom()
   {
     $symptomName = htmlspecialchars($this->input->post('symptom-name', true));
-    $idSubsevice =  htmlspecialchars($this->input->post('subservice', true));
+    $id_subservice =  htmlspecialchars($this->input->post('subservice', true));
     // Get last id in symptom table
     $lastID = $this->db->select('id')->order_by('id', "desc")->limit(1)->get('symptom')->row_array()['id'];
     // Generate code problem
@@ -77,9 +80,44 @@ class Expertsystem extends MY_Controller
     $data = [
       'code' => $code,
       'name' => $symptomName,
-      'id_subservice' => $idSubsevice
+      'id_subservice' => $id_subservice
     ];
     $this->db->insert('symptom', $data);
     redirect('expertsystem/all_symptoms');
+  }
+
+  /**
+   * Function to handle add rules endpoint
+   */
+  public function addrules()
+  {
+    $id_problem = htmlspecialchars($this->input->post('problem', true));
+    $id_symptom = htmlspecialchars($this->input->post('symptom', true));
+    $mb =  htmlspecialchars($this->input->post('mb', true));
+    $md =  htmlspecialchars($this->input->post('md', true));
+    $data = [
+      'id_problem' => $id_problem,
+      'id_symptom' => $id_symptom,
+      'mb' => floatval($mb),
+      'md' => floatval($md),
+    ];
+    $this->db->insert('rule', $data);
+    redirect('expertsystem/all_rules');
+  }
+
+  /**
+   * Function for handle get all problem
+   */
+  public function getproblem($id_subservice = null)
+  {
+    $this->sendJSON($this->Problem->get_problem($id_subservice));
+  }
+
+  /**
+   * Function for handle get all symptom
+   */
+  public function getsymptom($id_subservice = null)
+  {
+    $this->sendJSON($this->Symptom->get_symptom($id_subservice));
   }
 }

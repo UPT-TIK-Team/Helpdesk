@@ -19,6 +19,7 @@ $(document).ready(function () {
   }, 60);
 });
 
+// Function to render dropdowns based on id input
 export function renderDropdowns() {
   if ($("#status_dd").length) {
     $.get(BASE_URL + "API/Ticket/getStatus", function (data) {
@@ -50,6 +51,18 @@ export function renderDropdowns() {
 
   if ($("#priority").length) {
     $("#priority").select2({
+      width: "resolve",
+    });
+  }
+
+  if ($("#problem").length) {
+    $("#problem").select2({
+      width: "resolve",
+    });
+  }
+
+  if ($("#symptom").length) {
+    $("#symptom").select2({
       width: "resolve",
     });
   }

@@ -93,7 +93,6 @@ $("#regis_user").on("click", function (e) {
 // Add user
 $("#add_user").on("click", function (e) {
   e.preventDefault();
-  console.log("hai");
   var name = $("#name").val();
   var email = $("#email").val();
   var mobile = $("#mobile").val();
@@ -139,8 +138,6 @@ $("#add_user").on("click", function (e) {
     });
   }
 });
-
-//
 
 $(".assign_to_modal").on("click", function (e) {
   e.preventDefault();
@@ -192,9 +189,40 @@ $("#service").on("select2:select", (e) => {
 // Handle when subservice input change, and set priority
 $("#subservice").on("select2:select", (e) => {
   $("#subservice option[value='null']").remove();
+  // Get priority based on subservice id
   $.get(`${BASE_URL}API/Ticket/getPriority/${e.target.value}`, (data) => {
     $("#priority").find("option").remove();
     $("#priority").select2({
+      width: "resolve",
+      data: data.data.map((data) => {
+        return { id: data.id, text: data.name };
+      }),
+    });
+  });
+  // Get problem based on subservice id
+  $.get(`${BASE_URL}API/Expertsystem/getproblem/${e.target.value}`, (data) => {
+    $("#problem").find("option").remove();
+    // Append dropdown to subproblem and set to null value
+    const defaultDropdown = new Option("Choose Problem", "null");
+    // Add change trigger to dropdown
+    $("#problem").append(defaultDropdown).trigger("change");
+    // Fill problem item dropdown with select2 library
+    $("#problem").select2({
+      width: "resolve",
+      data: data.data.map((data) => {
+        return { id: data.id, text: data.name };
+      }),
+    });
+  });
+  // Get symptom based on subservice id
+  $.get(`${BASE_URL}API/Expertsystem/getsymptom/${e.target.value}`, (data) => {
+    $("#symptom").find("option").remove();
+    // Append dropdown to subproblem and set to null value
+    const defaultDropdown = new Option("Choose Symptom", "null");
+    // Add change trigger to dropdown
+    $("#symptom").append(defaultDropdown).trigger("change");
+    // Fill symptom item dropdown with select2 library
+    $("#symptom").select2({
       width: "resolve",
       data: data.data.map((data) => {
         return { id: data.id, text: data.name };
