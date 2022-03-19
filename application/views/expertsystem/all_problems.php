@@ -44,6 +44,18 @@
               <label for="solution">Solution</label>
               <input type="text" class="form-control" id="solution" name="solution" aria-describedby="solution" placeholder="Enter a solution">
             </div>
+            <div class="form-group">
+              <label for="service">Service</label>
+              <select class="form-control" name="service" id="service" style="width: 100%;">
+                <option value="">Choose Service</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="subservice">Subservice</label>
+              <select class="form-control" name="subservice" id="subservice" style="width: 100%;" disabled>
+                <option value="">Choose Subservice</option>
+              </select>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

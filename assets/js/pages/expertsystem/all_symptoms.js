@@ -22,22 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
         data: "symptom",
       },
       {
-        data: "service",
+        data: "subservice",
       },
     ],
   });
   const btnAddSymptom = document.getElementById("btn-add-symptom");
   const symptomName = document.getElementById("symptom-name");
-  const service = document.getElementById("service");
+  let subservice = "null";
   symptomName.addEventListener("keyup", () => {
-    if (symptomName.value !== "" && service.value !== "") {
+    if (symptomName.value !== "" && subservice !== "null") {
       btnAddSymptom.removeAttribute("disabled");
     } else {
       btnAddSymptom.disabled = true;
     }
   });
-  $("#service").on("change", (e) => {
-    if (service.value !== "" && symptomName.value !== "") {
+  $("#subservice").on("change", (e) => {
+    // Set subservice value to id of subservice
+    subservice = e.target.value;
+    if (e.target.value !== "null" && symptomName.value !== "") {
       btnAddSymptom.removeAttribute("disabled");
     } else {
       btnAddSymptom.disabled = true;

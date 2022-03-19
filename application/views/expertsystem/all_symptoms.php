@@ -14,7 +14,7 @@
                   <tr>
                     <th>Code</th>
                     <th>Name</th>
-                    <th>Service</th>
+                    <th>Subservice</th>
                   </tr>
                 </thead>
               </table>
@@ -44,6 +44,12 @@
               <label for="service">Service</label>
               <select class="form-control" name="service" id="service" style="width: 100%;">
                 <option value="">Choose Service</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="subservice">Subservice</label>
+              <select class="form-control" name="subservice" id="subservice" style="width: 100%;" disabled>
+                <option value="">Choose Subservice</option>
               </select>
             </div>
           </div>

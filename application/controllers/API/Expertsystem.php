@@ -24,10 +24,10 @@ class Expertsystem extends MY_Controller
     // Switch endpoint and send appropriate data
     switch ($endpoint) {
       case 'symptoms':
-        $select = 'code, symptom.name, services.name';
-        $join = ['services'];
-        $columnJoin = ['id_service'];
-        $as = 'symptom.name as symptom, services.name as service';
+        $select = 'symptom.code, symptom.name, subservices.name';
+        $join = ['subservices'];
+        $columnJoin = ['id_subservice'];
+        $as = 'symptom.code as code, symptom.name as symptom, subservices.name as subservice';
         echo $this->Symptom->generateDatatable($select, null, $join, $columnJoin, $as);
         break;
       case 'problems':
@@ -51,6 +51,7 @@ class Expertsystem extends MY_Controller
   {
     $problemName = htmlspecialchars($this->input->post('problem-name', true));
     $solution = htmlspecialchars($this->input->post('solution', true));
+    $idSubservice = htmlspecialchars($this->input->post('subservice', true));
     // Get last id in problem table
     $lastID = $this->db->select('id')->order_by('id', "desc")->limit(1)->get('problem')->row_array()['id'];
     // Generate code problem
@@ -58,7 +59,8 @@ class Expertsystem extends MY_Controller
     $data = [
       'code' => $code,
       'name' => $problemName,
-      'solution' => $solution
+      'solution' => $solution,
+      'id_subservice' => $idSubservice
     ];
     $this->db->insert('problem', $data);
     redirect('expertsystem/all_problems');
@@ -67,7 +69,7 @@ class Expertsystem extends MY_Controller
   public function addsymptom()
   {
     $symptomName = htmlspecialchars($this->input->post('symptom-name', true));
-    $idService =  htmlspecialchars($this->input->post('service', true));
+    $idSubsevice =  htmlspecialchars($this->input->post('subservice', true));
     // Get last id in symptom table
     $lastID = $this->db->select('id')->order_by('id', "desc")->limit(1)->get('symptom')->row_array()['id'];
     // Generate code problem
@@ -75,7 +77,7 @@ class Expertsystem extends MY_Controller
     $data = [
       'code' => $code,
       'name' => $symptomName,
-      'id_service' => $idService
+      'id_subservice' => $idSubsevice
     ];
     $this->db->insert('symptom', $data);
     redirect('expertsystem/all_symptoms');
