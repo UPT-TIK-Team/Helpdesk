@@ -46,6 +46,8 @@ class Expertsystem extends MY_Controller
 
   public function all_rules()
   {
+    $data['title'] = 'List All Rules';
+    $this->render('expertsystem/all_rules', $data);
   }
 
   public function hasilDiagnosa()

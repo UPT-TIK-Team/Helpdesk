@@ -30,11 +30,12 @@
     <li><a href="https://docs.google.com/spreadsheets/d/14wy68XRQXP7WP-rhdqc_9tgJv8Ki4hUO/edit?usp=sharing&ouid=114839779398880711559&rtpof=true&sd=true" target="_blank"><i class="fa fa-list-alt"></i>Catalog TIK Service</a></li>
   </ul>
 </li>
-<li><a href="#expert-sytem" aria-expanded="false" data-toggle="collapse"><i class="fa fa-globe"></i>Expert System <span class="badge badge-warning">Beta</span></a>
+<li><a href="#expert-sytem" aria-expanded="false" data-toggle="collapse"><i class="fa fa-etsy"></i>Expert System <span class="badge badge-warning">Beta</span></a>
   <ul id="expert-sytem" class="collapse list-unstyled ">
     <li><a href="<?= BASE_URL ?>expertsystem/all_problems"><i class="fa fa-exclamation-circle"></i>All Problems</a></li>
     <li><a href="<?= BASE_URL ?>expertsystem/all_symptoms"><i class="fa fa-asterisk"></i>All Symptoms</a></li>
     <li><a href="<?= BASE_URL ?>expertsystem/all_rules"><i class="fa fa-registered"></i>All Rules</a></li>
+    <li><a href="<?= BASE_URL ?>expertsystem/diagnose"><i class="fa fa-globe"></i>Diagnose Problem</a></li>
   </ul>
 </li>
 <li><a href="<?= BASE_URL ?>user/profile"> <i class="fa fa-user"></i>Profile </a></li>

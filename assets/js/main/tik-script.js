@@ -166,9 +166,12 @@ $(".assign_to_modal").on("click", function (e) {
   // $(".modal-body").html(href);
 });
 
+// Handle when service input change, and get subservice depends on service id
 $("#service").on("select2:select", (e) => {
   $("#service option[value='null']").remove();
+  // Reset priority option default. First, delete option default
   $("#priority").find("option").remove();
+  // Second, add new option and set it to null
   const defaultDropdown = new Option("Priority", null);
   $("#priority").append(defaultDropdown).trigger("change");
   $.get(
@@ -186,6 +189,7 @@ $("#service").on("select2:select", (e) => {
   );
 });
 
+// Handle when subservice input change, and set priority
 $("#subservice").on("select2:select", (e) => {
   $("#subservice option[value='null']").remove();
   $.get(`${BASE_URL}API/Ticket/getPriority/${e.target.value}`, (data) => {

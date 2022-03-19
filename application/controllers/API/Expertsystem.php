@@ -9,8 +9,9 @@ class Expertsystem extends MY_Controller
     parent::__construct();
     parent::requireLogin();
     $this->load->model('core/Session_model', 'Session');
-    $this->load->model('expertsystem/Symptom_model', 'Symptom');
     $this->load->model('expertsystem/Problem_model', 'Problem');
+    $this->load->model('expertsystem/Symptom_model', 'Symptom');
+    $this->load->model('expertsystem/Rules_model', 'Rules');
     $this->load->model('user/User_model', 'Users');
   }
 
@@ -32,6 +33,13 @@ class Expertsystem extends MY_Controller
       case 'problems':
         $select = "code, name, solution";
         echo $this->Problem->generateDatatable($select);
+        break;
+      case 'rules':
+        $select = 'problem.name, symptom.name, mb, md';
+        $join = ['problem', 'symptom'];
+        $columnJoin = ['id_problem', 'id_symptom'];
+        $as = 'problem.name as problem, symptom.name as symptom';
+        echo $this->Rules->generateDatatable($select, null, $join, $columnJoin, $as);
         break;
     }
   }
