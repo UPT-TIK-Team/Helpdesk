@@ -12,8 +12,9 @@ class Problem_model extends BaseMySQL_model
     return parent::generateDatatable($select, $where, $join, $column, $as, $addcolumn);
   }
 
-  public function get_problem($id_subservice)
+  public function get_problem($id_subservice = null)
   {
+    if ($id_subservice === null) return $this->db->get('problem')->result_array();
     return $this->db->where('id_subservice', $id_subservice)->get('problem')->result_array();
   }
 }

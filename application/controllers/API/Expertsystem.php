@@ -12,7 +12,21 @@ class Expertsystem extends MY_Controller
     $this->load->model('expertsystem/Problem_model', 'Problem');
     $this->load->model('expertsystem/Symptom_model', 'Symptom');
     $this->load->model('expertsystem/Rules_model', 'Rules');
+    $this->load->model('expertsystem/Condition_model', 'Condition');
     $this->load->model('user/User_model', 'Users');
+  }
+
+  /**
+   * Function for handle diagnose problem
+   */
+  public function diagnose()
+  {
+    // Get subservice id 
+    $id_subservice = $this->input->post('id_subservice');
+    // Get symptom by subservice id
+    $data['symptom'] = $this->Symptom->get_symptom($id_subservice);
+    $data['condition'] = $this->Condition->get_condition();
+    $this->load->view('expertsystem/list_diagnose', $data);
   }
 
   /** 
