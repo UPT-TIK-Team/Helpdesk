@@ -18,7 +18,7 @@
         <div class="col-lg-6">
           <div class="info d-flex align-items-center">
             <div class="m-auto">
-              <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" style="width:100%; margin:20%;" alt="upttik-logo">
+              <img src="<?= base_url('assets/img/upttik-logo.png') ?>" style="width:100%; margin:20%;" alt="upttik-logo">
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@
           <header class="navbar">
             <section class="navbar-section">
               <a class="navbar-brand logo" href="./">
-                <img class="logo-img" src="https://sihipka.unsika.ac.id/assets/user/logo/default_favicon.png"><span>Helpdesk UNSIKA</span>
+                <img class="logo-img" src="<?= base_url('assets/img/landing-page/unsika-logo.png') ?>"><span>Helpdesk UNSIKA</span>
               </a>
             </section>
             <!-- <section class="navbar-section hide-sm">
@@ -148,7 +148,7 @@
     <div class="column col-sm-9" style="display: flex; align-items: center; flex-direction: column;">
       <h4 style="text-align: center;">Copyright</h4>
       <a href="https://upttik.unsika.ac.id">
-        <img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" style="width:100%; margin-left: 100px;" alt="upttik-logo">
+        <img src="<?= base_url('assets/img/upttik-logo.png') ?>" style="width:100%; margin-left: 100px;" alt="upttik-logo">
       </a>
     </div>
   </div>
