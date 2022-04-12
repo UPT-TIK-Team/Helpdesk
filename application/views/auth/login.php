@@ -46,6 +46,6 @@
     </div>
   </div>
   <div class="copyrights text-center text-dark">
-    <p>Powered by <a href="<?= DEV_COMPANY_URL ?>" class="external"><img src="https://upttik.unsika.ac.id/wp-content/uploads/2020/08/tikupt.png" width="65" alt="UPT TIK UNSIKA"></a></p>
+    <p>Powered by <a href="<?= DEV_COMPANY_URL ?>"><img src="<?= base_url('assets/img/landing-page/unsika-logo.png') ?>" width="30rem"></a></p>
   </div>
 </div>
