@@ -26,7 +26,7 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
-              <form method="post" class="form-validate" action="">
+              <form method="post" class="form-validate mb-3">
                 <div class="form-group">
                   <input id="login-email" type="text" name="email" required data-msg="Please enter your email" class="input-material">
                   <label for="login-email" class="label-material">Email</label>
@@ -35,10 +35,15 @@
                   <input id="login-password" type="password" name="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" required data-msg="Please enter your password" class="input-material">
                   <label for="login-password" class="label-material">Password</label>
                 </div>
-                <button type="submit" id="login" class="btn btn-primary">Login</button>
-                <a href="<?= base_url() ?>" id="login" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="<?= base_url() ?>" class="ml-2 btn btn-secondary">Back</a>
               </form>
-              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Forgot Password?</a><br><small>Don't have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
+              <h5 class="mt-2">OR</h5>
+              <a href="<?= $google_login_url ?>" class="btn btn-danger mb-3"><i class="fa fa-google mr-2" aria-hidden="true"></i>Login With Google</a>
+              <br>
+              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Forgot Password?</a>
+              <br>
+              <small>Don't have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
             </div>
           </div>
         </div>

@@ -51,7 +51,6 @@ class User_model extends BaseMySQL_model
 		return $this->db->get_where($field, $value)->row_array();
 	}
 
-
 	public function getUserDetails($uid, $fields = null)
 	{
 		return parent::getByID($uid, $fields);
@@ -108,5 +107,10 @@ class User_model extends BaseMySQL_model
 	public function getBy($select = null, $where = null, $limit = null, $array = false)
 	{
 		return parent::getBy($select, $where, $limit, $array);
+	}
+
+	public function insert($data)
+	{
+		return parent::add($data);
 	}
 }

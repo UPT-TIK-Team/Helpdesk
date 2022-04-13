@@ -1,5 +1,8 @@
 <?php
 
+use Google\Service\Oauth2;
+use Google\Service\Oauth2\Userinfo;
+
 class MY_Controller extends CI_Controller
 {
 
@@ -55,9 +58,39 @@ class MY_Controller extends CI_Controller
 	 */
 	protected function requireLogin()
 	{
+		$this->load->model('user/User_model', 'User');
 		// Handle if new update for ticket is provided in url
 		if (isset($_REQUEST['new_update'])) $this->session->set_flashdata('new_update', array_key_first($_REQUEST));
-		if (!$this->Session->isLoggedin()) {
+		// Check if user login with google account
+		if (isset($_GET["code"])) {
+			$this->client->setRedirectUri(BASE_URL . 'user/dashboard');
+			// Get token from client response
+			$token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
+			$this->client->setAccessToken($token);
+			// Get data from user
+			$data = $this->client->verifyIdToken();
+			$user = $this->User->getUserBy(['email' => $data['email']]);
+			// Check user not exist add new user to database
+			if ($user === null) {
+				$newUser = [
+					'username' => $data['name'],
+					'email' => $data['email'],
+					'password' => password_hash($data['email'], PASSWORD_DEFAULT),
+					'type' => 10,
+					'status' => 1,
+					'refresh_token' => base64_encode($token['refresh_token']),
+					'created' => time(),
+				];
+				// Insert new user
+				$this->User->insert($newUser);
+				// Set session login
+				$this->Session->login($data['name'], $this->Session->getDefaultPermissions(10), $newUser);
+				$this->session->set_userdata('access_token', $token['access_token']);
+			} else {
+				$this->Session->login($user['id'], $this->Session->getDefaultPermissions(10), $user);
+				$this->session->set_userdata('access_token', $token['access_token']);
+			}
+		} else if (!$this->Session->isLoggedin() && !isset($_GET["code"])) {
 			redirect(URL_LOGIN);
 			//Warning: Stop the execution, don't use this method in other places.
 			die();

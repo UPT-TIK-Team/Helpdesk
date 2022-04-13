@@ -128,7 +128,10 @@ class Auth extends MY_Controller
 				return;
 			}
 		}
-		$this->render('auth/login');
+		$this->client->setRedirectUri(BASE_URL . 'user/dashboard');
+		$this->client->addScope(['email', 'profile']);
+		$data['google_login_url'] = $this->client->createAuthUrl();
+		$this->render('auth/login', $data);
 	}
 
 	/**
