@@ -2,7 +2,7 @@
 
   <!-- Handle alert if exist -->
   <?php if ($this->session->flashdata('info')) : ?>
-    <div class="flash-data" data-type="info" data-flashdata="Please check user guide in <a href='<?= base_url('user/userGuide') ?>'>here !</a>" data-html="true"></div>
+    <div class="flash-data" data-type="info" data-flashdata="Silahkan baca petunjuk penggunaan <a href='<?= base_url('user/userGuide') ?>'>DISINI</a> atau gunakan fitur <a href='<?= base_url('expertsystem/diagnose') ?>'>SISTEM PAKAR</a> untuk mengetahui permasalahan anda" data-html="true"></div>
     <?php unset($_SESSION['info']) ?>
   <?php endif; ?>
 
@@ -15,7 +15,7 @@
           <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
             <div class="icon bg-green"><i class="fa fa-tasks"></i></div>
             <div class="text"><strong><?= $stats['total_tickets'] ?></strong><br>
-              <small>All Tickets</small>
+              <small>Seluruh Tiket</small>
             </div>
           </div>
         </a>
@@ -24,7 +24,7 @@
           <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
             <div class="icon bg-orange"><i class="fa fa-ticket"></i></div>
             <div class="text"><strong><?= $stats['open_tickets'] ?></strong><br>
-              <small>Open Tickets</small>
+              <small>Tiket Terbuka</small>
             </div>
           </div>
         </a>
@@ -33,7 +33,7 @@
           <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
             <div class="icon bg-info"><i class="fa fa-user"></i></div>
             <div class="text"><strong><?= $stats['assigned_tickets'] ?></strong><br>
-              <small>Assigned Tickets</small>
+              <small>Tiket Yang Ditugaskan</small>
             </div>
           </div>
         </a>
@@ -42,7 +42,7 @@
           <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
             <div class="icon bg-red"><i class="fa fa-check"></i></div>
             <div class="text"><strong><?= $stats['closed_tickets'] ?></strong><br>
-              <small>Closed Tickets</small>
+              <small>Tiket Selesai</small>
             </div>
           </div>
         </a>
