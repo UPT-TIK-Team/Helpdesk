@@ -6,11 +6,11 @@
         <div class="card  custom-border-radius">
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">
-              Add New User
+              Tambah Data
             </button>
             <?php if ($this->session->userdata('email') && $this->session->userdata('password')) : ?>
               <div class="alert alert-success" role="alert">
-                Add new users success, using this credential for login. Email: <?= $this->session->userdata('email') ?>, Password: <?= $this->session->userdata('password') ?>
+                Tambah pengguna berhasil, berikut data pengguna baru. Email: <?= $this->session->userdata('email') ?>, Password: <?= $this->session->userdata('password') ?>
               </div>
             <?php endif; ?>
             <div class="table-responsive mt-3">
@@ -18,11 +18,11 @@
                 <thead>
                   <tr>
                     <th>Email</th>
-                    <th>Mobile</th>
+                    <th>No Telp</th>
                     <th>Username</th>
-                    <th>Type</th>
+                    <th>Tipe</th>
                     <th>Status</th>
-                    <th>Created On</th>
+                    <th>Waktu Pembuatan</th>
                   </tr>
                 </thead>
               </table>
@@ -37,7 +37,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addUserLabel">Add User</h5>
+          <h5 class="modal-title" id="addUserLabel">Tambah Pengguna</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -49,7 +49,7 @@
               <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Enter Email">
             </div>
             <div class="form-group">
-              <label for="type">User Type</label>
+              <label for="type">Tipe Pengguna</label>
               <select id="type" name="type" class="form-control">
                 <option value=""> - Select -</option>
                 <option value="60">Agent</option>
@@ -58,8 +58,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="btn-add-user" disabled>Add</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary" id="btn-add-user" disabled>Tambah</button>
           </div>
         </form>
       </div>

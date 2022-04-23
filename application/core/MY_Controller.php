@@ -62,7 +62,7 @@ class MY_Controller extends CI_Controller
 		// Handle if new update for ticket is provided in url
 		if (isset($_REQUEST['new_update'])) $this->session->set_flashdata('new_update', array_key_first($_REQUEST));
 		// Check if user login with google account
-		if (isset($_GET["code"])) {
+		if (isset($_GET["code"]) && $this->uri->segment(1) !== 'tickets') {
 			$this->client->setRedirectUri(BASE_URL . 'user/dashboard');
 			// Get token from client response
 			$token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);

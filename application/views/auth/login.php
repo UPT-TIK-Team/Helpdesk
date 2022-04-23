@@ -28,22 +28,22 @@
             <div class="content">
               <form method="post" class="form-validate mb-3">
                 <div class="form-group">
-                  <input id="login-email" type="text" name="email" required data-msg="Please enter your email" class="input-material">
+                  <input id="login-email" type="text" name="email" required data-msg="Harap masukkan email anda!" class="input-material">
                   <label for="login-email" class="label-material">Email</label>
                 </div>
                 <div class="form-group">
-                  <input id="login-password" type="password" name="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" required data-msg="Please enter your password" class="input-material">
+                  <input id="login-password" type="password" name="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" required data-msg="Harap masukkan password anda!" class="input-material">
                   <label for="login-password" class="label-material">Password</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="<?= base_url() ?>" class="ml-2 btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary" style="margin-left: 8rem">Masuk</button>
+                <a href="<?= base_url() ?>" class="ml-2 btn btn-secondary">Kembali</a>
               </form>
-              <h5 class="mt-2">OR</h5>
-              <a href="<?= $google_login_url ?>" class="btn btn-danger mb-3"><i class="fa fa-google mr-2" aria-hidden="true"></i>Login With Google</a>
+              <h5 class="mt-2" style="margin-left: 12rem">Atau</h5>
+              <a href="<?= $google_login_url ?>" class="btn btn-danger mb-3 mt-2" style="margin-left: 6.5rem"><i class="fa fa-google mr-2" aria-hidden="true"></i>Masuk dengan Google</a>
               <br>
-              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Forgot Password?</a>
+              <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Lupa Password?</a>
               <br>
-              <small>Don't have an account? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Register</a>
+              <small>Tidak mempunyai akun? </small><a href="<?= BASE_URL ?>auth/register" class='text-primary'>Daftar disini</a>
             </div>
           </div>
         </div>

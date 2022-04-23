@@ -24,15 +24,13 @@ class Auth_model extends BaseMySQL_model
 
 		// Check for user details and send spesific error message
 		if (!$user) {
-			return "User not found";
+			return "Pengguna tidak ditemukan";
 		} else if (password_verify($password, $user['password']) && $user['status'] == USER_STATUS_ACTIVE) {
 			return $user;
 		} else if (password_verify($password, $user['password']) && (int)$user['type'] === USER_AGENT) {
 			return $user;
 		} else if (!password_verify($password, $user['password'])) {
-			return "Wrong password";
-		} else {
-			return "Check your email to activate your account!";
+			return "Password salah";
 		}
 	}
 

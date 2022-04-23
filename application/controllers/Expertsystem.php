@@ -15,25 +15,25 @@ class Expertsystem extends MY_Controller
 
   public function diagnose()
   {
-    $data['title'] = 'Diagnose Problem';
+    $data['title'] = 'Diagnosa Masalah';
     $this->render('expertsystem/diagnose', $data);
   }
 
   public function all_problems()
   {
-    $data['title'] = 'List All Problems';
+    $data['title'] = 'Daftar Seluruh Masalah';
     $this->render('expertsystem/all_problems', $data);
   }
 
   public function all_symptoms()
   {
-    $data['title'] = 'List All Symptoms';
+    $data['title'] = 'Daftar Seluruh Gejala';
     $this->render('expertsystem/all_symptoms', $data);
   }
 
   public function all_rules()
   {
-    $data['title'] = 'List All Rules';
+    $data['title'] = 'Daftar Seluruh Aturan';
     $this->render('expertsystem/all_rules', $data);
   }
 

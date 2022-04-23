@@ -16,7 +16,6 @@ class User extends MY_Controller
 
 	public function dashboard()
 	{
-		$data['title'] = 'Dashboard';
 		$role = (int)($this->Session->getUserType());
 		switch ($role) {
 			case USER_MEMBER:
@@ -209,7 +208,7 @@ class User extends MY_Controller
 
 	public function list()
 	{
-		$data['title'] = 'List All Users';
+		$data['title'] = 'Daftar Seluruh Pengguna';
 		$role = $this->Session->getLoggedDetails()['type'];
 		$filter = ['type <=' => $role];
 		$data['user_list'] = $this->Users->getBy(null, $filter);

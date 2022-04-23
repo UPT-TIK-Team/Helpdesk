@@ -28,13 +28,13 @@ class Tickets extends MY_Controller
       $this->db->update('users', ['refresh_token' => base64_encode($token['refresh_token'])], ['id' => $this->id]);
       $this->session->set_userdata('access_token', $token['access_token']);
     }
-    $data['title'] = 'Create Ticket';
+    $data['title'] = 'Buat Tiket';
     $this->render('ticket/create_new_ticket_view', $data);
   }
 
   public function list_all()
   {
-    $data['title'] = 'List All Tickets';
+    $data['title'] = 'Daftar Seluruh Tiket';
     $data['link'] = base_url('API/Ticket/generateDatatable');
     if (isset($_GET["code"])) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
@@ -47,14 +47,14 @@ class Tickets extends MY_Controller
 
   public function unassigned_tickets()
   {
-    $data['title'] = 'Unassigned Tickets';
+    $data['title'] = 'Tiket Yang Belum Ditugaskan';
     $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=0');
     $this->render('ticket/ticket_table_view', $data);
   }
 
   public function closed_tickets()
   {
-    $data['title'] = 'Closed Tickets';
+    $data['title'] = 'Tiket Selesai';
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
     $data['link'] = base_url('API/Ticket/generateDatatable?status=100');
@@ -63,7 +63,7 @@ class Tickets extends MY_Controller
 
   public function assigned_tickets()
   {
-    $data['title'] = 'Assigned Tickets';
+    $data['title'] = 'Tiket Yang Ditugaskan';
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
 
@@ -73,7 +73,7 @@ class Tickets extends MY_Controller
 
   public function assigned_to_me()
   {
-    $data['title'] = 'Tickets assigned to me';
+    $data['title'] = 'Tiket Untuk Saya';
     $assign_to = $this->Session->getLoggedDetails()['id'];
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
@@ -89,7 +89,7 @@ class Tickets extends MY_Controller
 
   public function my_tickets()
   {
-    $data['title'] = 'Tickets';
+    $data['title'] = 'Tiket Saya';
     $data['type'] = "My Tickets";
     $owner = $this->Session->getLoggedDetails()['username'];
 
@@ -115,7 +115,7 @@ class Tickets extends MY_Controller
     // Get type from logged user
     $usertype = $this->Session->getLoggedDetails()['type'];
 
-    $data['title'] = 'View Ticket';
+    $data['title'] = 'Lihat Tiket';
     $data['user_type'] = $usertype;
     $data['ticket_no'] = $ticket_no;
     $ticket_detail = $this->Tickets->get(['ticket_no' => $ticket_no]);

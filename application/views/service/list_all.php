@@ -9,9 +9,9 @@
               <table class="table table-striped display nowrap" id="services">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Created</th>
-                    <th>Action</th>
+                    <th>Nama</th>
+                    <th>Pembuatan</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
               </table>

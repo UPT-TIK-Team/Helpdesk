@@ -9,12 +9,12 @@
               <table class="table table-striped display nowrap" id="subservices">
                 <thead>
                   <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Priority</th>
-                    <th>Name Service</th>
-                    <th>Created</th>
-                    <th>Action</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Prioritas</th>
+                    <th>Nama Layanan</th>
+                    <th>Pembuatan</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
               </table>

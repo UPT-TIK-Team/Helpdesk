@@ -60,7 +60,7 @@
             </div>
             <!-- Navbar Menu -->
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-              <li class="dotted-add-button"><a href="<?= base_url('tickets/create_new') ?>"><i class="fa fa-plus-square"></i> New ticket</a></li>
+              <li class="dotted-add-button"><a href="<?= base_url('tickets/create_new') ?>"><i class="fa fa-plus-square"></i> Buat tiket</a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link sidebar-header d-flex align-items-center" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="current-user-avatar" data-username="<?= $this->Session->getLoggedDetails()['username'] ?>"></div>
@@ -69,11 +69,10 @@
                   </div>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="<?= base_url('user/profile') ?>"><i class="fa fa-user bg-info"></i> Profile</a>
-                  <a class="dropdown-item" href="<?= base_url('user/change_password') ?>"><i class=" fa fa-lock bg-orange"></i> Change password</a>
+                  <a class="dropdown-item" href="<?= base_url('user/profile') ?>"><i class="fa fa-user bg-info"></i>Profil</a>
+                  <a class="dropdown-item" href="<?= base_url('user/change_password') ?>"><i class=" fa fa-lock bg-orange"></i>Ubah Password</a>
                   <div class="dropdown-divider"></div>
-                  <!-- Logout -->
-                  <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out bg-red"></i>Logout</a>
+                  <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out bg-red"></i>Keluar</a>
                 </div>
               </li>
             </ul>

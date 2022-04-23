@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg mt-3" id="diagnose-row">
-      <label for="service">Choose Service</label>
+      <label for="service">Pilih Layanan</label>
       <select name="category" id="service" class="form-control" style="width: 100%">
-        <option value="null">Choose Service</option>
+        <option value="null">Pilih Layanan</option>
       </select>
-      <label for="subservice">Choose Subservice</label>
+      <label for="subservice">Pilih Sub Layanan</label>
       <select name="category" id="subservice" class="form-control" style="width: 100%" disabled>
-        <option value="null">Choose Subservice</option>
+        <option value="null">Pilih Sub Layanan</option>
       </select>
     </div>
     <div class="col-lg mt-3" id="diagnose-result">

@@ -9,14 +9,14 @@
               <table class="table table-striped display nowrap" id="tickets" style="cursor: pointer;">
                 <thead>
                   <tr>
-                    <th>Ticket No</th>
-                    <th>Owner</th>
-                    <th>Assign To</th>
+                    <th>No Tiket</th>
+                    <th>Pemilik</th>
+                    <th>Ditugaskan</th>
                     <th>Status</th>
-                    <th>Priority</th>
-                    <th>Service</th>
-                    <th>Sub Service</th>
-                    <th>Action</th>
+                    <th>Prioritas</th>
+                    <th>Layanan</th>
+                    <th>Sub Layanan</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
               </table>

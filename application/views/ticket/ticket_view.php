@@ -93,20 +93,20 @@
               </ul>
               <?php if (!$this->session->userdata('access_token')) : ?>
                 <div class="alert alert-danger" role="alert">
-                  Please connect with <?= $loginButton ?>, to use this feature
+                  Harap hubungkan dengan <?= $loginButton ?>, untuk menggunakan fitur ini
                 </div>
               <?php else : ?>
                 <div class="col-md-12 add-comment custom-border-radius">
-                  <h3>Leave a comment</h3>
+                  <h3>Tinggalkan pesan</h3>
                   <!-- <form> -->
                   <div id="comment" style="min-height: 100px;"></div>
                   <br>
                   <div class="row">
-                    <label class="col-sm-12 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
+                    <label class="col-sm-12 form-control-label" for="fileInput"><i class="fa fa-paperclip"></i> Lampiran</label>
                     <div class="col-sm-12">
                       <div class="custom-file">
                         <input id="fileInput" type="file" class="custom-file-input">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        <label class="custom-file-label" for="customFile">Pilih File</label>
                         <ul id="attached_files">
                         </ul>
                       </div>
@@ -117,7 +117,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>" disabled>Reply <i class="fa fa-reply"></i>
+                      <button class="btn btn-primary" id="reply" data-ticket-no="<?= $info['ticket_no'] ?>" disabled>Balas <i class="fa fa-reply"></i>
                       </button>
                     </div>
                   </div>
@@ -133,26 +133,26 @@
       <div class="col-md-4 ticket-details-right">
         <div class="card custom-border-radius sticky-this">
           <div class="card-header d-flex align-items-center custom-border-radius">
-            <h3 class="h4"><i class="fa fa-ticket"></i>Details</h3>
+            <h3 class="h4"><i class="fa fa-ticket"></i>Detail</h3>
           </div>
           <div class="card-body">
             <div class="table-responsiveW">
               <table class="table">
                 <tr>
-                  <th class="border-0">Ticket Number</th>
+                  <th class="border-0">Nomor Tiket</th>
                   <td class="border-0"><?= $info['ticket_no'] ?></td>
                 </tr>
                 <tr>
-                  <th>Created on</th>
+                  <th>Pembuatan</th>
                   <td><span class="rel-time" data-value="<?= $info['created'] . '000' ?>"></span></td>
                 </tr>
                 <tr>
-                  <th>Created By</th>
+                  <th>Pemilik</th>
                   <td><span class="user-label" data-username="<?= isset($info['owner']) ? $info['owner'] : '' ?>"></span>
                   </td>
                 </tr>
                 <tr>
-                  <th>Ticket Status</th>
+                  <th>Status</th>
                   <td>
                     <?php if ($user_type == USER_AGENT || $user_type == USER_MANAGER) : ?>
                       <select name="status" id="status_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;">
@@ -164,7 +164,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Ticket Priority</th>
+                  <th>Prioritas</th>
                   <td>
                     <select name="priority" id="priority" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
                       <option value="<?= $info['id_priority'] ?>"><?= $info['name_priority'] ?></option>
@@ -172,7 +172,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Ticket Service</th>
+                  <th>Layanan</th>
                   <td>
                     <select name="id_service" id="service" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
                       <option value="<?= $info['id_service'] ?>"><?= $info['name_service'] ?></option>
@@ -180,7 +180,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Ticket Sub Service</th>
+                  <th>Sub Layanan</th>
                   <td>
                     <select name="id_subservice" id="subservice" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;" disabled>
                       <option value="<?= $info['id_subservice'] ?>"><?= $info['name_subservice'] ?></option>
@@ -188,7 +188,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Assigned to</th>
+                  <th>Ditugaskan Kepada</th>
                   <td>
                     <?php if ($user_type == USER_MANAGER) : ?>
                       <select name="assign_to" id="assign_to_dd" data-id="<?= $info['id'] ?>" class="form-control" style="width: 10rem !important;">
@@ -199,11 +199,11 @@
                         </select>
                 </tr>
                 <tr>
-                  <th>Assigned on</th>
+                  <th>Waktu Ditugaskan</th>
                   <td><span class="rel-time" data-value="<?= $info['assign_on'] ?>"></span></td>
                 </tr>
                 <tr>
-                  <th>Last Updated on</th>
+                  <th>Perubahan Terakhir</th>
                   <td><span class="rel-time" data-value="<?= $info['updated'] . '000' ?>"></span></td>
                 </tr>
               </table>

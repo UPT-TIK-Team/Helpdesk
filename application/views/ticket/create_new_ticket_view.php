@@ -14,45 +14,45 @@
                   <form>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Service</label>
+                        <label class="col-sm-3 form-control-label">Layanan</label>
                         <div class="col-sm-9 select">
                           <select name="service" id="service" class="form-control">
-                            <option value="null">Choose Service</option>
+                            <option value="null">Pilih Layanan</option>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Sub Service</label>
+                        <label class="col-sm-3 form-control-label">Sub Layanan</label>
                         <div class="col-sm-9 select">
                           <select name="subservice" id="subservice" class="form-control" disabled>
-                            <option value="null">Choose Sub Service</option>
+                            <option value="null">Pilih Sub Layanan</option>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Priority</label>
+                        <label class="col-sm-3 form-control-label">Prioritas</label>
                         <div class="col-sm-9 select">
                           <select name="priority" id="priority" class="form-control" disabled>
-                            <option value="null">Priority</option>
+                            <option value="null">Prioritas</option>
                           </select>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Purpose</label>
+                        <label class="col-sm-3 form-control-label">Tujuan</label>
                         <div class="col-sm-9">
-                          <input id="purpose" type="text" name="purpose" required class="form-control" placeholder="Purpose of Ticket">
+                          <input id="purpose" type="text" name="purpose" required class="form-control" placeholder="Tujuan pembuatan tiket">
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Message</label>
+                        <label class="col-sm-3 form-control-label">Pesan</label>
                         <div class="col-sm-9">
                           <div id="message"></div>
                         </div>
@@ -60,12 +60,11 @@
                     </div>
                     <div class="form-group attachments">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label attachments-label" for="fileInput"><i class="fa fa-paperclip"></i> Attachment</label>
+                        <label class="col-sm-3 form-control-label attachments-label" for="fileInput"><i class="fa fa-paperclip"></i> Lampiran</label>
                         <div class="col-sm-9">
                           <div class="custom-file">
                             <input id="fileInput" type="file" class="custom-file-input">
-                            <label class="custom-file-label" for="customFile">Choose
-                              file</label>
+                            <label class="custom-file-label" for="customFile">Pilih File</label>
                             <ul id="attached_files">
                             </ul>
                           </div>
@@ -83,7 +82,7 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-12 ml-3">
-                        <input type="submit" id="create_ticket" value="Create Ticket" class="btn btn-success pull-right">
+                        <input type="submit" id="create_ticket" value="Buat Tiket" class="btn btn-success pull-right">
                       </div>
                     </div>
                   </form>
