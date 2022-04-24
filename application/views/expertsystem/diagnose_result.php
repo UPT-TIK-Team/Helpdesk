@@ -28,6 +28,7 @@
     <h3 class="alert-heading">Kemungkinan Lain</h3>
     <ul>
       <?php foreach ($problem_list as $key => $value) : ?>
+        <?php if ($key == array_keys($result_problem)[0]) continue; ?>
         <li><?= "{$key} / " . round($value, 2) * 100 . "% ({$value})" ?>
         </li>
       <?php endforeach; ?>
