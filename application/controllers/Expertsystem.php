@@ -50,7 +50,12 @@ class Expertsystem extends MY_Controller
     for ($i = 0; $i < count($_POST['condition']); $i++) {
       $symptom_condition_array = explode('_', $_POST['condition'][$i]);
       if (strlen($_POST['condition'][$i]) > 1) {
-        $symptom_array += [$symptom_condition_array[0] => $symptom_condition_array[1]];
+        // Get symptom name based on condition_array
+        $symptom_name = $this->db->select('name')->where('id', $symptom_condition_array[0])->get('symptom')->row_array()['name'];
+        // Get condition name based on condition_array
+        $condition_name = $this->db->select('name')->where('id', $symptom_condition_array[1])->get('condition')->row_array()['name'];
+        // Store symptom and condition name in array
+        $symptom_array += [$symptom_name => $condition_name];
       }
     }
     $problem_array = array();
@@ -86,21 +91,27 @@ class Expertsystem extends MY_Controller
         }
       }
       if ($last_cf > 0) {
+        $problem_name = $this->db->select('name')->where('id', $rule['id_problem'])->get('problem')->row_array()['name'];
         // Fill problem array if last cf is bigger than 0
-        $problem_array += array($rule['id_problem'] => number_format($last_cf, 4));
+        $problem_array += array($problem_name => number_format($last_cf, 4));
       }
     }
     // Sort array descending by value
     arsort($problem_array);
+    // Store result data in array
     $result = [
       'id_user' => $this->session->userdata('sessions_details')['id'],
-      'id_problem' => array_key_first($problem_array),
+      'id_problem' => $this->db->select('id')->where('name', array_key_first($problem_array))->get('problem')->row_array()['id'],
       'problem' => serialize($problem_array),
       'symptom' => serialize($symptom_array),
       'result' => reset($problem_array)
     ];
     $this->db->insert('analyst_result', $result);
-    $data['problem'] = $this->db->where('id', $result['id_problem'])->get('problem')->row_array();
+    // Set data to load in view pages
+    $data['solution'] = $this->db->select('solution')->where('id', $result['id_problem'])->get('problem')->row_array()['solution'];
+    $data['result_problem'] = [$this->db->select('name')->where('id', $result['id_problem'])->get('problem')->row_array()['name'] => $result['result']];
+    $data['problem_list'] = $problem_array;
+    $data['symptom_list'] = $symptom_array;
     $this->load->view('expertsystem/diagnose_result', $data);
   }
 }

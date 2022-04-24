@@ -47,7 +47,7 @@
         data,
         success: response => {
           $('#table-list-diagnosa').remove()
-          $('#diagnose-result').append(response)
+          $('#diagnose-row').children('form').replaceWith(response)
           window.scrollTo({
             top: 0,
             behavior: 'smooth'
