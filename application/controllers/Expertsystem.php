@@ -107,8 +107,8 @@ class Expertsystem extends MY_Controller
       'result' => reset($problem_array)
     ];
     $this->db->insert('analyst_result', $result);
-    // Set data to load in view pages
-    $data['solution'] = $this->db->select('solution')->where('id', $result['id_problem'])->get('problem')->row_array()['solution'];
+    // Set related information and send to view pages
+    $data['solution'] = unserialize($this->db->select('solution')->where('id', $result['id_problem'])->get('problem')->row_array()['solution']);
     $data['result_problem'] = [$this->db->select('name')->where('id', $result['id_problem'])->get('problem')->row_array()['name'] => $result['result']];
     $data['problem_list'] = $problem_array;
     $data['symptom_list'] = $symptom_array;

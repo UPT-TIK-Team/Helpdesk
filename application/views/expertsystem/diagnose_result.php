@@ -22,7 +22,12 @@
   </div>
   <div class="alert alert-warning" role="alert">
     <h3 class="alert-heading">Solusi</h3>
-    <p><?= $solution ?></p>
+    <ul>
+      <?php foreach ($solution as $value) : ?>
+        <li><?= $value ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
   </div>
   <div class="alert alert-danger" role="alert">
     <h3 class="alert-heading">Kemungkinan Lain</h3>
