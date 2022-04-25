@@ -14,7 +14,6 @@
                   <tr>
                     <th>Code</th>
                     <th>Name</th>
-                    <th>Solution</th>
                   </tr>
                 </thead>
               </table>

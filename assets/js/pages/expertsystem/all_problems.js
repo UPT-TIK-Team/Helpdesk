@@ -17,14 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     columns: [
       {
         data: "code",
-        width: "5%",
       },
       {
         data: "name",
-        width: "50%",
-      },
-      {
-        data: "solution",
       },
     ],
   });
