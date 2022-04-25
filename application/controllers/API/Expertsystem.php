@@ -73,7 +73,8 @@ class Expertsystem extends MY_Controller
     $data = [
       'code' => $code,
       'name' => $problemName,
-      'solution' => $solution,
+      // Seriallize and explode solution before adding to database
+      'solution' => serialize(explode(';', $solution)),
       'id_subservice' => $idSubservice
     ];
     $this->db->insert('problem', $data);

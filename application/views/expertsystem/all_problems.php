@@ -6,14 +6,14 @@
         <div class="card  custom-border-radius">
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProblems">
-              Add New Problem
+              Tambah Masalah Baru
             </button>
             <div class="table-responsive mt-3">
               <table class="table table-striped display nowrap" id="problems">
                 <thead>
                   <tr>
-                    <th>Code</th>
-                    <th>Name</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
                   </tr>
                 </thead>
               </table>
@@ -28,7 +28,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addProblemsLabel">Add Problem</h5>
+          <h5 class="modal-title" id="addProblemsLabel">Tambah Masalah</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -36,23 +36,24 @@
         <form action="<?= base_url('API/expertsystem/addproblem') ?>" method="POST">
           <div class="modal-body">
             <div class="form-group">
-              <label for="problem-name">Name</label>
-              <input type="text" class="form-control" id="problem-name" name="problem-name" aria-describedby="problem-name" placeholder="Enter name of the problem">
+              <label for="problem-name">Nama</label>
+              <input type="text" class="form-control" id="problem-name" name="problem-name" aria-describedby="problem-name" placeholder="Masukkan nama masalah">
             </div>
             <div class="form-group">
-              <label for="solution">Solution</label>
-              <input type="text" class="form-control" id="solution" name="solution" aria-describedby="solution" placeholder="Enter a solution">
+              <label for="solution">Solusi</label>
+              <input type="text" class="form-control" id="solution" name="solution" aria-describedby="solution" placeholder="Masukkan solusi">
+              <small class="text-danger">*Jika solusi lebih dari 1, pisahkan dengan tanda titik koma (;)</small>
             </div>
             <div class="form-group">
-              <label for="service">Service</label>
+              <label for="service">Layanan</label>
               <select class="form-control" name="service" id="service" style="width: 100%;">
-                <option value="">Choose Service</option>
+                <option value="">Pilih Layanan</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="subservice">Subservice</label>
+              <label for="subservice">Sub Layanan</label>
               <select class="form-control" name="subservice" id="subservice" style="width: 100%;" disabled>
-                <option value="">Choose Subservice</option>
+                <option value="">Pilih Sub Layanan</option>
               </select>
             </div>
           </div>
