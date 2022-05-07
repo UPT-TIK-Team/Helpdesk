@@ -55,7 +55,7 @@
         <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
           <div class="icon bg-orange"><i class="fa fa-ticket"></i></div>
           <div class="text"><strong><?= $stats['open_tickets'] ?></strong><br>
-            <small>Tiket Terbuka</small>
+            <small>Tiket Yang Belum Selesai</small>
           </div>
         </div>
       </a>
