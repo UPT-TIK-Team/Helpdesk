@@ -54,17 +54,12 @@ $(document).ready(() => {
         },
         {
           data: "ticket_no",
-        },
-      ],
-      order: [[0, "desc"]],
-      columnDefs: [
-        {
-          targets: 7,
           render: (data) => {
-            return `<a href="view_ticket/${data}" class="badge badge-primary">View</a><a href="view_ticket/${data}" class="ml-1 badge badge-primary">View</a>`;
+            return `<a href="view_ticket/${data}" class="badge badge-primary">View</a>`;
           },
         },
       ],
+      order: [[0, "desc"]],
     });
   });
 });
