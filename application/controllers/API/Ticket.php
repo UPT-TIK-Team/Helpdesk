@@ -23,7 +23,6 @@ class Ticket extends MY_Controller
     $join = ['priority', 'services', 'subservices', 'users'];
     $columnjoin = ['id_priority', 'id_service', 'id_subservice', 'assign_to'];
     $as = 'priority.name as priority, services.name as service, subservices.name as subservice, users.username as username';
-    $action = [true, 'view_ticket', 'ticket_no'];
 
     if (($this->input->get())) {
       $input = $this->input->get();
@@ -35,9 +34,9 @@ class Ticket extends MY_Controller
       $val = array_values($input)[0];
 
       // Process generate datatable
-      echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as, $action);
+      echo $this->Tickets->generateDatatable($select, [$key => $val], $join, $columnjoin, $as);
     } else {
-      echo $this->Tickets->generateDatatable($select, null, $join, $columnjoin, $as, $action);
+      echo $this->Tickets->generateDatatable($select, null, $join, $columnjoin, $as);
     }
   }
 

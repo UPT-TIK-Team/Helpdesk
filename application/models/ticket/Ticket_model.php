@@ -134,8 +134,8 @@ class Ticket_model extends BaseMySQL_model
   /**
    * Function to generate datatable
    */
-  public function generateDatatable($select = null, $where = null, $join = array(), $column = array(), $as = null, $addcolumn = array())
+  public function generateDatatable($select = null, $where = null, $join = array(), $column = array(), $as = null)
   {
-    return parent::generateDatatable($select, $where, $join, $column, $as, $addcolumn);
+    return parent::generateDatatable($select, $where, $join, $column, $as);
   }
 }

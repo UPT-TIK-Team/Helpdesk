@@ -190,7 +190,7 @@ class BaseMySQL_model extends MY_Model
    * Handle for generateDatatable
    * @return Object datatables
    */
-  public function generateDatatable($select = null, $where = array(), $join = array(), $column = array(), $as = null, $addcolumn = array())
+  public function generateDatatable($select = null, $where = array(), $join = array(), $column = array(), $as = null)
   {
     if ($select == null) $select = "$this->table.*";
     $this->datatables->select($select)->from($this->table);
@@ -204,11 +204,6 @@ class BaseMySQL_model extends MY_Model
 
     // Handle if 'as' parameter is exist
     if ($as) $this->datatables->select($as);
-
-    // Handle if 'addcolumn' parameter is exist
-    if (!empty($addcolumn)) {
-      $this->datatables->add_column('action', '<a href="' . $addcolumn[1] . '/$1" class="badge badge-primary">View</a>',  $addcolumn[2]);
-    }
 
     // If 'where' parameters is empty just return datatables object
     if (empty($where)) return $this->datatables->generate();
