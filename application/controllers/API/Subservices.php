@@ -16,10 +16,9 @@ class Subservices extends MY_Controller
   public function generateDatatable()
   {
     $select = "code, subservices.name, subservices.created, subservices.id as idsubservice";
-    $action = [true, "#", 'idsubservice'];
     $join = ['services', 'priority'];
     $columnjoin = ['id_service', 'id_priority'];
     $as = 'services.name as service, priority.name as priority';
-    echo $this->Subservices->generateDatatable($select, null, $join, $columnjoin, $as, $action);
+    echo $this->Subservices->generateDatatable($select, null, $join, $columnjoin, $as);
   }
 }
