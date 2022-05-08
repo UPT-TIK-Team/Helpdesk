@@ -571,3 +571,15 @@ if (flashDataType == "success") {
     });
   }
 }
+
+export function deleteSwal(href) {
+  Swal.fire({
+    title: "Apakah anda yakin?",
+    icon: "warning",
+    showDenyButton: true,
+    confirmButtonText: "Ya",
+    denyButtonText: `Tidak`,
+  }).then((result) => {
+    if (result.value) document.location.href = href;
+  });
+}

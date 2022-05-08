@@ -1,4 +1,4 @@
-import { renderCustomHTML } from "../../main/library.js";
+import { deleteSwal, renderCustomHTML } from "../../main/library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#subservices").dataTable({
@@ -44,9 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         data: "idsubservice",
         render: (data) => {
-          return `<a href="ubah/${data}" class="badge badge-primary">Ubah</a><a href="hapus/${data}" class="ml-1 badge badge-danger">Hapus</a>`;
+          return `<a href="edit/${data}" class="badge badge-primary" id="action">Ubah</a><a href="delete/${data}" class="ml-1 badge badge-danger" id="action">Hapus</a>`;
         },
       },
     ],
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.innerHTML === "Hapus") {
+      e.preventDefault();
+      const href = e.target.href;
+      deleteSwal(href);
+    }
   });
 });
