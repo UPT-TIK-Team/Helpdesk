@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       },
       {
-        data: "action",
+        data: "id",
+        render: (data) => {
+          return `<a href="ubah/${data}" class="badge badge-primary">Ubah</a><a href="hapus/${data}" class="ml-1 badge badge-danger">Hapus</a>`;
+        },
       },
     ],
   });

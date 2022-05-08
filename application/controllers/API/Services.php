@@ -15,8 +15,7 @@ class Services extends MY_Controller
 
   public function generateDatatable()
   {
-    $select = "name, created, services.id";
-    $action = [true, "#", 'id'];
-    echo $this->Services->generateDatatable($select, null, null, null, null, $action);
+    $select = "id, name, created";
+    echo $this->Services->generateDatatable($select, null, null, null, null);
   }
 }
