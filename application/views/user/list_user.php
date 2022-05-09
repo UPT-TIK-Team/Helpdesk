@@ -14,7 +14,7 @@
               </div>
             <?php endif; ?>
             <div class="table-responsive mt-3">
-              <table class="table table-striped display nowrap" id="users">
+              <table class="table table-striped display nowrap" id="users" style="cursor: pointer;">
                 <thead>
                   <tr>
                     <th>Email</th>
