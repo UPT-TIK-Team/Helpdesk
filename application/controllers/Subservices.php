@@ -35,7 +35,10 @@ class Subservices extends MY_Controller
         'id_priority' => $this->input->post('priority', true),
       ];
       $this->db->update('subservices', $data, ['id' => $id]);
-      if ($this->db->affected_rows()) redirect(base_url('subservices/list_all'));
+      if ($this->db->affected_rows()) {
+        $this->session->set_flashdata('update_success', 'Sub layanan berhasil di ubah');
+        redirect(base_url('subservices/list_all'));
+      }
     }
   }
 }
