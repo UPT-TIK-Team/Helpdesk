@@ -66,14 +66,25 @@ export function renderDropdowns() {
   }
 
   if ($("#problem").length) {
-    $("#problem").select2({
-      width: "resolve",
+    $.get(`${BASE_URL}API/Expertsystem/getproblem`, function (data) {
+      $("#problem").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
     });
   }
 
   if ($("#symptom").length) {
-    $("#symptom").select2({
-      width: "resolve",
+    $.get(`${BASE_URL}API/Expertsystem/getsymptom`, function (data) {
+      console.log(data);
+      $("#symptom").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
     });
   }
 }

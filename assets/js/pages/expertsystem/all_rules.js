@@ -1,4 +1,4 @@
-import { renderCustomHTML } from "../../main/library.js";
+import { deleteSwal, renderCustomHTML } from "../../main/library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#rules").dataTable({
@@ -15,17 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     columns: [
+      { data: "problem" },
+      { data: "symptom" },
+      { data: "mb" },
+      { data: "md" },
       {
-        data: "problem",
-      },
-      {
-        data: "symptom",
-      },
-      {
-        data: "mb",
-      },
-      {
-        data: "md",
+        data: "id_rule",
+        render: (data) => {
+          return `<a href="edit_rule/${data}" class="badge badge-primary" id="action">Ubah</a><a href="delete_rule/${data}" class="ml-1 badge badge-danger" id="action">Hapus</a>`;
+        },
       },
     ],
   });
@@ -114,6 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
       btnAddRules.removeAttribute("disabled");
     } else {
       btnAddRules.disabled = true;
+    }
+  });
+  // Show alert if delete button clicked
+  document.addEventListener("click", (e) => {
+    if (e.target.innerHTML === "Hapus") {
+      e.preventDefault();
+      const href = e.target.href;
+      deleteSwal(href);
     }
   });
 });

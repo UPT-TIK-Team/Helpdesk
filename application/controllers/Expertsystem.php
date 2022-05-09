@@ -92,7 +92,7 @@ class Expertsystem extends MY_Controller
   {
     $this->db->delete('symptom', ['id' => $id]);
     if ($this->db->affected_rows()) {
-      $this->session->set_flashdata('success', 'Data gejala berhasil di ubah');
+      $this->session->set_flashdata('success', 'Data gejala berhasil dihapus');
       redirect(base_url('expertsystem/all_symptoms'));
     }
   }
@@ -101,6 +101,39 @@ class Expertsystem extends MY_Controller
   {
     $data['title'] = 'Daftar Seluruh Aturan';
     $this->render('expertsystem/all_rules', $data);
+  }
+
+  public function edit_rule($id)
+  {
+    if (!$this->input->post()) {
+      $data['title'] = 'Gejala';
+      $data['rule'] = $this->db->select('problem.id as id_problem, problem.name as name_problem, symptom.id as id_symptom, symptom.name as name_symptom, mb, md')->where('rule.id', $id)->join('problem', 'rule.id_problem=problem.id')->join('symptom', 'rule.id_symptom=symptom.id')->get('rule')->row_array();
+      $this->render('expertsystem/rule_view', $data);
+    } else {
+      $data = [
+        'id_problem' => $this->input->post('problem', true),
+        'id_symptom' => $this->input->post('symptom', true),
+        'mb' => $this->input->post('mb', true),
+        'md' => $this->input->post('md', true),
+      ];
+      $this->db->update('rule', $data, ['id' => $id]);
+      if ($this->db->affected_rows()) {
+        $this->session->set_flashdata('success', 'Data aturan berhasil di ubah');
+        redirect(base_url('expertsystem/all_rules'));
+      } else {
+        $this->session->set_flashdata('failed', 'Data aturan tidak ada perubahan');
+        redirect(base_url('expertsystem/all_rules'));
+      }
+    }
+  }
+
+  public function delete_rule($id)
+  {
+    $this->db->delete('rule', ['id' => $id]);
+    if ($this->db->affected_rows()) {
+      $this->session->set_flashdata('success', 'Data aturan berhasil dihapus');
+      redirect(base_url('expertsystem/all_rules'));
+    }
   }
 
   /**

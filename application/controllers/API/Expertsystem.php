@@ -49,7 +49,7 @@ class Expertsystem extends MY_Controller
         echo $this->Problem->generateDatatable($select);
         break;
       case 'rules':
-        $select = 'problem.name, symptom.name, mb, md';
+        $select = 'rule.id as id_rule, problem.name, symptom.name, mb, md';
         $join = ['problem', 'symptom'];
         $columnJoin = ['id_problem', 'id_symptom'];
         $as = 'problem.name as problem, symptom.name as symptom';

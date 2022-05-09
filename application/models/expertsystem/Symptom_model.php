@@ -14,6 +14,7 @@ class Symptom_model extends BaseMySQL_model
 
   public function get_symptom($id_subservice)
   {
+    if (!$id_subservice) return $this->db->get('symptom')->result_array();
     return $this->db->where('id_subservice', $id_subservice)->get('symptom')->result_array();
   }
 }

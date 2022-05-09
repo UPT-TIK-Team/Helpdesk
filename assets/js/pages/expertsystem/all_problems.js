@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btnAddProblem.disabled = true;
     }
   });
+  // Show alert if delete button clicked
   document.addEventListener("click", (e) => {
     if (e.target.innerHTML === "Hapus") {
       e.preventDefault();

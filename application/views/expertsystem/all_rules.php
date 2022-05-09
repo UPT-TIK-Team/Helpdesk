@@ -1,3 +1,11 @@
+<!-- Handle alert -->
+<?php if ($this->session->flashdata('failed')) : ?>
+  <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed')  ?>"></div>
+  <?php unset($_SESSION['failed']) ?>
+<?php elseif ($this->session->flashdata('success')) : ?>
+  <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success')  ?>"></div>
+  <?php unset($_SESSION['success']) ?>
+<?php endif; ?>
 <!-- Dashboard Counts Section-->
 <section class="forms">
   <div class="container-fluid">
@@ -6,16 +14,17 @@
         <div class="card  custom-border-radius">
           <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRules">
-              Add New Rules
+              Tambah Aturan Baru
             </button>
             <div class="table-responsive mt-3">
-              <table class="table table-striped display nowrap" id="rules">
+              <table class="table table-striped display nowrap" id="rules" style="cursor: pointer;">
                 <thead>
                   <tr>
-                    <th>Problem</th>
-                    <th>Symptom</th>
+                    <th>Masalah</th>
+                    <th>Gejala</th>
                     <th>MB</th>
                     <th>MD</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
               </table>
@@ -30,7 +39,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addRulesLabel">Add Rules</h5>
+          <h5 class="modal-title" id="addRulesLabel">Tambah Aturan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -53,27 +62,27 @@
               Dimana nilai kepastian anda terhadap gejala Indikator Lan card tidak menyala untuk masalah Network cable is Unplugged adalah <b>0.6 (Kemungkinan Besar)</b>
             </div>
             <div class="form-group">
-              <label for="service">Service</label>
+              <label for="service">Layanan</label>
               <select class="form-control" name="service" id="service" style="width: 100%;">
-                <option value="null">Choose Service</option>
+                <option value="null">Pilih Layanan</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="subservice">Subservice</label>
+              <label for="subservice">Sub Layanan</label>
               <select class="form-control" name="subservice" id="subservice" style="width: 100%;" disabled>
-                <option value="null">Choose Service</option>
+                <option value="null">Pilih Sub Layanan</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="problem">Problem Name</label>
+              <label for="problem">Masalah</label>
               <select type="text" class="form-control" id="problem" name="problem" style="width: 100%;" aria-describedby="problem" disabled>
-                <option value="null">Choose Problem</option>
+                <option value="null">Pilih Masalah</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="symptom">Symptom Name</label>
+              <label for="symptom">Gejala</label>
               <select type="text" class="form-control" id="symptom" name="symptom" style="width: 100%;" aria-describedby="symptom" disabled>
-                <option value="null">Choose Symptom</option>
+                <option value="null">Pilih Gejala</option>
               </select>
             </div>
             <div class="form-group">
@@ -86,8 +95,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="btn-add-rules" disabled>Add</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary" id="btn-add-rules" disabled>Tambah</button>
           </div>
         </form>
       </div>
