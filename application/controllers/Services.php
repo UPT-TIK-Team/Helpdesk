@@ -23,7 +23,28 @@ class Services extends MY_Controller
       redirect(base_url('services/list_all'));
     } else {
       $this->db->delete('services', ['id' => $id]);
-      if ($this->db->affected_rows()) redirect(base_url('services/list_all'));
+      redirect(base_url('services/list_all'));
+    }
+  }
+
+  public function edit($id)
+  {
+    if (!$this->input->post()) {
+      $data['title'] = 'Layanan';
+      $data['service'] = $this->db->where('id', $id)->get('services')->row_array();
+      $this->render('service/service_view', $data);
+    } else {
+      $data = [
+        'name' => $this->input->post('name', true),
+      ];
+      $this->db->update('services', $data, ['id' => $id]);
+      if ($this->db->affected_rows()) {
+        $this->session->set_flashdata('success', 'Layanan berhasil di ubah');
+        redirect(base_url('services/list_all'));
+      } else {
+        $this->session->set_flashdata('failed', 'Layanan tidak ada perubahan');
+        redirect(base_url('services/list_all'));
+      }
     }
   }
 }

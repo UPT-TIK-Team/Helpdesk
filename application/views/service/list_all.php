@@ -1,6 +1,10 @@
+<!-- Handle alert -->
 <?php if ($this->session->flashdata('failed')) : ?>
   <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed')  ?>"></div>
   <?php unset($_SESSION['failed']) ?>
+<?php elseif ($this->session->flashdata('success')) : ?>
+  <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success')  ?>"></div>
+  <?php unset($_SESSION['success']) ?>
 <?php endif; ?>
 <!-- Dashboard Counts Section-->
 <section class="forms">
