@@ -2,7 +2,7 @@
 
   <!-- Handle alert if exist -->
   <?php if ($this->session->flashdata('info')) : ?>
-    <div class="flash-data" data-type="info" data-flashdata="Silahkan baca petunjuk penggunaan <a href='<?= base_url('user/userGuide') ?>'>DISINI</a> atau gunakan fitur <a href='<?= base_url('expertsystem/diagnose') ?>'>SISTEM PAKAR</a> untuk mengetahui permasalahan anda" data-html="true"></div>
+    <div class="flash-data" data-type="info" data-flashdata="Silahkan gunakan fitur <a href='<?= base_url('expertsystem/diagnose') ?>'>SISTEM PAKAR</a> untuk mendapatkan kemungkinan solusi dari permasalahan anda" data-html="true"></div>
     <?php unset($_SESSION['info']) ?>
   <?php endif; ?>
 

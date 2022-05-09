@@ -46,6 +46,12 @@
         url: `<?= base_url('Expertsystem/result') ?>`,
         data,
         success: response => {
+          const url = "<?= base_url('user/userGuide') ?>"
+          Swal.fire({
+            title: 'info',
+            html: `Terimakasih telah menggunakan fitur sistem pakar, apabila masalah anda tidak terselesaikan silahkan baca petunjuk pengaduan masalah <a href="${url}">DISINI</a> untuk melakukan pengaduan ke teknisi terkait`,
+            icon: 'warning'
+          })
           $('#table-list-diagnosa').remove()
           $('#diagnose-row').children('form').replaceWith(response)
           window.scrollTo({
