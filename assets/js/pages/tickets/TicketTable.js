@@ -55,7 +55,7 @@ $(document).ready(() => {
         {
           data: "ticket_no",
           render: (data) => {
-            return `<a href="view_ticket/${data}" class="badge badge-primary">View</a>`;
+            return `<a href="view_ticket/${data}" class="badge badge-primary">Lihat</a>`;
           },
         },
       ],
