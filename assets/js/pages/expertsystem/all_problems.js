@@ -1,4 +1,4 @@
-import { renderCustomHTML } from "../../main/library.js";
+import { deleteSwal, renderCustomHTML } from "../../main/library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#problems").dataTable({
@@ -62,6 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
       btnAddProblem.removeAttribute("disabled");
     } else {
       btnAddProblem.disabled = true;
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (e.target.innerHTML === "Hapus") {
+      e.preventDefault();
+      const href = e.target.href;
+      deleteSwal(href);
     }
   });
 });

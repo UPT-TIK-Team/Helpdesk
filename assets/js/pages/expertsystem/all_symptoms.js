@@ -1,4 +1,4 @@
-import { renderCustomHTML } from "../../main/library.js";
+import { deleteSwal, renderCustomHTML } from "../../main/library.js";
 document.addEventListener("DOMContentLoaded", () => {
   renderCustomHTML();
   $("#symptoms").dataTable({
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     columns: [
+      { data: "code" },
+      { data: "symptom" },
+      { data: "subservice" },
       {
-        data: "code",
-      },
-      {
-        data: "symptom",
-      },
-      {
-        data: "subservice",
+        data: "id_symptom",
+        render: (data) => {
+          return `<a href="edit_symptom/${data}" class="badge badge-primary" id="action">Ubah</a><a href="delete_symptom/${data}" class="ml-1 badge badge-danger" id="action">Hapus</a>`;
+        },
       },
     ],
   });
@@ -43,6 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
       btnAddSymptom.removeAttribute("disabled");
     } else {
       btnAddSymptom.disabled = true;
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (e.target.innerHTML === "Hapus") {
+      e.preventDefault();
+      const href = e.target.href;
+      deleteSwal(href);
     }
   });
 });

@@ -34,7 +34,6 @@ class Expertsystem extends MY_Controller
       $this->render('expertsystem/problem_view', $data);
     } else {
       $data = [
-        'code' => $this->input->post('code', true),
         'name' => $this->input->post('name', true),
         'solution' => serialize(explode(';', $this->input->post('solution', true)))
       ];
@@ -65,6 +64,37 @@ class Expertsystem extends MY_Controller
   {
     $data['title'] = 'Daftar Seluruh Gejala';
     $this->render('expertsystem/all_symptoms', $data);
+  }
+
+  public function edit_symptom($id)
+  {
+    if (!$this->input->post()) {
+      $data['title'] = 'Gejala';
+      $data['symptom'] = $this->db->select('symptom.name as name_symptom, subservices.id as id_subservice, subservices.name as name_subservice')->where('symptom.id', $id)->join('subservices', 'symptom.id_subservice=subservices.id')->get('symptom')->row_array();
+      $this->render('expertsystem/symptom_view', $data);
+    } else {
+      $data = [
+        'name' => $this->input->post('name', true),
+        'id_subservice' => $this->input->post('subservice', true),
+      ];
+      $this->db->update('symptom', $data, ['id' => $id]);
+      if ($this->db->affected_rows()) {
+        $this->session->set_flashdata('success', 'Data gejala berhasil di ubah');
+        redirect(base_url('expertsystem/all_symptoms'));
+      } else {
+        $this->session->set_flashdata('failed', 'Data gejala tidak ada perubahan');
+        redirect(base_url('expertsystem/all_symptoms'));
+      }
+    }
+  }
+
+  public function delete_symptom($id)
+  {
+    $this->db->delete('symptom', ['id' => $id]);
+    if ($this->db->affected_rows()) {
+      $this->session->set_flashdata('success', 'Data gejala berhasil di ubah');
+      redirect(base_url('expertsystem/all_symptoms'));
+    }
   }
 
   public function all_rules()

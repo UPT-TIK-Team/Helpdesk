@@ -38,7 +38,7 @@ class Expertsystem extends MY_Controller
     // Switch endpoint and send appropriate data
     switch ($endpoint) {
       case 'symptoms':
-        $select = 'symptom.code, symptom.name, subservices.name';
+        $select = 'symptom.id as id_symptom, symptom.code, symptom.name, subservices.name';
         $join = ['subservices'];
         $columnJoin = ['id_subservice'];
         $as = 'symptom.code as code, symptom.name as symptom, subservices.name as subservice';

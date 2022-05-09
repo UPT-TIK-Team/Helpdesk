@@ -11,16 +11,17 @@
                     <div class="row">
                       <label class="col-sm-3 form-control-label">Nama</label>
                       <div class="col-sm-9">
-                        <input type="text" name="name" required class="form-control" value="<?= $problem['name'] ?>">
+                        <input type="text" name="name" required class="form-control" value="<?= $symptom['name_symptom'] ?>">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-3 form-control-label">Solution</label>
-                      <div class="col-sm-9">
-                        <textarea name="solution" required class="form-control" style="height: 20rem;"><?= $problem['solution'] ?></textarea>
-                        <small class="text-danger">*Jika solusi lebih dari 1, pisahkan dengan tanda titik koma (;)</small>
+                      <label class="col-sm-3 form-control-label">Sub Layanan</label>
+                      <div class="col-sm-9 select">
+                        <select name="subservice" id="subservice" class="form-control">
+                          <option value="<?= $symptom['id_subservice'] ?>"><?= $symptom['name_subservice'] ?></option>
+                        </select>
                       </div>
                     </div>
                   </div>

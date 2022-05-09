@@ -44,8 +44,13 @@ export function renderDropdowns() {
   }
 
   if ($("#subservice").length) {
-    $("#subservice").select2({
-      width: "resolve",
+    $.get(BASE_URL + "API/Ticket/getSubservices", function (data) {
+      $("#subservice").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
     });
   }
 
