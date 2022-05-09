@@ -50,8 +50,13 @@ export function renderDropdowns() {
   }
 
   if ($("#priority").length) {
-    $("#priority").select2({
-      width: "resolve",
+    $.get(`${BASE_URL}API/Ticket/getPriority`, function (data) {
+      $("#priority").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
     });
   }
 

@@ -63,16 +63,6 @@ class Ticket extends MY_Controller
     $this->sendJSON($this->Tickets->getSubServicesById($id));
   }
 
-  public function getPriorities()
-  {
-    $this->sendJSON($this->Tickets->getAllPriorities());
-  }
-
-  public function getSeverities()
-  {
-    $this->sendJSON($this->Tickets->getAllSeverities());
-  }
-
   public function getPriority($id = null)
   {
     $this->sendJSON($this->Tickets->getPriority($id));
@@ -94,13 +84,8 @@ class Ticket extends MY_Controller
       $fileName = $curr_date . $curr_time . '-' . basename($_FILES["file"]["name"]);
       $fileName = str_replace(" ", "_", $fileName);
 
-      //file upload path
-      $targetDir = "uploads/";
-      if (!is_dir($targetDir)) mkdir($targetDir, 0777);
-      $targetFilePath = $targetDir . $fileName;
-
       //allow certain file formats
-      $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+      $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
       $allowTypes = array('xlsx', 'png', 'jpeg', 'jpg', "zip", "rar", "docx", "doc", "xls", "csv", "pdf");
 
       if (in_array($fileType, $allowTypes) && $this->client->getAccessToken()) {

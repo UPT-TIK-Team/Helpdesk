@@ -3,10 +3,10 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <div class="card  custom-border-radius">
+        <div class="card custom-border-radius">
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped display nowrap" id="subservices">
+              <table class="table table-striped display nowrap" id="subservices" style="cursor: pointer;">
                 <thead>
                   <tr>
                     <th>Kode</th>

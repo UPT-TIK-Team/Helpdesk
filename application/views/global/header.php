@@ -9,6 +9,7 @@
   <!-- Load necessary javascript files -->
   <script src="<?= base_url('assets/js/plugins/jquery/jquery.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/chart.js/Chart.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/select2/select2.min.js') ?>"></script>
   <!-- Style for loader class -->
   <style>
     .loader {
