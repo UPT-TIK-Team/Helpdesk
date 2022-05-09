@@ -15,11 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
     columns: [
+      { data: "code" },
+      { data: "name" },
       {
-        data: "code",
-      },
-      {
-        data: "name",
+        data: "id",
+        render: (data) => {
+          return `<a href="edit_problem/${data}" class="badge badge-primary" id="action">Ubah</a><a href="delete_problem/${data}" class="ml-1 badge badge-danger" id="action">Hapus</a>`;
+        },
       },
     ],
   });

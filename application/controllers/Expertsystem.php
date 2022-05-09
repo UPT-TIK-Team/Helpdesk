@@ -25,6 +25,42 @@ class Expertsystem extends MY_Controller
     $this->render('expertsystem/all_problems', $data);
   }
 
+  public function edit_problem($id)
+  {
+    if (!$this->input->post()) {
+      $data['title'] = 'Masalah';
+      $data['problem'] = $this->db->where('id', $id)->get('problem')->row_array();
+      $data['problem']['solution'] = implode(';', unserialize($data['problem']['solution']));
+      $this->render('expertsystem/problem_view', $data);
+    } else {
+      $data = [
+        'code' => $this->input->post('code', true),
+        'name' => $this->input->post('name', true),
+        'solution' => serialize(explode(';', $this->input->post('solution', true)))
+      ];
+      $this->db->update('problem', $data, ['id' => $id]);
+      if ($this->db->affected_rows()) {
+        $this->session->set_flashdata('success', 'Data masalah berhasil di ubah');
+        redirect(base_url('expertsystem/all_problems'));
+      } else {
+        $this->session->set_flashdata('failed', 'Data masalah tidak ada perubahan');
+        redirect(base_url('expertsystem/all_problems'));
+      }
+    }
+  }
+
+  public function delete_problem($id)
+  {
+    $totalRule = $this->db->where('id_problem', $id)->get('rule')->num_rows();
+    if ($totalRule > 0) {
+      $this->session->set_flashdata('failed', 'Data masalah ini masih memiliki aturan yang terkait, silahkan hapus aturan tersebut terlebih dahulu!');
+      redirect(base_url('expertsystem/all_problems'));
+    } else {
+      $this->db->delete('problem', ['id' => $id]);
+      redirect(base_url('expertsystem/all_problems'));
+    }
+  }
+
   public function all_symptoms()
   {
     $data['title'] = 'Daftar Seluruh Gejala';

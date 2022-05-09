@@ -1,3 +1,11 @@
+<!-- Handle alert -->
+<?php if ($this->session->flashdata('failed')) : ?>
+  <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed')  ?>"></div>
+  <?php unset($_SESSION['failed']) ?>
+<?php elseif ($this->session->flashdata('success')) : ?>
+  <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success')  ?>"></div>
+  <?php unset($_SESSION['success']) ?>
+<?php endif; ?>
 <!-- Dashboard Counts Section-->
 <section class="forms">
   <div class="container-fluid">
@@ -9,11 +17,12 @@
               Tambah Masalah Baru
             </button>
             <div class="table-responsive mt-3">
-              <table class="table table-striped display nowrap" id="problems">
+              <table class="table table-striped display nowrap" id="problems" style="cursor: pointer;">
                 <thead>
                   <tr>
                     <th>Kode</th>
                     <th>Nama</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
               </table>

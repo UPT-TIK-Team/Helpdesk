@@ -45,7 +45,7 @@ class Expertsystem extends MY_Controller
         echo $this->Symptom->generateDatatable($select, null, $join, $columnJoin, $as);
         break;
       case 'problems':
-        $select = "code, name";
+        $select = "id, code, name, solution";
         echo $this->Problem->generateDatatable($select);
         break;
       case 'rules':
