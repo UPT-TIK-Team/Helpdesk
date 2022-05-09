@@ -1,3 +1,10 @@
+<?php if ($this->session->flashdata('success')) : ?>
+  <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+  <?php unset($_SESSION['success']) ?>
+<?php elseif ($this->session->flashdata('failed')) : ?>
+  <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
+  <?php unset($_SESSION['failed']) ?>
+<?php endif; ?>
 <!-- Dashboard Counts Section-->
 <section class="forms">
   <div class="container-fluid">
@@ -5,10 +12,6 @@
       <div class="col-lg-12">
         <div class="card custom-border-radius">
           <div class="card-body">
-            <?php if ($this->session->flashdata('update_success')) : ?>
-              <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('update_success') ?>"></div>
-              <?php unset($_SESSION['update_success']) ?>
-            <?php endif; ?>
             <div class="table-responsive">
               <table class="table table-striped display nowrap" id="subservices" style="cursor: pointer;">
                 <thead>

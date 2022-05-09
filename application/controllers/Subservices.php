@@ -36,7 +36,10 @@ class Subservices extends MY_Controller
       ];
       $this->db->update('subservices', $data, ['id' => $id]);
       if ($this->db->affected_rows()) {
-        $this->session->set_flashdata('update_success', 'Sub layanan berhasil di ubah');
+        $this->session->set_flashdata('success', 'Sub layanan berhasil di ubah');
+        redirect(base_url('subservices/list_all'));
+      } else {
+        $this->session->set_flashdata('failed', 'Sub layanan tidak ada perubahan');
         redirect(base_url('subservices/list_all'));
       }
     }
