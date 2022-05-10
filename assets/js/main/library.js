@@ -562,18 +562,37 @@ function validateEmailAddress(str) {
 const flashDataType = $(".flash-data").data("type");
 const flashData = $(".flash-data").data("flashdata");
 const htmlIsExist = $(".flash-data").data("html");
+const actionIsExist = $(".flash-data").data("action");
 
 // Check flashdatatype condition and show appropriate alert
 if (flashDataType == "success") {
-  Swal.fire({
-    title: "Success",
-    text: flashData,
-    icon: "success",
-  });
+  if (actionIsExist) {
+    Swal.fire({
+      title: "Success",
+      text: flashData,
+      icon: "success",
+      confirmButtonText: "Disini",
+      allowOutsideClick: false,
+    }).then(() => {
+      window
+        .open(
+          "https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform",
+          "_blank"
+        )
+        .focus();
+    });
+  } else {
+    Swal.fire({
+      title: "Success",
+      text: flashData,
+      icon: "success",
+      allowOutsideClick: false,
+    });
+  }
 } else if (flashDataType == "failed") {
   Swal.fire({
     title: "Failed",
-    text: flashData,
+    html: flashData,
     icon: "error",
   });
 } else if (flashDataType === "info") {
@@ -587,7 +606,7 @@ if (flashDataType == "success") {
   } else {
     Swal.fire({
       title: "Info",
-      text: flashData,
+      html: flashData,
       icon: "info",
     });
   }

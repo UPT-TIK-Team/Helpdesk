@@ -49,8 +49,14 @@
           const url = "<?= base_url('user/userGuide') ?>"
           Swal.fire({
             title: 'info',
-            html: `Terimakasih telah menggunakan fitur sistem pakar, apabila masalah anda tidak terselesaikan silahkan baca petunjuk pengaduan masalah <a href="${url}">DISINI</a> untuk melakukan pengaduan ke teknisi terkait`,
+            html: `Terimakasih telah menggunakan fitur sistem pakar. Mohon kesediaan anda untuk mengisi kuesioner ini untuk penilaian terhadap kinerja sistem pakar pada layanan helpdesk <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform" target:"_blank">DISINI</a>`,
             icon: 'warning'
+          }).then(() => {
+            Swal.fire({
+              title: 'info',
+              html: `Apabila masalah anda tidak terselesaikan silahkan baca petunjuk pengaduan masalah <a href="${url}" target:"_blank">DISINI</a>`,
+              icon: 'warning'
+            })
           })
           $('#table-list-diagnosa').remove()
           $('#diagnose-row').children('form').replaceWith(response)

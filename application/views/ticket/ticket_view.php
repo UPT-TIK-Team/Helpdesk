@@ -2,10 +2,10 @@
   <div class="container fluid-content ">
     <?php if ($this->session->flashdata('failed')) : ?>
       <!-- Handle if login failed -->
-      <div class="flash-data" data-type="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
+      <div class="flash-data" data-type="failed" data-flashdata='<?= $this->session->flashdata('failed') ?>'></div>
       <?php unset($_SESSION['failed']) ?>
     <?php elseif ($this->session->flashdata('success')) : ?>
-      <div class="flash-data" data-type="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+      <div class="flash-data" data-type="success" data-flashdata='<?= $this->session->flashdata('success') ?>' data-action="true"></div>
       <?php unset($_SESSION['success']) ?>
     <?php endif; ?>
     <div class="row ">
