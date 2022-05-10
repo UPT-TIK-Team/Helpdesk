@@ -561,7 +561,6 @@ function validateEmailAddress(str) {
  */
 const flashDataType = $(".flash-data").data("type");
 const flashData = $(".flash-data").data("flashdata");
-const htmlIsExist = $(".flash-data").data("html");
 const actionIsExist = $(".flash-data").data("action");
 
 // Check flashdatatype condition and show appropriate alert
@@ -597,17 +596,22 @@ if (flashDataType == "success") {
   });
 } else if (flashDataType === "info") {
   // Check if html is exist, if true set message type to html so tag like href or etc will show
-  if (htmlIsExist) {
+  if (actionIsExist) {
     Swal.fire({
       title: "Info",
       html: flashData,
       icon: "info",
+      confirmButtonText: "Disini",
+      allowOutsideClick: false,
+    }).then(() => {
+      window.open(`${BASE_URL}expertsystem/diagnose`, "_self").focus();
     });
   } else {
     Swal.fire({
       title: "Info",
       html: flashData,
       icon: "info",
+      allowOutsideClick: false,
     });
   }
 }
