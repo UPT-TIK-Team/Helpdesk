@@ -49,13 +49,19 @@
           const url = "<?= base_url('user/userGuide') ?>"
           Swal.fire({
             title: 'info',
-            html: `Terimakasih telah menggunakan fitur sistem pakar. Mohon kesediaan anda untuk mengisi kuesioner ini untuk penilaian terhadap kinerja sistem pakar pada layanan helpdesk <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform" target:"_blank">DISINI</a>`,
-            icon: 'warning'
+            html: `Terimakasih telah menggunakan fitur sistem pakar. Mohon kesediaan anda untuk mengisi kuesioner ini untuk penilaian terhadap kinerja sistem pakar pada layanan helpdesk`,
+            icon: 'warning',
+            confirmButtonText: 'Disini',
+            allowOutsideClick: false,
           }).then(() => {
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform', '_blank').focus()
             Swal.fire({
               title: 'info',
-              html: `Apabila masalah anda tidak terselesaikan silahkan baca petunjuk pengaduan masalah <a href="${url}" target:"_blank">DISINI</a>`,
-              icon: 'warning'
+              html: `Apabila masalah anda tidak terselesaikan silahkan baca petunjuk membuat pengaduan masalah <a href="${url}" target:"_blank">DISINI</a>`,
+              icon: 'warning',
+              allowOutsideClick: false,
+            }).then(() => {
+              location.reload()
             })
           })
           $('#table-list-diagnosa').remove()

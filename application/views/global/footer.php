@@ -36,7 +36,7 @@
 <script type="module" src="<?= base_url('assets/js/main/front.js') ?>"></script>
 <script type="module" src="<?= base_url('assets/js/main/library.js') ?>"></script>
 <script type="module" src="<?= base_url() ?>assets/js/main/tik-script.js"></script>
-<script src="//code.jivosite.com/widget/zpQmeRCGkb" async></script>
+<!-- <script src="//code.jivosite.com/widget/zpQmeRCGkb" async></script> -->
 <script>
   const BASE_URL = "<?= base_url() ?>";
   $(document).ready(function() {

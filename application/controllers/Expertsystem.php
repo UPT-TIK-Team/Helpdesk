@@ -211,6 +211,7 @@ class Expertsystem extends MY_Controller
     $data['result_problem'] = [$this->db->select('name')->where('id', $result['id_problem'])->get('problem')->row_array()['name'] => $result['result']];
     $data['problem_list'] = $problem_array;
     $data['symptom_list'] = $symptom_array;
+    unset($_SESSION['info']);
     $this->load->view('expertsystem/diagnose_result', $data);
   }
 }

@@ -152,8 +152,6 @@ class Auth extends MY_Controller
 			$this->session->set_flashdata('failed', $result);
 			return false;
 		} else {
-			// If user type equal to '10', set flashdata so users must read guide first
-			if ($result['type'] === '10') $this->session->set_flashdata('info', true);
 			$this->Session->login($result['id'], $this->Session->getDefaultPermissions($result['type']), $result);
 			$id = $this->session->userdata()['sessions_details']['id'];
 			$userdata = $this->db->get_where('users', ['id' => $id])->row_array();

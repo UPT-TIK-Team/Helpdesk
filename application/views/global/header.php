@@ -61,7 +61,9 @@
             </div>
             <!-- Navbar Menu -->
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-              <li class="dotted-add-button"><a href="<?= base_url('tickets/create_new') ?>"><i class="fa fa-plus-square"></i> Buat tiket</a></li>
+              <?php if (!$this->session->flashdata('info')) : ?>
+                <li class="dotted-add-button"><a href="<?= base_url('tickets/create_new') ?>"><i class="fa fa-plus-square"></i> Buat tiket</a></li>
+              <?php endif; ?>
               <li class="nav-item dropdown">
                 <a class="nav-link sidebar-header d-flex align-items-center" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="current-user-avatar" data-username="<?= $this->Session->getLoggedDetails()['username'] ?>"></div>
