@@ -57,11 +57,13 @@
             window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform', '_blank').focus()
             Swal.fire({
               title: 'info',
-              html: `Apabila masalah anda tidak terselesaikan silahkan baca petunjuk membuat pengaduan masalah <a href="${url}" target:"_blank">DISINI</a>`,
+              html: `Apabila masalah anda tidak terselesaikan silahkan baca petunjuk membuat pengaduan masalah anda`,
               icon: 'warning',
+              confirmButtonText: 'Disini',
               allowOutsideClick: false,
             }).then(() => {
               location.reload()
+              location.href = url
             })
           })
           $('#table-list-diagnosa').remove()
