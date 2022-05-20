@@ -1,3 +1,19 @@
+<style>
+  @media (max-width: 576px) {
+
+    #btn-masuk {
+      margin-left: 4.5rem !important;
+    }
+
+    #txt-atau {
+      margin-left: 8.5rem !important;
+    }
+
+    #btn-google {
+      margin-left: 3rem !important;
+    }
+  }
+</style>
 <div class="page login-page">
   <div class="container d-flex align-items-center">
     <div class="form-holder has-shadow">
@@ -35,11 +51,11 @@
                   <input id="login-password" type="password" name="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" required data-msg="Harap masukkan password anda!" class="input-material">
                   <label for="login-password" class="label-material">Password</label>
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-left: 8rem">Masuk</button>
+                <button type="submit" class="btn btn-primary" id="btn-masuk" style="margin-left: 8rem">Masuk</button>
                 <a href="<?= base_url() ?>" class="ml-2 btn btn-secondary">Kembali</a>
               </form>
-              <h5 class="mt-2" style="margin-left: 12rem">Atau</h5>
-              <a href="<?= $google_login_url ?>" class="btn btn-danger mb-3 mt-2" style="margin-left: 6.5rem"><i class="fa fa-google mr-2" aria-hidden="true"></i>Masuk dengan Google</a>
+              <h5 class="mt-2" style="margin-left: 12rem" id="txt-atau">Atau</h5>
+              <a href="<?= $google_login_url ?>" class="btn btn-danger mb-3 mt-2" style="margin-left: 6.5rem" id="btn-google"><i class="fa fa-google mr-2" aria-hidden="true"></i>Masuk dengan Google</a>
               <br>
               <a href="<?= base_url('auth/forgotpassword') ?>" class="forgot-pass">Lupa Password?</a>
               <br>
