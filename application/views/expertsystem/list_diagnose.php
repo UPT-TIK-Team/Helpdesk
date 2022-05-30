@@ -46,7 +46,6 @@
         url: `<?= base_url('Expertsystem/result') ?>`,
         data,
         success: response => {
-          const url = "<?= base_url('Tickets/create_new') ?>"
           Swal.fire({
             title: 'info',
             html: `Terimakasih telah menggunakan fitur sistem pakar. Mohon kesediaan anda untuk mengisi kuesioner ini untuk penilaian terhadap kinerja sistem pakar pada layanan helpdesk`,
@@ -55,16 +54,6 @@
             allowOutsideClick: false,
           }).then(() => {
             window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform', '_blank').focus()
-            Swal.fire({
-              title: 'info',
-              html: `Apabila masalah anda tidak terselesaikan silahkan buat pengaduan disini`,
-              icon: 'warning',
-              confirmButtonText: 'Disini',
-              allowOutsideClick: false,
-            }).then(() => {
-              location.reload()
-              location.href = url
-            })
           })
           $('#table-list-diagnosa').remove()
           $('#diagnose-row').children('form').replaceWith(response)

@@ -39,4 +39,7 @@
       <?php endforeach; ?>
     </ul>
   </div>
+  <div class="alert alert-primary" role="alert">
+    Apabila masalah anda tidak terselesaikan silahkan buat pengaduan <a href="<?= base_url('Tickets/create_new') ?>">Disini</a>
+  </div>
 </div>
