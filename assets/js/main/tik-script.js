@@ -30,7 +30,7 @@ $("#change_password").on("click", function () {
   } else {
     $.ajax({
       type: "POST",
-      url: BASE_URL + "API/User/change_password",
+      url: BASE_URL + "API/User_API/change_password",
       dataType: "text",
       data: { password: password, new_password: new_password },
       success: function (response) {
@@ -107,7 +107,7 @@ $("#add_user").on("click", function (e) {
   } else {
     $.ajax({
       type: "POST",
-      url: BASE_URL + "API/User/add_user",
+      url: BASE_URL + "API/User_API/add_user",
       dataType: "text",
       data: {
         name: name,
@@ -172,7 +172,7 @@ $("#service").on("select2:select", (e) => {
   const defaultDropdown = new Option("Priority", null);
   $("#priority").append(defaultDropdown).trigger("change");
   $.get(
-    `${BASE_URL}API/Ticket/getSubServices/${e.target.value}`,
+    `${BASE_URL}API/Ticket_API/getSubServices/${e.target.value}`,
     ({ data }) => {
       $("#subservice").find("option").remove();
       const defaultDropdown = new Option("Choose Sub Service", null);
@@ -190,7 +190,7 @@ $("#service").on("select2:select", (e) => {
 $("#subservice").on("select2:select", (e) => {
   $("#subservice option[value='null']").remove();
   // Get priority based on subservice id
-  $.get(`${BASE_URL}API/Ticket/getPriority/${e.target.value}`, (data) => {
+  $.get(`${BASE_URL}API/Ticket_API/getPriority/${e.target.value}`, (data) => {
     $("#priority").find("option").remove();
     $("#priority").select2({
       width: "resolve",
@@ -200,33 +200,39 @@ $("#subservice").on("select2:select", (e) => {
     });
   });
   // Get problem based on subservice id
-  $.get(`${BASE_URL}API/Expertsystem/getproblem/${e.target.value}`, (data) => {
-    $("#problem").find("option").remove();
-    // Append dropdown to subproblem and set to null value
-    const defaultDropdown = new Option("Choose Problem", "null");
-    // Add change trigger to dropdown
-    $("#problem").append(defaultDropdown).trigger("change");
-    // Fill problem item dropdown with select2 library
-    $("#problem").select2({
-      width: "resolve",
-      data: data.data.map((data) => {
-        return { id: data.id, text: data.name };
-      }),
-    });
-  });
+  $.get(
+    `${BASE_URL}API/Expertsystem_API/getproblem/${e.target.value}`,
+    (data) => {
+      $("#problem").find("option").remove();
+      // Append dropdown to subproblem and set to null value
+      const defaultDropdown = new Option("Choose Problem", "null");
+      // Add change trigger to dropdown
+      $("#problem").append(defaultDropdown).trigger("change");
+      // Fill problem item dropdown with select2 library
+      $("#problem").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
+    }
+  );
   // Get symptom based on subservice id
-  $.get(`${BASE_URL}API/Expertsystem/getsymptom/${e.target.value}`, (data) => {
-    $("#symptom").find("option").remove();
-    // Append dropdown to subproblem and set to null value
-    const defaultDropdown = new Option("Choose Symptom", "null");
-    // Add change trigger to dropdown
-    $("#symptom").append(defaultDropdown).trigger("change");
-    // Fill symptom item dropdown with select2 library
-    $("#symptom").select2({
-      width: "resolve",
-      data: data.data.map((data) => {
-        return { id: data.id, text: data.name };
-      }),
-    });
-  });
+  $.get(
+    `${BASE_URL}API/Expertsystem_API/getsymptom/${e.target.value}`,
+    (data) => {
+      $("#symptom").find("option").remove();
+      // Append dropdown to subproblem and set to null value
+      const defaultDropdown = new Option("Choose Symptom", "null");
+      // Add change trigger to dropdown
+      $("#symptom").append(defaultDropdown).trigger("change");
+      // Fill symptom item dropdown with select2 library
+      $("#symptom").select2({
+        width: "resolve",
+        data: data.data.map((data) => {
+          return { id: data.id, text: data.name };
+        }),
+      });
+    }
+  );
 });

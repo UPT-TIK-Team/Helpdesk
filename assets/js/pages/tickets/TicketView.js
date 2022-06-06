@@ -14,22 +14,26 @@ $(document).ready(function () {
     );
     // Disable file input until success upload data
     $("#fileInput").prop("disabled", true);
-    fileUpload(e, `${BASE_URL}API/Ticket/upload_attachment`, function (res) {
-      if (res) {
-        $("#result_create_ticket").html("");
-        $("#fileInput").prop("disabled", false);
-        attached_files.push(res);
-        var attached_link = getAttachmentLabel(res.file_name, res.path);
-        $("#attached_files").append(
-          "<li>" +
-            attached_link +
-            '<span class="remove-this" data-index="' +
-            attached_files.length +
-            '"><i class="fa fa-close"></i></span></li>'
-        );
-        removeAttachment();
+    fileUpload(
+      e,
+      `${BASE_URL}API/Ticket_API/upload_attachment`,
+      function (res) {
+        if (res) {
+          $("#result_create_ticket").html("");
+          $("#fileInput").prop("disabled", false);
+          attached_files.push(res);
+          var attached_link = getAttachmentLabel(res.file_name, res.path);
+          $("#attached_files").append(
+            "<li>" +
+              attached_link +
+              '<span class="remove-this" data-index="' +
+              attached_files.length +
+              '"><i class="fa fa-close"></i></span></li>'
+          );
+          removeAttachment();
+        }
       }
-    });
+    );
   });
 
   var toolbarOptions = [
@@ -113,7 +117,7 @@ $(document).ready(function () {
     attached_files = [];
     $.ajax({
       type: "POST",
-      url: `${BASE_URL}API/Ticket/addThreadMessage`,
+      url: `${BASE_URL}API/Ticket_API/addThreadMessage`,
       dataType: "text",
       data: {
         ticket_no: ticket_no,
@@ -170,7 +174,7 @@ $(document).ready(function () {
     // Send data using ajax
     $.ajax({
       type: "POST",
-      url: `${BASE_URL}API/Ticket/updateTicket`,
+      url: `${BASE_URL}API/Ticket_API/updateTicket`,
       dataType: "text",
       data: data,
       // beforeSend: function () {
@@ -190,7 +194,7 @@ $(document).ready(function () {
     });
   });
 
-  $.get(BASE_URL + "API/User/getAll?type=[60]", function (data) {
+  $.get(BASE_URL + "API/User_API/getAll?type=[60]", function (data) {
     $("#assign_to_dd").select2({
       data: data.data.map((data) => {
         return { id: data.id, text: data.username };

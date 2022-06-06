@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     processing: true,
     serverSide: true,
     ajax: {
-      url: `${BASE_URL}API/expertsystem/generatedatatable`,
+      url: `${BASE_URL}API/Expertsystem_API/generatedatatable`,
       header: "application/json",
       type: "POST",
       data: {

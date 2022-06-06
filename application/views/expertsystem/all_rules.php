@@ -44,7 +44,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?= base_url('API/expertsystem/addrules') ?>" method="POST">
+        <form action="<?= base_url('API/Expertsystem_API/addrules') ?>" method="POST">
           <div class="modal-body">
             <div class='alert alert-success alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>

@@ -1,8 +1,5 @@
 <?PHP
 
-require  __DIR__ . "/constants.php";
-
-
 
 class Ticket_model extends BaseMySQL_model
 {

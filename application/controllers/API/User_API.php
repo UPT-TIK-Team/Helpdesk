@@ -1,7 +1,7 @@
 <?php
 require  __DIR__ . "/../../models/user/constants.php";
 
-class User extends MY_Controller
+class User_API extends MY_Controller
 {
   function __construct()
   {

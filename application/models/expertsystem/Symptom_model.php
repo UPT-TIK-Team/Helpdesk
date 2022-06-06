@@ -12,9 +12,14 @@ class Symptom_model extends BaseMySQL_model
     return parent::generateDatatable($select, $where, $join, $column, $as, $addcolumn);
   }
 
-  public function get_symptom($id_subservice)
+  public function get_symptom($id_subservice = null)
   {
     if (!$id_subservice) return $this->db->get('symptom')->result_array();
     return $this->db->where('id_subservice', $id_subservice)->get('symptom')->result_array();
+  }
+
+  public function get_symptom_by_id($id)
+  {
+    return $this->db->select('symptom.name as name_symptom, subservices.id as id_subservice, subservices.name as name_subservice')->where('symptom.id', $id)->join('subservices', 'symptom.id_subservice=subservices.id')->get('symptom')->row_array();
   }
 }

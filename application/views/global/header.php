@@ -90,7 +90,7 @@
         <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
           <!-- TODO: Change below session data fetching !-->
-          <?php include_once "menus/" . $this->session->userdata('sessions_details')['type'] . ".php"; ?>
+          <?php include_once "menus/" . $this->Session->getLoggedDetails()['type'] . ".php"; ?>
         </ul>
       </nav>
       <div class="content-inner">

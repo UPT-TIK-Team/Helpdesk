@@ -1,6 +1,6 @@
 <?php
 
-class Expertsystem extends MY_Controller
+class Expertsystem_API extends MY_Controller
 {
   function __construct()
   {

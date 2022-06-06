@@ -5,12 +5,12 @@ class Expertsystem extends MY_Controller
   function __construct()
   {
     parent::__construct();
-    parent::requireLogin();
+    // parent::requireLogin();
     $this->load->model('expertsystem/Problem_model', 'Problem');
     $this->load->model('expertsystem/Symptom_model', 'Symptom');
     $this->load->model('expertsystem/Rules_model', 'Rules');
     $this->load->model('expertsystem/Condition_model', 'Condition');
-    $this->id = $this->Session->getLoggedDetails()['id'];
+    // $this->id = $this->Session->getLoggedDetails()['id'];
   }
 
   public function diagnose()
@@ -37,7 +37,7 @@ class Expertsystem extends MY_Controller
         'name' => $this->input->post('name', true),
         'solution' => serialize(explode(';', $this->input->post('solution', true)))
       ];
-      $this->db->update('problem', $data, ['id' => $id]);
+      $this->Problem->update_problem($id, $data);
       if ($this->db->affected_rows()) {
         $this->session->set_flashdata('success', 'Data masalah berhasil di ubah');
         redirect(base_url('expertsystem/all_problems'));
@@ -48,14 +48,16 @@ class Expertsystem extends MY_Controller
     }
   }
 
-  public function delete_problem($id)
+  public function delete_problem($id = null)
   {
-    $totalRule = $this->db->where('id_problem', $id)->get('rule')->num_rows();
-    if ($totalRule > 0) {
+    if ($id === null) redirect(base_url('expertsystem/all_problems'));
+    // Check if problem relate to another rule
+    $relateRules = $this->db->where('id_problem', $id)->get('rule')->num_rows();
+    if ($relateRules > 0) {
       $this->session->set_flashdata('failed', 'Data masalah ini masih memiliki aturan yang terkait, silahkan hapus aturan tersebut terlebih dahulu!');
       redirect(base_url('expertsystem/all_problems'));
     } else {
-      $this->db->delete('problem', ['id' => $id]);
+      $this->Problem->delete_problem($id);
       redirect(base_url('expertsystem/all_problems'));
     }
   }
@@ -70,7 +72,7 @@ class Expertsystem extends MY_Controller
   {
     if (!$this->input->post()) {
       $data['title'] = 'Gejala';
-      $data['symptom'] = $this->db->select('symptom.name as name_symptom, subservices.id as id_subservice, subservices.name as name_subservice')->where('symptom.id', $id)->join('subservices', 'symptom.id_subservice=subservices.id')->get('symptom')->row_array();
+      $data['symptom'] = $this->Symptom->get_symptom_by_id($id);
       $this->render('expertsystem/symptom_view', $data);
     } else {
       $data = [
@@ -106,8 +108,8 @@ class Expertsystem extends MY_Controller
   public function edit_rule($id)
   {
     if (!$this->input->post()) {
-      $data['title'] = 'Gejala';
-      $data['rule'] = $this->db->select('problem.id as id_problem, problem.name as name_problem, symptom.id as id_symptom, symptom.name as name_symptom, mb, md')->where('rule.id', $id)->join('problem', 'rule.id_problem=problem.id')->join('symptom', 'rule.id_symptom=symptom.id')->get('rule')->row_array();
+      $data['title'] = 'Aturan';
+      $data['rule'] = $this->Rules->get_rule_by_id($id);
       $this->render('expertsystem/rule_view', $data);
     } else {
       $data = [

@@ -17,4 +17,14 @@ class Problem_model extends BaseMySQL_model
     if ($id_subservice === null) return $this->db->get('problem')->result_array();
     return $this->db->where('id_subservice', $id_subservice)->get('problem')->result_array();
   }
+
+  public function delete_problem($id_problem = null)
+  {
+    return $this->db->delete('problem', ['id' => $id_problem]);;
+  }
+
+  public function update_problem($id, $data)
+  {
+    return $this->db->update('problem', $data, ['id' => $id]);
+  }
 }

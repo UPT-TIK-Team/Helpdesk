@@ -35,7 +35,7 @@ class Tickets extends MY_Controller
   public function list_all()
   {
     $data['title'] = 'Daftar Seluruh Tiket';
-    $data['link'] = base_url('API/Ticket/generateDatatable');
+    $data['link'] = base_url('API/Ticket_API/generateDatatable');
     if (isset($_GET["code"])) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/list_all');
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
@@ -48,7 +48,7 @@ class Tickets extends MY_Controller
   public function unassigned_tickets()
   {
     $data['title'] = 'Tiket Yang Belum Ditugaskan';
-    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=0');
+    $data['link'] = base_url('API/Ticket_API/generateDatatable?assign_to=0');
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -57,7 +57,7 @@ class Tickets extends MY_Controller
     $data['title'] = 'Tiket Selesai';
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
-    $data['link'] = base_url('API/Ticket/generateDatatable?status=100');
+    $data['link'] = base_url('API/Ticket_API/generateDatatable?status=100');
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -67,7 +67,7 @@ class Tickets extends MY_Controller
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
 
-    $data['link'] = base_url('API/Ticket/generateDatatable?assign_to=!=0');
+    $data['link'] = base_url('API/Ticket_API/generateDatatable?assign_to=!=0');
     $this->render('ticket/ticket_table_view', $data);
   }
 
@@ -77,7 +77,7 @@ class Tickets extends MY_Controller
     $assign_to = $this->Session->getLoggedDetails()['id'];
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
-    $data['link'] = base_url('API/ticket/generateDatatable?assign_to=') . $assign_to;
+    $data['link'] = base_url('API/Ticket_API/generateDatatable?assign_to=') . $assign_to;
     if (isset($_GET["code"])) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/assigned_to_me');
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
@@ -94,7 +94,7 @@ class Tickets extends MY_Controller
     $owner = $this->Session->getLoggedDetails()['username'];
 
     // Data link is use to create datatables from folder 'controllers/API/Ticket with appropriate url'
-    $data['link'] = base_url('API/Ticket/generateDatatable?owner=') . $owner;
+    $data['link'] = base_url('API/Ticket_API/generateDatatable?owner=') . $owner;
     if (isset($_GET["code"])) {
       $this->client->setRedirectUri(BASE_URL . 'tickets/my_tickets');
       $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);

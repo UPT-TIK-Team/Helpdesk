@@ -43,7 +43,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?= base_url('API/expertsystem/addsymptom') ?>" method="POST">
+        <form action="<?= base_url('API/Expertsystem_API/addsymptom') ?>" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="symptom-name">Nama</label>

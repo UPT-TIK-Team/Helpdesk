@@ -42,7 +42,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?= base_url('API/expertsystem/addproblem') ?>" method="POST">
+        <form action="<?= base_url('API/Expertsystem_API/addproblem') ?>" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="problem-name">Nama</label>

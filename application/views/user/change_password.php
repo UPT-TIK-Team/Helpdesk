@@ -10,7 +10,7 @@
                 <?= $this->session->flashdata('change_password') ?>
               </div>
             <?php endif; ?>
-            <form action="<?= base_url('api/user/change_password') ?>" method="POST">
+            <form action="<?= base_url('API/User_API/change_password') ?>" method="POST">
               <div class="col-md-12 p-2">
                 <div class="row ">
                   <div class="col-md-3">New Password</div>

@@ -11,7 +11,7 @@ class Subservices extends MY_Controller
   public function list_all()
   {
     $data['title'] = 'Daftar Seluruh Sub Layanan';
-    $data['link'] = base_url('API/Subservices/generateDatatable');
+    $data['link'] = base_url('API/Subservices_API/generateDatatable');
     $this->render('subservice/list_all', $data);
   }
 

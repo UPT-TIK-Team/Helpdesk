@@ -26,7 +26,7 @@
         }
         $.ajax({
           type: 'POST',
-          url: `<?= base_url() ?>API/Expertsystem/diagnose`,
+          url: `<?= base_url() ?>API/Expertsystem_API/diagnose`,
           data,
           success: response => $('#diagnose-row').append(response)
         })

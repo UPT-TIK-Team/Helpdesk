@@ -4,7 +4,7 @@ use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
 use Google\Service\Drive\Permission;
 
-class Ticket extends MY_Controller
+class Ticket_API extends MY_Controller
 {
   function __construct()
   {

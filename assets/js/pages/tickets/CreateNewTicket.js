@@ -16,26 +16,30 @@ $(document).ready(function () {
     $("#fileInput").prop("disabled", true);
     // Disable create ticket button until success upload data
     $("#create_ticket").prop("disabled", true);
-    fileUpload(e, `${BASE_URL}API/Ticket/upload_attachment`, function (res) {
-      if (res) {
-        // Reset loading animation
-        $("#result_create_ticket").html("");
-        // Enable file input
-        $("#fileInput").prop("disabled", false);
-        // Enable create ticket button until success upload data
-        $("#create_ticket").prop("disabled", false);
-        attached_files.push(res);
-        var attached_link = getAttachmentLabel(res.file_name, res.path);
-        $("#attached_files").append(
-          "<li>" +
-            attached_link +
-            '<span class="remove-this" data-index="' +
-            attached_files.length +
-            '"><i class="fa fa-close"></i></span></li>'
-        );
-        removeAttachment();
+    fileUpload(
+      e,
+      `${BASE_URL}API/Ticket_API/upload_attachment`,
+      function (res) {
+        if (res) {
+          // Reset loading animation
+          $("#result_create_ticket").html("");
+          // Enable file input
+          $("#fileInput").prop("disabled", false);
+          // Enable create ticket button until success upload data
+          $("#create_ticket").prop("disabled", false);
+          attached_files.push(res);
+          var attached_link = getAttachmentLabel(res.file_name, res.path);
+          $("#attached_files").append(
+            "<li>" +
+              attached_link +
+              '<span class="remove-this" data-index="' +
+              attached_files.length +
+              '"><i class="fa fa-close"></i></span></li>'
+          );
+          removeAttachment();
+        }
       }
-    });
+    );
   });
 
   var toolbarOptions = [
@@ -139,7 +143,7 @@ $(document).ready(function () {
     } else {
       $.ajax({
         type: "POST",
-        url: `${BASE_URL}API/Ticket/create`,
+        url: `${BASE_URL}API/Ticket_API/create`,
         dataType: "text",
         data: fdata,
         beforeSend: function () {

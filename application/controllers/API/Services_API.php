@@ -1,6 +1,6 @@
 <?php
 
-class Services extends MY_Controller
+class Services_API extends MY_Controller
 {
   function __construct()
   {

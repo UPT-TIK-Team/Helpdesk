@@ -25,3 +25,8 @@ composer.lock
 .editorconfig
 
 .env
+
+/coverage
+
+application/tests/*
+application/config/testing/*

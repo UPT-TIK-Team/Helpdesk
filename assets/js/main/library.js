@@ -22,7 +22,7 @@ $(document).ready(function () {
 // Function to render dropdowns based on id input
 export function renderDropdowns() {
   if ($("#status_dd").length) {
-    $.get(BASE_URL + "API/Ticket/getStatus", function (data) {
+    $.get(BASE_URL + "API/Ticket_API/getStatus", function (data) {
       $("#status_dd").select2({
         width: "resolve",
         data: data.data.map(function (item) {
@@ -33,7 +33,7 @@ export function renderDropdowns() {
   }
 
   if ($("#service").length) {
-    $.get(BASE_URL + "API/Ticket/getServices", function (data) {
+    $.get(BASE_URL + "API/Ticket_API/getServices", function (data) {
       $("#service").select2({
         width: "resolve",
         data: data.data.map((data) => {
@@ -44,7 +44,7 @@ export function renderDropdowns() {
   }
 
   if ($("#subservice").length) {
-    $.get(BASE_URL + "API/Ticket/getSubservices", function (data) {
+    $.get(BASE_URL + "API/Ticket_API/getSubservices", function (data) {
       $("#subservice").select2({
         width: "resolve",
         data: data.data.map((data) => {
@@ -55,7 +55,7 @@ export function renderDropdowns() {
   }
 
   if ($("#priority").length) {
-    $.get(`${BASE_URL}API/Ticket/getPriority`, function (data) {
+    $.get(`${BASE_URL}API/Ticket_API/getPriority`, function (data) {
       $("#priority").select2({
         width: "resolve",
         data: data.data.map((data) => {
@@ -66,7 +66,7 @@ export function renderDropdowns() {
   }
 
   if ($("#problem").length) {
-    $.get(`${BASE_URL}API/Expertsystem/getproblem`, function (data) {
+    $.get(`${BASE_URL}API/Expertsystem_API/getproblem`, function (data) {
       $("#problem").select2({
         width: "resolve",
         data: data.data.map((data) => {
@@ -77,7 +77,7 @@ export function renderDropdowns() {
   }
 
   if ($("#symptom").length) {
-    $.get(`${BASE_URL}API/Expertsystem/getsymptom`, function (data) {
+    $.get(`${BASE_URL}API/Expertsystem_API/getsymptom`, function (data) {
       console.log(data);
       $("#symptom").select2({
         width: "resolve",

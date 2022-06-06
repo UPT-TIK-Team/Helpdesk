@@ -11,7 +11,7 @@ class Services extends MY_Controller
   public function list_all()
   {
     $data['title'] = 'Daftar Seluruh Layanan';
-    $data['link'] = base_url('API/Services/generateDatatable');
+    $data['link'] = base_url('API/Services_API/generateDatatable');
     $this->render('service/list_all', $data);
   }
 
