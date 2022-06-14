@@ -43,18 +43,9 @@
       condition.forEach(e => data.condition.push(e.value))
       $.ajax({
         type: 'POST',
-        url: `<?= base_url('Expertsystem/result') ?>`,
+        url: `<?= base_url('API/Expertsystem_API/result') ?>`,
         data,
         success: response => {
-          Swal.fire({
-            title: 'info',
-            html: `Terimakasih telah menggunakan fitur sistem pakar. Mohon kesediaan anda untuk mengisi kuesioner ini untuk penilaian terhadap kinerja sistem pakar pada layanan helpdesk`,
-            icon: 'warning',
-            confirmButtonText: 'Disini',
-            allowOutsideClick: false,
-          }).then(() => {
-            window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDjvobvNpOEjOsom0qaR5_-MslFX7pRavPfKRPE52c-ni-5Q/viewform', '_blank').focus()
-          })
           $('#table-list-diagnosa').remove()
           $('#diagnose-row').children('form').replaceWith(response)
           window.scrollTo({

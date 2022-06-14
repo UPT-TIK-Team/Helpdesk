@@ -7,10 +7,10 @@ class Condition_model extends BaseMySQL_model
     parent::__construct('condition');
   }
 
-  public function generateDatatable($select = null, $where = array(), $join = array(), $column = array(), $as = null, $addcolumn = array())
-  {
-    return parent::generateDatatable($select, $where, $join, $column, $as, $addcolumn);
-  }
+  // public function generateDatatable($select = null, $where = array(), $join = array(), $column = array(), $as = null, $addcolumn = array())
+  // {
+  //   return parent::generateDatatable($select, $where, $join, $column, $as, $addcolumn);
+  // }
 
   public function get_condition($id = null)
   {
