@@ -26,8 +26,8 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 		$this->SCOPE_DATA = array();
 		$this->load->model('core/Session_model', 'Session');
-		$this->load->library('Google');
-		$this->client = new Google();
+		// $this->load->library('Google');
+		// $this->client = new Google();
 	}
 
 	/**

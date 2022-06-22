@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="20" assertions="33" errors="0" warnings="0" failures="0" skipped="0" time="1.012877">
+    <testsuite name="CodeIgniter Application Test Suite" tests="20" assertions="33" errors="0" warnings="0" failures="0" skipped="0" time="1.012877">
+      <testsuite name="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" tests="10" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.547089">
+        <testcase name="test_diagnose" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="35" assertions="1" time="0.071963"/>
+        <testcase name="test_all_problems" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="41" assertions="1" time="0.047926"/>
+        <testcase name="test_edit_problem" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="47" assertions="1" time="0.075041"/>
+        <testcase name="test_delete_problem" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="54" assertions="2" time="0.042756"/>
+        <testcase name="test_all_symptoms" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="61" assertions="1" time="0.030249"/>
+        <testcase name="test_edit_symptom" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="67" assertions="1" time="0.072730"/>
+        <testcase name="test_delete_symptom" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="74" assertions="2" time="0.042841"/>
+        <testcase name="test_all_rules" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="81" assertions="1" time="0.048843"/>
+        <testcase name="test_edit_rule" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="87" assertions="1" time="0.072421"/>
+        <testcase name="test_delete_rule" class="Expertsystem_controller_test" classname="Expertsystem_controller_test" file="C:\xampp\htdocs\Helpdesk\application\tests\controllers\Expertsystem_controller_test.php" line="94" assertions="2" time="0.042317"/>
+      </testsuite>
+      <testsuite name="Condition_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Condition_model_test.php" tests="1" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.072787">
+        <testcase name="test_get_condition" class="Condition_model_test" classname="Condition_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Condition_model_test.php" line="9" assertions="5" time="0.072787"/>
+      </testsuite>
+      <testsuite name="Problem_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Problem_model_test.php" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.177406">
+        <testcase name="test_get_problem" class="Problem_model_test" classname="Problem_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Problem_model_test.php" line="9" assertions="5" time="0.047295"/>
+        <testcase name="test_add_problem" class="Problem_model_test" classname="Problem_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Problem_model_test.php" line="42" assertions="1" time="0.042372"/>
+        <testcase name="test_delete_by_id" class="Problem_model_test" classname="Problem_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Problem_model_test.php" line="62" assertions="1" time="0.043304"/>
+        <testcase name="test_update_problem" class="Problem_model_test" classname="Problem_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Problem_model_test.php" line="77" assertions="1" time="0.044435"/>
+      </testsuite>
+      <testsuite name="Rules_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Rules_model_test.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.085555">
+        <testcase name="test_add_rule" class="Rules_model_test" classname="Rules_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Rules_model_test.php" line="9" assertions="1" time="0.043867"/>
+        <testcase name="test_delete_by_id" class="Rules_model_test" classname="Rules_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Rules_model_test.php" line="29" assertions="1" time="0.041688"/>
+      </testsuite>
+      <testsuite name="Symptom_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Symptom_model_test.php" tests="3" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.130039">
+        <testcase name="test_get_symptom" class="Symptom_model_test" classname="Symptom_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Symptom_model_test.php" line="9" assertions="3" time="0.045672"/>
+        <testcase name="test_add_symptom" class="Symptom_model_test" classname="Symptom_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Symptom_model_test.php" line="38" assertions="1" time="0.041538"/>
+        <testcase name="test_delete_by_id" class="Symptom_model_test" classname="Symptom_model_test" file="C:\xampp\htdocs\Helpdesk\application\tests\models\Symptom_model_test.php" line="58" assertions="1" time="0.042830"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
