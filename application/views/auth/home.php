@@ -53,7 +53,7 @@
               <!-- <span class="slogan-bold" style="font-size: 45px;">Ada Yang bisa Kami Bantu ? </span> -->
             </h1>
             <p>Helpdesk Layanan TIK untuk UNSIKA.</p>
-            <a class="btn btn-primary btn-lg btn-start" href="<?= base_url('auth/login') ?>">Buat Tiket</a>
+            <a class="btn btn-primary btn-lg btn-start" href="<?= base_url('auth/login') ?>">Buat Pengaduan</a>
             <a class="btn btn-primary btn-lg btn-start manual-usage-docs" target="_blank" href="https://bit.ly/HelpdeskTIK">Panduan Penggunaan</a>
           </div>
         </div>
