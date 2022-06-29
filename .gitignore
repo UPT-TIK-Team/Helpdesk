@@ -25,3 +25,5 @@ composer.lock
 .editorconfig
 
 .env
+
+application/tests
