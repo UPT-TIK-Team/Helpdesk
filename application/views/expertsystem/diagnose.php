@@ -3,10 +3,16 @@
     <div class="col-lg mt-3" id="diagnose-row">
       <form>
         <label for="service">Pilih Layanan</label>
+        <span class="badge badge-primary" style="cursor: pointer;" data-toggle="tooltip" data-placement="right" title="Layanan yang tersedia saat ini adalah Jaringan dan Aplikasi">
+          ?
+        </span>
         <select name="category" id="service" class="form-control" style="width: 100%">
           <option value="null">Pilih Layanan</option>
         </select>
         <label for="subservice">Pilih Sub Layanan</label>
+        <span class="badge badge-primary" style="cursor: pointer;" data-toggle="tooltip" data-placement="right" title="Sub Layanan yang tersedia saat ini adalah Jaringan LAN dan E-Campus Akademik">
+          ?
+        </span>
         <select name="category" id="subservice" class="form-control" style="width: 100%" disabled>
           <option value="null">Pilih Sub Layanan</option>
         </select>
