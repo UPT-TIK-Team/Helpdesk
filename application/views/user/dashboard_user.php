@@ -2,7 +2,7 @@
 
   <!-- Handle alert if exist -->
   <?php if ($this->session->flashdata('info')) : ?>
-    <div class="flash-data" data-type="info" data-flashdata="Silahkan gunakan fitur Sistem Pakar untuk mendapatkan kemungkinan solusi dari permasalahan anda" data-action="true"></div>
+    <div class="flash-data" data-type="info" data-flashdata="Silahkan gunakan fitur Sistem Pakar untuk mendapatkan kemungkinan solusi dari permasalahan anda secara TEPAT dan CEPAT" data-action="true"></div>
   <?php endif; ?>
 
   <!--Dashboard counts-->

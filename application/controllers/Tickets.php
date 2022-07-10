@@ -29,6 +29,7 @@ class Tickets extends MY_Controller
       $this->session->set_userdata('access_token', $token['access_token']);
     }
     $data['title'] = 'Buat Tiket';
+    if (!$this->session->flashdata('expert_system')) $this->session->set_flashdata('expert_system', true);
     $this->render('ticket/create_new_ticket_view', $data);
   }
 

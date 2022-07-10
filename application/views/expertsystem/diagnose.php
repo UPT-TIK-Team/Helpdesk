@@ -10,7 +10,7 @@
           <option value="null">Pilih Layanan</option>
         </select>
         <label for="subservice">Pilih Sub Layanan</label>
-        <span class="badge badge-primary" style="cursor: pointer;" data-toggle="tooltip" data-placement="right" title="Sub Layanan yang tersedia saat ini adalah Jaringan LAN dan E-Campus Akademik">
+        <span class="badge badge-primary" style="cursor: pointer;" data-toggle="tooltip" data-placement="right" title="Sub Layanan yang tersedia saat ini adalah Jaringan Internet LAN dan E-Campus Akademik">
           ?
         </span>
         <select name="category" id="subservice" class="form-control" style="width: 100%" disabled>
