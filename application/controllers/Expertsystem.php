@@ -29,7 +29,7 @@ class Expertsystem extends MY_Controller
   {
     if (!$this->input->post()) {
       $data['title'] = 'Masalah';
-      $data['problem'] = $this->db->where('id', $id)->get('problem')->row_array();
+      $data['problem'] = $this->Problem->get_problem_by_id($id);
       $data['problem']['solution'] = implode(';', unserialize($data['problem']['solution']));
       $this->render('expertsystem/problem_view', $data);
     } else {
@@ -55,7 +55,7 @@ class Expertsystem extends MY_Controller
       $this->session->set_flashdata('failed', 'Data masalah ini masih memiliki aturan yang terkait, silahkan hapus aturan tersebut terlebih dahulu!');
       redirect(base_url('expertsystem/all_problems'));
     } else {
-      $this->db->delete('problem', ['id' => $id]);
+      $this->Problem->delete_by_id($id);
       redirect(base_url('expertsystem/all_problems'));
     }
   }
@@ -70,7 +70,7 @@ class Expertsystem extends MY_Controller
   {
     if (!$this->input->post()) {
       $data['title'] = 'Gejala';
-      $data['symptom'] = $this->db->select('symptom.name as name_symptom, subservices.id as id_subservice, subservices.name as name_subservice')->where('symptom.id', $id)->join('subservices', 'symptom.id_subservice=subservices.id')->get('symptom')->row_array();
+      $data['symptom'] = $this->Symptom->get_symptom_by_id($id);
       $this->render('expertsystem/symptom_view', $data);
     } else {
       $data = [
@@ -90,7 +90,7 @@ class Expertsystem extends MY_Controller
 
   public function delete_symptom($id)
   {
-    $this->db->delete('symptom', ['id' => $id]);
+    $this->Symptom->delete_by_id($id);
     if ($this->db->affected_rows()) {
       $this->session->set_flashdata('success', 'Data gejala berhasil dihapus');
       redirect(base_url('expertsystem/all_symptoms'));
@@ -107,7 +107,7 @@ class Expertsystem extends MY_Controller
   {
     if (!$this->input->post()) {
       $data['title'] = 'Gejala';
-      $data['rule'] = $this->db->select('problem.id as id_problem, problem.name as name_problem, symptom.id as id_symptom, symptom.name as name_symptom, mb, md')->where('rule.id', $id)->join('problem', 'rule.id_problem=problem.id')->join('symptom', 'rule.id_symptom=symptom.id')->get('rule')->row_array();
+      $data['rule'] = $this->Rules->get_rule_by_id($id);
       $this->render('expertsystem/rule_view', $data);
     } else {
       $data = [
@@ -129,7 +129,7 @@ class Expertsystem extends MY_Controller
 
   public function delete_rule($id)
   {
-    $this->db->delete('rule', ['id' => $id]);
+    $this->Rules->delete_by_id($id);
     if ($this->db->affected_rows()) {
       $this->session->set_flashdata('success', 'Data aturan berhasil dihapus');
       redirect(base_url('expertsystem/all_rules'));
