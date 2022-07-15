@@ -29,7 +29,7 @@ class Expertsystem extends MY_Controller
   {
     if (!$this->input->post()) {
       $data['title'] = 'Masalah';
-      $data['problem'] = $this->db->where('id', $id)->get('problem')->row_array();
+      $data['problem'] = $this->Problem->get_problem_by_id($id);
       $data['problem']['solution'] = implode(';', unserialize($data['problem']['solution']));
       $this->render('expertsystem/problem_view', $data);
     } else {

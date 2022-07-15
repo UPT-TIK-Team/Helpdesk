@@ -6,6 +6,18 @@ class Symptom_model_test extends UnitTestCase
     $this->obj = $this->newModel('expertsystem/Symptom_model');
   }
 
+  public function test_get_symptom_by_id()
+  {
+    $result = $this->obj->get_symptom_by_id(1);
+    $expected = [
+      'name_symptom' => "Data nilai tidak ditemukan di feeder",
+      'id_subservice' =>
+      "3",
+      'name_subservice' => "eCampus-Akademik"
+    ];
+    $this->assertEquals($expected, $result);
+  }
+
   public function test_get_symptom()
   {
     $return = [

@@ -6,6 +6,26 @@ class Problem_model_test extends UnitTestCase
     $this->obj = $this->newModel('expertsystem/Problem_model');
   }
 
+  public function test_get_problem_by_id()
+  {
+    $result = $this->obj->get_problem_by_id(1);
+    $expected = [
+      'id' =>
+      "1",
+      'id_subservice' =>
+      "3",
+      'code' =>
+      "P01",
+      'name' =>
+      "Nilai tidak ada",
+      'solution' =>
+      'a:3:{i:0;s:72:"Pada saat cetak transkrip, pastikan untuk mencentang hitung ulang IP/IPK";i:1;s:153:"Periksa di menu jadwal perkuliahan apakah mhs tersebut sudah disetujui atau belum oleh dosen wali, jika belum silahkan hubungi dosen wali untuk disetujui";i:2;s:111:"Periksa di menu Perkuliahan->Penilaian mhs apakah ada nilainya atau tidak, jika tidak ada maka tambahkan manual";}',
+      'created' =>
+      "0"
+    ];
+    $this->assertEquals($expected, $result);
+  }
+
   public function test_get_problem()
   {
     $return = [

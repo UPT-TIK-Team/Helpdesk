@@ -6,6 +6,13 @@ class Condition_model_test extends UnitTestCase
     $this->obj = $this->newModel('expertsystem/Condition_model');
   }
 
+  public function test_get_condition_by_id()
+  {
+    $result = $this->obj->get_condition(1);
+    $expected = ['id' => '1', 'name' => 'Pasti ya'];
+    $this->assertEquals($expected, $result);
+  }
+
   public function test_get_condition()
   {
     $return = [

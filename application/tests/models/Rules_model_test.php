@@ -6,6 +6,26 @@ class Rules_model_test extends UnitTestCase
     $this->obj = $this->newModel('expertsystem/Rules_model');
   }
 
+  public function test_get_rule_by_id()
+  {
+    $result = $this->obj->get_rule_by_id(1);
+    $expected = [
+      'id_problem' =>
+      "1",
+      'name_problem' =>
+      "Nilai tidak ada",
+      'id_symptom' =>
+      "1",
+      'name_symptom' =>
+      "Data nilai tidak ditemukan di feeder",
+      'mb' =>
+      "0.6",
+      'md' =>
+      "0.2"
+    ];
+    $this->assertEquals($expected, $result);
+  }
+
   public function test_add_rule()
   {
     $result = [

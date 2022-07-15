@@ -14,8 +14,7 @@ class Condition_model extends BaseMySQL_model
 
   public function get_condition($id = null)
   {
-    // Check $id value
-    if ($id !== null) return $this->db->where('id', $id)->get('condition')->result_array();
+    if ($id !== null) return $this->db->where('id', $id)->get('condition')->row_array();
     return $this->db->get('condition')->result_array();
   }
 }

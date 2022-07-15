@@ -48,7 +48,7 @@ class Expertsystem_controller_test extends TestCase
   {
     $output = $this->request('GET', ['expertsystem', 'edit_problem', '1']);
     $this->assertStringContainsString('<title>UPT TIK HELPDESK | Masalah</title>', $output);
-    $this->request('POST', ['expertsystem', 'edit_problem', '1'], ['name' => 'udin', 'solution' => 'test']);
+    // $this->request('POST', ['expertsystem', 'edit_problem', '1'], ['name' => 'udin', 'solution' => 'test']);
   }
 
   public function test_delete_problem()
@@ -68,7 +68,7 @@ class Expertsystem_controller_test extends TestCase
   {
     $output = $this->request('GET', ['expertsystem', 'edit_symptom', '1']);
     $this->assertStringContainsString('<title>UPT TIK HELPDESK | Gejala</title>', $output);
-    $this->request('POST', ['expertsystem', 'edit_symptom', '1'], ['name' => 'udin', 'id_subservice' => '1']);
+    // $this->request('POST', ['expertsystem', 'edit_symptom', '1'], ['name' => 'udin', 'id_subservice' => '1']);
   }
 
   public function test_delete_symptom()
@@ -88,7 +88,7 @@ class Expertsystem_controller_test extends TestCase
   {
     $output = $this->request('GET', ['expertsystem', 'edit_rule', '1']);
     $this->assertStringContainsString('<title>UPT TIK HELPDESK | Aturan</title>', $output);
-    $this->request('POST', ['expertsystem', 'edit_rule', '1'], ['id_problem' => '1', 'id_syptom' => '1', 'mb' => '0.2', 'md' => '0.6']);
+    // $this->request('POST', ['expertsystem', 'edit_rule', '1'], ['id_problem' => '1', 'id_syptom' => '1', 'mb' => '0.2', 'md' => '0.6']);
   }
 
   public function test_delete_rule()
